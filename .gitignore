@@ -60,3 +60,53 @@ conanfile.txt.lock
 *.log
 .DS_Store
 Thumbs.db
+
+#以下是Python项目
+# --- 字节码缓存 ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- 环境与依赖 ---
+# 建议将虚拟环境命名为 .venv 或 venv
+.venv/
+venv/
+ENV/
+env/
+bin/
+lib/
+include/
+share/
+
+# --- 扩展模块 (C/C++ 编译产物) ---
+*.so
+*.dylib
+*.pyd
+
+# --- 常用 IDE 与 编辑器 ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- 配置文件与敏感信息 ---
+# 包含数据库密码、API Key 等
+.env
+.secrets
+
+# --- 测试与覆盖率 ---
+.pytest_cache/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+
+# --- 打包与分发 ---
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# --- 操作系统临时文件 ---
+.DS_Store
+Thumbs.db
