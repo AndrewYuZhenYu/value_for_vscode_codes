@@ -1,9 +1,9 @@
 /*
  * @Author: AndrewYuZhenYu zhenyu_yu@outlook.com
- * @Date: 2026-03-18 22:42:02
+ * @Date: 2026-02-14 17:56:29
  * @LastEditors: AndrewYuZhenYu zhenyu_yu@outlook.com
- * @LastEditTime: 2026-03-18 22:42:27
- * @FilePath: \value_for_vscode_codes\C++ codes\(26021401)convert.cpp
+ * @LastEditTime: 2026-02-15 17:59:13
+ * @FilePath: \VSCODE_NEW\C++ codes\(26021401)convert.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include <iostream>
@@ -18,7 +18,7 @@ int main()
     cin >> stone;
     int pounds = stonetolb(stone);
     cout << stone << " stone= ";
-    cout << sizeof(ll);
+    cout<< sizeof(ll);
     std::cout << pounds << " pounds." << endl;
     // std::cout<<fuck;
     return 0;
