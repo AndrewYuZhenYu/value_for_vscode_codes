@@ -39,7 +39,7 @@ def simulate_buffon_needle(num_needles=2000, line_spacing=2.0, needle_length=1.5
     x2 = x_centers + dx
     y2 = y_centers + dy
     
-    # 3. 判断是否与平行线相交
+    '''# 3. 判断是否与平行线相交
     # 如果针的两个端点 y 坐标跨越了平行线（平行线 y = k * line_spacing），则相交
     # 用向下取整的方式判断：如果两个端点除以间距后的整数部分不同，说明跨越了整数倍的间距
     crosses = np.floor(y1 / line_spacing) != np.floor(y2 / line_spacing)
