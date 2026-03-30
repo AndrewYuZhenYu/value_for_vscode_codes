@@ -172,3 +172,122 @@ print("\nHere is the sorted list:")
 print(sorted(cars))  
 print("\nHere is the original list again:")
 print(cars)
+print("\nHere is the reversed list")
+print (sorted(cars,reverse=True))
+
+#用函数len确定列表的长度
+cars = ['bmw', 'audi', 'toyota', 'subaru']  #  创建一个包含多个汽车品牌的列表
+print(len(cars)) #  使用len()函数获取列表中的元素数量，并打印结果
+
+#操作列表
+
+# for循环
+magicians = ['alice', 'david', 'carolina'] 
+for magician in magicians:#for 循环后面一定要加上':'
+    print(magician)#for 循环下面的语句缩进表示语句在这个循环里，执行多次
+# 编写for循环时,对于用于存储列表中每个值的临时变量,可指定任何名称
+# 在for循环后面,没有缩进的代码都只执行一次,而不会重复执行。
+#! python 里面的缩进不是随便的，通常与循环有关，避免不必要的缩进
+
+#函数 range()
+for value in range(1,5):
+    print(value)
+ # 上述代码好像应该打印数字1~5,但实际上它不会打印数字5:
+# 函数range()让Python从你指定的第一个值开始数,
+# 并在到达你指定的第二个值后停止,因此输出不包含第二个值(这里为5)。
+
+# 使用函数range()时,还可指定步长
+#range 函数括号里面（a,b,c）,
+# a表示起点（包含），b表示终点（不含)，c表示步长，
+# 步长就是连续两个数之间的差值
+
+for value in range (1,100,2): #  使用for循环遍历1到100之间的奇数 range(1,100,2)生成一个从1开始，到100结束（不包括100），步长为2的数字序列
+
+    print (value) #  打印当前遍历到的奇数值
+    
+# 简单的统计计算函数
+# sum   min   max三个函数可做简单统计
+#如sum(digits),min(digits)
+digits=list(range(1,100,2)) 
+# 使用range函数生成一个从1到100（不包括100），步长为2的数字序列
+# 然后将这个序列转换为列表并赋值给变量digits
+#列表名=list（range（a,b,c））
+
+print(sum(digits))
+
+# 列表解析
+squares = [value**2 for value in range(1,11)] 
+print(squares)
+
+#与上面digits定义等价的是 digits=[i for i in range(1,100,2)]
+# 要使用这种语法,首先指定一个描述性的列表名,如squares;
+
+# 然后,指定一个左方括号, 并定义一个表达式,用于生成你要存储到列表中的值。
+# 在这个示例中,表达式为value**2,它计算平方值。
+# 接下来,编写一个for循环,用于给表达式提供值,再加上右方括号。
+# 在这个示例中,  for循环为for value in range(1,11),它将值1~10提供给表达式value**2。
+# 请注意,这里的for 语句末尾没有冒号
+
+#使用列表的一部分（切片）
+
+# 要创建切片,可指定要使用的第一个元素和最后一个元素的索引。
+# 与函数range()一样,Python切片在到达你指定的第二个索引前面的元素后停止。
+# 要输出列表中的前三个元素,需要指定索引0~3, 这将输出分别为0、1和2的元素。
+players = ['charles', 'martina', 'michael', 'florence', 'eli']  #  创建一个包含球员名字的列表
+print(players[0:3]) #  使用切片操作打印列表中的前三个元素
+#  切片的规则：
+# （1），若切片冒号两侧都有数值，并且冒号左侧数值是不小于0的数字，
+#        切片将从冒号左侧数字的索引开始（包含），到冒号右侧数字的索引结束（不含）
+
+#  (2)，若切片冒号左侧无数值，将自动默认从第一个索引开始，到冒号右侧索引结束（不含）
+#       也就是说，若冒号左侧无数值，[:a]等价于[0:a]
+
+#  (3), 若切片右侧无数值，意思是从左侧索引开始，到列表最后一个元素结束
+
+
+# （4), 若切片左侧数值是一个负数，与之前的列表里负数含义一致，-1就是倒数第一个，-2就是倒数第二个
+#       players[-3:]就表示最后三个元素
+#       players[-5:-2]表示从倒数第五个元素到倒数第三个元素（不含倒数第二个）
+#       切片的左含右不含原则是一直适用的，除了冒号两侧缺数值的情况。
+
+# （5），切片冒号两侧全是空的，表示对列表整体的切片。
+#?   players[:]等价于players.copy()
+
+# 遍历切片
+players = ['charles', 'martina', 'michael', 'florence', 'eli']  
+print("Here are the first three players on my team:")
+for player in players[:3]: 
+    print(player.title())
+    
+#复制列表
+my_foods = ['pizza', 'falafel', 'carrot cake'] 
+friend_foods = my_foods[:]  
+print("My favorite foods are:") 
+print(my_foods)  
+print("\nMy friend's favorite foods are:") 
+print(friend_foods)
+#如果只是想复制列表里面的元素，不与源列表建立关联，就用切片
+
+my_foods = ['pizza', 'falafel', 'carrot cake']  #  创建一个包含我最喜欢的食物的列表
+friend_foods = my_foods[:]  
+my_foods.append('cannoli')  
+friend_foods.append('ice cream')  
+print("My favorite foods are:") 
+print(my_foods)  
+print("\nMy friend's favorite foods are:") 
+print(friend_foods)
+
+#输出结果可以看见两个列表元素不同
+
+my_foods = ['pizza', 'falafel', 'carrot cake']  #这行不通  
+friend_foods = my_foods  
+my_foods.append('cannoli') 
+friend_foods.append('ice cream')  
+print("My favorite foods are:") 
+print(my_foods) 
+print("\nMy friend's favorite foods are:") 
+print(friend_foods)
+#打印结果可以发现两个列表元素完全一致
+#实际上进行了赋值操作
+#它们操作的是同一个内存地址
+
