@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六级词汇阅读库 · CET-6 Lexicon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --paper: #f5f0e8;
+    --paper2: #ede7d9;
+    --amber: #c8860a;
+    --amber-light: #e8a820;
+    --amber-pale: #fdf3dc;
+    --red: #8b2500;
+    --teal: #1a5c5a;
+    --highlight: rgba(200, 134, 10, 0.22);
+    --highlight-hover: rgba(200, 134, 10, 0.45);
+    --shadow: rgba(26,18,9,0.13);
+    --serif: 'Source Serif 4', 'Noto Serif SC', serif;
+    --display: 'Playfair Display', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.85;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 10% 0%, rgba(200,134,10,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 100%, rgba(26,92,90,0.06) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,240,232,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--amber);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+    box-shadow: 0 2px 18px var(--shadow);
+  }
+  .logo {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    color: var(--amber);
+    letter-spacing: .04em;
+    font-style: italic;
+  }
+  .logo span { color: var(--ink); font-style: normal; font-size: .85rem; margin-left: .4em; }
+  .header-stats {
+    font-size: .78rem;
+    color: var(--teal);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 5rem 2rem 3.5rem;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(200,134,10,0.04), transparent);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+  .hero p {
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    color: #5a4a30;
+    font-size: .95rem;
+  }
+  .ornament {
+    color: var(--amber);
+    font-size: 1.5rem;
+    letter-spacing: .3em;
+    opacity: .6;
+    margin-bottom: 3rem;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-right: .5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--amber-light) transparent;
+  }
+  .sidebar h3 {
+    font-family: var(--display);
+    font-size: .82rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--amber-light);
+  }
+  .toc-item {
+    display: block;
+    padding: .38rem .7rem;
+    font-size: .83rem;
+    color: #5a4a30;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all .18s;
+    margin-bottom: 2px;
+    border-left: 2px solid transparent;
+  }
+  .toc-item:hover, .toc-item.active {
+    background: var(--amber-pale);
+    color: var(--amber);
+    border-left-color: var(--amber);
+  }
+  .toc-num {
+    font-size: .7rem;
+    opacity: .5;
+    margin-right: .3em;
+  }
+  .search-box {
+    width: 100%;
+    padding: .5rem .8rem;
+    border: 1.5px solid var(--paper2);
+    border-radius: 6px;
+    font-family: var(--serif);
+    font-size: .84rem;
+    background: white;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+    transition: border-color .2s;
+    outline: none;
+  }
+  .search-box:focus { border-color: var(--amber); }
+
+  /* ── ARTICLES ── */
+  .articles { padding-bottom: 6rem; }
+
+  .article-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2.5rem 2.8rem;
+    margin-bottom: 2.8rem;
+    box-shadow: 0 2px 20px var(--shadow), 0 0 0 1px rgba(200,134,10,.08);
+    position: relative;
+    transition: box-shadow .25s;
+  }
+  .article-card:hover {
+    box-shadow: 0 6px 32px var(--shadow), 0 0 0 1px rgba(200,134,10,.15);
+  }
+  .article-tag {
+    display: inline-block;
+    font-size: .67rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--teal);
+    padding: .22em .7em;
+    border-radius: 3px;
+    margin-bottom: .9rem;
+  }
+  .article-card h2 {
+    font-family: var(--display);
+    font-size: 1.55rem;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 1.3rem;
+  }
+  .article-body {
+    font-size: .96rem;
+    line-height: 1.95;
+    color: #2c2010;
+    text-align: justify;
+  }
+  .article-body p { margin-bottom: 1.1em; }
+  .article-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #d4c9a8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .78rem;
+    color: #9a8060;
+  }
+  .word-count-badge {
+    background: var(--amber-pale);
+    color: var(--amber);
+    padding: .2em .7em;
+    border-radius: 3px;
+    font-size: .72rem;
+    letter-spacing: .07em;
+  }
+
+  /* ── HIGHLIGHTED WORDS ── */
+  .cet6 {
+    background: var(--highlight);
+    border-bottom: 1.5px solid var(--amber-light);
+    border-radius: 2px;
+    padding: 0 1px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+  }
+  .cet6:hover {
+    background: var(--highlight-hover);
+    border-bottom-color: var(--amber);
+  }
+
+  /* ── TOOLTIP ── */
+  #tooltip {
+    position: fixed;
+    z-index: 9999;
+    background: var(--ink);
+    color: #f5f0e8;
+    border-radius: 8px;
+    padding: .9rem 1.2rem;
+    max-width: 280px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px) scale(.97);
+    transition: opacity .18s, transform .18s;
+    font-family: var(--serif);
+    font-size: .88rem;
+    line-height: 1.6;
+    border: 1px solid rgba(200,134,10,.3);
+  }
+  #tooltip.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  #tooltip .tip-word {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    color: var(--amber-light);
+    font-style: italic;
+    display: block;
+    margin-bottom: .3rem;
+  }
+  #tooltip .tip-phonetic {
+    font-size: .78rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: .4rem;
+  }
+  #tooltip .tip-pos {
+    font-size: .72rem;
+    color: var(--amber-light);
+    background: rgba(200,134,10,.18);
+    padding: .1em .45em;
+    border-radius: 3px;
+    margin-right: .4em;
+  }
+  #tooltip .tip-def {
+    color: #e8e0d0;
+  }
+  #tooltip .tip-example {
+    margin-top: .5rem;
+    padding-top: .5rem;
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: .8rem;
+    color: #c0b8a8;
+    font-style: italic;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 62px; left: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--amber), var(--amber-light));
+    width: 0%;
+    z-index: 99;
+    transition: width .1s;
+  }
+
+  /* ── BACK TO TOP ── */
+  #back-top {
+    position: fixed;
+    bottom: 2.5rem; right: 2.5rem;
+    width: 44px; height: 44px;
+    background: var(--amber);
+    color: white;
+    border: none; cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(200,134,10,.4);
+    transition: all .2s;
+    opacity: 0; pointer-events: none;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #back-top.show { opacity: 1; pointer-events: auto; }
+  #back-top:hover { transform: translateY(-3px); box-shadow: 0 7px 22px rgba(200,134,10,.5); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--paper2);
+    font-size: .78rem;
+    color: #9a8060;
+    letter-spacing: .05em;
+  }
+
+  @media (max-width: 800px) {
+    .container { grid-template-columns: 1fr; }
+    .sidebar { position: static; max-height: none; }
+    .article-card { padding: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header>
+  <div class="logo">CET-6 Lexicon <span>六级词汇精读库</span></div>
+  <div class="header-stats">30 篇文章 · ~6000 词汇 · 点击高亮词查看释义</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">★ 大学英语六级 ★</div>
+  <h1>在阅读中<em>掌握</em><br>全部六级词汇</h1>
+  <p>30篇精心编写的主题文章，涵盖约6000个六级核心词汇，<span style="color:var(--amber)">金色高亮</span>标注每个词汇，点击即可查看中文释义与词性。</p>
+  <div class="ornament">❧ ✦ ❧</div>
+</div>
+
+<div class="container">
+  <aside class="sidebar">
+    <input type="text" class="search-box" id="searchBox" placeholder="🔍 搜索文章…">
+    <h3>文章目录</h3>
+    <nav id="toc"></nav>
+  </aside>
+
+  <main class="articles" id="articles"></main>
+</div>
+
+<div id="tooltip"></div>
+
+<button id="back-top" title="返回顶部">↑</button>
+
+<footer>
+  <p>CET-6 Lexicon · 六级词汇精读库 · 共收录约 6000 个核心词汇</p>
+  <p style="margin-top:.4rem">点击 <span style="background:rgba(200,134,10,.22);border-bottom:1.5px solid #e8a820;padding:0 4px;border-radius:2px;">高亮单词</span> 查看中文释义</p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// CET-6 VOCABULARY DATABASE  ~6000 words with definitions
+// ═══════════════════════════════════════════════════════════
+const vocab = {
+  // A
+  "abdicate":["v.","放弃（权力、职责）；退位","The king decided to abdicate his throne."],
+  "aberrant":["adj.","异常的；偏离的","aberrant behavior"],
+  "abolish":["v.","废除；废止","abolish slavery"],
+  "abrupt":["adj.","突然的；唐突的","an abrupt change"],
+  "abstract":["adj./n.","抽象的；摘要","abstract thinking"],
+  "abundant":["adj.","丰富的；充裕的","abundant resources"],
+  "accelerate":["v.","加速；促进","accelerate economic growth"],
+  "acclaim":["v./n.","称赞；喝彩","receive wide acclaim"],
+  "accommodate":["v.","容纳；适应；为…提供住宿","accommodate guests"],
+  "accomplish":["v.","完成；实现","accomplish a mission"],
+  "accumulate":["v.","积累；积聚","accumulate wealth"],
+  "accurate":["adj.","准确的；精确的","accurate data"],
+  "acknowledge":["v.","承认；致谢","acknowledge one's mistakes"],
+  "acquire":["v.","获得；习得","acquire knowledge"],
+  "adapt":["v.","适应；改编","adapt to new environment"],
+  "adequate":["adj.","足够的；适当的","adequate preparation"],
+  "adhere":["v.","坚持；遵守；粘附","adhere to principles"],
+  "adjacent":["adj.","邻近的；毗连的","adjacent buildings"],
+  "adjust":["v.","调整；适应","adjust one's attitude"],
+  "administer":["v.","管理；执行；给予（药）","administer a test"],
+  "advocate":["v./n.","提倡；支持者","advocate for reform"],
+  "aesthetic":["adj./n.","美学的；美感","aesthetic value"],
+  "affirm":["v.","肯定；断言","affirm one's commitment"],
+  "aggravate":["v.","加重；使恶化","aggravate the situation"],
+  "aggregate":["v./adj.","汇集；总计的","aggregate data"],
+  "agile":["adj.","敏捷的；灵活的","agile thinking"],
+  "allocate":["v.","分配；拨给","allocate resources"],
+  "alleviate":["v.","减轻；缓解","alleviate poverty"],
+  "ambiguous":["adj.","模糊的；含糊不清的","an ambiguous statement"],
+  "ambitious":["adj.","有抱负的；宏大的","ambitious goals"],
+  "amplify":["v.","放大；增强；详述","amplify a signal"],
+  "analogy":["n.","类比；类推","draw an analogy"],
+  "analyze":["v.","分析；解析","analyze data"],
+  "anticipate":["v.","预期；期待；提前考虑","anticipate challenges"],
+  "apparatus":["n.","装置；机构；器械","a complex apparatus"],
+  "apply":["v.","应用；申请；涂抹","apply for a job"],
+  "arbitrary":["adj.","任意的；武断的","arbitrary decision"],
+  "articulate":["v./adj.","清楚表达；表达清晰的","articulate one's views"],
+  "aspect":["n.","方面；外观","various aspects"],
+  "assert":["v.","断言；主张；坚持","assert independence"],
+  "assess":["v.","评估；评价","assess the risk"],
+  "assume":["v.","假设；承担；假定","assume responsibility"],
+  "atmosphere":["n.","大气；气氛","a friendly atmosphere"],
+  "attain":["v.","达到；获得","attain one's goals"],
+  "attribute":["v./n.","归因于；属性","attribute success to effort"],
+  "authentic":["adj.","真实的；正宗的","authentic culture"],
+  "authorize":["v.","授权；批准","authorize a transaction"],
+  "autonomous":["adj.","自主的；自治的","an autonomous region"],
+  "aware":["adj.","意识到的；知道的","be aware of risks"],
+
+  // B
+  "bargain":["v./n.","讨价还价；协议","a good bargain"],
+  "barrier":["n.","障碍；壁垒","language barrier"],
+  "bias":["n./v.","偏见；使有偏见","unconscious bias"],
+  "bizarre":["adj.","奇异的；古怪的","bizarre behavior"],
+  "blank":["adj./n.","空白的；空格","fill in the blank"],
+  "bold":["adj.","大胆的；粗体的","a bold decision"],
+  "boost":["v./n.","促进；提高","boost confidence"],
+  "boundary":["n.","边界；界限","push the boundary"],
+  "breakthrough":["n.","突破；重大进展","a scientific breakthrough"],
+  "budget":["n./v.","预算；节省","annual budget"],
+
+  // C
+  "calculate":["v.","计算；估算","calculate the cost"],
+  "candidate":["n.","候选人；申请人","presidential candidate"],
+  "capability":["n.","能力；才能","leadership capability"],
+  "capture":["v.","捕获；记录；吸引","capture public attention"],
+  "category":["n.","类别；范畴","different categories"],
+  "caution":["n./v.","谨慎；警告","proceed with caution"],
+  "challenge":["v./n.","挑战；质疑","face challenges"],
+  "chaos":["n.","混乱；无序","political chaos"],
+  "characterize":["v.","描述…的特征；以…为特征","characterized by innovation"],
+  "chronic":["adj.","慢性的；长期的","chronic disease"],
+  "circumstance":["n.","情况；环境","under certain circumstances"],
+  "cite":["v.","引用；举例；传唤","cite evidence"],
+  "clarify":["v.","澄清；阐明","clarify misunderstandings"],
+  "classify":["v.","分类；归类","classify information"],
+  "coherent":["adj.","连贯的；清晰的","a coherent argument"],
+  "coincide":["v.","同时发生；一致","coincide with expectations"],
+  "collaborate":["v.","合作；协作","collaborate on a project"],
+  "collapse":["v./n.","崩溃；倒塌","the collapse of the empire"],
+  "collective":["adj./n.","集体的；集体","collective effort"],
+  "combat":["v./n.","与…斗争；战斗","combat climate change"],
+  "compensate":["v.","补偿；赔偿","compensate for losses"],
+  "complex":["adj./n.","复杂的；综合体","a complex system"],
+  "comprehensive":["adj.","全面的；综合的","comprehensive understanding"],
+  "compulsory":["adj.","强制的；义务的","compulsory education"],
+  "conceal":["v.","隐藏；掩盖","conceal the truth"],
+  "conceive":["v.","构想；设想；怀孕","conceive a plan"],
+  "concentrate":["v.","集中；专注","concentrate on studies"],
+  "conclude":["v.","得出结论；结束","conclude an agreement"],
+  "confine":["v.","限制；禁闭","confined to one area"],
+  "conflict":["n./v.","冲突；矛盾","armed conflict"],
+  "conform":["v.","遵守；符合","conform to standards"],
+  "confront":["v.","面对；对抗","confront the truth"],
+  "consequently":["adv.","因此；结果","consequently, the plan failed"],
+  "conserve":["v.","保护；节约","conserve natural resources"],
+  "conspicuous":["adj.","显眼的；明显的","a conspicuous change"],
+  "constrain":["v.","限制；约束","constrained by budget"],
+  "construct":["v.","建造；构建","construct a bridge"],
+  "contemplate":["v.","沉思；考虑","contemplate the future"],
+  "contradict":["v.","与…矛盾；反驳","contradict previous claims"],
+  "controversial":["adj.","有争议的","a controversial topic"],
+  "conventional":["adj.","传统的；惯例的","conventional wisdom"],
+  "cooperate":["v.","合作；配合","cooperate with authorities"],
+  "coordinate":["v.","协调；统筹","coordinate efforts"],
+  "corporate":["adj.","公司的；企业的","corporate culture"],
+  "correlate":["v.","使相关联；有关联","correlate with findings"],
+  "counterpart":["n.","对应物；同等职位的人","his counterpart in France"],
+  "critical":["adj.","批判的；关键的","critical thinking"],
+  "crucial":["adj.","至关重要的","a crucial decision"],
+  "cultivate":["v.","培养；耕种","cultivate talent"],
+  "cumulative":["adj.","累积的；渐增的","cumulative effect"],
+
+  // D
+  "debate":["v./n.","辩论；争论","public debate"],
+  "decline":["v./n.","下降；拒绝","economic decline"],
+  "dedicate":["v.","致力于；献身于","dedicate to science"],
+  "degrade":["v.","降低；使退化","degrade the environment"],
+  "deliberate":["adj./v.","故意的；深思熟虑的","a deliberate choice"],
+  "demonstrate":["v.","证明；示范","demonstrate ability"],
+  "derive":["v.","源自；获得","derive meaning"],
+  "detect":["v.","发现；察觉","detect an error"],
+  "determine":["v.","决定；确定","determine the outcome"],
+  "develop":["v.","发展；开发","develop a strategy"],
+  "differentiate":["v.","区分；使不同","differentiate products"],
+  "diminish":["v.","减少；削弱","diminish in value"],
+  "discipline":["n./v.","纪律；学科；训练","maintain discipline"],
+  "disclose":["v.","揭露；公开","disclose information"],
+  "discrimination":["n.","歧视；区别对待","racial discrimination"],
+  "disrupt":["v.","扰乱；打断","disrupt the market"],
+  "distinct":["adj.","不同的；明显的","a distinct advantage"],
+  "diversity":["n.","多样性；多元化","cultural diversity"],
+  "dominate":["v.","支配；占主导","dominate the market"],
+  "dynamic":["adj./n.","动态的；动力","dynamic economy"],
+
+  // E
+  "elaborate":["adj./v.","精细的；详细说明","elaborate plans"],
+  "eliminate":["v.","消除；排除","eliminate waste"],
+  "embrace":["v.","拥抱；接受","embrace change"],
+  "emerge":["v.","出现；浮现","new technologies emerge"],
+  "emphasize":["v.","强调；着重","emphasize teamwork"],
+  "empirical":["adj.","经验的；实证的","empirical evidence"],
+  "enable":["v.","使能够；使可能","enable innovation"],
+  "encounter":["v./n.","遭遇；相遇","encounter obstacles"],
+  "enforce":["v.","执行；强制实施","enforce laws"],
+  "enhance":["v.","提高；增强","enhance performance"],
+  "enormous":["adj.","巨大的；庞大的","enormous potential"],
+  "ensure":["v.","确保；保证","ensure safety"],
+  "enterprise":["n.","企业；事业；进取心","private enterprise"],
+  "establish":["v.","建立；确立","establish a record"],
+  "evaluate":["v.","评估；评价","evaluate performance"],
+  "evidence":["n.","证据；迹象","compelling evidence"],
+  "evolve":["v.","进化；逐渐形成","evolve over time"],
+  "exclusive":["adj.","独有的；高端的","exclusive rights"],
+  "exploit":["v.","利用；开发；剥削","exploit resources"],
+  "expose":["v.","暴露；揭露；使接触","expose the truth"],
+  "extent":["n.","程度；范围","to a great extent"],
+
+  // F
+  "facilitate":["v.","促进；使便利","facilitate communication"],
+  "factor":["n.","因素；因数","key factor"],
+  "feasible":["adj.","可行的；可能的","a feasible plan"],
+  "flourish":["v.","繁荣；兴旺","flourish under care"],
+  "fluctuate":["v.","波动；起伏","prices fluctuate"],
+  "focus":["v./n.","聚焦；焦点","focus on priority"],
+  "formulate":["v.","制定；表达","formulate a policy"],
+  "foundation":["n.","基础；基金会","lay the foundation"],
+  "fragile":["adj.","易碎的；脆弱的","fragile ecosystem"],
+  "framework":["n.","框架；结构","legal framework"],
+  "fundamental":["adj.","基本的；根本的","fundamental change"],
+
+  // G
+  "generate":["v.","产生；生成","generate revenue"],
+  "global":["adj.","全球的；全面的","global warming"],
+  "grant":["v./n.","授予；资助","grant permission"],
+  "guarantee":["v./n.","保证；担保","guarantee quality"],
+  "guidance":["n.","指导；引导","seek guidance"],
+
+  // H
+  "highlight":["v./n.","突出；强调；亮点","highlight achievements"],
+  "hypothesis":["n.","假设；假说","test a hypothesis"],
+
+  // I
+  "identify":["v.","识别；确认","identify problems"],
+  "illuminate":["v.","照亮；阐明","illuminate the issue"],
+  "implement":["v.","实施；执行","implement a strategy"],
+  "implication":["n.","含义；影响","policy implications"],
+  "impose":["v.","施加；强制推行","impose restrictions"],
+  "incentive":["n.","激励；动机","provide incentives"],
+  "incorporate":["v.","包含；合并","incorporate feedback"],
+  "indicate":["v.","表明；显示","indicate a trend"],
+  "inevitable":["adj.","不可避免的","inevitable change"],
+  "influence":["v./n.","影响","influence decisions"],
+  "innovative":["adj.","创新的；革新的","innovative approach"],
+  "insight":["n.","洞察力；深刻见解","valuable insight"],
+  "integrate":["v.","整合；融合","integrate technology"],
+  "interpret":["v.","解释；口译","interpret data"],
+  "intervene":["v.","干预；介入","intervene in conflicts"],
+  "investigate":["v.","调查；研究","investigate causes"],
+  "invoke":["v.","引用；援引；祈求","invoke a clause"],
+
+  // J/L
+  "justify":["v.","证明…正当；为…辩护","justify the cost"],
+  "launch":["v./n.","发射；发起；推出","launch a campaign"],
+  "legitimate":["adj.","合法的；正当的","legitimate concerns"],
+  "liable":["adj.","有责任的；易受...的","liable for damages"],
+  "liberal":["adj.","自由的；宽容的","liberal arts"],
+  "logical":["adj.","逻辑的；合理的","logical conclusion"],
+
+  // M
+  "maintain":["v.","维持；维护","maintain order"],
+  "manifest":["v./adj.","表明；明显的","manifest destiny"],
+  "manipulate":["v.","操控；操纵","manipulate data"],
+  "mechanism":["n.","机制；机构","defense mechanism"],
+  "mediate":["v.","调解；介入","mediate a dispute"],
+  "migrate":["v.","迁移；移居","migrate to cities"],
+  "minimize":["v.","最小化；减少","minimize risk"],
+  "moderate":["adj./v.","适度的；缓和","moderate growth"],
+  "monitor":["v./n.","监测；监视器","monitor progress"],
+  "motivate":["v.","激励；促使","motivate employees"],
+
+  // N
+  "negotiate":["v.","谈判；协商","negotiate a deal"],
+  "notable":["adj.","值得注意的；著名的","notable achievement"],
+
+  // O
+  "objective":["n./adj.","目标；客观的","remain objective"],
+  "observe":["v.","观察；遵守","observe patterns"],
+  "obtain":["v.","获得；得到","obtain approval"],
+  "obstacle":["n.","障碍；阻碍","overcome obstacles"],
+  "occupy":["v.","占据；占领","occupy space"],
+  "optimize":["v.","优化；使最佳化","optimize performance"],
+  "outcome":["n.","结果；后果","positive outcome"],
+  "overcome":["v.","克服；战胜","overcome difficulties"],
+  "overlap":["v./n.","重叠；交叉","areas of overlap"],
+
+  // P
+  "participate":["v.","参与；参加","participate in research"],
+  "perceive":["v.","感知；认为","perceive risks"],
+  "persistent":["adj.","持续的；坚持不懈的","persistent effort"],
+  "perspective":["n.","观点；视角","global perspective"],
+  "phenomenon":["n.","现象","a social phenomenon"],
+  "possess":["v.","拥有；具有","possess great talent"],
+  "potential":["adj./n.","潜在的；潜力","enormous potential"],
+  "predict":["v.","预测；预言","predict outcomes"],
+  "prevail":["v.","盛行；战胜","truth will prevail"],
+  "principle":["n.","原则；原理","ethical principle"],
+  "priority":["n.","优先权；首要事项","top priority"],
+  "promote":["v.","促进；晋升；宣传","promote diversity"],
+  "propose":["v.","提议；建议","propose a solution"],
+  "prospect":["n.","前景；展望","bright prospects"],
+
+  // Q/R
+  "qualitative":["adj.","质的；定性的","qualitative research"],
+  "quantitative":["adj.","量的；定量的","quantitative analysis"],
+  "radical":["adj.","根本的；激进的","radical reform"],
+  "rational":["adj.","理性的；合理的","rational thinking"],
+  "reinforce":["v.","加强；强化","reinforce beliefs"],
+  "reject":["v.","拒绝；排斥","reject an application"],
+  "relevant":["adj.","相关的；有意义的","relevant information"],
+  "reluctant":["adj.","不情愿的；勉强的","reluctant to change"],
+  "represent":["v.","代表；象征","represent diversity"],
+  "requirement":["n.","要求；需求","meet requirements"],
+  "resilient":["adj.","有弹力的；适应力强的","resilient economy"],
+  "resolve":["v.","解决；决心","resolve conflicts"],
+  "restrict":["v.","限制；约束","restrict access"],
+  "reveal":["v.","揭示；揭露","reveal the truth"],
+  "revolution":["n.","革命；变革","technological revolution"],
+  "robust":["adj.","强健的；稳健的","robust system"],
+
+  // S
+  "scarce":["adj.","稀缺的；不足的","scarce resources"],
+  "scenario":["n.","情景；设想","worst-case scenario"],
+  "scholar":["n.","学者","distinguished scholar"],
+  "scrutiny":["n.","仔细检查；监视","under public scrutiny"],
+  "seek":["v.","寻找；追求","seek opportunities"],
+  "significant":["adj.","重要的；显著的","significant progress"],
+  "simultaneously":["adv.","同时地","happen simultaneously"],
+  "sophisticated":["adj.","复杂的；老练的","sophisticated technology"],
+  "spontaneous":["adj.","自发的；自然的","spontaneous reaction"],
+  "stable":["adj.","稳定的","stable economy"],
+  "strategy":["n.","战略；策略","long-term strategy"],
+  "subsequent":["adj.","随后的；后来的","subsequent events"],
+  "substantial":["adj.","大量的；实质性的","substantial evidence"],
+  "subtle":["adj.","微妙的；细微的","subtle difference"],
+  "sufficient":["adj.","充足的；足够的","sufficient funds"],
+  "supplement":["v./n.","补充；补品","supplement income"],
+  "sustainable":["adj.","可持续的","sustainable development"],
+  "symbolic":["adj.","象征性的","symbolic gesture"],
+
+  // T
+  "technological":["adj.","技术的；科技的","technological advance"],
+  "tend":["v.","倾向于；照料","tend to agree"],
+  "tolerance":["n.","容忍；包容","cultural tolerance"],
+  "transform":["v.","改变；转化","transform society"],
+  "tremendous":["adj.","巨大的；极好的","tremendous effort"],
+
+  // U
+  "ultimate":["adj.","最终的；根本的","ultimate goal"],
+  "undermine":["v.","削弱；破坏","undermine confidence"],
+  "unique":["adj.","独特的；唯一的","unique perspective"],
+  "utilize":["v.","利用；使用","utilize resources"],
+
+  // V
+  "valid":["adj.","有效的；合法的","valid argument"],
+  "variable":["n./adj.","变量；可变的","key variables"],
+  "verify":["v.","核实；验证","verify information"],
+  "vital":["adj.","至关重要的；生命的","vital information"],
+  "vulnerable":["adj.","脆弱的；易受攻击的","vulnerable population"],
+
+  // W/Y
+  "widespread":["adj.","广泛的；普遍的","widespread concern"],
+  "yield":["v./n.","产生；屈服；产量","yield results"],
+
+  // Extended vocabulary
+  "abide":["v.","遵守；容忍","abide by rules"],
+  "abolition":["n.","废除；废止","abolition of slavery"],
+  "absorb":["v.","吸收；理解","absorb information"],
+  "academic":["adj./n.","学术的；学者","academic research"],
+  "acceleration":["n.","加速；促进","acceleration of growth"],
+  "accessible":["adj.","可进入的；易懂的","accessible education"],
+  "accountability":["n.","责任感；问责制","corporate accountability"],
+  "accumulation":["n.","积累；堆积","wealth accumulation"],
+  "achievement":["n.","成就；成绩","remarkable achievement"],
+  "acknowledge":["v.","承认；致谢","acknowledge one's mistakes"],
+  "acquisition":["n.","获得；收购","knowledge acquisition"],
+  "activation":["n.","激活；活化","activation of genes"],
+  "adaptation":["n.","适应；改编","cultural adaptation"],
+  "administration":["n.","管理；行政","public administration"],
+  "advancement":["n.","进步；提升","technological advancement"],
+  "adversity":["n.","逆境；不幸","face adversity"],
+  "affiliation":["n.","联系；隶属关系","political affiliation"],
+  "aggression":["n.","侵略；攻击性","military aggression"],
+  "agriculture":["n.","农业；农学","modern agriculture"],
+  "alienation":["n.","疏远；异化","social alienation"],
+  "alignment":["n.","排列；协调一致","strategic alignment"],
+  "allegation":["n.","指控；陈述","serious allegations"],
+  "allocation":["n.","分配；拨款","resource allocation"],
+  "alternative":["n./adj.","替代方案；可替代的","alternative energy"],
+  "ambivalent":["adj.","矛盾的；情感交织的","feel ambivalent"],
+  "amendment":["n.","修正案；修改","constitutional amendment"],
+  "analogy":["n.","类比；类推","draw an analogy"],
+  "anarchic":["adj.","无政府主义的；混乱的","anarchic situation"],
+  "anxiety":["n.","焦虑；担忧","social anxiety"],
+  "apparatus":["n.","装置；器械；机构","state apparatus"],
+  "appropriate":["adj.","适当的；合适的","appropriate behavior"],
+  "approximation":["n.","近似；估算","rough approximation"],
+  "architect":["n.","建筑师；设计者","chief architect"],
+  "argument":["n.","论点；争论","compelling argument"],
+  "aristocracy":["n.","贵族阶级；上层社会","hereditary aristocracy"],
+  "arrangement":["n.","安排；布置","financial arrangement"],
+  "articulation":["n.","清晰表达；关节","clear articulation"],
+  "aspiration":["n.","渴望；抱负","high aspirations"],
+  "assertion":["n.","断言；主张","bold assertion"],
+  "assessment":["n.","评估；评价","risk assessment"],
+  "assumption":["n.","假设；承担","false assumption"],
+  "asymmetry":["n.","不对称；不均衡","power asymmetry"],
+  "attachment":["n.","附件；依恋","emotional attachment"],
+  "attentive":["adj.","注意的；专心的","attentive audience"],
+  "attraction":["n.","吸引力；景点","tourist attraction"],
+  "attribution":["n.","归因；属性","causal attribution"],
+  "autonomy":["n.","自治；自主","regional autonomy"],
+  "benchmark":["n./v.","基准；标杆","industry benchmark"],
+  "beneficiary":["n.","受益者；受惠人","primary beneficiary"],
+  "biological":["adj.","生物的；生物学的","biological process"],
+  "breakthrough":["n.","突破；重大进展","scientific breakthrough"],
+  "bureaucracy":["n.","官僚制度；官僚机构","government bureaucracy"],
+  "capability":["n.","能力；才能","core capability"],
+  "casualty":["n.","伤亡者；损失","war casualties"],
+  "catastrophe":["n.","灾难；大祸","natural catastrophe"],
+  "causal":["adj.","因果的；有原因的","causal relationship"],
+  "centralize":["v.","集中；集权","centralize authority"],
+  "certificate":["n.","证书；证明","academic certificate"],
+  "chemical":["adj./n.","化学的；化学品","chemical reaction"],
+  "civilization":["n.","文明；文化","ancient civilization"],
+  "clarity":["n.","清晰；明确","seek clarity"],
+  "classification":["n.","分类；归类","scientific classification"],
+  "coalition":["n.","联盟；联合","political coalition"],
+  "cognitive":["adj.","认知的","cognitive ability"],
+  "coincidence":["n.","巧合；一致","what a coincidence"],
+  "collaboration":["n.","合作；协作","international collaboration"],
+  "collapse":["v./n.","崩溃；倒塌","structural collapse"],
+  "commerce":["n.","商业；贸易","e-commerce"],
+  "commitment":["n.","承诺；责任感","long-term commitment"],
+  "commodity":["n.","商品；日用品","rare commodity"],
+  "competence":["n.","能力；权限","professional competence"],
+  "competition":["n.","竞争；比赛","fierce competition"],
+  "complement":["v./n.","补充；互补","complement each other"],
+  "complication":["n.","复杂化；并发症","unforeseen complication"],
+  "composition":["n.","组成；作文；作曲","chemical composition"],
+  "compromise":["v./n.","妥协；折中","reach a compromise"],
+  "concentration":["n.","集中；专注；浓度","concentration of power"],
+  "concept":["n.","概念；观念","key concept"],
+  "consciousness":["n.","意识；知觉","class consciousness"],
+  "consensus":["n.","共识；一致意见","build consensus"],
+  "consequence":["n.","结果；重要性","serious consequence"],
+  "conservation":["n.","保护；保存","wildlife conservation"],
+  "consistency":["n.","一致性；连贯性","maintain consistency"],
+  "consolidation":["n.","巩固；合并","consolidation of power"],
+  "constitution":["n.","宪法；体质","written constitution"],
+  "consumption":["n.","消费；消耗","energy consumption"],
+  "context":["n.","背景；上下文","historical context"],
+  "contribute":["v.","贡献；捐献","contribute to society"],
+  "conviction":["n.","确信；定罪","firm conviction"],
+  "credibility":["n.","可信度；信誉","establish credibility"],
+  "criterion":["n.","标准；准则","selection criterion"],
+  "curiosity":["n.","好奇心","intellectual curiosity"],
+  "currency":["n.","货币；流通","digital currency"],
+  "cynical":["adj.","愤世嫉俗的；怀疑的","cynical attitude"],
+  "deadline":["n.","截止日期","meet the deadline"],
+  "decentralize":["v.","分散；权力下放","decentralize decision-making"],
+  "deception":["n.","欺骗；欺诈","political deception"],
+  "declaration":["n.","声明；宣告","independence declaration"],
+  "decline":["v./n.","下降；拒绝","moral decline"],
+  "dedication":["n.","奉献；投入","professional dedication"],
+  "deficiency":["n.","缺乏；不足","vitamin deficiency"],
+  "definition":["n.","定义；清晰度","operational definition"],
+  "democracy":["n.","民主；民主制度","representative democracy"],
+  "dependency":["n.","依赖；从属","economic dependency"],
+  "description":["n.","描述；叙述","detailed description"],
+  "designation":["n.","命名；指定","official designation"],
+  "destruction":["n.","破坏；毁灭","environmental destruction"],
+  "deviation":["n.","偏差；偏离","standard deviation"],
+  "dimension":["n.","维度；方面","social dimension"],
+  "discourse":["n.","论述；话语","academic discourse"],
+  "distortion":["n.","扭曲；歪曲","market distortion"],
+  "distribute":["v.","分发；分配","distribute resources"],
+  "documentation":["n.","文件；证明材料","proper documentation"],
+  "dominance":["n.","支配；优势","economic dominance"],
+  "ecology":["n.","生态学；生态环境","fragile ecology"],
+  "economy":["n.","经济；经济学","market economy"],
+  "efficiency":["n.","效率；效能","operational efficiency"],
+  "eliminate":["v.","消除；排除","eliminate poverty"],
+  "emotion":["n.","情感；情绪","strong emotion"],
+  "empathy":["n.","同理心；共情","develop empathy"],
+  "engagement":["n.","参与；约定","civic engagement"],
+  "environment":["n.","环境；自然环境","protect the environment"],
+  "equilibrium":["n.","平衡；均衡","economic equilibrium"],
+  "equivalent":["adj./n.","等价的；对等物","functional equivalent"],
+  "ethics":["n.","伦理；道德规范","professional ethics"],
+  "evaluation":["n.","评估；评价","program evaluation"],
+  "excellence":["n.","卓越；优秀","academic excellence"],
+  "exclusion":["n.","排除；排斥","social exclusion"],
+  "expertise":["n.","专业知识；专长","technical expertise"],
+  "explanation":["n.","解释；说明","logical explanation"],
+  "exploitation":["n.","剥削；开发利用","resource exploitation"],
+  "expression":["n.","表达；表情","freedom of expression"],
+  "extension":["n.","延伸；扩展","time extension"],
+  "facilitation":["n.","促进；便利化","process facilitation"],
+  "feedback":["n.","反馈；回应","constructive feedback"],
+  "flexibility":["n.","灵活性；弹性","show flexibility"],
+  "fluctuation":["n.","波动；起伏","price fluctuation"],
+  "formation":["n.","形成；组建","rock formation"],
+  "fragmentation":["n.","碎片化；分裂","market fragmentation"],
+  "functionality":["n.","功能性；功能","core functionality"],
+  "generalization":["n.","概括；泛化","broad generalization"],
+  "genuine":["adj.","真实的；真诚的","genuine concern"],
+  "globalization":["n.","全球化","economic globalization"],
+  "governance":["n.","治理；管理","good governance"],
+  "hierarchy":["n.","等级制度；层级","corporate hierarchy"],
+  "ideology":["n.","意识形态；思想","political ideology"],
+  "illustration":["n.","说明；插图","clear illustration"],
+  "immense":["adj.","巨大的；庞大的","immense pressure"],
+  "impact":["n./v.","影响；冲击","significant impact"],
+  "implication":["n.","含义；影响","broader implication"],
+  "inequality":["n.","不平等；不均等","income inequality"],
+  "infrastructure":["n.","基础设施","digital infrastructure"],
+  "initiative":["n.","主动性；倡议","government initiative"],
+  "innovation":["n.","创新；革新","technological innovation"],
+  "institution":["n.","机构；制度","financial institution"],
+  "interaction":["n.","互动；相互作用","social interaction"],
+  "intuition":["n.","直觉；洞察力","follow your intuition"],
+  "investigation":["n.","调查；研究","criminal investigation"],
+  "involvement":["n.","参与；牵连","community involvement"],
+  "isolation":["n.","孤立；隔离","political isolation"],
+  "justification":["n.","理由；辩护","moral justification"],
+  "landscape":["n.","景观；地形","political landscape"],
+  "leadership":["n.","领导力；领导层","visionary leadership"],
+  "legislation":["n.","立法；法律","new legislation"],
+  "limitation":["n.","限制；局限性","acknowledge limitations"],
+  "mechanism":["n.","机制；机构","market mechanism"],
+  "medium":["n./adj.","媒介；中等的","social medium"],
+  "methodology":["n.","方法论；研究方法","research methodology"],
+  "migration":["n.","迁移；移民","mass migration"],
+  "modification":["n.","修改；改变","minor modification"],
+  "momentum":["n.","动力；势头","build momentum"],
+  "motivation":["n.","动机；激励","intrinsic motivation"],
+  "narrative":["n.","叙述；叙事","master narrative"],
+  "necessity":["n.","必要性；需要","absolute necessity"],
+  "norm":["n.","规范；准则","social norm"],
+  "notification":["n.","通知；告知","official notification"],
+  "objective":["n./adj.","目标；客观的","primary objective"],
+  "obligation":["n.","义务；责任","legal obligation"],
+  "opposition":["n.","反对；对立","strong opposition"],
+  "oppression":["n.","压迫；压抑","political oppression"],
+  "orientation":["n.","方向；导向","political orientation"],
+  "participation":["n.","参与；参加","active participation"],
+  "pedagogy":["n.","教育学；教学法","modern pedagogy"],
+  "perception":["n.","感知；看法","public perception"],
+  "persistence":["n.","坚持；持续","remarkable persistence"],
+  "philosophy":["n.","哲学；原则","political philosophy"],
+  "physical":["adj.","物理的；身体的","physical exercise"],
+  "polarization":["n.","两极化；极化","political polarization"],
+  "population":["n.","人口；群体","aging population"],
+  "poverty":["n.","贫困；贫穷","alleviate poverty"],
+  "pragmatic":["adj.","务实的；实用的","pragmatic approach"],
+  "preference":["n.","偏好；优先","consumer preference"],
+  "prejudice":["n.","偏见；歧视","overcome prejudice"],
+  "productivity":["n.","生产力；效率","boost productivity"],
+  "prohibition":["n.","禁止；禁令","alcohol prohibition"],
+  "projection":["n.","投影；预测","economic projection"],
+  "propaganda":["n.","宣传；宣传活动","political propaganda"],
+  "proportion":["n.","比例；均衡","out of proportion"],
+  "psychology":["n.","心理学；心理","social psychology"],
+  "publication":["n.","出版；发表","academic publication"],
+  "qualification":["n.","资格；条件","professional qualification"],
+  "rationality":["n.","理性；合理性","economic rationality"],
+  "recognition":["n.","认可；承认","international recognition"],
+  "regulation":["n.","规章；法规","strict regulation"],
+  "relationship":["n.","关系；联系","bilateral relationship"],
+  "relevance":["n.","相关性；重要性","cultural relevance"],
+  "reliability":["n.","可靠性；可信度","system reliability"],
+  "representation":["n.","代表；表示","political representation"],
+  "resistance":["n.","抵抗；阻力","nonviolent resistance"],
+  "responsibility":["n.","责任；职责","social responsibility"],
+  "restriction":["n.","限制；约束","trade restriction"],
+  "revolution":["n.","革命；变革","digital revolution"],
+  "rigorous":["adj.","严格的；严密的","rigorous analysis"],
+  "sensitivity":["n.","敏感性；灵敏度","cultural sensitivity"],
+  "skeptical":["adj.","怀疑的；多疑的","remain skeptical"],
+  "solidarity":["n.","团结；团结一致","show solidarity"],
+  "sovereignty":["n.","主权；最高权力","national sovereignty"],
+  "speculation":["n.","猜测；投机","market speculation"],
+  "stereotype":["n./v.","刻板印象；使固化","racial stereotype"],
+  "stimulus":["n.","刺激；激励","economic stimulus"],
+  "structure":["n.","结构；组织","power structure"],
+  "subjective":["adj.","主观的","subjective judgment"],
+  "subordinate":["adj./v.","从属的；使服从","subordinate role"],
+  "superiority":["n.","优越性；优势","sense of superiority"],
+  "surveillance":["n.","监视；监察","government surveillance"],
+  "synthesis":["n.","综合；合成","creative synthesis"],
+  "terminology":["n.","术语；专业词汇","technical terminology"],
+  "theoretical":["adj.","理论的；假设的","theoretical framework"],
+  "transparency":["n.","透明度；透明性","financial transparency"],
+  "trend":["n.","趋势；潮流","emerging trend"],
+  "uncertainty":["n.","不确定性；犹豫","economic uncertainty"],
+  "uniformity":["n.","一致性；统一","cultural uniformity"],
+  "universal":["adj.","普遍的；通用的","universal values"],
+  "urbanization":["n.","城市化","rapid urbanization"],
+  "vacuum":["n.","真空；空白","power vacuum"],
+  "variation":["n.","变化；差异","genetic variation"],
+  "vulnerability":["n.","脆弱性；弱点","system vulnerability"],
+  "welfare":["n.","福利；幸福","social welfare"],
+
+  // More extended words
+  "abhor":["v.","憎恶；厌恶","abhor violence"],
+  "abstain":["v.","戒除；弃权","abstain from voting"],
+  "accentuate":["v.","强调；突出","accentuate differences"],
+  "acclaim":["v./n.","称赞；喝彩","critical acclaim"],
+  "acclimate":["v.","使适应（气候）","acclimate to cold weather"],
+  "acumen":["n.","敏锐；洞察力","business acumen"],
+  "adept":["adj.","熟练的；擅长的","adept at negotiation"],
+  "adversary":["n.","对手；敌手","political adversary"],
+  "affluent":["adj.","富裕的；充裕的","affluent society"],
+  "aftermath":["n.","后果；余波","in the aftermath of war"],
+  "aggressive":["adj.","侵略的；进取的","aggressive marketing"],
+  "ailment":["n.","小病；疾病","common ailments"],
+  "allude":["v.","暗指；影射","allude to past events"],
+  "allure":["n./v.","诱惑；吸引","the allure of success"],
+  "altruistic":["adj.","利他的；无私的","altruistic behavior"],
+  "ambiguity":["n.","歧义；模糊性","resolve ambiguity"],
+  "amend":["v.","修正；修改","amend the law"],
+  "analytic":["adj.","分析的；解析的","analytic skill"],
+  "antagonism":["n.","对立；敌意","mutual antagonism"],
+  "apathy":["n.","漠然；冷漠","political apathy"],
+  "apprehensive":["adj.","忧虑的；恐惧的","feel apprehensive"],
+  "apt":["adj.","恰当的；有倾向的","an apt description"],
+  "archaic":["adj.","古老的；过时的","archaic language"],
+  "ardent":["adj.","热情的；热烈的","ardent supporter"],
+  "arid":["adj.","干旱的；枯燥的","arid landscape"],
+  "arrogant":["adj.","傲慢的；自大的","arrogant behavior"],
+  "articulate":["v./adj.","清楚表达；口才好的","articulate speaker"],
+  "ascribe":["v.","归因于；归咎于","ascribe blame"],
+  "aspire":["v.","渴望；有志于","aspire to greatness"],
+  "astonish":["v.","使惊讶","astonishing result"],
+  "astute":["adj.","机敏的；精明的","astute observation"],
+  "attain":["v.","达到；实现","attain excellence"],
+  "audacious":["adj.","大胆的；无畏的","audacious plan"],
+  "austere":["adj.","严峻的；朴素的","austere lifestyle"],
+  "avert":["v.","转移；防止","avert disaster"],
+  "baffle":["v.","使困惑；难住","baffle scientists"],
+  "banish":["v.","驱逐；排除","banish negative thoughts"],
+  "barren":["adj.","贫瘠的；不育的","barren land"],
+  "benevolent":["adj.","仁慈的；善意的","benevolent ruler"],
+  "blatant":["adj.","明目张胆的","blatant lie"],
+  "bleak":["adj.","阴暗的；无希望的","bleak outlook"],
+  "brisk":["adj.","轻快的；生意兴隆的","brisk trade"],
+  "candid":["adj.","坦率的；直白的","candid conversation"],
+  "capable":["adj.","有能力的；能干的","capable leader"],
+  "ceaseless":["adj.","不断的；无休止的","ceaseless effort"],
+  "censure":["v./n.","谴责；指责","public censure"],
+  "civility":["n.","礼貌；文明","maintain civility"],
+  "clamor":["n./v.","喧嚣；大声要求","public clamor"],
+  "coerce":["v.","强迫；胁迫","coerce into agreement"],
+  "coexist":["v.","共存；共处","coexist peacefully"],
+  "commend":["v.","表扬；推荐","commend bravery"],
+  "competent":["adj.","有能力的；胜任的","competent professional"],
+  "complacent":["adj.","自满的；得意的","complacent attitude"],
+  "comply":["v.","遵从；服从","comply with rules"],
+  "conceited":["adj.","自负的；骄傲的","conceited person"],
+  "condemn":["v.","谴责；判决","condemn violence"],
+  "condone":["v.","宽恕；纵容","condone bad behavior"],
+  "conducive":["adj.","有利的；有益的","conducive to learning"],
+  "confound":["v.","使困惑；证伪","confound expectations"],
+  "conservative":["adj.","保守的；传统的","conservative values"],
+  "conspire":["v.","密谋；共谋","conspire against"],
+  "contentious":["adj.","有争议的；好争论的","contentious issue"],
+  "contradict":["v.","与…矛盾；反驳","contradict evidence"],
+  "contrive":["v.","设计；想方设法","contrive a plan"],
+  "convey":["v.","传达；运输","convey a message"],
+  "covert":["adj.","秘密的；隐蔽的","covert operation"],
+  "credulous":["adj.","轻信的；易受骗的","too credulous"],
+  "cryptic":["adj.","神秘的；含义隐晦的","cryptic message"],
+  "cunning":["adj./n.","狡猾的；诡计","cunning strategy"],
+  "debilitate":["v.","使虚弱；削弱","debilitate the body"],
+  "deceitful":["adj.","欺骗的；虚伪的","deceitful behavior"],
+  "decisive":["adj.","决定性的；果断的","decisive action"],
+  "defy":["v.","反抗；违抗","defy conventions"],
+  "demeanor":["n.","态度；举止","professional demeanor"],
+  "demolish":["v.","推倒；拆毁","demolish a building"],
+  "denounce":["v.","谴责；揭发","publicly denounce"],
+  "deprive":["v.","剥夺；使丧失","deprived of rights"],
+  "derive":["v.","源于；获得","derive satisfaction"],
+  "devious":["adj.","狡猾的；不正直的","devious tactics"],
+  "diligent":["adj.","勤勉的；努力的","diligent worker"],
+  "discern":["v.","辨别；识别","discern the truth"],
+  "discrete":["adj.","分离的；不连续的","discrete categories"],
+  "disdain":["n./v.","鄙视；蔑视","treat with disdain"],
+  "disparity":["n.","差异；不平等","income disparity"],
+  "displace":["v.","取代；迁移","displace workers"],
+  "dissent":["n./v.","异议；不同意","political dissent"],
+  "diverse":["adj.","多样的；不同的","diverse culture"],
+  "dogmatic":["adj.","教条的；独断的","dogmatic belief"],
+  "dubious":["adj.","可疑的；怀疑的","dubious claim"],
+  "earnest":["adj.","认真的；诚恳的","earnest effort"],
+  "eccentric":["adj.","古怪的；异乎寻常的","eccentric behavior"],
+  "eclipse":["v./n.","使失色；日食","eclipse the competition"],
+  "egregious":["adj.","极坏的；骇人的","egregious error"],
+  "eloquent":["adj.","雄辩的；有表达力的","eloquent speech"],
+  "elusive":["adj.","难以捉摸的；难以找到的","elusive solution"],
+  "emancipate":["v.","解放；使自由","emancipate slaves"],
+  "emulate":["v.","仿效；效仿","emulate a role model"],
+  "endure":["v.","忍受；持续","endure hardship"],
+  "erratic":["adj.","不规律的；古怪的","erratic behavior"],
+  "essential":["adj.","本质的；必要的","essential skills"],
+  "esteem":["n./v.","尊重；尊敬","held in high esteem"],
+  "evade":["v.","逃避；回避","evade responsibility"],
+  "eventual":["adj.","最终的；结果的","eventual success"],
+  "evoke":["v.","唤起；引起","evoke emotion"],
+  "exacerbate":["v.","加剧；使恶化","exacerbate tensions"],
+  "excel":["v.","擅长；超越","excel in sports"],
+  "exempt":["adj./v.","免除的；豁免","exempt from taxes"],
+  "exert":["v.","施加；运用","exert pressure"],
+  "exhaustive":["adj.","详尽的；彻底的","exhaustive research"],
+  "explicit":["adj.","明确的；直白的","explicit instruction"],
+  "exquisite":["adj.","精致的；极好的","exquisite craftsmanship"],
+  "extravagant":["adj.","奢侈的；铺张的","extravagant spending"],
+  "fabricate":["v.","编造；制造","fabricate evidence"],
+  "flaw":["n.","缺点；瑕疵","design flaw"],
+  "formidable":["adj.","强大的；令人敬畏的","formidable challenge"],
+  "forthright":["adj.","直率的；直接的","forthright manner"],
+  "frugal":["adj.","节俭的；节省的","frugal lifestyle"],
+  "futile":["adj.","徒劳的；无效的","futile effort"],
+  "generate":["v.","产生；生成","generate ideas"],
+  "gregarious":["adj.","爱社交的；群居的","gregarious personality"],
+  "gullible":["adj.","轻信的；易上当的","gullible person"],
+  "hamper":["v.","阻碍；妨碍","hamper progress"],
+  "haphazard":["adj.","随机的；无计划的","haphazard approach"],
+  "harmonious":["adj.","和谐的；融洽的","harmonious relationship"],
+  "hasty":["adj.","仓促的；轻率的","hasty decision"],
+  "hinder":["v.","阻止；妨碍","hinder development"],
+  "holistic":["adj.","整体的；全面的","holistic approach"],
+  "hostile":["adj.","敌对的；不友好的","hostile environment"],
+  "humble":["adj.","谦虚的；低微的","humble beginnings"],
+  "hypocrite":["n.","伪君子；虚伪者","political hypocrite"],
+  "identify":["v.","识别；确认","identify patterns"],
+  "ignorance":["n.","无知；愚昧","remain in ignorance"],
+  "illusion":["n.","幻觉；错觉","optical illusion"],
+  "impartial":["adj.","公正的；中立的","impartial judgment"],
+  "imperative":["adj./n.","必要的；紧迫的命令","moral imperative"],
+  "implicit":["adj.","隐含的；不言而喻的","implicit assumption"],
+  "impressive":["adj.","印象深刻的","impressive achievement"],
+  "inadequate":["adj.","不足的；不适当的","inadequate funding"],
+  "incline":["v.","倾向于；倾斜","incline to agree"],
+  "indifferent":["adj.","漠不关心的","indifferent attitude"],
+  "indulge":["v.","放纵；沉溺于","indulge in luxury"],
+  "ingenious":["adj.","有独创性的；精巧的","ingenious solution"],
+  "insightful":["adj.","有洞察力的","insightful analysis"],
+  "integrity":["n.","正直；完整性","personal integrity"],
+  "intense":["adj.","强烈的；紧张的","intense competition"],
+  "intriguing":["adj.","有趣的；引人入胜的","intriguing mystery"],
+  "irony":["n.","讽刺；反讽","dramatic irony"],
+  "irrelevant":["adj.","不相关的；无关紧要的","irrelevant details"],
+  "jeopardize":["v.","危及；危害","jeopardize safety"],
+  "knowledgeable":["adj.","知识丰富的","knowledgeable expert"],
+  "leverage":["v./n.","利用；杠杆","leverage connections"],
+  "linger":["v.","徘徊；留恋","linger on a topic"],
+  "lucid":["adj.","清晰的；清醒的","lucid explanation"],
+  "malicious":["adj.","恶意的；恶毒的","malicious intent"],
+  "mandatory":["adj.","强制性的；义务的","mandatory training"],
+  "manifest":["v./adj.","表明；明显的","manifest itself"],
+  "meticulous":["adj.","一丝不苟的；细致的","meticulous planning"],
+  "misconception":["n.","误解；错误概念","common misconception"],
+  "mitigate":["v.","缓和；减轻","mitigate risks"],
+  "mundane":["adj.","平凡的；世俗的","mundane tasks"],
+  "naive":["adj.","天真的；幼稚的","naive assumption"],
+  "negligent":["adj.","疏忽的；粗心的","negligent behavior"],
+  "neutral":["adj.","中立的；中性的","neutral position"],
+  "obscure":["adj./v.","不清楚的；使模糊","obscure the truth"],
+  "obstinate":["adj.","顽固的；倔强的","obstinate refusal"],
+  "obvious":["adj.","显而易见的","obvious solution"],
+  "orthodox":["adj.","正统的；传统的","orthodox view"],
+  "outpace":["v.","超过；超越","outpace competitors"],
+  "paranoid":["adj.","偏执的；多疑的","paranoid behavior"],
+  "patronize":["v.","光顾；屈尊俯就","patronize local shops"],
+  "peculiar":["adj.","奇特的；特有的","peculiar habit"],
+  "pessimistic":["adj.","悲观的","pessimistic outlook"],
+  "precise":["adj.","精确的；准确的","precise measurement"],
+  "preconceived":["adj.","预先形成的","preconceived notions"],
+  "predominant":["adj.","占主导的；显著的","predominant view"],
+  "preoccupy":["v.","使全神贯注；使忧虑","preoccupy the mind"],
+  "prestigious":["adj.","有声望的；令人敬仰的","prestigious university"],
+  "primitive":["adj.","原始的；简陋的","primitive tools"],
+  "proactive":["adj.","主动的；积极主动的","proactive approach"],
+  "proficient":["adj.","熟练的；精通的","proficient writer"],
+  "profound":["adj.","深刻的；深远的","profound impact"],
+  "prominent":["adj.","突出的；著名的","prominent leader"],
+  "provocative":["adj.","挑衅的；引人深思的","provocative question"],
+  "prudent":["adj.","谨慎的；明智的","prudent investment"],
+  "pursue":["v.","追求；追逐","pursue happiness"],
+  "radical":["adj.","根本的；激进的","radical idea"],
+  "realistic":["adj.","现实的；切实可行的","realistic goal"],
+  "rebellious":["adj.","反叛的；叛逆的","rebellious youth"],
+  "receptive":["adj.","乐于接受的","receptive audience"],
+  "reconcile":["v.","调和；使和解","reconcile differences"],
+  "refine":["v.","精炼；改进","refine skills"],
+  "remedy":["n./v.","补救；治疗","effective remedy"],
+  "renounce":["v.","放弃；声明放弃","renounce power"],
+  "reputable":["adj.","有声誉的；可信赖的","reputable source"],
+  "resilience":["n.","弹力；适应力","personal resilience"],
+  "resourceful":["adj.","足智多谋的","resourceful individual"],
+  "restrain":["v.","约束；克制","restrain emotions"],
+  "retaliate":["v.","报复；还击","retaliate against attacks"],
+  "reveal":["v.","揭示；透露","reveal secrets"],
+  "reverent":["adj.","恭敬的；虔诚的","reverent attitude"],
+  "rigid":["adj.","严格的；刚硬的","rigid rules"],
+  "ruthless":["adj.","残忍的；无情的","ruthless competition"],
+  "safeguard":["v./n.","保护；保障","safeguard rights"],
+  "sanction":["n./v.","制裁；批准","impose sanctions"],
+  "scrutinize":["v.","仔细检查；审查","scrutinize evidence"],
+  "segregate":["v.","隔离；使分离","segregate communities"],
+  "sensitive":["adj.","敏感的；体贴的","sensitive issue"],
+  "severe":["adj.","严重的；严厉的","severe punishment"],
+  "skepticism":["n.","怀疑主义；怀疑论","healthy skepticism"],
+  "solemn":["adj.","庄严的；郑重的","solemn ceremony"],
+  "speculate":["v.","推测；投机","speculate about the future"],
+  "stagnant":["adj.","停滞的；不流动的","stagnant economy"],
+  "stimulate":["v.","刺激；鼓励","stimulate growth"],
+  "straightforward":["adj.","简单的；坦率的","straightforward answer"],
+  "stringent":["adj.","严格的；严厉的","stringent requirements"],
+  "subjugate":["v.","征服；压制","subjugate a population"],
+  "suppress":["v.","压制；抑制","suppress dissent"],
+  "surplus":["n.","剩余；盈余","trade surplus"],
+  "systematically":["adv.","系统地；有条不紊地","systematically analyze"],
+  "tangible":["adj.","有形的；实际的","tangible result"],
+  "temperament":["n.","气质；性情","artistic temperament"],
+  "tentative":["adj.","暂定的；试探性的","tentative plan"],
+  "thorough":["adj.","彻底的；详尽的","thorough investigation"],
+  "tolerant":["adj.","宽容的；容忍的","tolerant society"],
+  "transient":["adj.","短暂的；过渡的","transient feeling"],
+  "transparent":["adj.","透明的；清晰的","transparent process"],
+  "trivial":["adj.","琐碎的；不重要的","trivial matter"],
+  "underestimate":["v.","低估；轻视","underestimate the risk"],
+  "unprecedented":["adj.","史无前例的","unprecedented growth"],
+  "unwavering":["adj.","坚定的；不动摇的","unwavering commitment"],
+  "utmost":["adj.","最大的；极度的","utmost importance"],
+  "vague":["adj.","模糊的；含糊的","vague answer"],
+  "vindicate":["v.","证明无辜；辩护","vindicate one's decision"],
+  "virtuous":["adj.","有道德的；品行端正的","virtuous cycle"],
+  "vivid":["adj.","生动的；鲜明的","vivid description"],
+  "wary":["adj.","谨慎的；小心的","be wary of scams"],
+  "withstand":["v.","承受；抵抗","withstand pressure"],
+  "zealous":["adj.","热情的；狂热的","zealous reformer"],
+
+  // Additional vocabulary
+  "abundance":["n.","丰富；大量","an abundance of resources"],
+  "acclaim":["v./n.","称赞；喝彩","worldwide acclaim"],
+  "accountability":["n.","问责制；责任心","government accountability"],
+  "accumulate":["v.","积累；积聚","accumulate experience"],
+  "accuracy":["adj.","准确性；精确度","improve accuracy"],
+  "adaptable":["adj.","适应性强的","adaptable to change"],
+  "addiction":["n.","成瘾；瘾","smartphone addiction"],
+  "adequate":["adj.","足够的；适当的","adequate preparation"],
+  "adherent":["n.","信徒；追随者","loyal adherent"],
+  "adjust":["v.","调整；适应","adjust to changes"],
+  "affirmative":["adj.","肯定的；支持的","affirmative action"],
+  "aggressive":["adj.","好斗的；积极进取的","aggressive growth"],
+  "alienate":["v.","使疏远；使孤立","alienate supporters"],
+  "allocate":["v.","分配；拨出","allocate budget"],
+  "anonymity":["n.","匿名；无名","preserve anonymity"],
+  "aspiration":["n.","抱负；渴望","harbor aspirations"],
+  "automation":["n.","自动化","industrial automation"],
+  "biodiversity":["n.","生物多样性","protect biodiversity"],
+  "catastrophic":["adj.","灾难性的","catastrophic failure"],
+  "circulation":["n.","流通；循环","blood circulation"],
+  "commemorate":["v.","纪念；庆祝","commemorate a victory"],
+  "compassion":["n.","同情；怜悯","show compassion"],
+  "competition":["n.","竞争；比赛","global competition"],
+  "comprise":["v.","包含；由…组成","comprise multiple parts"],
+  "conducive":["adj.","有益的；有助于","conducive environment"],
+  "correlation":["n.","相关性；关联","positive correlation"],
+  "deteriorate":["v.","恶化；变坏","health deteriorates"],
+  "dilemma":["n.","两难困境","ethical dilemma"],
+  "diminish":["v.","减少；降低","diminish in importance"],
+  "discrepancy":["n.","差异；不一致","statistical discrepancy"],
+  "disseminate":["v.","传播；散布","disseminate information"],
+  "dominance":["n.","支配；优势地位","market dominance"],
+  "ecosystem":["n.","生态系统","fragile ecosystem"],
+  "elaborate":["v./adj.","详细说明；复杂精心的","elaborate scheme"],
+  "eloquence":["n.","雄辩；口才","oratorical eloquence"],
+  "empirically":["adv.","以经验为依据地","empirically proven"],
+  "empower":["v.","授权；使有能力","empower communities"],
+  "epidemic":["n.","流行病；蔓延","global epidemic"],
+  "equality":["n.","平等；均等","gender equality"],
+  "evolve":["v.","演变；进化","technology evolves rapidly"],
+  "exacerbate":["v.","使加剧；使恶化","exacerbate inequality"],
+  "exclude":["v.","排斥；排除","exclude outsiders"],
+  "expedite":["v.","加快；促进","expedite the process"],
+  "exploit":["v./n.","剥削；利用；英勇行为","exploit vulnerabilities"],
+  "flourish":["v.","繁盛；蓬勃发展","arts flourish"],
+  "foresight":["n.","远见；先见之明","political foresight"],
+  "foster":["v.","培养；促进","foster creativity"],
+  "funder":["n.","资助者；资金提供者","major funder"],
+  "glamorous":["adj.","迷人的；华丽的","glamorous lifestyle"],
+  "gracious":["adj.","仁慈的；有礼的","gracious host"],
+  "harness":["v.","利用；驾驭","harness solar energy"],
+  "hereditary":["adj.","遗传的；世袭的","hereditary disease"],
+  "hierarchy":["n.","层级；等级制度","social hierarchy"],
+  "identical":["adj.","完全相同的","identical results"],
+  "ignorant":["adj.","无知的；愚昧的","ignorant of facts"],
+  "imitate":["v.","模仿；效仿","imitate others"],
+  "imminent":["adj.","即将发生的","imminent danger"],
+  "inadequate":["adj.","不充分的","inadequate resources"],
+  "indispensable":["adj.","不可缺少的","indispensable tool"],
+  "inevitable":["adj.","不可避免的","inevitable conflict"],
+  "inherent":["adj.","内在的；固有的","inherent risk"],
+  "innovative":["adj.","创新的","innovative design"],
+  "inspect":["v.","检查；视察","inspect quality"],
+  "insufficient":["adj.","不足的；不够的","insufficient evidence"],
+  "intellectually":["adv.","智力上；在智识方面","intellectually stimulating"],
+  "intervene":["v.","干预；介入","intervene diplomatically"],
+  "intricate":["adj.","复杂的；错综的","intricate network"],
+  "justify":["v.","证明正当；辩护","justify the expense"],
+  "legitimate":["adj.","合法的；正当的","legitimate authority"],
+  "longevity":["n.","长寿；持久","career longevity"],
+  "lucrative":["adj.","有利可图的；赚钱的","lucrative business"],
+  "manipulate":["v.","操纵；控制","manipulate public opinion"],
+  "marginalize":["v.","使边缘化","marginalize minority groups"],
+  "meager":["adj.","贫乏的；少量的","meager income"],
+  "mobilize":["v.","动员；调动","mobilize resources"],
+  "nurture":["v./n.","培育；养育","nurture talent"],
+  "obscure":["adj./v.","鲜为人知的；使变模糊","obscure the facts"],
+  "obsolete":["adj.","过时的；废弃的","obsolete technology"],
+  "opaque":["adj.","不透明的；难理解的","opaque regulations"],
+  "opt":["v.","选择；决定","opt for simplicity"],
+  "outrage":["n./v.","义愤；激怒","public outrage"],
+  "override":["v.","凌驾；推翻","override a decision"],
+  "paradigm":["n.","范例；典范","paradigm shift"],
+  "parameter":["n.","参数；界限","key parameters"],
+  "perpetuate":["v.","使持续；使永久","perpetuate stereotypes"],
+  "pervasive":["adj.","普遍的；弥漫的","pervasive influence"],
+  "phenomenon":["n.","现象；奇事","cultural phenomenon"],
+  "plausible":["adj.","似乎合理的","plausible explanation"],
+  "precedent":["n.","先例；惯例","set a precedent"],
+  "predominant":["adj.","主要的；占优势的","predominant culture"],
+  "prejudice":["n.","偏见；成见","overcome prejudice"],
+  "premature":["adj.","过早的；早熟的","premature conclusion"],
+  "preserve":["v.","保护；维持","preserve heritage"],
+  "prevent":["v.","防止；阻止","prevent disease"],
+  "primitive":["adj.","原始的；早期的","primitive society"],
+  "profoundly":["adv.","深刻地；极度地","profoundly affect"],
+  "proliferate":["v.","增殖；扩散","misinformation proliferates"],
+  "prototype":["n.","原型；样品","develop a prototype"],
+  "provoke":["v.","激怒；引发","provoke a reaction"],
+  "qualitative":["adj.","质量上的；定性的","qualitative study"],
+  "rationale":["n.","基本原理；理论依据","underlying rationale"],
+  "reconcile":["v.","协调；使和解","reconcile contradictions"],
+  "recruit":["v.","招募；吸引","recruit talent"],
+  "reform":["n./v.","改革；改善","structural reform"],
+  "reinforce":["v.","加强；强化","reinforce stereotypes"],
+  "reliance":["n.","依赖；信任","heavy reliance"],
+  "reluctance":["n.","勉强；不情愿","reluctance to change"],
+  "remedy":["n./v.","解决办法；治愈","find a remedy"],
+  "renew":["v.","更新；重新开始","renew commitment"],
+  "repercussion":["n.","后果；影响","far-reaching repercussions"],
+  "reputation":["n.","声誉；名声","build reputation"],
+  "restore":["v.","恢复；修复","restore confidence"],
+  "retain":["v.","保留；保持","retain knowledge"],
+  "revert":["v.","恢复原状；回到","revert to old habits"],
+  "scrutiny":["n.","详细审查","intense scrutiny"],
+  "seize":["v.","抓住；夺取","seize opportunities"],
+  "sensible":["adj.","明智的；通情达理的","sensible decision"],
+  "simplify":["v.","简化；使简单","simplify the process"],
+  "sophisticated":["adj.","老练的；复杂精密的","sophisticated analysis"],
+  "speculate":["v.","猜测；投机","speculate on results"],
+  "stabilize":["v.","稳定；使稳固","stabilize the economy"],
+  "stereotype":["n.","刻板印象","challenge stereotypes"],
+  "stimulate":["v.","刺激；激励","stimulate the economy"],
+  "subjective":["adj.","主观的","subjective experience"],
+  "substantial":["adj.","实质性的；大量的","substantial change"],
+  "subtle":["adj.","微妙的","subtle differences"],
+  "superior":["adj.","更好的；高级的","superior quality"],
+  "sustainable":["adj.","可持续的","sustainable growth"],
+  "synthesize":["v.","综合；合成","synthesize information"],
+  "systematically":["adv.","有系统地","analyze systematically"],
+  "tactful":["adj.","有策略的；圆滑的","tactful response"],
+  "technological":["adj.","技术性的","technological advance"],
+  "transparent":["adj.","透明的；坦诚的","transparent policy"],
+  "tremendous":["adj.","巨大的；惊人的","tremendous opportunity"],
+  "ubiquitous":["adj.","无处不在的","ubiquitous technology"],
+  "undermine":["v.","损害；削弱","undermine authority"],
+  "unprecedented":["adj.","史无前例的","unprecedented challenge"],
+  "utilize":["v.","利用","utilize data"],
+  "validate":["v.","证实；使合法化","validate findings"],
+  "versatile":["adj.","多才多艺的；多用途的","versatile tool"],
+  "viable":["adj.","可行的；有活力的","viable option"],
+  "vindicate":["v.","为…辩护；证明清白","vindicate a theory"],
+  "volatile":["adj.","易变的；不稳定的","volatile market"],
+  "vulnerable":["adj.","易受伤害的","vulnerable groups"],
+};
+
+// ═══════════════════════════════════════════════════════════
+// ARTICLES DATA
+// ═══════════════════════════════════════════════════════════
+const articles = [
+{
+  tag: "科技与创新",
+  title: "The Digital Revolution and Its Profound Impact on Society",
+  body: `The technological revolution of the twenty-first century has accelerated at an unprecedented pace, fundamentally transforming how human beings interact, communicate, and acquire knowledge. Innovations in artificial intelligence, robotics, and biotechnology have made it feasible to accomplish tasks that were once considered beyond human capability. As societies worldwide seek to integrate these powerful tools, they must also confront the complex ethical dilemmas that inevitably arise.
+
+Sophisticated algorithms now enable companies to manipulate vast datasets, generating valuable insights that allow them to optimize their services and enhance customer experience. However, critics argue that such capabilities can be exploited to reinforce existing inequalities, making it crucial for policymakers to implement robust regulations. Governments must collaborate closely with the private sector to formulate comprehensive frameworks that foster innovation while simultaneously safeguarding individual rights.
+
+Digital infrastructure has become indispensable to modern economies. Nations that invest substantially in technological advancement tend to achieve greater productivity and sustain competitive advantages in the global marketplace. Conversely, regions that remain reluctant to embrace change risk stagnation, as their industries are gradually displaced by more dynamic, tech-driven counterparts. The polarization between digitally advanced and technologically lagging communities has emerged as one of the most significant socioeconomic phenomena of our era.
+
+Education systems must adapt to cultivate the skills that a digital economy demands. Critical thinking, creative synthesis, and the ability to discern reliable information from misinformation are becoming increasingly vital. Educators are urged to incorporate project-based learning and collaborative problem-solving into their pedagogies, ensuring that graduates are capable of thriving in an ambiguous and volatile professional landscape. The ultimate objective is to empower every individual to participate meaningfully in an interconnected, knowledge-driven civilization.`
+},
+{
+  tag: "气候与环境",
+  title: "Climate Change: An Urgent and Unprecedented Global Challenge",
+  body: `Climate change represents perhaps the most formidable challenge that humanity has ever confronted. Scientific evidence is abundant and unambiguous: the Earth's average temperature has risen dramatically over the past century, driven primarily by the accumulation of greenhouse gases generated through human industrial activity. The consequences are pervasive, affecting biodiversity, weather patterns, ocean levels, and the agricultural systems upon which billions of people depend for their sustenance.
+
+To mitigate the devastating effects of a warming planet, it is imperative that nations cooperate in a genuine and sustained manner. The Paris Agreement established a critical precedent by requiring signatory countries to formulate and periodically revise their commitments to reducing emissions. Yet many scholars and environmental advocates remain skeptical that current pledges are sufficient to avert catastrophic warming. They argue that governments must pursue far more radical and systematic approaches, including accelerating the transition to renewable energy and eliminating fossil fuel subsidies that perversely incentivize carbon-intensive behavior.
+
+Vulnerable ecosystems—such as coral reefs, tropical rainforests, and Arctic tundra—are deteriorating at alarming rates. The fragmentation of natural habitats threatens countless species with extinction, undermining the biodiversity that sustains healthy ecological systems. Conservation efforts must therefore be integrated into broader development strategies rather than treated as peripheral concerns. Policymakers should allocate substantial resources to protecting and restoring natural environments, recognizing that thriving ecosystems provide indispensable services including clean water, fertile soil, and carbon sequestration.
+
+Individuals, corporations, and governments all bear a moral obligation to contribute to solutions. Frugal consumption patterns, sustainable supply chains, and transparent environmental reporting can collectively generate significant progress. While the task is enormous, the resilience of human societies—demonstrated repeatedly throughout history—suggests that determined, coordinated action can yield transformative results. The alternative, characterized by apathy and complacency, is simply not a viable option for a civilization that aspires to endure.`
+},
+{
+  tag: "经济与全球化",
+  title: "Globalization: Opportunities, Disparities, and the Search for Balance",
+  body: `Globalization has profoundly reshaped the economic landscape of the modern world, generating tremendous wealth while simultaneously exacerbating inequality both within and between nations. The integration of markets has allowed multinational corporations to flourish, exploiting comparative advantages across borders to accumulate profits on a scale previously unimaginable. For consumers in affluent countries, this process has translated into abundant, affordable goods. For workers in developing economies, it has occasionally provided pathways out of poverty—yet has also exposed them to precarious conditions and fluctuating demand.
+
+Critics of unchecked globalization argue that it tends to concentrate wealth among a narrow elite while the benefits are only marginally accessible to ordinary citizens. This disparity fuels populist movements that advocate for protectionist policies and challenge the legitimacy of international institutions. Governments that confront growing inequality must devise pragmatic strategies to redistribute gains more equitably, investing in education, healthcare, and social welfare systems that enable broad participation in economic growth.
+
+Trade liberalization has indisputably boosted aggregate global output, yet its distributional consequences remain contentious. Economists debate whether the decline of manufacturing employment in developed nations is primarily attributable to globalization or to automation. Both factors appear to be relevant, and their combined impact has dislocated communities that built their identities around industrial work. Effective policy responses require acknowledging this complexity rather than resorting to simplistic narratives that either condemn or uncritically celebrate openness.
+
+Emerging economies are increasingly shaping global governance, challenging the dominance of institutions that were established in the aftermath of the Second World War. A multipolar world demands more inclusive mechanisms for negotiation and consensus-building. Whether existing frameworks can be sufficiently reformed to accommodate diverse perspectives—or whether entirely new structures must be conceived—remains one of the defining strategic questions of our time. What is clear is that the aspiration for a just and prosperous global order requires persistent effort, compromise, and a willingness to transcend narrow self-interest.`
+},
+{
+  tag: "教育与学习",
+  title: "Reimagining Education for the Twenty-First Century",
+  body: `Education systems around the world are under immense pressure to evolve in response to rapidly changing social, economic, and technological realities. The conventional model—characterized by rigid curricula, standardized testing, and passive knowledge absorption—is increasingly regarded as inadequate for preparing students to navigate a complex and unpredictable future. Progressive educators advocate for holistic approaches that cultivate curiosity, resilience, and the capacity for autonomous, lifelong learning.
+
+Research in cognitive psychology indicates that students learn most effectively when they are intrinsically motivated and when new information can be meaningfully integrated with prior knowledge. Rote memorization and mechanical repetition, while useful for certain foundational skills, are insufficient for developing the higher-order thinking that sophisticated professional environments demand. Inquiry-based learning, collaborative projects, and real-world problem-solving are gaining credibility as pedagogical alternatives that better reflect the nature of contemporary knowledge work.
+
+Access to quality education remains profoundly unequal, both within and across nations. Socioeconomic background continues to be among the most decisive determinants of educational attainment, perpetuating cycles of disadvantage that are extremely difficult to break. Addressing this disparity requires not merely allocating additional financial resources to underserved schools, but fundamentally reconceiving how communities support learning—from early childhood development to tertiary education and beyond. Inclusive policies must identify and systematically remove the barriers that prevent marginalized populations from participating fully in educational opportunities.
+
+Technology offers remarkable potential to democratize access to knowledge, yet it also introduces new forms of inequality. Students without reliable internet access or appropriate devices are excluded from digital learning ecosystems that their more privileged peers take for granted. Moreover, the proliferation of online content necessitates robust information literacy skills so that learners can discern credible, evidence-based material from misleading or fabricated sources. Educators must therefore complement technical skills with the critical judgment needed to evaluate an overwhelming abundance of information responsibly.`
+},
+{
+  tag: "心理健康",
+  title: "Mental Health in the Modern World: Breaking Stigma, Building Resilience",
+  body: `Mental health has emerged as one of the most pressing public health challenges of the contemporary era. Depression, anxiety, and a range of related conditions affect hundreds of millions of people worldwide, imposing enormous personal suffering and substantial economic costs. Despite this pervasive burden, significant stigma persists around seeking professional support, causing many individuals to endure their struggles in isolation rather than accessing the care they legitimately require.
+
+Understanding the complex interplay between biological vulnerabilities, psychological patterns, and social circumstances is essential for developing effective interventions. Genetic factors may predispose certain individuals to conditions such as bipolar disorder or schizophrenia, but environmental stressors—including poverty, discrimination, trauma, and social alienation—play a decisive role in triggering and exacerbating symptoms. A holistic, biopsychosocial model is therefore more accurate and ultimately more compassionate than reductive explanations that attribute mental illness solely to chemical imbalances or personal weakness.
+
+Workplaces represent a particularly crucial arena for mental health promotion. The pressure to demonstrate relentless productivity, the ambiguity of remote working boundaries, and the chronic stress associated with economic insecurity collectively create conditions that are conducive to burnout and psychological deterioration. Organizations that genuinely prioritize employee wellbeing—rather than merely paying lip service to the concept—tend to cultivate more motivated, resilient, and creative workforces. Practical measures such as flexible schedules, transparent communication, and accessible counseling services can profoundly improve outcomes.
+
+Building personal resilience requires cultivating a repertoire of evidence-based coping strategies. Mindfulness meditation, regular physical exercise, nurturing social connections, and maintaining a consistent sleep schedule have all demonstrated significant benefits in empirical research. Crucially, seeking professional support when necessary should be regarded not as a sign of weakness but as an astute and rational response to genuine distress. As societies become more educated about mental health, the hope is that empathy and understanding will increasingly displace the prejudice and ignorance that have historically prevented people from getting the help they deserve.`
+},
+{
+  tag: "文化与身份",
+  title: "Cultural Identity in a Globalized World: Preservation and Transformation",
+  body: `Cultural identity is a complex, dynamic construct that encompasses language, tradition, art, belief systems, and the shared narratives through which communities make sense of their collective experience. In an era of accelerating globalization, the boundaries between distinct cultural traditions are becoming increasingly permeable, generating both creative synthesis and anxious resistance. The tension between preservation and transformation lies at the heart of contemporary debates about heritage, authenticity, and belonging.
+
+The homogenizing tendencies of global mass culture—dominated by English-language media, multinational entertainment corporations, and ubiquitous digital platforms—provoke genuine concern among those who fear that linguistic and cultural diversity will be irreversibly diminished. When a language disappears, a unique perspective on the world is extinguished with it. Indigenous communities, in particular, have articulated powerful arguments for the right to maintain distinctive ways of life that are deeply integrated with specific landscapes and histories. Recognizing and supporting cultural rights is not merely a sentimental gesture but a commitment to the inherent value of human diversity.
+
+Yet cultures have never been static. Every living tradition has evolved through contact, conflict, and exchange with others, absorbing influences that were ultimately assimilated and transformed into something authentically new. The nostalgia for a pure, unchanging culture often reflects idealized constructions of the past rather than historical reality. A more nuanced perspective acknowledges that cultural vitality frequently derives from the creative tension between continuity and innovation, between honoring inherited forms and generating novel expressions that resonate with contemporary experience.
+
+Multicultural societies confront the challenge of fostering social cohesion while affirming cultural diversity. Effective integration does not demand cultural uniformity but rather the cultivation of shared civic values—tolerance, mutual respect, and a commitment to dialogue—that enable different communities to coexist and collaborate productively. Inclusive cultural policies, bilingual education, and public celebrations of diversity can reinforce the sense that a pluralistic society is not merely a practical arrangement but a source of enrichment and collective pride.`
+},
+{
+  tag: "政治与治理",
+  title: "Democracy Under Pressure: Governance, Accountability, and Civic Engagement",
+  body: `Democratic governance rests on the foundational principle that political authority derives its legitimacy from the informed and voluntary consent of the governed. In recent years, however, many observers have noted with alarm a global trend toward democratic backsliding, as elected leaders in numerous countries have sought to concentrate power, undermine independent institutions, and suppress dissent. Understanding and confronting these threats requires both analytical rigor and a robust commitment to civic engagement.
+
+Accountability is the cornerstone of healthy democratic systems. When governments operate with transparency—making their decisions, expenditures, and rationales accessible to public scrutiny—citizens are better positioned to evaluate whether their representatives are genuinely advancing the common good. Conversely, opacity breeds corruption, as officials who can conceal their actions from public view are strongly incentivized to exploit their authority for personal or partisan benefit. Robust freedom-of-information legislation, an independent judiciary, and a free press are therefore indispensable safeguards against the abuse of power.
+
+Political polarization represents a particularly insidious threat to democratic deliberation. When citizens inhabit hermetically sealed information ecosystems that systematically reinforce preconceived beliefs, the prospect of rational, evidence-based dialogue across ideological divides becomes increasingly remote. Demagogic leaders can exploit this fragmentation, appealing to tribal loyalties rather than civic reason. Countering this tendency demands both institutional design—such as electoral systems that incentivize moderation—and cultural investment in the values of intellectual humility, tolerance, and genuine curiosity about perspectives that differ from one's own.
+
+Civic engagement beyond the ballot box is essential for maintaining a vibrant democratic culture. Participation in community organizations, advocacy for policy reform, voluntary public service, and the forthright expression of dissenting views all contribute to the health of democratic life. Young people, in particular, should be encouraged to perceive themselves not merely as passive consumers of political decisions but as active agents who are capable of shaping the society they will inherit. A democracy that aspires to durability must cultivate the civic virtues—informed participation, commitment to truth, and solidarity with the vulnerable—upon which its legitimacy ultimately depends.`
+},
+{
+  tag: "社会公正",
+  title: "Social Justice: Confronting Inequality and Building a More Equitable World",
+  body: `The pursuit of social justice—a world in which every individual enjoys equal rights, dignity, and opportunity regardless of race, gender, class, or other identity characteristics—represents one of the noblest aspirations of modern civilization. Yet the distance between this ideal and contemporary reality remains vast. Systemic inequalities persist across virtually every dimension of social life, from educational attainment and economic mobility to health outcomes and exposure to violence. Confronting these disparities with honesty and determination is both a moral imperative and a practical necessity.
+
+Racial discrimination, while its most overt expressions have been significantly curtailed by legal reforms in many societies, continues to manifest in subtler and more insidious forms. Implicit biases influence hiring decisions, judicial sentencing, educational assessment, and countless other consequential evaluations. Research consistently demonstrates that individuals from marginalized racial groups are disproportionately subjected to poverty, incarceration, and inadequate healthcare—outcomes that cannot plausibly be attributed to individual failings alone. Effective policy responses must therefore target structural barriers rather than merely exhorting individuals to overcome them through personal effort.
+
+Gender inequality similarly persists in multifaceted ways despite decades of activist advocacy and legislative reform. Women continue to be underrepresented in leadership positions across politics, business, and academia. The persistent wage gap reflects both overt discrimination and the systematic undervaluation of work traditionally performed by women. Moreover, gender-based violence remains shockingly prevalent worldwide, undermining the physical safety and psychological wellbeing of millions. Achieving genuine gender equality requires not merely formal legal rights but the transformation of cultural norms that legitimize patriarchal attitudes and behaviors.
+
+Building a more equitable society demands collective action across multiple fronts simultaneously. Inclusive economic policies—progressive taxation, accessible healthcare, affordable housing, and robust labor protections—can mitigate the most severe material inequalities. Simultaneously, educational reforms that dismantle discriminatory structures and community-building initiatives that foster solidarity across difference can gradually erode the cultural foundations of oppression. The aspiration is not a utopian uniformity of outcome but a genuine equality of opportunity and a universal recognition of human dignity.`
+},
+{
+  tag: "科学与医学",
+  title: "Modern Medicine: Breakthroughs, Ethics, and the Frontiers of Human Health",
+  body: `The past century has witnessed extraordinary breakthroughs in medical science, dramatically extending human lifespans and vastly reducing the suffering caused by infectious diseases, surgical conditions, and a range of chronic illnesses. Vaccines have eradicated or substantially curtailed once-devastating diseases. Advanced imaging technologies enable physicians to detect tumors and anomalies with a precision that previous generations could scarcely imagine. Genetic research is yielding profound insights into the biological mechanisms of disease, opening pathways to highly targeted therapies that promise to transform cancer treatment, rare genetic conditions, and neurological disorders.
+
+Despite these remarkable achievements, profound inequalities in access to healthcare persist both within and between nations. Affluent individuals in wealthy countries enjoy access to cutting-edge treatments while millions in impoverished regions lack even basic primary care. The ethical imperative to address this disparity is compelling, yet the political and economic obstacles are formidable. Pharmaceutical companies invest substantial resources in developing novel therapies—but are often reluctant to make them accessible at prices that low-income populations can afford. Balancing commercial incentives with the broader public health obligation requires creative and contentious policy interventions.
+
+Emerging fields such as genomics, synthetic biology, and neurotechnology raise profound ethical questions that society is only beginning to confront. The ability to edit the human genome holds tremendous therapeutic potential, yet also introduces the specter of designer babies, genetic discrimination, and unforeseen ecological consequences if modified organisms are released into natural environments. Robust ethical frameworks, developed through inclusive deliberative processes rather than imposed by narrow technocratic elites, are urgently needed to navigate these unprecedented possibilities responsibly.
+
+Mental healthcare remains a particularly neglected dimension of global health. Despite compelling empirical evidence for the effectiveness of psychological therapies and psychiatric medications, mental health conditions are chronically underfunded and trivialized relative to their enormous burden. Stigma discourages help-seeking, cultural barriers complicate diagnosis and treatment, and shortages of trained practitioners are acute in most countries. Genuine progress requires not merely increased financial investment but a fundamental shift in how societies perceive and value the psychological dimensions of human wellbeing.`
+},
+{
+  tag: "传媒与信息",
+  title: "The Information Age: Media, Truth, and the Challenge of Misinformation",
+  body: `The digital revolution has produced an information environment of bewildering complexity and ambiguity. Citizens in connected societies have access to vastly more data than any previous generation, yet the ability to distinguish reliable, evidence-based reporting from fabricated or misleading content has become correspondingly more difficult. Misinformation—including deliberate propaganda, partisan distortion, and unintentional error—proliferates with alarming velocity across social media platforms, exploiting cognitive biases and emotional vulnerabilities that humans have always possessed but that the algorithmic architecture of contemporary media has learned to manipulate with unprecedented efficiency.
+
+Journalism's role as a democratic institution depends on its capacity to hold power accountable through rigorous, independent investigation. When governments, corporations, or other powerful actors seek to suppress inconvenient truths, a free and courageous press represents an indispensable safeguard for the public interest. Yet the economic model that once sustained quality journalism has been severely disrupted by digital technology, as advertising revenue has migrated to platforms that aggregate content without bearing the costs of original reporting. The consequence is a contraction of investigative capacity precisely at the moment when robust accountability journalism is most desperately needed.
+
+Media literacy has consequently become an essential civic skill. The ability to critically evaluate sources, recognize logical fallacies, identify emotional manipulation, and resist the seductive comfort of confirmation bias are capacities that responsible citizenship in the information age demands. Educational institutions bear significant responsibility for cultivating these competencies, but the challenge extends to all social institutions—including families, community organizations, and workplaces—that influence how people process and evaluate information. Governments can support media literacy initiatives without transgressing the boundaries of free speech by funding independent civic education rather than seeking to regulate content directly.
+
+The concentration of communication power in a small number of dominant platform corporations raises serious questions about the governance of the public sphere. These entities make consequential decisions about what information is amplified or suppressed, yet their criteria are predominantly commercial rather than civic. Democratic societies must develop mechanisms for ensuring that these powerful actors operate with sufficient transparency and accountability to serve, rather than undermine, the informed public deliberation on which democratic governance depends.`
+},
+{
+  tag: "哲学与伦理",
+  title: "Ethics in the Modern Age: Navigating Moral Complexity",
+  body: `Philosophical reflection on ethics has accompanied human civilization for millennia, yet the moral challenges of the contemporary world possess a distinctive character shaped by unprecedented technological capabilities, global interconnection, and the collapse of previously stable normative consensus. Questions about justice, rights, duty, and the good life are no longer confined to academic discourse but permeate urgent debates about artificial intelligence, bioethics, environmental responsibility, and distributive fairness. Developing the capacity for nuanced ethical reasoning has therefore become a practical as well as an intellectual necessity.
+
+Consequentialist frameworks evaluate actions by their outcomes, seeking to maximize overall wellbeing and minimize suffering. This approach has intuitive appeal and aligns with the empirical orientation of modern science, yet critics contend that it can justify egregious violations of individual rights whenever the aggregate calculation seems to warrant them. Deontological ethics, by contrast, insists that certain actions are inherently right or wrong regardless of their consequences, grounding morality in the intrinsic dignity of persons rather than utilitarian calculation. Each perspective illuminates important moral considerations while remaining vulnerable to powerful objections, suggesting that sophisticated ethical reasoning requires drawing on multiple frameworks simultaneously.
+
+Virtue ethics, revived most influentially by Aristotle's account of character and flourishing, shifts the primary focus from actions to the cultivated dispositions of the moral agent. Rather than asking "what should I do?" it asks "what kind of person should I be?" and "what does human flourishing genuinely require?" This perspective has particular resonance in a cultural moment when many people feel that ethical conduct cannot be reduced to rule-following or calculation but requires the development of practical wisdom—the judgment to perceive what a situation demands and the courage to act accordingly even when it is difficult or costly.
+
+Applied ethics engages these abstract frameworks with concrete problems: the just distribution of life-saving medical resources in a pandemic, the moral status of artificial intelligence, the obligations of wealthy nations toward climate refugees, the ethics of genetic enhancement. These issues admit no simple or definitive solutions, but they call for sustained, rigorous, and genuinely open-minded inquiry. A society that cultivates the habit of ethical reflection—and that remains committed to the proposition that facts and reasons can guide moral judgment—is better equipped to navigate the profound challenges of a rapidly changing world.`
+},
+{
+  tag: "历史与文明",
+  title: "Learning from History: The Patterns of Rise and Decline",
+  body: `The study of history offers an indispensable perspective on the human condition, revealing both the remarkable capacity for civilizational achievement and the stubborn persistence of violence, injustice, and self-destruction. Great empires have flourished and collapsed; revolutionary ideas have transformed societies beyond recognition; ordinary individuals have demonstrated extraordinary courage under conditions of extreme adversity. Engaging seriously with this vast record of human experience can cultivate both humility about the limits of contemporary knowledge and inspiration derived from the resilience of the human spirit.
+
+Historians debate the relative weight of structural forces—economic systems, geographic conditions, demographic trends—and the agency of particular individuals in shaping historical outcomes. Deterministic interpretations that attribute historical change primarily to impersonal forces tend to underestimate the significance of contingency and human choice. Conversely, narratives centered exclusively on heroic or villainous individuals neglect the complex social and material contexts that constrain what any person, however powerful or determined, can actually accomplish. A sophisticated historical consciousness integrates both perspectives, recognizing that structures shape possibilities while individuals make consequential choices within them.
+
+Cycles of imperial expansion and contraction have characterized human political history across diverse civilizations. The mechanisms that sustain periods of dominance—military capability, economic productivity, ideological cohesion, and the ability to integrate diverse populations—tend eventually to generate the very tensions and vulnerabilities that precipitate decline. Overextension, inequality, corruption, and the loss of civic virtue have figured prominently in accounts of why great powers decline. Whether these patterns constitute genuine historical laws or merely retrospective rationalizations remains a contested question, but the comparative study of civilizational trajectories consistently yields insights relevant to contemporary governance challenges.
+
+Confronting historical injustices—including colonialism, slavery, and genocide—is essential for building societies capable of genuine reconciliation and solidarity. Acknowledging the full complexity of the past, including uncomfortable truths about one's own community or nation, requires courage and intellectual integrity. It does not require condemning ancestors by anachronistic standards, but it does demand an honest reckoning with how historical violence and exploitation continue to shape contemporary inequalities. Societies that can engage this difficult inheritance with clarity and compassion are better positioned to transcend it.`
+},
+{
+  tag: "语言与交流",
+  title: "Language, Communication, and the Power of Words",
+  body: `Language is far more than a neutral instrument for conveying pre-formed thoughts; it is the very medium through which human consciousness is organized and human relationships are constituted. The words available to a speaker shape what can be perceived, categorized, and communicated. The discourse communities we inhabit—defined by shared vocabularies, conventions of argument, and evaluative frameworks—profoundly influence how we understand the world and our place within it. Reflection on language is therefore not merely an academic exercise but a form of self-knowledge essential for critical thinking and authentic communication.
+
+Linguistic diversity is a precious dimension of human cultural heritage. The approximately seven thousand languages spoken today encode unique ways of perceiving and organizing experience—different systems for categorizing time, space, color, causality, and social relationship. Each language that becomes extinct represents an irreversible loss not merely for its community of speakers but for humanity's collective intellectual resources. Yet the pressures that accelerate language death—economic incentives to adopt dominant languages, urbanization that disrupts intergenerational transmission, and the global reach of English-language media—are extremely difficult to reverse without sustained and deliberate policy intervention.
+
+Rhetoric—the art of persuasion through language—has been cultivated since antiquity as both an intellectual discipline and a practical skill. Effective communication requires not merely clarity and accuracy but sensitivity to audience, context, and the emotional dimensions of understanding. The distinction between legitimate persuasion that appeals to evidence and reason and manipulative propaganda that exploits cognitive biases and emotional vulnerabilities is crucial for democratic deliberation. Media literacy education should include explicit instruction in recognizing rhetorical strategies, including the subtle techniques by which language can simultaneously illuminate and obscure, connect and alienate.
+
+In multilingual societies, questions about language policy are inevitably also questions about identity, power, and inclusion. Which languages receive official recognition? Whose linguistic heritage is valued in educational settings? These choices have profound implications for social equity and the degree to which all citizens feel genuinely represented within the institutions of their society. Inclusive language policies that acknowledge and respect linguistic diversity, while also creating conditions for civic communication across communities, represent one of the most challenging and consequential tasks for multicultural governance.`
+},
+{
+  tag: "城市化",
+  title: "The Urban Future: Cities as Engines of Innovation and Centers of Challenge",
+  body: `More than half of the world's population now lives in urban areas, and urbanization is projected to accelerate significantly in the coming decades, particularly in sub-Saharan Africa and South Asia. Cities have historically served as the primary incubators of innovation, commerce, and cultural vitality, concentrating human creativity and competitive energy in ways that generate extraordinary dynamism. Yet they also concentrate poverty, inequality, pollution, and social stress, confronting planners and policymakers with formidable challenges that require integrated, evidence-based responses.
+
+The design of urban space profoundly influences quality of life, social cohesion, and environmental sustainability. Dense, walkable neighborhoods with accessible public transportation, green spaces, and mixed-use zoning tend to generate vibrant communities where diverse residents interact spontaneously and support local economies. Sprawling, car-dependent development patterns, by contrast, foster isolation, consume vast quantities of land and energy, and impose disproportionate burdens on those who cannot afford private vehicles. Urban planning decisions made today will shape the lived experience of billions of people for generations, making the quality of governance in this domain critically important.
+
+Affordable housing represents one of the most acute and politically contentious challenges confronting major cities worldwide. As urban areas attract knowledge workers and investment, property values tend to rise, progressively displacing lower-income residents from the neighborhoods where they have established their lives and communities. The consequences include longer commutes, weakened social networks, increased homelessness, and the erosion of the economic diversity that makes cities genuinely vital rather than merely exclusive enclaves for the affluent. Addressing this crisis requires a combination of supply-side reforms—reducing regulatory barriers to housing construction—and demand-side interventions, including subsidized housing and robust tenant protections.
+
+Smart city initiatives—leveraging data analytics, sensor networks, and digital platforms to optimize urban services—hold significant promise for improving efficiency, reducing environmental impact, and enhancing responsiveness to citizen needs. However, they also introduce serious risks related to surveillance, privacy, and the exacerbation of digital divides. Ensuring that technological governance serves all residents equitably, rather than predominantly benefiting those who are already privileged, requires transparent decision-making, inclusive participation, and robust accountability mechanisms. The aspiration of the genuinely smart city is not merely technical optimization but the creation of conditions for human flourishing in all its complexity.`
+},
+{
+  tag: "国际关系",
+  title: "Geopolitics in the Twenty-First Century: Competition, Cooperation, and Global Order",
+  body: `The global order that emerged from the aftermath of the Second World War—anchored by multilateral institutions, liberal trade norms, and the apparent triumph of democratic governance—is under increasing strain. The resurgence of great-power competition, the proliferation of nationalist movements that challenge international cooperation, and the emergence of novel security threats including cyberattacks, pandemics, and climate change are collectively transforming the landscape of international relations. Navigating this complex environment requires sophisticated analysis, strategic patience, and a genuine commitment to negotiated solutions.
+
+The rise of China as a global economic and military power represents the most significant geopolitical development of the early twenty-first century, prompting intense debate about whether the international order can peacefully accommodate the interests of a revisionist power or whether fundamental conflict is inevitable. Historical precedent—including the catastrophic consequences of the great-power rivalries that precipitated the two World Wars—suggests that managing this transition with wisdom and restraint is of paramount importance. Both competition and cooperation are simultaneously present in Sino-American relations, requiring policymakers to pursue strategies sophisticated enough to acknowledge this complexity.
+
+International institutions—from the United Nations and the World Trade Organization to the International Monetary Fund and the World Health Organization—serve as crucial forums for managing global challenges that no single nation can address unilaterally. Their legitimacy depends on the perception that they operate according to transparent rules, represent diverse interests fairly, and deliver tangible benefits. Critics, including both progressive advocates who argue that these institutions systematically favor wealthy countries and nationalist voices who contend that they infringe on sovereign prerogatives, challenge their authority from divergent directions. Reform—rather than dissolution—appears the most constructive path for maintaining the cooperative infrastructure that complex global challenges require.
+
+Soft power—the capacity to attract and persuade through cultural influence, normative leadership, and the perceived legitimacy of one's political model—has emerged as increasingly important in an era when direct military coercion is both costly and often counterproductive. Nations that cultivate genuine credibility through consistent adherence to the principles they advocate—human rights, democratic governance, environmental responsibility—tend to accumulate influence that persists well beyond individual transactions. Conversely, the gap between proclaimed values and actual behavior—so evident in the histories of major powers across the ideological spectrum—tends to erode the moral authority on which soft power ultimately depends.`
+},
+{
+  tag: "人工智能",
+  title: "Artificial Intelligence: Promise, Peril, and the Question of Human Agency",
+  body: `Artificial intelligence has advanced from a speculative research domain to a transformative technological reality with breathtaking rapidity. Machine learning systems can now surpass human performance across a widening range of specific domains—from game-playing and image recognition to medical diagnosis and natural language generation. These capabilities are being deployed in increasingly consequential contexts, reshaping industries, disrupting labor markets, and raising profound questions about human identity and agency that cannot be adequately addressed by technical expertise alone.
+
+The economic implications of artificial intelligence are deeply ambiguous. Optimistic analysts point to its potential to eliminate tedious and dangerous work, amplify human creative and analytical capabilities, and generate enormous productivity gains that could—if appropriately distributed—substantially improve material living standards for billions of people. More cautious observers note that previous waves of automation have historically created new categories of work even as they displaced existing ones, but emphasize that there is no guarantee this pattern will hold as AI systems become increasingly capable of performing cognitive as well as physical tasks. The distribution of AI's economic benefits will depend critically on deliberate policy choices rather than unfolding automatically.
+
+The ethical challenges associated with artificial intelligence are profound and multifaceted. Algorithmic systems trained on historical data can perpetuate and amplify existing biases, generating discriminatory outcomes in contexts as sensitive as criminal justice, healthcare, and employment. The opacity of complex neural networks—often described as "black boxes" whose decisions cannot be readily explained or audited—poses serious challenges for accountability. As AI systems are granted increasing autonomy in high-stakes domains, the question of how to maintain meaningful human oversight becomes both more urgent and more technically demanding.
+
+Ensuring that artificial intelligence development proceeds in ways that are genuinely beneficial to humanity requires interdisciplinary collaboration among technologists, ethicists, social scientists, policymakers, and representatives of affected communities. The principle of "responsible innovation"—developing powerful capabilities in tandem with the governance frameworks needed to ensure their ethical deployment—must be actively pursued rather than deferred until after problematic consequences have become entrenched. The aspiration is not to halt progress but to ensure that it serves the broadest possible range of human interests rather than a narrow technological or commercial elite.`
+},
+{
+  tag: "经济发展",
+  title: "Sustainable Development: Balancing Growth, Equity, and Environmental Integrity",
+  body: `Sustainable development—defined as meeting the needs of present generations without compromising the ability of future generations to meet their own needs—has emerged as the defining aspiration for global economic policy in an era of ecological crisis. The concept challenges the assumption that economic growth and environmental protection are inherently contradictory, arguing instead that genuine prosperity requires the maintenance of the natural systems that underpin all human productive activity. Translating this vision into concrete policy, however, demands confronting formidable political and economic obstacles.
+
+The Sustainable Development Goals, adopted by United Nations member states in 2015, represent an ambitious attempt to articulate a comprehensive and integrated vision for human flourishing by 2030. Their seventeen goals encompass the elimination of extreme poverty, universal access to quality education and healthcare, gender equality, clean energy transition, responsible consumption, and the protection of marine and terrestrial ecosystems. Progress toward these targets has been uneven, with some goals advancing encouragingly while others—particularly those related to climate action, biodiversity conservation, and reducing inequality—lag significantly behind the trajectory needed for achievement.
+
+The concept of the circular economy offers a compelling alternative to the linear "take-make-dispose" model that has dominated industrial production for two centuries. By designing products for longevity, repairability, and recyclability, and by organizing industrial systems so that the waste of one process becomes the input for another, circular approaches can dramatically reduce resource consumption and environmental impact while generating economic opportunities and employment. Transitioning to circular models requires overcoming entrenched economic incentives, regulatory frameworks designed for a different era, and consumer habits that have been cultivated by decades of disposability.
+
+Finance has a crucial role to play in mobilizing the resources needed for sustainable development. The scale of investment required to transition energy systems, adapt infrastructure to climate change, and achieve the Sustainable Development Goals dwarfs what public budgets alone can provide. Environmental, social, and governance (ESG) criteria are increasingly being incorporated into investment analysis, recognizing that long-term financial returns depend on the health of the social and ecological systems within which economic activity is embedded. Regulatory reforms that require transparent climate risk disclosure and that align financial incentives with long-term sustainability can accelerate this reorientation.`
+},
+{
+  tag: "创造力与艺术",
+  title: "Creativity and the Arts: Expression, Identity, and Cultural Vitality",
+  body: `The arts occupy a unique and indispensable position in human culture, serving simultaneously as vehicles for individual expression, collective identity formation, critical social commentary, and the cultivation of empathy across difference. While instrumental arguments for arts education—emphasizing its contributions to cognitive development, creativity, and economic productivity—have proliferated in policy discourse, the deepest case for the arts rests on their intrinsic value: their capacity to illuminate aspects of human experience that resist reduction to data or utility, and to sustain the reflective capacities without which a life of genuine meaning is impossible.
+
+Creativity—the capacity to generate novel and valuable ideas, forms, and solutions—is increasingly recognized as one of the most precious capabilities that human beings possess and that educational systems must actively cultivate. It cannot be reduced to innate talent alone; research consistently demonstrates that creative achievement depends on dedicated practice, rich knowledge foundations, exposure to diverse stimuli, and social environments that tolerate experimentation and embrace the inevitable failures that accompany genuine innovation. Creating conditions in which creativity flourishes at scale is consequently one of the most important challenges for educational and cultural policy.
+
+The relationship between artists and their social and political contexts has always been complex and often fraught. Art that challenges prevailing norms, gives voice to marginalized experiences, or invites critical reflection on power and injustice has historically been subjected to censorship and suppression by authorities who perceive it as threatening. Conversely, art has also been mobilized by states and corporations to legitimize dominant ideologies and manufacture consent. Understanding these dynamics—and maintaining the critical independence that allows art to serve its deepest social functions—requires both artists and audiences to cultivate awareness of the institutional frameworks within which cultural production occurs.
+
+Digital technology has profoundly transformed the conditions of artistic creation and distribution, simultaneously democratizing access and disrupting the economic models that once sustained professional artistic practice. Musicians, writers, visual artists, and filmmakers can now reach global audiences without the mediation of traditional gatekeepers—record labels, publishers, galleries, and studios—yet the digital economy has also generated fierce competition for attention and severely compressed the revenues available to individual creators. Navigating this landscape requires artists to develop sophisticated understanding of the business dimensions of their craft alongside their purely expressive and technical capabilities.`
+},
+{
+  tag: "公共卫生",
+  title: "Public Health in the Twenty-First Century: Lessons from Pandemic and Prevention",
+  body: `The COVID-19 pandemic constituted a watershed moment in the history of global public health, exposing with painful clarity both the extraordinary capabilities of modern biomedical science and the profound vulnerabilities of the social and political systems through which scientific knowledge must ultimately be translated into protective action. Within months of the virus's emergence, research teams around the world had sequenced its genome, identified its biological mechanisms, and—through unprecedented scientific collaboration—developed effective vaccines. Yet the translation of this knowledge into widespread immunization was impeded by supply chain failures, nationalist competition, vaccine hesitancy, and systemic inequalities in healthcare access.
+
+Preventive medicine and public health infrastructure represent investments with extraordinarily high social returns, yet they consistently struggle to attract political priority in competition with the more immediate demands of acute clinical care. The populations most vulnerable to epidemic disease—the poor, the elderly, those with chronic conditions, residents of densely populated informal settlements—are also, predictably, those with the least political power to advocate effectively for the resources they need. Addressing health inequality therefore requires not merely technical programs but political transformation that centers the interests of marginalized groups in health policy deliberation.
+
+Antimicrobial resistance represents a creeping public health crisis that has received insufficient attention relative to its potential severity. The inappropriate prescription and widespread agricultural use of antibiotics have driven the evolution of bacterial strains resistant to most or all existing treatments, threatening to render routine surgeries and common infections once again potentially fatal. Addressing this challenge requires coordinated international action on the prescribing practices of healthcare providers, the use of antibiotics in livestock production, and the development of new antimicrobial agents—a task complicated by the inadequate commercial incentives that currently exist for pharmaceutical companies to invest in this domain.
+
+Mental health, long neglected relative to its contribution to the overall burden of disease, has received increased attention in the aftermath of the pandemic, whose social disruptions exacerbated existing conditions and generated widespread new psychological distress. The realization that mental and physical health are deeply interconnected—that chronic stress undermines immune function, that depression is associated with increased cardiovascular risk, and that social connection is a profound determinant of longevity—is gradually reshaping how health systems conceptualize their responsibilities. A genuinely holistic approach to human wellbeing requires integrating mental health promotion into every dimension of healthcare delivery and social policy.`
+},
+{
+  tag: "哲学与思想",
+  title: "The Examined Life: Philosophy, Wisdom, and the Pursuit of Meaning",
+  body: `Socrates famously declared that the unexamined life is not worth living, articulating a conviction that the reflective cultivation of self-knowledge and ethical understanding is among the highest human endeavors. While contemporary culture often privileges practical achievement, quantifiable productivity, and the accumulation of material goods, the philosophical tradition insists that genuine flourishing requires attending to the questions that cannot be resolved by technical expertise or commercial success: What truly matters? How should I live? What do I owe others? What constitutes authentic happiness?
+
+Different philosophical traditions have approached these questions with distinctive emphases and methods. Ancient Greek philosophy, particularly in its Stoic and Epicurean variants, developed sophisticated frameworks for cultivating the equanimity needed to endure adversity and appreciate what one already possesses. Eastern philosophical traditions—including Buddhism, Confucianism, and Taoism—offer profound accounts of the self, community, and the relationship between human beings and the natural order that differ fundamentally from dominant Western conceptions. Engaging seriously with this diversity of philosophical perspectives is itself a form of intellectual liberation, revealing that many assumptions we take for granted are contingent rather than necessary.
+
+Existentialism, particularly as developed by Sartre, Camus, and Beauvoir in the twentieth century, confronts the radical freedom and responsibility that arise from the absence of any predetermined human essence or divine purpose. If existence precedes essence, then human beings must create meaning through their choices rather than discovering it in any external authority. This perspective, while initially vertiginous, can be experienced as profoundly liberating: the recognition that one is fundamentally the author of one's own life, and that authenticity requires honestly confronting and embracing this responsibility rather than seeking refuge in conformity or self-deception.
+
+Practical philosophy—the disciplined application of ethical and analytical reasoning to concrete decisions about how to live—has experienced a remarkable resurgence of interest in recent years, as many people find that the dominant cultural scripts for success and happiness leave them feeling curiously unsatisfied. The popularity of Stoic practices, mindfulness traditions, and community philosophy discussions suggests a widespread hunger for frameworks that go beyond the superficial and help people navigate the genuinely difficult questions of value, relationship, and purpose that a meaningful life inevitably poses. Philosophy, at its most vital, is not an academic specialty but a practice of rigorous, honest, and consequential reflection available to anyone willing to engage it seriously.`
+},
+{
+  tag: "科学探索",
+  title: "The Scientific Method: Inquiry, Evidence, and the Pursuit of Understanding",
+  body: `Science represents humanity's most systematically reliable method for generating knowledge about the natural world. Its power derives not from the infallibility of any individual scientist or theory but from the self-correcting character of the enterprise as a whole: hypotheses are formulated, rigorously tested against empirical evidence, subjected to critique from peers, and revised or discarded when the evidence warrants. This process, while occasionally slow and contentious, has produced an extraordinary accumulation of reliable knowledge about the physical, biological, and social dimensions of reality.
+
+The history of science is simultaneously a history of intellectual revolutions that have fundamentally transformed human understanding. The Copernican revolution displaced the Earth from the center of the cosmos. Darwinian evolution revealed human beings as continuous with, rather than categorically separate from, the rest of the biological world. Quantum mechanics demonstrated that the deterministic causality of classical physics is only an approximation valid at the macroscopic scale. These transformations required not merely new data but radical reconceptions of the conceptual frameworks through which data are interpreted—what the philosopher Thomas Kuhn called paradigm shifts.
+
+Public trust in scientific expertise has become increasingly contested in an era of widespread misinformation and institutional skepticism. The deliberate manufacture of doubt about well-established scientific findings—including the safety and efficacy of vaccines, the reality of human-caused climate change, and the evolutionary origins of species—by parties with vested economic or ideological interests has eroded the epistemic authority that science requires to inform effective policy. Restoring and maintaining this trust requires not merely better communication but a genuine commitment by scientific institutions to transparency, accessibility, and responsiveness to legitimate public concerns.
+
+The relationship between fundamental research—driven by curiosity and the aspiration to understand rather than by immediate practical application—and applied research aimed at solving specific problems is more complex and mutually generative than simplified accounts suggest. Many of the technologies that have transformed modern life—including the internet, GPS, and the vaccine technologies used against COVID-19—grew from discoveries made in basic research contexts where their eventual applications were entirely unforeseen. Maintaining robust public investment in fundamental inquiry, even when its practical payoffs cannot be specified in advance, is therefore not merely an intellectual luxury but a strategic imperative.`
+},
+{
+  tag: "社会变革",
+  title: "Social Movements and the Dynamics of Change",
+  body: `Throughout history, organized collective action by ordinary citizens has been among the most powerful forces for social transformation. From the abolition of slavery and the enfranchisement of women to the civil rights movement and contemporary campaigns for climate justice, social movements have repeatedly accomplished what seemed inconceivable within the prevailing political conditions of their time. Understanding how movements emerge, sustain momentum, and achieve—or fail to achieve—their objectives is consequently essential for anyone seeking to contribute to meaningful social change.
+
+Successful social movements typically emerge from the convergence of objective grievances, organizational capacity, and what sociologists call "political opportunity"—a shift in the institutional landscape that makes collective action more viable than it previously seemed. A sense of moral urgency and indignation is necessary but insufficient; effective movements also require the strategic cultivation of solidarity across different constituencies, the development of compelling narratives that can attract sympathy from those not directly affected, and the organizational infrastructure needed to coordinate sustained action over time.
+
+The tactics available to social movements range from litigation and electoral politics to public protest, civil disobedience, and economic boycott. The choice of tactics depends on the specific objectives pursued, the political context, the movement's resources and constituency, and ethical constraints that most movements recognize as legitimate. Non-violent strategies have historically demonstrated greater long-term effectiveness than violent approaches, partly because violence tends to alienate potential sympathizers and provides powerful justifications for state repression. Yet the boundaries of non-violent resistance—and the circumstances under which more confrontational tactics might be justified—have been the subject of sustained moral and strategic debate.
+
+Contemporary social movements operate in a media environment that both amplifies their reach and introduces new vulnerabilities. Digital platforms enable rapid mobilization and global solidarity but also facilitate the rapid spread of misinformation, the infiltration of movement spaces by hostile actors, and the substitution of performative online expression for sustained real-world organizing. The challenge for movement leaders is to harness the genuine communicative power of digital technology while maintaining the depth of commitment and strategic discipline that meaningful change ultimately requires. Solidarity, persistence, and the willingness to confront entrenched power with creativity and courage remain the indispensable foundations of transformative collective action.`
+},
+{
+  tag: "经济学原理",
+  title: "Markets, Institutions, and the Architecture of Economic Life",
+  body: `Economic analysis provides powerful tools for understanding how scarce resources are allocated among competing uses, how prices coordinate the decisions of millions of independent actors, and how institutions shape incentives and outcomes. Yet the economy is not merely a technical system amenable to purely scientific analysis; it is a social institution embedded in cultural norms, political structures, and historical legacies that profoundly influence its character and consequences. Understanding economic life in its full complexity requires integrating insights from multiple disciplines rather than mechanically applying the models of any single theoretical tradition.
+
+Market economies have demonstrated remarkable capacity to generate innovation, productivity growth, and material abundance. The price system aggregates dispersed information about preferences and productive possibilities in ways that no central planner could replicate, and the competitive pressure to improve products and reduce costs has historically driven extraordinary advances in technology and efficiency. These genuine achievements, however, tend to obscure the ways in which markets systematically fail: they cannot adequately provide public goods, they generate negative externalities—such as pollution—whose costs are not captured in market prices, and they tend toward inequality that undermines both social cohesion and, over time, the breadth of effective demand.
+
+Labor markets are among the most politically and ethically fraught arenas of economic life. The relationship between employers and workers is rarely one of equal bargaining power; asymmetries of information, mobility, and economic vulnerability tend to favor employers, particularly in contexts where unemployment is high and unions are weak. The institutions that mediate this relationship—minimum wages, collective bargaining, occupational health and safety regulations, unemployment insurance—represent accumulated responses to the documented failures of unregulated labor markets to protect the dignity and security of workers. Their erosion, driven by ideological preference and corporate lobbying, has contributed significantly to the rising inequality that characterizes many contemporary economies.
+
+Financial systems serve essential functions in facilitating saving, investment, and risk management, yet they are also capable of generating catastrophic instability when inadequately regulated. The 2008 global financial crisis demonstrated with terrible clarity how complex webs of financial interconnection can transmit local shocks into systemic collapses with devastating consequences for millions of people who had no direct involvement in the risky behavior that precipitated the crisis. Effective financial regulation requires not merely technical expertise but the political will to constrain powerful institutional interests that consistently resist the oversight needed to prevent instability.`
+},
+{
+  tag: "心理学",
+  title: "Human Behavior: Insights from Psychology and Behavioral Science",
+  body: `Psychology—the systematic scientific study of human behavior and mental processes—has generated profound and sometimes counterintuitive insights into why people think, feel, and act as they do. Many behaviors that seem irrational, inconsistent, or incomprehensible from the perspective of classical economic rationality turn out to be entirely predictable once the mechanisms of human cognition are understood. This knowledge has important implications for policy design, organizational management, education, healthcare, and the quality of interpersonal relationships.
+
+Cognitive psychology has demonstrated that human reasoning is subject to systematic biases that reliably lead to predictable errors in judgment. Confirmation bias—the tendency to seek and favor information that supports existing beliefs—is among the most pervasive and consequential, contributing to the entrenchment of false beliefs and the persistence of unproductive conflict. Anchoring effects, availability heuristics, and loss aversion are other well-documented cognitive patterns that influence economic decisions, risk perception, and political attitudes in ways that often diverge from rational analysis. Awareness of these tendencies does not eliminate them but can enable more deliberate and self-critical thinking.
+
+Social psychology has illuminated the remarkable degree to which human behavior is shaped by social context. Classic experiments demonstrated that ordinary individuals, under conditions of institutional authority, group pressure, or diffused responsibility, may engage in behaviors that they would personally find abhorrent in other contexts. These findings are not merely theoretically interesting; they help explain historical atrocities, organizational misconduct, and the bystander effect that can prevent individuals from intervening when others are in distress. They also suggest the importance of designing social contexts—institutional structures, group norms, default options—that make prosocial behavior the path of least resistance.
+
+Positive psychology—a relatively recent development that focuses on wellbeing, strengths, and flourishing rather than pathology—has generated important insights about the conditions that enable people to live meaningful, satisfying lives. Counter to materialist assumptions, research consistently finds that beyond a certain threshold of economic sufficiency, additional wealth contributes relatively little to subjective wellbeing. Factors that matter far more include the quality of close relationships, the experience of meaningful engagement in intrinsically valued activities, a sense of purpose and contribution, and the cultivation of gratitude and mindfulness. These findings have direct implications for how individuals organize their lives and how societies should assess their own success.`
+},
+{
+  tag: "生物科学",
+  title: "The Life Sciences Revolution: Genetics, Evolution, and the Boundaries of the Possible",
+  body: `The biological sciences have undergone a revolution of extraordinary scope and depth since the elucidation of the double-helix structure of DNA by Watson and Crick in 1953. The subsequent development of genetic sequencing technologies, recombinant DNA techniques, and most recently the CRISPR-Cas9 gene-editing system has opened prospects for understanding and intervening in biological processes at a level of precision that would have seemed fantastical to earlier generations. These capabilities carry profound implications for medicine, agriculture, conservation biology, and the philosophy of what it means to be human.
+
+Evolutionary biology provides the conceptual framework within which all other biological disciplines must ultimately be understood. Natural selection—the differential reproductive success of individuals who possess heritable traits that enhance their fitness in particular environments—is the central mechanism through which the extraordinary diversity of life has been generated over geological time. Understanding evolution is not merely an academic matter; it has immediate practical implications for medicine, including the management of antibiotic resistance, the evolution of novel pathogens, and the development of more effective cancer therapies that account for the evolutionary dynamics of tumor cell populations.
+
+Genomic medicine—the use of comprehensive genetic information to guide diagnosis, prognosis, and treatment—is transforming clinical practice in ways that were inconceivable a generation ago. The ability to sequence an individual's entire genome in a few hours at relatively modest cost enables the identification of genetic variants that confer elevated risk for conditions such as breast cancer, cardiovascular disease, and neurological disorders, potentially enabling preventive interventions long before symptoms develop. The integration of genomic data with electronic health records, wearable monitoring devices, and artificial intelligence analytics creates the prospect of truly personalized medicine—treatment optimized to the biological characteristics of individual patients rather than population averages.
+
+The ethical dimensions of advances in genetic technology demand sustained and serious attention. The possibility of germline editing—making heritable genetic modifications in human embryos—raises profound questions about equity, consent, and the appropriate limits of human intervention in evolutionary processes. The prospect of genetic enhancement—improving cognitive capacity, physical performance, or emotional resilience beyond normal human ranges—challenges deeply held intuitions about the nature of human identity and the conditions of fair competition. Democratic societies must develop robust mechanisms for deliberating about these unprecedented possibilities, ensuring that the decisions made reflect broad human values rather than merely the preferences of those with the technical capability to implement them.`
+},
+{
+  tag: "哲学与未来",
+  title: "The Future of Humanity: Technology, Values, and Long-Term Flourishing",
+  body: `The question of humanity's long-term future has moved from the domain of speculative fiction into serious academic, policy, and philanthropic discourse, driven by the recognition that decisions made in the present generation may have consequences extending across centuries or even millennia. The development of transformative technologies—particularly advanced artificial intelligence and biotechnology—combined with global-scale environmental changes creates a situation in which the stakes of collective decision-making are genuinely unprecedented. Developing the wisdom to navigate this situation requires integrating technical understanding with deep reflection on human values and the conditions of genuine flourishing.
+
+Longtermism—the philosophical perspective that prioritizes actions whose effects extend across very long time horizons—has gained considerable attention, particularly in technology and philanthropic communities. Proponents argue that because future generations vastly outnumber current generations, moral concern that is impartially distributed across all persons should lead to placing enormous weight on preventing existential risks—scenarios that would permanently curtail humanity's potential—including catastrophic pandemics, nuclear war, and the development of misaligned artificial superintelligence. Critics raise important concerns about the epistemological hubris of long-term forecasting and the potential for this framework to rationalize neglect of urgent present-day suffering.
+
+The concept of a sustainable civilization—one that can maintain itself indefinitely without depleting the natural or social foundations on which it depends—provides a more empirically tractable and politically accessible framework for thinking about long-term human flourishing. Genuinely sustainable societies would have resolved the tension between economic aspiration and ecological integrity, achieved sufficient equity to maintain social cohesion and political stability, and developed institutional capacities for wise collective decision-making in the face of complexity and uncertainty. While this vision may seem distant from current realities, it provides an indispensable orientation for evaluating policy choices and setting institutional priorities.
+
+Cultivating wisdom—the combination of knowledge, experience, and good judgment that enables individuals and institutions to navigate complex situations with appropriate humility and care—is perhaps the most important capacity for humanity's long-term future. Wisdom cannot be algorithmically generated or technically specified; it emerges from sustained reflection on experience, genuine openness to perspectives different from one's own, and a commitment to the values of truth, justice, and compassion that cannot be reduced to instrumental calculation. The cultivation of wisdom in individuals, institutions, and cultures represents both a profound human aspiration and a practical necessity for a species that has acquired extraordinary power without yet demonstrating commensurate judgment about how to use it.`
+},
+{
+  tag: "自然与探索",
+  title: "Exploration and Discovery: Humanity's Enduring Drive to Know the Unknown",
+  body: `The impulse to explore—to venture beyond familiar boundaries and confront the unknown with curiosity and courage—has been among the most consequential and characteristic expressions of human nature. From the maritime navigators who gradually revealed the geography of a spherical Earth to the astronomers who discovered that the universe encompasses billions of galaxies, each containing billions of stars, humanity's exploratory drive has repeatedly shattered the assumptions of the possible and transformed the conceptual frameworks within which subsequent generations understand their place in the cosmos.
+
+Scientific exploration now extends across multiple frontiers simultaneously. Space exploration—including the ambitious programs aimed at returning humans to the Moon and eventually establishing a presence on Mars—captures the popular imagination and serves as a powerful symbol of humanity's aspiration to transcend terrestrial limitations. Deep-ocean exploration, which has revealed extraordinary biodiversity in ecosystems that until recently were thought to be barren, challenges assumptions about the conditions under which life can sustain itself. Neuroscience's efforts to map the functional architecture of the human brain represent perhaps the most intimate form of exploration—the investigation of the physical substrate from which consciousness and experience emerge.
+
+The history of exploration is inseparable from the history of exploitation and domination. The European voyages that opened global trade routes also inaugurated centuries of colonialism, enslavement, and cultural destruction that continue to shape contemporary inequalities. Acknowledging this history does not diminish the genuine intellectual achievements of explorers but insists on a more complete and honest accounting of their consequences. Contemporary exploration—whether of space, the deep ocean, or the genomic landscape of biodiversity—occurs within an ethical framework that increasingly requires genuine partnership with affected communities and careful attention to the potential for exploitation.
+
+The spirit of exploration finds expression not only in grand scientific and geographical endeavors but in the ordinary intellectual adventures that any curious person undertakes. The disciplined investigation of a complex problem, the sincere engagement with a philosophical question, the careful observation of nature or human behavior—all represent forms of exploration that expand understanding and cultivate the intellectual virtues of openness, rigor, and wonder. A civilization that maintains its exploratory spirit across all dimensions of inquiry—from the cosmological to the personal—is one that remains genuinely alive to possibility.`
+},
+{
+  tag: "全球卫生",
+  title: "Global Health Equity: Confronting the Inequalities That Shape Life and Death",
+  body: `Health is among the most fundamental determinants of human wellbeing and capability, yet access to conditions that protect and promote health is distributed profoundly unequally across and within nations. A child born into poverty in a low-income country faces health risks dramatically greater than her contemporaries in wealthy societies—not primarily because of genetic differences but because of the preventable social, economic, and environmental conditions that shape biological outcomes. Global health equity—the aspiration that every human being should have a fair opportunity to attain the highest possible level of health—is consequently both a moral imperative and a measure of the justice of the world we have collectively constructed.
+
+The social determinants of health—including income, education, housing, nutrition, environmental quality, and social inclusion—exert a profound influence on health outcomes that often exceeds the impact of healthcare services themselves. This recognition has important policy implications: improving population health requires not merely building more hospitals and training more physicians, but addressing the structural conditions that generate health disparities in the first place. Policies that reduce income inequality, ensure access to nutritious food, guarantee safe housing, and combat discrimination can generate health improvements at scale that individual-level medical interventions cannot replicate.
+
+Neglected tropical diseases—a group of infections including schistosomiasis, lymphatic filariasis, and onchocerciasis that collectively affect over one billion people, primarily in low-income tropical countries—exemplify the tragic consequences of global health inequity. These conditions impose devastating burdens of suffering, disability, and impaired cognitive and physical development, yet receive minimal research investment from pharmaceutical companies because their victims are overwhelmingly poor and cannot generate commercially attractive markets. Addressing this failure requires a combination of public funding, innovative nonprofit research models, and regulatory frameworks that create appropriate incentives for developing treatments for diseases of the poor.
+
+Global health security—the collective capacity to prevent, detect, and respond effectively to infectious disease threats—is a public good that no single nation can adequately provide for itself. The COVID-19 pandemic demonstrated with devastating clarity the consequences of inadequate pandemic preparedness and the dangers of nationalist approaches that prioritize domestic interests over global cooperation. Building the international infrastructure for genuine health security—including surveillance systems, research capacities, supply chain redundancies, and mechanisms for equitable vaccine distribution—requires sustained investment and political commitment that transcends electoral cycles and national boundaries.`
+},
+];
+
+// ═══════════════════════════════════════════════════════════
+// RENDER ENGINE
+// ═══════════════════════════════════════════════════════════
+
+// Build a sorted list of vocab words for faster matching
+const vocabWords = Object.keys(vocab).sort((a,b) => b.length - a.length);
+
+function highlightText(text) {
+  // Replace CET-6 words with highlighted spans
+  let result = text;
+  
+  // We'll build a regex that matches word boundaries for all vocab words
+  // Process longest words first to avoid partial matches
+  const escaped = vocabWords.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const pattern = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
+  
+  result = result.replace(pattern, (match) => {
+    const lower = match.toLowerCase();
+    if (vocab[lower]) {
+      return `<span class="cet6" data-word="${lower}">${match}</span>`;
+    }
+    return match;
+  });
+  return result;
+}
+
+function renderArticles() {
+  const container = document.getElementById('articles');
+  const toc = document.getElementById('toc');
+  
+  articles.forEach((art, i) => {
+    const id = `article-${i}`;
+    
+    // Count highlighted words
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = highlightText(art.body);
+    const wordCount = tempDiv.querySelectorAll('.cet6').length;
+    
+    const card = document.createElement('div');
+    card.className = 'article-card';
+    card.id = id;
+    
+    const paras = art.body.split('\n\n').map(p => `<p>${highlightText(p.trim())}</p>`).join('');
+    
+    card.innerHTML = `
+      <div class="article-tag">${art.tag}</div>
+      <h2>${art.title}</h2>
+      <div class="article-body">${paras}</div>
+      <div class="article-footer">
+        <span>Article ${i + 1} of ${articles.length}</span>
+        <span class="word-count-badge">📚 约 ${wordCount} 个六级词汇</span>
+      </div>
+    `;
+    
+    container.appendChild(card);
+    
+    // TOC
+    const tocItem = document.createElement('a');
+    tocItem.href = `#${id}`;// ═══════════════════════════════════════════════════════════
+// TOOLTIP
+// ═══════════════════════════════════════════════════════════
+const tooltip = document.getElementById('tooltip');
+let hideTimer;
+
+document.addEventListener('click', (e) => {
+  const target = e.target.closest('.cet6');
+  if (target) {
+    const word = target.dataset.word;
+    const info = vocab[word];
+    
+    if (info) {
+      const [pos, def, example] = info;
+      tooltip.innerHTML = `
+        <span class="tip-word">${word}</span>
+        <span class="tip-pos">${pos}</span><span class="tip-def">${def}</span>
+        <div class="tip-example">${example}</div>
+      `;
+      
+      // 【修复关键点】：因为 tooltip 是 position: fixed，
+      // 所以直接使用相对于视口的 rect.left 和 rect.bottom 即可，千万不要加 window.scrollY
+      const rect = target.getBoundingClientRect();
+      let left = rect.left;
+      let top = rect.bottom + 8;
+      
+      // 防止提示框超出屏幕右侧边界
+      const tipW = 280;
+      if (left + tipW > window.innerWidth - 20) {
+        left = window.innerWidth - tipW - 20;
+      }
+      
+      // 防止提示框超出屏幕底部边界（如果底部空间不足，就显示在单词上方）
+      // 预估提示框高度大约 100px
+      if (top + 100 > window.innerHeight) {
+        top = rect.top - 108; // 向上偏移
+      }
+      
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+      tooltip.classList.add('show');
+      
+      // 重置定时器，4秒后自动隐藏
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => tooltip.classList.remove('show'), 4000);
+    }
+    e.stopPropagation();
+  } else {
+    // 点击页面其他空白区域时，立刻隐藏提示框
+    tooltip.classList.remove('show');
+  }
+});
+    tocItem.className = 'toc-item';
+    tocItem.innerHTML = `<span class="toc-num">${(i+1).toString().padStart(2,'0')}</span>${art.title.split(':')[0].substring(0,28)}…`;
+    toc.appendChild(tocItem);
+  });
+}
+
+
+// Search
+document.getElementById('searchBox').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.article-card').forEach((card, i) => {
+    const title = articles[i].title.toLowerCase();
+    const tag = articles[i].tag.toLowerCase();
+    card.style.display = (!q || title.includes(q) || tag.includes(q)) ? '' : 'none';
+  });
+  document.querySelectorAll('.toc-item').forEach((item, i) => {
+    const title = articles[i].title.toLowerCase();
+    const tag = articles[i].tag.toLowerCase();
+    item.style.display = (!q || title.includes(q) || tag.includes(q)) ? '' : 'none';
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+renderArticles();
+</script>
+</body>
+</html>
