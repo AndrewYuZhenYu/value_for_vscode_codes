@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CET-6 核心词汇沉浸式阅读</title>
+    <style>
+        :root {
+            --paper: #fdfaf5;
+            --ink: #2c3e50;
+            --amber: #d35400;
+            --highlight: rgba(211, 84, 0, 0.15);
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(253, 250, 245, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            z-index: 100;
+            margin-bottom: 30px;
+        }
+
+        #searchBox {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            border-left: 5px solid var(--amber);
+            padding-left: 15px;
+        }
+
+        /* 高亮单词样式 */
+        .cet6 {
+            background: var(--highlight);
+            border-bottom: 2px solid var(--amber);
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .cet6:hover {
+            background: rgba(211, 84, 0, 0.3);
+            color: var(--amber);
+        }
+
+        /* 释义浮窗 */
+        #tooltip {
+            position: fixed;
+            background: #fff;
+            border-top: 4px solid var(--amber);
+            padding: 20px;
+            border-radius: 8px;
+            width: 280px;
+            z-index: 1000;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.2s transform, 0.2s opacity;
+            transform: translateY(10px);
+        }
+
+        #tooltip.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .tip-w {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--amber);
+            display: block;
+        }
+
+        .tip-p {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-right: 10px;
+        }
+
+        .tip-ex {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px dashed #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="container">
+        <input type="text" id="searchBox" placeholder="输入单词或文章标题...">
+    </nav>
+
+    <div class="container" id="main-content">
+    </div>
+
+    <div id="tooltip"></div>
+
+    <script>
+        /**
+         * 1. 词汇数据库 (此处展示首批核心词汇)
+         * 建议：你可以通过 Python 脚本将 6000 词格式化为下方这种 JSON 格式
+         */
+        const vocab = {
+            "profound": ["adj.", "深远的；渊博的", "The book had a profound influence on me."],
+            "inevitable": ["adj.", "不可避免的", "Ageing is an inevitable process."],
+            "radical": ["adj.", "根本的；激进的", "We need to make radical changes to our plan."],
+            "sustain": ["v.", "维持；支撑", "The economy looks set to sustain its growth."],
+            "vulnerable": ["adj.", "易受伤害的", "Children are most vulnerable in this situation."],
+            "acknowledge": ["v.", "承认；感谢", "He failed to acknowledge his guilt."],
+            "ambiguous": ["adj.", "模棱两可的", "His reply was somewhat ambiguous."],
+            "controversial": ["adj.", "有争议的", "The new law is highly controversial."],
+            "paradox": ["n.", "自相矛盾的事物", "It is a paradox that some people are lonely in a crowd."],
+            "prevalent": ["adj.", "流行的；普遍的", "This view is prevalent among young people."],
+            "innovative": ["adj.", "创新的", "We need more innovative solutions."],
+            "meticulous": ["adj.", "一丝不苟的", "He is meticulous about his appearance."]
+        };
+
+        /**
+         * 2. 文章数据库
+         */
+        const articles = [
+            {
+                title: "The Dilemma of Innovation",
+                tag: "Technology",
+                text: "In the modern era, radical innovation is often seen as the only way to sustain economic growth. However, this pursuit can lead to a paradox. While new technologies solve old problems, they also make our digital privacy more vulnerable. It is inevitable that controversial debates will arise, and we must acknowledge the ambiguous nature of progress."
+            },
+            {
+                title: "Philosophy of Change",
+                tag: "Social Science",
+                text: "The most profound changes in society are often the most subtle. Although some ideas are prevalent today, a meticulous analysis reveals that their foundations are shaky. We need innovative thinking to bridge the gap between tradition and future."
+            }
+        ];
+
+        // --- 核心引擎：自动化渲染 ---
+
+        const container = document.getElementById('main-content');
+        const tooltip = document.getElementById('tooltip');
+
+        function init() {
+            // 按单词长度降序排列，防止短词误匹配长词的一部分（比如 match 匹配 matching）
+            const sortedWords = Object.keys(vocab).sort((a, b) => b.length - a.length);
+            const regex = new RegExp(`\\b(${sortedWords.join('|')})\\b`, 'gi');
+
+            articles.forEach(art => {
+                const card = document.createElement('div');
+                card.className = 'article-card';
+
+                // 【全自动化】：自动扫描文本，匹配词库中的单词并加上高亮标签
+                const processedText = art.text.replace(regex, (match) => {
+                    return `<span class="cet6" data-word="${match.toLowerCase()}">${match}</span>`;
+                });
+
+                card.innerHTML = `
+            <span style="color:var(--amber); font-size:12px; font-weight:bold;">#${art.tag}</span>
+            <h2>${art.title}</h2>
+            <div style="font-size:18px;">${processedText}</div>
+        `;
+                container.appendChild(card);
+            });
+        }
+
+        // --- 交互逻辑 (已修复定位 Bug) ---
+
+        document.addEventListener('click', (e) => {
+            const target = e.target.closest('.cet6');
+            if (target) {
+                const word = target.dataset.word;
+                const info = vocab[word];
+                if (info) {
+                    tooltip.innerHTML = `
+                <span class="tip-w">${word}</span>
+                <span class="tip-p">${info[0]}</span><span>${info[1]}</span>
+                <div class="tip-ex">Example: ${info[2]}</div>
+            `;
+
+                    const rect = target.getBoundingClientRect();
+                    let left = rect.left;
+                    let top = rect.bottom + 10;
+
+                    // 溢出检测
+                    if (left + 300 > window.innerWidth) left = window.innerWidth - 320;
+                    if (top + 150 > window.innerHeight) top = rect.top - 160;
+
+                    tooltip.style.left = left + 'px';
+                    tooltip.style.top = top + 'px';
+                    tooltip.classList.add('show');
+                }
+                e.stopPropagation();
+            } else {
+                tooltip.classList.remove('show');
+            }
+        });
+
+        init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CET-6 词汇记忆本</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --cream: #ede7d5;
+    --gold: #c8922a;
+    --rust: #b84c2a;
+    --teal: #2a7a6e;
+    --muted: #8a7d68;
+    --border: #d4c9b0;
+    --card-bg: #faf7f2;
+    --highlight: #fff3d0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 31px, var(--border) 31px, var(--border) 32px);
+    background-size: 100% 32px;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 10px,
+      rgba(200,146,42,0.05) 10px, rgba(200,146,42,0.05) 20px
+    );
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .header-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+
+  .header-sub {
+    color: rgba(245,240,232,0.6);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(245,240,232,0.15);
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+  }
+
+  .controls {
+    max-width: 900px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  input[type=text] {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 14px 10px 38px;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input[type=text]:focus { border-color: var(--gold); }
+
+  main {
+    max-width: 900px;
+    margin: 24px auto 60px;
+    padding: 0 24px;
+  }
+
+  .word-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+  }
+
+  .word-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.15s;
+    cursor: default;
+  }
+
+  .word-card:hover {
+    box-shadow: 4px 4px 0 var(--border);
+    transform: translate(-2px, -2px);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .word-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; /* 稍微放大单词本身 */
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .word-num {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+
+  .phonetic {
+    font-size: 15px; /* 调大音标字体 */
+    color: var(--teal);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .definition {
+    font-size: 16px; /* 调大释义字体 */
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.6;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border);
+    margin-bottom: 12px;
+  }
+
+  .sentence-area {
+    min-height: 48px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .sentence-icon {
+    color: var(--gold);
+    font-size: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .sentence-text {
+    font-size: 15px; /* 调大例句字体 */
+    line-height: 1.7;
+    color: var(--ink);
+    font-style: italic;
+    flex: 1;
+  }
+
+  .sentence-placeholder {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.5px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+  }
+
+  .empty-state .big-char {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .page-btn {
+    width: 36px; height: 36px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-btn:hover { background: var(--cream); }
+  .page-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .page-info {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    padding: 0 8px;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-label">CET-6 · 六级词汇记忆本</div>
+    <h1>My Vocabulary<br>Notebook</h1>
+    <div class="header-sub">本地静态加载 · 专为六级备考设计</div>
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-num" id="totalCount">0</span>
+        <span class="stat-label">总词汇</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="filterCount">0</span>
+        <span class="stat-label">当前搜索结果</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">◎</span>
+    <input type="text" id="searchInput" placeholder="搜索单词或定义..." oninput="doSearch()">
+  </div>
+</div>
+
+<main>
+  <div class="word-grid" id="wordGrid"></div>
+  <div id="emptyState" class="empty-state" style="display:none">
+    <div class="big-char">∅</div>
+    <div>没有找到匹配的词汇</div>
+  </div>
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<script>
+// 这里是整合了例句的本地数据，通过 "sentence" 字段嵌入例句
+// 示范了前 10 个单词的完整格式，剩下的单词只需按此格式添加 sentence 字段即可
+const VOCAB_DATA = [
+  {"word": "refuge", "phonetic": "/ˈrefjuː dʒ/", "definition": "n. 庇护所，避难处，庇护", "sentence": "During the storm, the hikers sought refuge in a small cave."},
+  {"word": "refugee", "phonetic": "/ˌrefjuˈdʒiː /", "definition": "n. 难民", "sentence": "The camp provides food and shelter for thousands of refugees."},
+  {"word": "wrench", "phonetic": "/rentʃ/", "definition": "v. 猛拧，猛扭；挣脱；使 扭伤", "sentence": "He had to wrench the door open because the lock was broken."},
+  {"word": "hamper", "phonetic": "/ˈhæmpə(r)/", "definition": "v. 妨碍，束缚，限制", "sentence": "Heavy rain will hamper the rescue efforts in the mountain."},
+  {"word": "fulfil(l)", "phonetic": "/fʊlˈfɪl/", "definition": "v. 履行，实现，完成；满 足，使满意", "sentence": "She worked hard to fulfill her dream of becoming a doctor."},
+  {"word": "executive", "phonetic": "/ɪɡˈzekjətɪv/", "definition": "n. 主管，高级行政人员， 行政官；（政府的）行政 部门", "sentence": "The company's top executive announced a new business strategy."},
+  {"word": "fence", "phonetic": "/fens/", "definition": "n. 栅栏，围栏，篱笆", "sentence": "They built a tall wooden fence around the backyard."},
+  {"word": "detach", "phonetic": "/dɪˈtætʃ/", "definition": "v. 拆卸，使分开（from）； 派遣，分遣", "sentence": "Please detach the bottom part of the form and return it."},
+  {"word": "offset", "phonetic": "/ˈɒfset/", "definition": "v. 补偿，抵消", "sentence": "The company's high profits will offset the initial investment costs."},
+  {"word": "insert", "phonetic": "/ɪnˈsɜːt/", "definition": "v. 插入，嵌入", "sentence": "You need to insert the coin into the slot to start."},
+  // 原有数据中未添加例句的格式如下，系统会自动显示“暂无例句”
+  {"word": "shampoo", "phonetic": "/ʃæmˈpuː/", "definition": "v. 用洗发剂洗（头），用 洗涤剂洗（地毯等）"}
+  // ... 此处请粘贴剩余的单词 JSON 数据 ...
+];
+
+const PAGE_SIZE = 20;
+let currentPage = 1;
+let searchQuery = '';
+
+function getFilteredData() {
+  let data = VOCAB_DATA;
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    data = data.filter(w => w.word.toLowerCase().includes(q) || w.definition.includes(q));
+  }
+  return data;
+}
+
+function doSearch() {
+  searchQuery = document.getElementById('searchInput').value;
+  currentPage = 1;
+  render();
+}
+
+function updateStats() {
+  document.getElementById('totalCount').textContent = VOCAB_DATA.length;
+  const filtered = getFilteredData();
+  document.getElementById('filterCount').textContent = filtered.length;
+}
+
+function render() {
+  const data = getFilteredData();
+  const totalPages = Math.max(1, Math.ceil(data.length / PAGE_SIZE));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageData = data.slice(start, start + PAGE_SIZE);
+
+  const grid = document.getElementById('wordGrid');
+  const empty = document.getElementById('emptyState');
+
+  if (pageData.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    grid.innerHTML = pageData.map((w, i) => {
+      const idx = VOCAB_DATA.findIndex(v => v.word === w.word) + 1;
+      const sent = w.sentence; // 直接读取本地 JSON 数据中的 sentence 字段
+      
+      let sentHtml;
+      if (sent) {
+        sentHtml = `<span class="sentence-icon">❝</span><span class="sentence-text">${escHtml(sent)}</span>`;
+      } else {
+        sentHtml = `<span class="sentence-placeholder">—— 暂无例句，等待补充</span>`;
+      }
+
+      return `<div class="word-card" id="card-${w.word.replace(/[^a-zA-Z]/g,'_')}">
+        <div class="card-top">
+          <div>
+            <div class="word-main">${escHtml(w.word)}</div>
+            <div class="word-num">#${idx}</div>
+          </div>
+        </div>
+        <div class="phonetic">${escHtml(w.phonetic || '')}</div>
+        <div class="definition">${escHtml(w.definition)}</div>
+        <div class="sentence-area">${sentHtml}</div>
+      </div>`;
+    }).join('');
+  }
+
+  renderPagination(totalPages);
+  updateStats();
+}
+
+function renderPagination(totalPages) {
+  const pg = document.getElementById('pagination');
+  if (totalPages <= 1) { pg.innerHTML = ''; return; }
+
+  let html = `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+  
+  const pages = [];
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+  } else {
+    pages.push(1);
+    if (currentPage > 3) pages.push('...');
+    for (let i = Math.max(2, currentPage-1); i <= Math.min(totalPages-1, currentPage+1); i++) pages.push(i);
+    if (currentPage < totalPages - 2) pages.push('...');
+    pages.push(totalPages);
+  }
+
+  for (const p of pages) {
+    if (p === '...') {
+      html += `<span class="page-info">…</span>`;
+    } else {
+      html += `<button class="page-btn ${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
+    }
+  }
+
+  html += `<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>`;
+  html += `<span class="page-info">共 ${totalPages} 页</span>`;
+  pg.innerHTML = html;
+}
+
+function goPage(p) {
+  const data = getFilteredData();
+  const totalPages = Math.ceil(data.length / PAGE_SIZE);
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// 初始化渲染
+render();
+</script>
+</body>
+</html>
