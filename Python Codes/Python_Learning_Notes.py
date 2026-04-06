@@ -291,3 +291,66 @@ print(friend_foods)
 #实际上进行了赋值操作
 #它们操作的是同一个内存地址
 
+# 元组
+# 元组就是不能修改的一个数据集合
+# 定义元组
+dimensions=(200,30,50,'HKU')#元组用圆括号表示，不是方括号
+for i in range (0,4): #  使用for循环遍历元组中的元素 range(0,4)生成一个从0到3的整数序列，用于访问元组中的每个元素
+    print (f"{dimensions[i]},") #  打印元组中索引为i的元素
+# 将会依次打印200,30,50，HKU
+
+# 修改元组变量
+# 虽然不能修改元组的元素,但可以给存储元组的变量赋值。
+# 因此,如果要修改前述矩形的尺寸,可重新定义整个元组:
+print ("The original dimensions: ")
+print (dimensions)
+print ("The altered dimensions: ")    
+dimensions=(250,300)
+print (dimensions)
+# 你都如何回憶我帶著笑或是很沉默
+# 這些年來有沒有人能讓你不寂寞
+
+# if 语句
+cars = ['audi', 'bmw', 'subaru', 'toyota']  
+for car in cars:
+    if car == 'bmw' or car =='audi': 
+        print(car.upper()) 
+    elif car =='subaru':
+        print (car.upper())
+    else: 
+        print(car.title())
+#if 语句后面要加上冒号
+#两个等号表示判断，和C语言一致“==”
+#检查不等于是！=,a!=b;
+
+
+#使用and检查多个条件，相当于C语言的&&
+#if a<b and a>c:
+#表示a<b和a>c要同时成立
+
+# 使用or检查多个条件，相当于C语言的||
+#if a>b or a>c:
+#表示a>b 和 a>c只要有一个成立就行
+
+# 检查特定值是否包含在列表中
+# if a in range(1,300):
+# 检查特定值是否不包含在列表中
+# if a not in range (1,300):
+
+axe=300
+if axe in range (1,1000):
+    print ("Congratulations!\n")
+if axe not in range(1000,2000):
+    print ("GET OUT!\n")
+    
+# 布尔表达式
+# 布尔值通常用于记录条件,如游戏是否正在运行,或用户是否可以编辑网站的特定内容:  
+game_active = True 
+can_edit = False
+
+# if-elif-else 结构
+# if 和 elif 同时出现表示并列，只要其中有一个通过，其他都不再判断
+# 如果是多个if 则表示均要判断
+#else 想写就写，不想写就不写
+
+#
