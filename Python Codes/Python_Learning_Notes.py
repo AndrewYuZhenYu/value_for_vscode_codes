@@ -353,4 +353,95 @@ can_edit = False
 # 如果是多个if 则表示均要判断
 #else 想写就写，不想写就不写
 
-#
+#字典
+#字典用花括号括起来
+#在python中，字典是一系列键值对。
+#每一个键斗鱼一个值对应，键和值之间用冒号隔开
+#‘键值对’之间用逗号分隔
+#一个字典中想存放多少个键值对都可以
+alien_0={'color':'red','name':'Peter','age':46}
+print (alien_0['name'])
+print (alien_0['age'])
+#访问字典中的值
+#要访问与键相关联的值，
+# 可依此指定字典名和放在方括号里面的键
+print ("Your alien's age is "+str(alien_0['age'])+'.')
+#注意这里的alien_0['age']因为是整型数据，要改成字符串
+
+#添加键值对的方法
+#在定义好字典之后，可以直接写 字典名【“键”】=‘值’
+alien_0['x-position']=0
+alien_0['y-position']=255
+print (alien_0['x-position'])
+print (alien_0['y-position'])
+
+#可以先创建一个空字典，然后逐步添加键值对
+alien_1={}
+#可以不加键值对，但是基本格式仍然不可少
+#字典名={键值对}
+alien_1['name']='Louis'
+alien_1['sex']='WOMEN'
+print (alien_1)
+
+#修改字典中的值
+#直接重新赋值就可以，
+#指出字典名和‘键’,然后赋不同的数值
+print("The original data")
+print(alien_0['name'])
+alien_0['name']='Kris'
+print("After the change: ")
+print(alien_0['name'])
+print ("Before the deletion")
+print (alien_0)
+#删除键值对
+del alien_0['name']
+#直接del 字典名[键的名称]
+print ("After the deletion")
+print (alien_0)
+print ("Now we can see that the name has disappeared！")
+
+#字典可以跨行写，
+alien_2={
+    'name':'Meg',
+    'sex':"WOMAN",
+    'age':18,
+    'hobby':'ASS'
+    }
+print (alien_2['hobby'])
+
+#遍历字典
+
+#遍历所有的键值对
+
+alien_2={
+    'name':'Meg',
+    'sex':"WOMAN",
+    'age':18,
+    'hobby':'ASS'
+    }
+
+for key,value in alien_2.items():
+    print("\nKey: "+key)
+    print("Value: "+str(value))
+    
+#方法items包含键和值
+for name,language in alien_2.items():
+    print (name)
+print ("\n")
+    #这个意思是把aliens_2的键存到name变量里
+    #把aliens_2的值存在变量language里
+    #键值是严格一一对应的
+
+#遍历字典里的所有键
+for name in alien_2.keys():
+    print (name.title())
+print ("\n")
+    
+#遍历字典里的所有值
+for number in alien_2.values():
+    print (number)
+
+#总结一下
+#.items()方法是把键和值都赋值给前面的自定义变量
+#.keys()方法是把所有的键赋值给前面的自定义变量
+#.values()方法是把所有的值赋值给前面的自定义变量
