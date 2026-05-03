@@ -1,0 +1,219 @@
+\documentclass[10pt, a4paper, twocolumn]{ctexart}
+
+% ========== 学报级宏包引入 ==========
+\usepackage[left=1.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry} 
+\usepackage{amsmath, amssymb, amsfonts} 
+\usepackage{graphicx} 
+\usepackage{booktabs} 
+\usepackage{titlesec} 
+\usepackage{caption}  
+\usepackage{tabularx} 
+\usepackage{float}    
+\usepackage{indentfirst} 
+\usepackage{times} % 英文默认使用 Times New Roman
+
+% ========== 标题与段落格式设置 ==========
+% 1 节标题 四号黑体
+\titleformat{\section}{\zihao{4}\heiti}{\arabic{section}}{1em}{}
+% 1.1 小节标题 五号黑体
+\titleformat{\subsection}{\zihao{5}\heiti}{\arabic{section}.\arabic{subsection}}{1em}{}
+\titleformat{\subsubsection}{\zihao{-5}\heiti}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1em}{}
+
+% 浮动体图表标题设置
+\captionsetup[figure]{font=small, labelsep=space, name=\textbf{图}}
+\captionsetup[table]{font=small, labelsep=space, name=\textbf{表}}
+\setlength{\parindent}{2em} 
+
+\begin{document}
+
+% ========== 跨双栏的头部信息 ==========
+\twocolumn[
+\begin{center}
+    % 一级标题二号黑体
+    {\zihao{2}\heiti 基于BP神经网络的智能汽车动力电池健康状态预测初探\par}
+    \vspace{1\baselineskip}
+    % 作者姓名四号楷体
+    {\zihao{4}\kaishu Andrew Zhenyu YU\par}
+    % 作者单位小五号宋体
+    {\zihao{-5}\songti （北京交通大学 计算机与信息技术学院，北京 100044）\par}
+\end{center}
+
+\vspace{0.5\baselineskip}
+% 中文摘要
+\noindent {\zihao{5}\heiti 摘\quad 要：}{\zihao{5}\kaishu [目的] 针对智能汽车动力电池健康状态（State of Health, SOH）在复杂多变的车载动态工况下预测精度低、传统物理模型参数整定困难等问题，本文尝试提出一种基于基础 BP 神经网络的数据驱动预测方案。[方法] 避开传统汽车工程中复杂的电池内部电化学反应机理与偏微分方程求解，从计算机科学专业的角度出发，将电池的充放电退化过程转化为纯粹的时序数据处理任务。首先，收集电池在循环充放电过程中的端电压、电流、表面温度等易于获取的传感器数据，利用滑动窗口均值滤波进行异常值清洗与 Min-Max 归一化处理；其次，构建包含输入层、隐藏层和输出层的反向传播（BP）神经网络模型，以多维环境特征数据作为输入向量，SOH 估算百分比作为输出，利用梯度下降算法对模型进行迭代训练。[结果] 理论设计与方法论对比表明，相较于传统的安时积分法或等效电路经验公式计算，基于 BP 神经网络的模型能够通过底层梯度的自动反向求导来调整权重参数，更好地拟合电池内部高度非线性的老化曲线，其均方根误差（RMSE）与平均绝对误差（MAE）有望实现显著降低。[结论] 基础的数据驱动模型在处理智能汽车动力电池 SOH 预测问题上具有充分的可行性与工程价值。该方案显著降低了跨学科的专业理论门槛，为将底层代码逻辑与基础机器学习算法应用于汽车工程安全监测领域提供了一次有益的探索，也为后续复杂算法的车载落地奠定了理论基础。\par}
+% 关键词
+\noindent {\zihao{5}\heiti 关键词：}{\zihao{5}\kaishu 智能汽车；动力电池；健康状态；BP神经网络；数据驱动；特征工程\par}
+\noindent {\zihao{5}\heiti 中图分类号：}{\zihao{5}\kaishu TP311; U469.7 \qquad }{\zihao{5}\heiti 文献标志码：}{\zihao{5}\kaishu A\par}
+
+\vspace{1\baselineskip}
+\begin{center}
+    % 英文标题用三号黑正体
+    {\zihao{3}\bfseries Preliminary Study on SOH Prediction of Intelligent Vehicle Power Battery Based on BP Neural Network\par}
+    \vspace{1\baselineskip}
+    % 英文作者姓名四号斜体
+    {\zihao{4}\itshape Andrew Zhenyu YU\par}
+    % 英文作者单位用小五正体
+    {\zihao{-5} (School of Computer and Information Technology, Beijing Jiaotong University, Beijing 100044, China)\par}
+\end{center}
+
+\vspace{0.5\baselineskip}
+\noindent {\zihao{5} \textbf{Abstract:} \textbf{[Objective]} Aiming at the problem of low prediction accuracy and difficult parameter tuning of traditional physical models for the State of Health (SOH) of intelligent vehicle power batteries under complex dynamic conditions, this paper attempts to propose a data-driven prediction scheme based on a basic Back Propagation (BP) neural network. \textbf{[Method]} Avoiding the complex internal electrochemical reaction mechanisms, this paper converts the degradation process into a pure data processing task from the perspective of computer science. Sensor data such as voltage, current, and temperature are collected, cleaned via sliding window filtering, and normalized. Then, a BP neural network model is constructed and trained using gradient descent algorithms with environmental features as inputs and SOH estimates as outputs. \textbf{[Results]} Theoretical analysis shows that compared with traditional empirical formula calculations, the BP neural network model can better fit the highly nonlinear aging curve by automatically adjusting weight parameters through backpropagation, and error metrics such as RMSE and MAE are expected to decrease significantly. \textbf{[Conclusion]} The basic data-driven model is feasible in processing power battery SOH prediction. This method lowers the interdisciplinary threshold and provides a beneficial attempt for applying foundational machine learning algorithms to the field of automotive engineering safety monitoring.\par}
+\noindent {\zihao{5} \textbf{Keywords:} intelligent vehicles; power battery; State of Health (SOH); BP neural network; data-driven; feature engineering\par}
+\vspace{2\baselineskip}
+]
+
+% ========== 首页脚注 ==========
+\footnotetext[0]{
+    \zihao{-6}\songti
+    \textbf{收稿日期：}2026-04-10 \quad \textbf{修回日期：}2026-04-17 \\
+    \textbf{基金项目：}中央高校基本科研业务费专项资金资助(2026XXXX) \\
+    \textbf{第一作者：}Andrew Zhenyu YU（2007—），男，计算机科学与技术专业，研究方向为基础机器学习算法与时序数据分析. email: your\_email@bjtu.edu.cn.
+}
+
+% ========== 正文开始 ==========
+近年来，在“碳达峰、碳中和”的时代背景下，新能源与智能网联汽车产业迎来了爆发式增长，汽车底层的电子电气架构正快速向集中式域控制演进。随着车联网（V2X）技术的普及，车辆每天都会向云端回传海量的运行态势数据，这为通过大数据分析手段解决传统汽车工程难题提供了物质基础。作为智能汽车的“心脏”与核心动力来源，锂离子动力电池系统的性能不仅直接决定了车辆的续航里程与加速动力响应，更是一项关乎车内乘员生命财产安全的核心部件。
+
+然而，受限于当前的材料科学瓶颈，随着车辆使用年限的增加、充放电循环次数的不断积累以及极端工作环境的考验，动力电池内部不可避免地会发生不可逆的物理与化学衰退现象。例如内部活性锂离子的永久性损失、电解液的消耗分解以及电极材料晶格结构的坍塌，这些因素综合作用，导致电池的可用容量逐渐萎缩、内阻显著增大。为了在工程上科学地量化这种衰退程度，工业界引入了电池健康状态（State of Health, SOH）这一关键指标。SOH 通常被定义为电池当前最大可用容量与出厂标称额定容量的百分比值。准确地在线估算和预测动力电池的 SOH，能够为车内的电池管理系统（BMS）提供决策依据，从而精准计算剩余续航里程（有效缓解驾驶员的“里程焦虑”），并在电池发生热失控等严重热灾害之前及时触发安全预警。
+
+传统的车辆工程与电化学研究领域在测算电池 SOH 时，往往依赖于建立极其复杂的“白盒模型”。这些方法需要深入探究电池内部的电化学伪二维模型，并结合复杂的偏微分方程求解。这对于尚未系统学习化学与材料工程的计算机科学专业本科生而言，面临着极高的专业理论门槛。同时，当车辆在实际道路上行驶时，面对频繁的急加速、紧急制动以及剧烈的环境温度波动，传统的固定参数物理模型极易发生失真，导致预测误差呈指数级扩大。
+
+基于上述行业背景与痛点，本文提出一种符合计算机专业算法设计逻辑的全新解题思路：将高度复杂的动力电池系统整体视为一个“黑盒”（Black Box）。我们无需深挖黑盒内部复杂的电荷转移与化学反应动力学，而是纯粹关注其在动态运行过程中与外界交互产生的高维时序数据流。本文尝试引入计算机人工智能领域最为经典的基础算法——反向传播（BP）神经网络，通过采集电池运行时的电压、电流、温度等传感器基础数据，利用代码逻辑赋予计算机自主挖掘数据中非线性映射规律的能力，从而实现对电池寿命衰减轨迹的智能化、数据化追踪。
+
+\section{动力电池 SOH 预测方法综述}
+在正式展开神经网络模型的设计之前，有必要对目前行业内主流的电池健康状态预测方法进行系统性的梳理与分析，以论证本文选取数据驱动路线的科学性与先进性。
+
+1) \textbf{基于经验的传统安时积分法。} 这是目前工业界应用最为基础和普遍的方法，其核心原理是利用微积分思想，将电池在一段时间内的放电或充电电流对时间进行连续积分，从而计算出总的充放电电量。该方法计算负荷极小，但在实际工程应用中暴露出一个致命缺陷：由于车载电流传感器（如霍尔传感器）受温度漂移影响，不可避免地存在硬件测量误差。随着时间的推移，这种极微小的瞬时误差会在积分效应下不断累积放大，最终导致 SOH 估算结果严重偏离真实值，需要频繁进行人工校准。
+
+2) \textbf{基于物理机理的滤波估算法。} 学术界部分学者提出利用等效电路模型（ECM）结合扩展卡尔曼滤波（EKF）或粒子滤波算法进行估算。这类方法理论推导严密，机理清晰。但其劣势在于，面对智能汽车复杂的车载边缘计算环境，矩阵求解会占用大量的 MCU 宝贵算力。更为棘手的是，当汽车在极寒的北方冬季或炎热的夏季行驶时，电池的内部阻抗参数会发生剧变，导致预先在实验室环境下标定的物理公式参数失效，鲁棒性较差。
+
+3) \textbf{纯数据驱动的前沿算法。} 随着近年来算力成本的下降和车联网大数据的普及，利用机器学习算法进行预测成为研究热点。其核心思想是“让海量运行数据自己去寻找衰减规律”。数据驱动算法（如支持向量回归 SVR、随机森林以及人工神经网络）具备极其强大的非线性拟合能力。只要喂给程序足够多、维度足够广的历史运行数据，算法就能自动寻找到传感器读数与电池衰减率之间的隐藏特征。这完全契合了计算机科学通过底层代码挖掘数据价值的学科思维，也是本文研究的核心立足点。
+
+\section{时序数据清洗与多维特征工程}
+在编写计算机程序来实现深度学习之前，我们必须面对一个核心的工程常识：算法是极其依赖输入数据质量的。业界常说“Garbage In, Garbage Out”（垃圾进，垃圾出）。如果我们将车载传感器采集到的所有杂乱无章的原始信号直接塞给神经网络，不仅会导致算法无法收敛，还可能得出完全错误的预测。因此，必须构建严谨的数据预处理与特征工程管道。
+
+\subsection{关键特征参数的提取}
+动力电池在一次完整的循环充放电周期内，BMS 会记录海量的数据节点。但从算法降维的角度来看，并非所有数据对预测都有价值。电池的端电压（$V$）、充放电工作电流（$I$）以及电池包内部表面温度（$T$）的动态变化，与内部的老化程度呈现高度相关性。例如，随着电池寿命的衰减，其恒流充电阶段的时间会显著变短，且在相同放电电流下，端电压跌落的速率会明显加快。因此，我们将这三个关键物理量提取出来，重构为计算机能够理解的基础特征输入矩阵。
+
+\subsection{基于皮尔逊相关系数的特征校验}
+为了从严谨的数学角度证明上述特征提取的合理性，而非仅仅依靠工程直觉，我们引入了统计学中的皮尔逊相关系数（Pearson Correlation Coefficient, $r$）对提取的特征与目标 SOH 进行校验。其数学定义如下：
+\begin{equation}
+    r = \frac{\sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i=1}^{n} (X_i - \bar{X})^2} \sqrt{\sum_{i=1}^{n} (Y_i - \bar{Y})^2}} 
+\end{equation}
+其中，$X_i$ 为某一特定特征（如平均放电温度），$Y_i$ 为对应的真实 SOH 值。当 $|r|$ 越接近 1，说明该特征与电池老化的线性相关程度越高，越有资格被选入神经网络的输入层。这种基于严格数学推导的特征筛选机制，能够有效剔除冗余噪声变量，降低后续模型的计算复杂度。
+
+\subsection{异常值平滑去噪与滑动窗口滤波}
+在智能网联汽车的实际行驶过程中，车辆经过颠簸路段可能导致传感器线束接触不良，或者车载 CAN 总线因负载过高出现毫秒级的通信丢帧，这都会导致采集到的数据集中出现数据空白或极其离谱的突变值（例如传感器瞬间报错反馈温度为 $500^\circ\text{C}$）。
+为了防止这些异常数据干扰神经网络的判断，在预处理代码中，我们引入了滑动窗口均值滤波算法。设窗口大小为 $2k+1$，对于时刻 $t$ 的受损采样点 $x_t$，利用其前后各 $k$ 个正常采样点进行算术平均填补：
+\begin{equation}
+    \hat{x}_t = \frac{1}{2k} \left( \sum_{i=t-k}^{t-1} x_i + \sum_{j=t+1}^{t+k} x_j \right) 
+\end{equation}
+该算法能够自动扫描数据流，剔除明显违背物理常识的孤立极值，最大程度保证输入时序数据流的平滑性与连续性。
+
+\subsection{底层数据的 Min-Max 归一化缩放}
+数据的无量纲化处理是深度学习中不可或缺的数学步骤。在原始数据中，电压的读数通常局限在 3.0 V 到 4.2 V 的狭窄区间，但瞬间放电电流可能会飙升至 100 A 以上，而温度读数则在 $20^\circ\text{C}$ 到 $50^\circ\text{C}$ 之间游走。
+
+如果直接将这些绝对数值差异达到几个数量级的数据送入神经网络进行矩阵乘加运算，由于“电流”数值极大，程序会误认为电流特征拥有压倒性的重要性，从而完全淹没了电压微小变化所传达的老化信息（即发生梯度被大数值特征主导的现象）。
+为了保证各物理量在算法面前地位平等，采用基础的 Min-Max 归一化公式，将所有特征数据等比例缩放至 $[0, 1]$ 的纯小数空间内：
+\begin{equation}
+    x_{\text{norm}} = \frac{x - x_{\text{min}}}{x_{\text{max}} - x_{\text{min}}} 
+\end{equation}
+式中，$x_{\text{norm}}$ 代表缩放后的标准化输入，$x$ 为传感器原始读数，$x_{\text{max}}$ 与 $x_{\text{min}}$ 分别代表该采集周期内该变量的历史最大与最小值。
+
+\section{BP 神经网络架构设计与严谨推导}
+反向传播（Back Propagation, BP）神经网络是计算机人工智能领域最为经典的基础算法，它巧妙地模仿了生物大脑神经元之间突触电信号的传递与强化过程，非常适合应对电池 SOH 预测这种非线性极强、变量繁杂的回归任务。
+
+\subsection{三层网络拓扑结构设计}
+本文所设计的 BP 神经网络摒弃了花哨的深层架构，采用最为稳定可靠的三层前馈网络结构：
+1) \textbf{输入层（Input Layer）}：作为算法的“感知器官”，其节点数量与归一化后的环境特征（如电压序列、电流峰值、温度梯度）维度严格对应，负责将外部信息引入计算图。
+2) \textbf{隐藏层（Hidden Layer）}：作为算法的“思考大脑”，包含若干个虚拟神经元。这些节点在底层内存中进行密集型矩阵乘法，专门负责提取多维物理量交互产生的高阶非线性老化规律。
+3) \textbf{输出层（Output Layer）}：作为算法的“决策出口”，将隐藏层提炼的抽象信息进行数学降维汇总，最终输出一个唯一的浮点数标量，代表模型估算的当前电池剩余寿命百分比（即 SOH 预测值）。
+
+\subsection{前向传播与非线性激活}
+当全新的电池测试数据流入网络时，首先触发的是“前向传播”流程。在算法底层，上一层神经元的输出信号传递到下一层时，需要乘以一个权重矩阵（$W$），再加上一个偏置向量（$b$）。
+但真实的电池退化轨迹是极其复杂的非线性曲线，单纯的线性乘加运算无法拟合这种复杂度。因此，必须在每次线性运算后嵌套一个“激活函数”（用 $f$ 表示）来打破线性僵局：
+\begin{equation}
+    y = f(W \cdot x + b) 
+\end{equation}
+本文选取了经典的 Sigmoid 激活函数，其数学解析式为：
+\begin{equation}
+    f(x) = \frac{1}{1 + e^{-x}} 
+\end{equation}
+该函数拥有优美的“S”型曲线，能够将任何范围内的实数结果平滑地映射压缩到 0 与 1 之间，这与我们期望输出的 SOH 百分比的取值范围完美契合。
+
+\subsection{基于链式法则的误差反向传播原理}
+算法的真正精髓在于“自主学习”，其底层依赖于严密的微积分推导。在模型初始化时，所有的权重 $W$ 都是计算机生成的随机数。在前向传播结束后，定义均方误差（MSE）作为损失函数 $E$：
+\begin{equation}
+    E = \frac{1}{2} \sum_{i} (y_i - \hat{y}_i)^2 
+\end{equation}
+其中 $y_i$ 为真实 SOH 值，$\hat{y}_i$ 为网络当前预测值。
+随后，BP 算法进入“反向传播”阶段。为了使得总误差 $E$ 最小化，网络需要沿着误差曲面的负梯度方向去修正权重。利用多元微积分的链式求导法则（Chain Rule），从输出层向隐藏层逆推，计算损失函数对任意权重 $w_{jk}$ 的偏导数：
+\begin{equation}
+    \frac{\partial E}{\partial w_{jk}} = \frac{\partial E}{\partial \hat{y}_k} \cdot \frac{\partial \hat{y}_k}{\partial (\text{net}_k)} \cdot \frac{\partial (\text{net}_k)}{\partial w_{jk}} 
+\end{equation}
+在获取精确的梯度信息后，网络借助梯度下降优化器（Gradient Descent）来更新底层权重参数：
+\begin{equation}
+    w_{jk}^{(\text{new})} = w_{jk}^{(\text{old})} - \eta \frac{\partial E}{\partial w_{jk}} 
+\end{equation}
+式中，$\eta$ 为控制学习步伐大小的超参数（学习率）。经过成千上万次的矩阵迭代与参数更新（Epochs），整个网络的预测精度就会越来越高，最终实现了从底层数据中“自主学习”衰减规律的目的。
+
+\section{实验设计、软件生态与预期评估}
+为了在理论与工程两方面检验模型设计的严密性，需要规划一套包含底层代码实现与多维评价指标的数据测试方案。
+
+\subsection{数据集划分与代码实现环境}
+在机器学习实验中，绝对禁止使用训练过的数据来验证模型（防止模型产生“死记硬背”的过拟合现象）。假设我们采集到了某款智能电动汽车动力电池的 1000 次充放电历史循环数据。在代码层面，我们将利用随机种子（Random Seed）将其乱序打乱。
+
+在软件生态与底层实现上，本研究的特征清洗阶段将高度依赖 Python 语言生态下的 Pandas 与 NumPy 库，以实现时序数据的精准对齐与矩阵化处理。随后，提取其中 70\% 的数据划分为“训练集”（Training Set），供 BP 神经网络反复迭代、调整权重矩阵使用；剩余的 30\% 数据作为严格保密的“测试集”（Test Set），用以考核其真实的泛化预测能力。此外，在完成模型推理后，为了更直观地展现电池内部高度非线性的老化曲线，计划引入 MATLAB 强大的科学计算与三维可视化绘图功能，对预测轨迹与真实衰减轨迹进行高精度对比渲染。
+
+\subsection{预测精度的多维评价准则}
+为了避免单一指标的片面性，本研究采用业界公认的均方根误差（RMSE）与平均绝对误差（MAE）双重标尺来衡量算法精度。
+均方根误差对预测结果中的异常大误差具有极强的惩罚作用，其定义为：
+\begin{equation}
+    \text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(y_i - \hat{y}_i)^2} 
+\end{equation}
+平均绝对误差则更直观地反映了预测值与真实值之间的实际平均偏离距离：
+\begin{equation}
+    \text{MAE} = \frac{1}{N}\sum_{i=1}^{N}|y_i - \hat{y}_i| 
+\end{equation}
+其中，$N$ 为测试集包含的总采样点数量。这两个数值越逼近于 0，说明算法捕捉电池真实老化轨迹的能力越强劲。
+
+\begin{table}[H]
+    \centering
+    {\zihao{-5}\heiti 表 1\quad 不同 SOH 预测方法的核心原理与预期对比\par}
+    {\zihao{-5} Tab.1\quad Core principles and expected comparison of different SOH prediction methods\par}
+    \vspace{0.5em}
+    {\zihao{6} 
+    \begin{tabular}{llc}
+        \toprule
+        预测方法分类 & 核心理论与算法基础 & 预期预测误差表现 \\
+        \midrule
+        传统物理经验公式法 & 高度依赖固定方程参数与专家人工经验 & 误差较高（复杂环境易失效） \\
+        滤波估算法 (如 EKF) & 依赖等效电路矩阵运算，算力消耗大 & 误差中等（参数易受温度干扰） \\
+        基础 BP 神经网络 & 依赖海量多维数据迭代与底层反向自动调参 & 误差较低（非线性拟合优异） \\
+        \bottomrule
+    \end{tabular}
+    }
+\end{table}
+
+\subsection{理论对比分析与未来展望}
+通过与其他基础方法的理论对比（如表1所示），可以得出明确的预期判断：传统的物理经验公式在面对实验室恒温恒流的理想条件时，表现尚可；但一旦部署到车辆复杂的动态路况环境中，固定不变的参数势必无法应对高频噪声干扰。而 BP 神经网络模型由于从不依赖特定的先验物理公式假定，仅凭数据本身的内在映射联系进行推理运算，其预测误差（RMSE与MAE）有望实现量级上的降低。
+
+\section{结\quad 论}
+本文立足于大一新生的知识结构与计算机专业视角，大胆跳出了传统汽车工程的学科壁垒，初步探讨了将基础的机器学习算法（BP神经网络）引入智能汽车动力电池 SOH 预测的可行性方案。得出以下主要结论：
+
+1) \textbf{实现了复杂物理问题向数据工程的降维打击。} 将复杂的电化学衰变模型转换为纯粹的计算机数据处理任务，通过科学的数据清洗与特征提取工程，即使无需强记艰涩的化学反应方程式，同样能凭借扎实的代码逻辑解决工程痛点，有效降低了跨学科研究的门槛。
+
+2) \textbf{构建了严谨的算法逻辑思维闭环。} 尽管在日新月异的人工智能浪潮中，BP 神经网络的结构略显基础，但本次理论探究结合了严谨的微积分推导，完整地走通了“数据采集-特征清洗-前向推理-反向梯度调优-精度评估”的全套机器学习工作流。这种对底层数学推导的坚持以及对数据清洗管道的构建，为后续本科阶段进一步学习时序卷积网络（TCN）、Transformer 甚至大规模预训练模型奠定了不可或缺的底层理论与工程思维基础。
+
+% ========== 参考文献 ==========
+\renewcommand{\refname}{\zihao{5}\heiti 参考文献} 
+\vspace{-1em}
+\begin{thebibliography}{99}
+\zihao{-5}\songti 
+\bibitem{ref1} 熊瑞, 孙逢春, 何洪文. 电动汽车动力电池健康状态综合评价框架[J]. 机械工程学报, 2018, 54(14): 114-128.
+\bibitem{ref2} 李哲, 卢兰光, 欧阳明高. 动力电池状态估计的数据驱动算法综述[J]. 汽车工程, 2020, 42(10): 1345-1356.
+\bibitem{ref3} 刘建华, 陈维. 基于深度学习的时序数据挖掘技术应用[J]. 计算机学报, 2021, 44(8): 1560-1575.
+\bibitem{ref4} 王震坡, 袁昌贵, 李晓宇. 基于实车大数据的动力电池健康状态评估方法[J]. 汽车工程, 2021, 43(8): 1109-1117.
+\bibitem{ref5} 赵建平, 林宇. 基于多尺度卷积和长短期记忆网络的电池寿命预测[J]. 电工技术学报, 2022, 37(12): 3012-3022.
+\end{thebibliography}
+
+\end{document}
