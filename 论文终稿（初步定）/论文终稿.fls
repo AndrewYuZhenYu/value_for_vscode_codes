@@ -1,8 +1,8 @@
-PWD f:/CODES_FOR_GIT
+PWD f:/CODES_FOR_GIT/论文终稿（初步定）
 INPUT j:/texlive/2025/texmf.cnf
 INPUT j:/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT j:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT f:/CODES_FOR_GIT/论文终稿.tex
+INPUT f:/CODES_FOR_GIT/论文终稿（初步定）/论文终稿.tex
 OUTPUT 论文终稿.log
 INPUT j:/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
 INPUT j:/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
