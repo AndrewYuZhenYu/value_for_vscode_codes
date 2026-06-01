@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>给阿肥的六一惊喜！</title>
+    <style>
+        /* 全局重置与字体 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            /* 动态流光背景 */
+            background: linear-gradient(-45deg, #ffc3a0, #ffafbd, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            min-height: 100vh;
+            /* 兼容各种浏览器的视口高度 */
+            min-height: -webkit-fill-available;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        html {
+            height: -webkit-fill-available;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* 飘落物容器 (确保不阻挡点击) */
+        #falling-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 磨砂玻璃质感卡片 */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            width: 88%;
+            max-width: 380px;
+            /* 移动端适配核心：限制最大高度，防止内容撑出屏幕 */
+            max-height: 90vh;
+            overflow-y: auto;
+            /* 隐藏内部滚动条但保留滚动功能 */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 32px;
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        .glass-card::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* 可爱头像组 */
+        .avatar-container {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+        }
+
+        .avatar-emoji {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            box-shadow: 0 10px 20px rgba(255, 175, 189, 0.5);
+            border: 4px solid #fff;
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        .halo {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.6));
+        }
+
+        @keyframes wobble {
+
+            0%,
+            100% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* 文本排版 */
+        .title {
+            color: #ff5277;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #fff;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
+        }
+
+        .message {
+            color: #4a4a4a;
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 20px;
+        }
+
+        .highlight {
+            color: #ff4757;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 118, 117, 0.3);
+            border-radius: 3px;
+            z-index: -1;
+        }
+
+        /* 果冻按钮 - 优化点击域和层级 */
+        .jelly-btn {
+            position: relative;
+            z-index: 50;
+            /* 提升层级，防止被遮挡 */
+            touch-action: manipulation;
+            /* 优化移动端点击响应 */
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.5);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: pulse 2s infinite;
+            width: 90%;
+            max-width: 250px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .jelly-btn:active {
+            transform: scale(0.92);
+            box-shadow: 0 4px 10px rgba(255, 117, 140, 0.5);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 定制惊喜弹窗 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 30px;
+            text-align: center;
+            transform: scale(0.5);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(255, 107, 129, 0.2);
+            border: 4px solid #ff9a9e;
+            width: 85%;
+            max-width: 320px;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: #ff5277;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            background: #f1f2f6;
+            color: #57606f;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .close-btn:active {
+            background: #dfe4ea;
+        }
+
+        /* 动画粒子 */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* 针对小屏幕手机的极致适配 (比如屏幕高度小于700px) */
+        @media screen and (max-height: 700px) {
+            .glass-card {
+                padding: 25px 15px;
+            }
+
+            .avatar-container {
+                width: 75px;
+                height: 75px;
+                margin-bottom: 10px;
+            }
+
+            .avatar-emoji {
+                font-size: 40px;
+            }
+
+            .title {
+                font-size: 1.35rem;
+            }
+
+            .message {
+                font-size: 0.95rem;
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+
+            .jelly-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="falling-elements"></div>
+
+    <div class="glass-card">
+        <div class="avatar-container">
+            <div class="halo">👑</div>
+            <div class="avatar-emoji">👧🏻</div>
+        </div>
+
+        <div class="title">祝阿肥六一快乐！</div>
+        <div class="tag">✨ 41岁的老baby ✨</div>
+
+        <div class="message">
+            亲爱的阿肥女士：<br>
+            在这个充满童话色彩的日子里，特此为你颁发<span class="highlight">「永远可爱证书」</span>！<br><br>
+            不管岁月怎么跑，在我的心里，你永远是那个可以随意撒娇、想吃糖就吃糖、被爱包围的宝贝。今天请放下大人的烦恼，尽情做个快乐的小女孩吧！🎀
+        </div>
+
+        <button class="jelly-btn" onclick="showSurprise()">拆开节日礼物</button>
+    </div>
+
+    <div class="modal-overlay" id="surpriseModal">
+        <div class="modal-content">
+            <div class="modal-icon">🎁</div>
+            <div class="modal-text">
+                叮咚！<br>
+                阿肥已成功领取<br>
+                【今日无限度宠爱特权】<br>
+                及 🍭 一整年不变肥的快乐！
+            </div>
+            <button class="close-btn" onclick="hideSurprise()">太棒啦！收下</button>
+        </div>
+    </div>
+
+    <script>
+        // 自动生成背景飘落的可爱元素
+        function createBackgroundParticles() {
+            const container = document.getElementById('falling-elements');
+            const items = ['✨', '🌸', '💖', '🍬', '🫧'];
+
+            setInterval(() => {
+                const el = document.createElement('div');
+                el.className = 'particle';
+                el.innerText = items[Math.floor(Math.random() * items.length)];
+
+                // 随机大小、起始位置和下落时间
+                const size = Math.random() * 15 + 10;
+                el.style.fontSize = `${size}px`;
+                el.style.left = `${Math.random() * 100}vw`;
+                el.style.top = `-20px`;
+                el.style.opacity = Math.random() * 0.6 + 0.4;
+
+                const duration = Math.random() * 5 + 5; // 5-10秒
+                el.style.animationDuration = `${duration}s`;
+
+                container.appendChild(el);
+
+                // 清理 DOM
+                setTimeout(() => {
+                    if (el && el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
+                }, duration * 1000);
+            }, 600); // 每0.6秒生成一个
+        }
+
+        // 爆炸糖果特效（点击按钮时触发）
+        function createExplosion() {
+            const emojis = ['🎈', '🍭', '🍓', '🍰', '🎉', '🧸'];
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.position = 'fixed';
+                particle.style.zIndex = '150';
+                particle.style.pointerEvents = 'none'; // 确保爆炸特效绝对不会遮挡任何点击
+                particle.style.fontSize = Math.random() * 20 + 15 + 'px';
+
+                // 从屏幕中心爆发
+                particle.style.left = '50vw';
+                particle.style.top = '50vh';
+
+                // 计算爆炸的随机抛物线轨迹
+                const tx = (Math.random() - 0.5) * 100 + 'vw';
+                const ty = (Math.random() - 1) * 100 + 'vh';
+                const rotate = Math.random() * 720 + 'deg';
+
+                particle.animate([
+                    { transform: 'translate(-50%, -50%) scale(0) rotate(0)', opacity: 1 },
+                    { transform: `translate(calc(-50% + ${tx}), calc(-50% + ${ty})) scale(1.2) rotate(${rotate})`, opacity: 1, offset: 0.8 },
+                    { transform: `translate(calc(-50% + ${tx}), calc(-50% + ${ty} + 20vh)) scale(1) rotate(${rotate})`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 1000 + 1500,
+                    easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+                    fill: 'forwards'
+                });
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    if (particle && particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 2500);
+            }
+        }
+
+        // 显示/隐藏弹窗
+        function showSurprise() {
+            createExplosion();
+            setTimeout(() => {
+                document.getElementById('surpriseModal').classList.add('active');
+            }, 400);
+        }
+
+        function hideSurprise() {
+            document.getElementById('surpriseModal').classList.remove('active');
+        }
+
+        // 启动背景动画
+        createBackgroundParticles();
+    </script>
+</body>
+
+</html>
