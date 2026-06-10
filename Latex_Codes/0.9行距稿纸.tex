@@ -1,0 +1,45 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{geometry}
+
+% 设置基础页面边距
+\geometry{a4paper, margin=1cm}
+\pagestyle{empty} % 隐藏默认的页码
+
+% 定义灰色线条颜色
+\definecolor{linegrey}{HTML}{A0A0A0} 
+
+% 自动在每一页背景绘制铺满的横线
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    % --- 尺寸计算说明 ---
+    % A4 纸张尺寸：21.0cm × 29.7cm
+    % 行距设定：0.9cm
+    % 29.7cm / 0.9cm = 33，我们可以画 33 条线（32个间隔）
+    % 总高度 = 32 × 0.9cm = 28.8cm
+    % 上下边距 = (29.7 - 28.8) / 2 = 0.45cm
+    % 左右边距设定为 1cm，线宽 = 19cm
+    
+    % 定义左下角和右上角基准坐标
+    \path (current page.south west) + (1cm, 0.45cm) coordinate (BOTLEFT);
+    \path (current page.south west) + (20cm, 29.25cm) coordinate (TOPRIGHT);
+    
+    % 仅绘制横线（共33条线）
+    \foreach \y in {0,1,...,32} {
+        \draw[line width=0.5pt, color=linegrey] ([yshift=\y*0.9cm]BOTLEFT) -- ([yshift=\y*0.9cm]BOTLEFT -| TOPRIGHT);
+    }
+    
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+% 第一页内容（留空以展示背景横线）
+\mbox{}
+\clearpage
+
+% 第二页内容（留空以展示背景横线）
+\mbox{}
+
+\end{document}

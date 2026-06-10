@@ -1,0 +1,445 @@
+\documentclass[12pt,a4paper]{ctexart}
+
+% ==========================================
+% 1. 页面与间距设置
+% ==========================================
+\usepackage{geometry}
+\geometry{left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm}
+
+\widowpenalty=10000
+\clubpenalty=10000
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setcounter{secnumdepth}{0}
+
+% ==========================================
+% 2. 常用宏包引入
+% ==========================================
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{graphicx}
+
+% ==========================================
+% 3. 自定义样式与环境
+% ==========================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={概率论与数理统计B期末总复习讲义},
+}
+
+\newenvironment{myquote}
+  {\par\vspace{0.5em}\begin{quote}\sffamily\color{gray}}
+  {\end{quote}\vspace{0.5em}}
+
+\newenvironment{importantnote}
+  {\par\vspace{0.5em}\noindent\color{red}\textbf{注意：}}
+  {\par\vspace{0.5em}}
+
+% ==========================================
+% 4. 标题信息
+% ==========================================
+\title{\Huge \textbf{《概率论与数理统计 B》} \\ \Large 期末总复习 · 超详细完整版}
+\author{基于100+页讲义逐页深度整理}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ==========================================
+% 第一章 概率与随机事件
+% ==========================================
+\section{第一章 概率与随机事件}
+
+% ------------------------------------------------------------------
+\subsection{一、预备知识：排列组合（详细版）}
+
+\subsubsection{1. 加法原理}
+\begin{itemize}[noitemsep]
+    \item \textbf{概念}：完成一件事有 $n$ 类方法，只要选择任何一类中的一种方法，这件事就可以完成。各类方法之间是“或”的关系，相互独立。
+    \item \textbf{公式}：总方法数 = $m_1 + m_2 + \dots + m_n$
+    \item \textbf{关键词}：“要么…要么…”、“分类”
+    \item \textbf{举例}：从甲地到乙地，可以坐飞机（有 3 个航班）、坐火车（有 2 趟列车）、坐汽车（有 4 个班次），则不同的走法共有 $3+2+4=9$ 种。
+\end{itemize}
+
+\subsubsection{2. 乘法原理}
+\begin{itemize}[noitemsep]
+    \item \textbf{概念}：完成一件事有 $n$ 个步骤，必须依次完成所有步骤，这件事才算完成。各步骤之间是“且”的关系。
+    \item \textbf{公式}：总方法数 = $m_1 \times m_2 \times \dots \times m_n$
+    \item \textbf{关键词}：“先…后…”、“分步”
+    \item \textbf{举例}：从甲地到乙地需要先坐火车（有 3 趟）再坐轮船（有 2 班），则不同的走法共有 $3 \times 2 = 6$ 种。
+\end{itemize}
+
+\subsubsection{3. 排列}
+\begin{itemize}[noitemsep]
+    \item \textbf{概念}：从 $n$ 个\textbf{不同}元素中，每次取出 $m$ 个元素，按照一定的顺序排成一列。顺序不同视为不同排列。
+    \item \textbf{有放回排列}：
+          \begin{itemize}[noitemsep]
+              \item 每次抽取一个，记录结果后放回，共抽取 $m$ 次。
+              \item 每次都有 $n$ 种选择，所以总共有 $n^m$ 种排列。
+              \item \textbf{举例}：从 1,2,3 三个数字中有放回地取 2 次，组成两位数，共有 $3^2=9$ 种（11,12,13,21,22,23,31,32,33）。
+          \end{itemize}
+    \item \textbf{无放回排列}：
+          \begin{itemize}[noitemsep]
+              \item 每次抽取一个，记录结果后不放回，共抽取 $m$ 次（$m \le n$）。
+              \item 第一次有 $n$ 种，第二次有 $n-1$ 种，…，第 $m$ 次有 $n-m+1$ 种。
+              \item 公式：$\displaystyle A_n^m = n \times (n-1) \times \dots \times (n-m+1) = \frac{n!}{(n-m)!}$
+              \item \textbf{举例}：从 1,2,3,4 四个数字中无放回地取 2 个组成两位数，共有 $A_4^2 = 4 \times 3 = 12$ 种。
+          \end{itemize}
+\end{itemize}
+
+\subsubsection{4. 组合}
+\begin{itemize}[noitemsep]
+    \item \textbf{概念}：从 $n$ 个\textbf{不同}元素中，每次取出 $m$ 个元素，\textbf{不考虑其先后顺序}作为一组（只看内容不计次序）。
+    \item \textbf{与排列的关系}：组合是先选出元素，再对选出的 $m$ 个元素进行全排列 $m!$，就得到了排列数。即 $A_n^m = C_n^m \times m!$。
+    \item \textbf{公式}：$\displaystyle C_n^m = \frac{A_n^m}{m!} = \frac{n \times (n-1) \times \dots \times (n-m+1)}{m!} = \frac{n!}{m!(n-m)!}$
+    \item \textbf{性质}：$C_n^m = C_n^{n-m}$，$C_n^0 = C_n^n = 1$。
+    \item \textbf{举例}：从 1,2,3,4 四个数字中任取 2 个（不考虑顺序），共有 $C_4^2 = \frac{4 \times 3}{2} = 6$ 种。
+\end{itemize}
+
+% ------------------------------------------------------------------
+\subsection{二、随机试验（详细版）}
+
+一个试验如果可以被称为随机试验，必须满足以下三个条件，缺一不可：
+
+\begin{enumerate}[noitemsep]
+    \item \textbf{可重复性}：可以在相同的条件下重复进行。这意味着试验的条件是可控的，可以反复进行。
+    \item \textbf{结果明确性}：每次试验的可能结果不止一个，且事先可以明确试验的所有可能结果。即样本空间 $\Omega$ 是已知的。
+    \item \textbf{结果不确定性}：进行一次试验前，不能确定哪一个结果会出现。这是“随机”的本质。
+\end{enumerate}
+
+\textbf{常用字母}：$E$ 表示随机试验。
+
+\textbf{举例}：抛一枚硬币（$\Omega = \{正面, 反面\}$）、掷一颗骰子（$\Omega = \{1,2,3,4,5,6\}$）、从一批产品中抽取一件检查是否合格（$\Omega = \{合格, 不合格\}$）。
+
+% ------------------------------------------------------------------
+\subsection{三、样本空间与事件（详细版）}
+
+\subsubsection{1. 样本空间}
+随机试验 $E$ 的一切可能结果组成的集合称为 $E$ 的样本空间，记为 $\Omega$ 或 $S$。
+
+\subsubsection{2. 样本点}
+样本空间中的元素，即试验的每个结果，称为样本点或基本事件，一般用 $\omega$ 表示。
+
+\textbf{举例}：掷一颗骰子，$\Omega = \{1,2,3,4,5,6\}$，其中 $1$ 是一个样本点。
+
+\subsubsection{3. 随机事件}
+样本空间 $\Omega$ 的某一子集称为一个随机事件，简称为事件，通常用大写英文字母 $A, B, C, \dots$ 表示。
+
+\begin{itemize}[noitemsep]
+    \item \textbf{必然事件}：每次试验中必然发生的事件，即为全集 $\Omega$。
+    \item \textbf{不可能事件}：每次试验中都不可能发生的事件，即为空集 $\emptyset$。
+\end{itemize}
+
+\textbf{举例}：掷一颗骰子，事件 $A = \{2,4,6\}$ 表示“掷出偶数点”。
+
+% ------------------------------------------------------------------
+\subsection{四、事件的关系和运算（详细版）}
+
+事件是样本空间的子集，所以事件的关系和运算完全可以用集合论的语言来描述。
+
+\subsubsection{1. 事件之间的关系}
+\begin{itemize}[noitemsep]
+    \item \textbf{包含关系}：$A \subset B$，事件 $A$ 发生必然导致事件 $B$ 发生。即 $A$ 是 $B$ 的子集。
+    \item \textbf{相等关系}：$A = B \iff A \subset B$ 且 $B \subset A$。即两个事件完全相同。
+    \item \textbf{互不相容（互斥）}：$AB = \emptyset$，事件 $A$ 与事件 $B$ 不能同时发生。即两个事件没有公共样本点。
+    \item \textbf{对立事件}：$\bar{A}$，事件 $A$ 不发生。满足 $A \cup \bar{A} = \Omega$ 且 $A\bar{A} = \emptyset$。对立事件是互斥的特例，但互斥不一定对立。
+\end{itemize}
+
+\subsubsection{2. 事件的运算}
+\begin{itemize}[noitemsep]
+    \item \textbf{并（和）事件}：$A \cup B$，事件 $A$ 与事件 $B$ 至少有一个发生。即属于 $A$ 或属于 $B$ 的样本点组成的集合。
+    \item \textbf{交（积）事件}：$A \cap B$ 或 $AB$，事件 $A$ 与事件 $B$ 同时发生。即同时属于 $A$ 和 $B$ 的样本点组成的集合。
+    \item \textbf{差事件}：$A - B$，事件 $A$ 发生而事件 $B$ 不发生。$A - B = A\bar{B}$。即属于 $A$ 但不属于 $B$ 的样本点组成的集合。
+\end{itemize}
+
+\subsubsection{3. 事件的运算法则（必须牢记）}
+\begin{itemize}[noitemsep]
+    \item \textbf{交换律}：$A\cup B = B\cup A$，$A\cap B = B\cap A$
+    \item \textbf{结合律}：$A\cup (B\cup C) = (A\cup B)\cup C$，$A\cap (B\cap C) = (A\cap B)\cap C$
+    \item \textbf{分配律}：
+          \begin{align*}
+              A\cup (B\cap C) & = (A\cup B)\cap (A\cup C) \\
+              A\cap (B\cup C) & = (A\cap B)\cup (A\cap C)
+          \end{align*}
+    \item \textbf{德摩根律（对偶律）}（最重要，必考）：
+          \begin{align*}
+              \overline{A\cup B} & = \bar{A}\cap \bar{B} \quad \text{（并集的对立等于对立的交集）} \\
+              \overline{A\cap B} & = \bar{A}\cup \bar{B} \quad \text{（交集的对立等于对立的并集）}
+          \end{align*}
+    \item \textbf{速记口诀}：“长线变短线，符号变，开口方向反转”。即：长横线（整体取反）变成短横线（每个事件分别取反），$\cup$ 变成 $\cap$，$\cap$ 变成 $\cup$。
+    \item \textbf{吸收律}：若 $A\subset B$，则 $AB = A$，$A\cup B = B$。
+\end{itemize}
+
+\subsubsection{4. 例题：用事件的运算关系表示下列事件}
+设 $A, B, C$ 为三个事件：
+\begin{align*}
+     & \text{(1) }A\text{ 出现，}B, C\text{ 不出现：}\quad \boxed{A\bar{B}\bar{C}}                                                                 \\
+     & \text{(2) }A, B\text{ 出现，}C\text{ 不出现：}\quad \boxed{AB\bar{C}}                                                                       \\
+     & \text{(3) }A, B, C\text{ 都出现：}\quad \boxed{ABC}                                                                                      \\
+     & \text{(4) }A, B, C\text{ 都不出现：}\quad \boxed{\bar{A}\bar{B}\bar{C}}                                                                   \\
+     & \text{(5) }A, B, C\text{ 不都出现：}\quad \boxed{\overline{ABC}}                                                                          \\
+     & \text{(6) }A, B, C\text{ 至少有一个出现：}\quad \boxed{A \cup B \cup C}                                                                      \\
+     & \text{(7) }A, B, C\text{ 不多于一个出现：}\quad \boxed{\bar{A}\bar{B}\bar{C} \cup A\bar{B}\bar{C} \cup \bar{A}B\bar{C} \cup \bar{A}\bar{B}C} \\
+     & \text{(8) }A, B, C\text{ 恰有两个出现：}\quad \boxed{AB\bar{C} \cup A\bar{B}C \cup \bar{A}BC}                                               \\
+     & \text{(9) }A, B\text{ 至少有一个出现，}C\text{ 不出现：}\quad \boxed{(A\cup B)\bar{C}}
+\end{align*}
+
+% ------------------------------------------------------------------
+\subsection{五、概率的定义与性质（详细版）}
+
+\subsubsection{1. 概率的公理化定义}
+设 $\Omega$ 为随机试验的样本空间，对 $\Omega$ 中任一事件 $A$，称实值函数 $P$ 为概率，如果 $P$ 满足以下三条公理：
+
+\begin{itemize}[noitemsep]
+    \item \textbf{非负性}：对一切事件 $A$，有 $0 \le P(A) \le 1$。
+    \item \textbf{正规性}：$P(\Omega) = 1$。
+    \item \textbf{可列可加性}：若 $A_1, A_2, \dots, A_n, \dots$ 是任意两两互不相容的事件（即 $A_i A_j = \emptyset$ 对 $i \ne j$），则有 $P(\bigcup_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} P(A_n)$。
+\end{itemize}
+
+\subsubsection{2. 概率的重要性质（必须熟练掌握）}
+
+\begin{itemize}[noitemsep]
+    \item \textbf{性质①}：$P(\emptyset) = 0$，$P(\Omega) = 1$，$0 \le P(A) \le 1$。
+
+    \item \textbf{性质② 有限可加性}：若 $A_1, A_2, \dots, A_n$ 是两两互不相容的事件，则 $P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n P(A_i)$。
+
+    \item \textbf{性质③ 单调性}：若 $A \subset B$，则 $P(B-A) = P(B) - P(A)$，且 $P(A) \le P(B)$。
+
+    \item \textbf{性质④ 求逆公式（核心）}：$P(\bar{A}) = 1 - P(A)$。
+
+          \begin{myquote}
+              \textbf{使用技巧}：当遇到多个事件取反时，需要结合德摩根律。
+              \begin{itemize}[noitemsep]
+                  \item $P(\bar{A}\bar{B}) = P(\overline{A \cup B}) = 1 - P(A \cup B)$
+                  \item $P(\bar{A} \cup \bar{B}) = P(\overline{AB}) = 1 - P(AB)$
+              \end{itemize}
+          \end{myquote}
+
+    \item \textbf{性质⑤ 减法公式（核心）}：$P(A - B) = P(A\bar{B}) = P(A) - P(AB)$。
+
+    \item \textbf{性质⑥ 加法公式（核心，必考）}：
+          \begin{align*}
+               & \text{两个事件：}\quad P(A \cup B) = P(A) + P(B) - P(AB)                                                                                                                                              \\
+               & \text{三个事件：}\quad P(A \cup B \cup C) = P(A)+P(B)+P(C) - P(AB)-P(BC)-P(AC) + P(ABC)                                                                                                               \\
+               & \text{推广（容斥原理）：}\quad P(\bigcup_{k=1}^n A_k) = \sum_{k=1}^n P(A_k) - \sum_{1 \le i < j \le n} P(A_i A_j) + \sum_{1 \le i < j < k \le n} P(A_i A_j A_k) - \dots + (-1)^{n-1} P(A_1 A_2 \dots A_n)
+          \end{align*}
+
+    \item \textbf{性质⑦ 次可加性}：对于任意的事件 $A_1, A_2, \dots$，有 $P(\bigcup_{n \ge 1} A_n) \le \sum_{n \ge 1} P(A_n)$。
+\end{itemize}
+
+\subsubsection{3. 例题：$A,B$ 为两个随机事件，$P(AB) = P(\overline{AB})$，已知 $P(A) = p$，求 $P(B)$。}
+
+\textbf{解}：
+由已知 $P(AB) = P(\overline{AB})$。
+对 $\overline{AB}$ 使用德摩根律和求逆公式：$P(\overline{AB}) = P(\bar{A} \cup \bar{B}) = 1 - P(AB)$。
+代入得：$P(AB) = 1 - P(AB)$，解得 $P(AB) = \frac{1}{2}$。
+由加法公式：$P(AB) = 1 - P(A \cup B) = 1 - [P(A) + P(B) - P(AB)]$。
+代入 $P(AB) = \frac{1}{2}$ 和 $P(A) = p$，得：
+\[
+    \frac{1}{2} = 1 - [p + P(B) - \frac{1}{2}]
+\]
+\[
+    \frac{1}{2} = 1 - p - P(B) + \frac{1}{2}
+\]
+\[
+    \frac{1}{2} = 1.5 - p - P(B)
+\]
+\[
+    P(B) = 1.5 - p - 0.5 = 1 - p
+\]
+因此，$\boxed{P(B) = 1-p}$。
+
+% ------------------------------------------------------------------
+\subsection{六、等可能概型（详细版）}
+
+\subsubsection{1. 古典概型}
+\textbf{特征}：
+\begin{enumerate}[noitemsep]
+    \item 试验的所有可能结果只有有限个，即样本空间的元素为有限个。
+    \item 试验中每个基本事件发生的可能性相等，即每个样本点出现的概率相等。
+\end{enumerate}
+
+\textbf{计算公式}：$\displaystyle P(A) = \frac{A\text{包含的基本事件数}}{\Omega\text{中基本事件总数}} = \frac{k}{n}$
+
+\textbf{常用结论}：设 $N$ 件产品中有 $M$ 件次品，从中任取 $n$ 件，则其中恰有 $k$ 件次品的概率为 $\displaystyle \frac{C_M^k C_{N-M}^{n-k}}{C_N^n}$。
+
+\textbf{解题关键}：在计算样本点数时，必须在同一确定的样本空间内考虑，且注意是否与顺序有关。
+
+\subsubsection{2. 几何概型}
+\textbf{特征}：$\Omega$ 中样本点无限且构成一个几何区域（直线、平面或空间），且每个样本点的发生是等可能的。
+
+\textbf{公式}：$\displaystyle P(A) = \frac{S(A)}{S(\Omega)}$，$S(A)$ 和 $S(\Omega)$ 分别表示 $A$ 和 $\Omega$ 的几何测度，其中测度为长度、面积或体积。
+
+\textbf{适用情况}：
+\begin{itemize}[noitemsep]
+    \item 在一个区间内任意取点
+    \item 在时间段内随机到达
+    \item 在一个区间内的任何子区间上取值
+    \item 在平面区域（如圆、三角形、矩形）内均匀投点
+\end{itemize}
+
+\subsubsection{3. 例题：在区间 $(0,1)$ 中随机地取出两个数，求两数之和大于 $1$，且两数之积小于 $0.5$ 的概率。}
+
+\textbf{解}：
+设第一个数为 $x$，第二个数为 $y$，则样本空间 $\Omega = \{(x,y) \mid 0 < x < 1, 0 < y < 1\}$，其面积 $S(\Omega) = 1$。
+事件 $A = \{(x,y) \mid x+y > 1,\ xy < 0.5,\ (x,y) \in \Omega\}$。
+需要计算区域 $A$ 的面积。画出区域 $x+y>1$ 和 $xy<0.5$ 在单位正方形内的交集。
+通过积分计算 $A$ 的面积：
+\[
+    S(A) = \frac{1}{2} - \int_{0.5}^{1} \left(1 - \frac{1}{2x}\right) dx = \frac{1}{2} - \left[x - \frac{1}{2}\ln x\right]_{0.5}^{1} = \frac{1}{2} - \left[(1-0) - \left(0.5 - \frac{1}{2}\ln 0.5\right)\right] = \frac{1}{2} \ln 2
+\]
+因此，$\displaystyle P(A) = \frac{S(A)}{S(\Omega)} = \boxed{\frac{1}{2}\ln 2}$。
+
+% ------------------------------------------------------------------
+\subsection{七、条件概率、事件的独立性（详细版）}
+
+\subsubsection{1. 条件概率}
+\textbf{定义}：设 $A, B$ 为两个事件且 $P(B) > 0$，称 $\displaystyle P(A|B) = \frac{P(AB)}{P(B)}$ 为在事件 $B$ 发生的条件下事件 $A$ 发生的条件概率。
+
+\textbf{两种计算方法}：
+\begin{itemize}[noitemsep]
+    \item \textbf{公式法}：$\displaystyle P(B|A) = \frac{P(AB)}{P(A)}$
+    \item \textbf{缩减样本空间法}：直接在新的样本空间（条件事件）中计算。例如，已知事件 $B$ 发生，则新的样本空间就是 $B$，事件 $A$ 在新的样本空间中对应的就是 $AB$。
+\end{itemize}
+
+\textbf{乘法公式（核心）}：
+\begin{align*}
+     & \text{基本形式：}\quad P(AB) = P(A)P(B|A) = P(B)P(A|B)                                                                         \\
+     & \text{推广（链式法则）：}\quad \text{设 }A_1, A_2, \dots, A_n\text{ 是 }n\text{ 个事件且 }P(A_1 A_2 \dots A_n) > 0\text{，则}              \\
+     & \qquad P(A_1 A_2 \dots A_n) = P(A_n | A_1 A_2 \dots A_{n-1}) P(A_{n-1} | A_1 A_2 \dots A_{n-2}) \dots P(A_2 | A_1) P(A_1)
+\end{align*}
+
+\subsubsection{2. 事件的独立性（核心）}
+\textbf{定义}：事件 $A$ 与 $B$ 独立 $\iff$ $P(AB) = P(A)P(B)$。
+
+\textbf{性质}：
+\begin{itemize}[noitemsep]
+    \item 若 $A$ 与 $B$ 独立且 $P(B) > 0$，则 $P(A|B) = P(A)$。
+    \item $A$ 与 $B$ 独立 $\iff$ $A$ 与 $\bar{B}$ 独立 $\iff$ $\bar{A}$ 与 $B$ 独立 $\iff$ $\bar{A}$ 与 $\bar{B}$ 独立。
+\end{itemize}
+
+\textbf{三个事件的相互独立性}：
+事件 $A, B, C$ 相互独立需要同时满足以下四个等式：
+\begin{enumerate}[noitemsep]
+    \item $P(AB) = P(A)P(B)$
+    \item $P(AC) = P(A)P(C)$
+    \item $P(BC) = P(B)P(C)$
+    \item $P(ABC) = P(A)P(B)P(C)$
+\end{enumerate}
+
+\begin{myquote}
+    \textbf{两两独立 vs 相互独立}：若只满足前三个等式，则称为两两独立。\textbf{两两独立不能推出相互独立}。
+\end{myquote}
+
+\subsubsection{3. 例题：盒子中有编号为 $1,2,3,4$ 的 $4$ 张卡片，现从中任取一张。设 $A=\{取到1号或2号\}$，$B=\{取到1号或3号\}$，$C=\{取到1号或4号\}$。讨论 $A,B,C$ 的独立性。}
+
+\textbf{解}：
+\[
+    P(A) = P(B) = P(C) = \frac{2}{4} = \frac{1}{2}
+\]
+$P(AB) = P(\{1\}) = \frac{1}{4} = P(A)P(B)$，同理 $P(AC)=P(BC)=\frac{1}{4}$。所以 $A, B, C$ \textbf{两两独立}。
+但 $P(ABC) = P(\{1\}) = \frac{1}{4}$，而 $P(A)P(B)P(C) = \frac{1}{2} \times \frac{1}{2} \times \frac{1}{2} = \frac{1}{8}$。
+因为 $\frac{1}{4} \ne \frac{1}{8}$，所以 $A, B, C$ \textbf{不相互独立}。
+
+\subsubsection{4. 全概率公式与贝叶斯公式（最高频考点）}
+
+\textbf{完备事件组（划分）}：如果事件组 $A_1, A_2, \dots, A_n$ 满足：
+\begin{enumerate}[noitemsep]
+    \item $A_i \cap A_j = \emptyset,\ i \ne j$（两两互不相容）
+    \item $A_1 \cup A_2 \cup \dots \cup A_n = \Omega$（构成一个划分）
+    \item $P(A_i) > 0,\ i = 1,2,\dots,n$
+\end{enumerate}
+则称 $\{A_i\}$ 为一个完备事件组或一个划分。
+
+\textbf{全概率公式（由因求果）}：
+\[
+    P(B) = \sum_{i=1}^n P(A_i) P(B|A_i)
+\]
+
+\textbf{贝叶斯公式（执果寻因）}：
+\[
+    P(A_i|B) = \frac{P(A_i B)}{P(B)} = \frac{P(A_i) P(B|A_i)}{\sum_{j=1}^n P(A_j) P(B|A_j)}
+\]
+
+\begin{myquote}
+    \textbf{物理意义}：贝叶斯公式将先验概率 $P(A_i)$ 更新为后验概率 $P(A_i|B)$。
+\end{myquote}
+
+\subsubsection{5. 伯努利模型}
+\textbf{伯努利试验}：只有两个结果 $A$ 和 $\bar{A}$ 的随机试验，记 $P(A) = p$，$P(\bar{A}) = 1-p$。
+
+\textbf{$n$ 重伯努利试验}：将伯努利试验独立重复地进行 $n$ 次。
+
+\textbf{概率公式}：在 $n$ 重伯努利试验中，事件 $A$ 恰好发生 $k$ 次的概率为：
+\[
+    P_n(k) = C_n^k p^k (1-p)^{n-k}, \quad k = 0,1,2,\dots,n
+\]
+
+\begin{myquote}
+    \textbf{注意}：$C_n^k$ 表示从 $n$ 次试验中选择哪 $k$ 次发生，$p^k$ 是 $k$ 次发生的概率，$(1-p)^{n-k}$ 是其余 $n-k$ 次不发生的概率。
+\end{myquote}
+
+% ------------------------------------------------------------------
+\subsection{八、题型总结（第一章）}
+
+\subsubsection{1. 摸球问题}
+\textbf{关键}：区分有放回/无放回，是否考虑顺序（排列/组合）
+
+\begin{center}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{情况} & \textbf{方法} & \textbf{公式} \\
+        \midrule
+        无放回，考虑顺序    & 排列          & $A_n^m$     \\
+        无放回，不考虑顺序   & 组合          & $C_n^m$     \\
+        有放回，考虑顺序    & 有放回排列       & $n^m$       \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\begin{myquote}
+    \textbf{核心结论}：在无放回抽取中，第 $i$ 次抽到白球的概率总是 $\frac{\text{白球数}}{\text{总数}}$，与次序无关。
+\end{myquote}
+
+\subsubsection{2. 古典概率问题}
+\textbf{常见题型}：摸球问题、随机入盒问题、随机取数问题
+
+\textbf{重点：“匹配问题”}（装信封问题、拿眼镜问题等）
+\begin{itemize}[noitemsep]
+    \item 使用容斥原理和德摩根律
+    \item \textbf{全错排公式}：
+          \[
+              D_n = n! \left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots + (-1)^n \frac{1}{n!}\right)
+          \]
+          当 $n$ 较大时，$D_n \approx \frac{n!}{e}$。
+\end{itemize}
+
+\subsubsection{3. 伯努利试验}
+\begin{itemize}[noitemsep]
+    \item $n$ 次试验中成功 $k$ 次：$C_n^k p^k (1-p)^{n-k}$（成功次数不确定）
+    \item 第 $n$ 次试验时刚好成功 $k$ 次：$C_{n-1}^{k-1} p^k (1-p)^{n-k}$（最后一次必成功，前 $n-1$ 次成功 $k-1$ 次）
+\end{itemize}
+
+\subsubsection{4. 全概率与贝叶斯公式应用步骤}
+\begin{enumerate}[noitemsep]
+    \item 确定完备事件组（“原因”事件）$A_1, A_2, \dots, A_n$
+    \item 计算各原因的概率 $P(A_i)$
+    \item 计算各原因下结果发生的概率 $P(B|A_i)$
+    \item 用全概率公式求 $P(B)$
+    \item 用贝叶斯公式求 $P(A_i|B)$（后验概率）
+\end{enumerate}

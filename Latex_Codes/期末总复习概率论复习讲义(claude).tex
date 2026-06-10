@@ -1,0 +1,1221 @@
+% ============================================================
+%   《概率论与数理统计 B》期末总复习 · 超详细完整版
+%   适用编译器：XeLaTeX（推荐）或 pdfLaTeX + CJK
+%   在 Overleaf 中：Compiler 设置为 XeLaTeX
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ---------- 编码与字体 ----------
+\usepackage{fontspec}          % XeLaTeX 字体支持
+\usepackage{xeCJK}             % 中文支持
+\setCJKmainfont{Noto Serif CJK SC}   % 主要中文字体（Overleaf 内置）
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+\setmainfont{TeX Gyre Termes}  % 英文衬线字体
+
+% ---------- 页面设置 ----------
+\usepackage[
+  a4paper,
+  top=2.5cm, bottom=2.5cm,
+  left=2.8cm, right=2.8cm,
+  headheight=15pt
+]{geometry}
+
+% ---------- 数学包 ----------
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{bm}                % 粗体数学符号
+
+% ---------- 表格 ----------
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+
+% ---------- 颜色与盒子 ----------
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% ---------- 列表 ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=2em, itemsep=2pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=2em, itemsep=2pt, parsep=0pt}
+
+% ---------- 页眉页脚 ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray}《概率论与数理统计 B》期末总复习}
+\fancyhead[R]{\small\color{gray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- 章节样式 ----------
+\usepackage{titlesec}
+\definecolor{mainblue}{RGB}{30, 80, 160}
+\definecolor{sectionred}{RGB}{180, 40, 40}
+\definecolor{subsecgreen}{RGB}{20, 120, 80}
+\definecolor{lightgray}{RGB}{245, 245, 250}
+\definecolor{lightyellow}{RGB}{255, 253, 230}
+\definecolor{lightblue}{RGB}{230, 240, 255}
+\definecolor{lightgreen}{RGB}{235, 250, 235}
+\definecolor{lightred}{RGB}{255, 240, 240}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{mainblue}}
+  {\thesection}{1em}{}[{\color{mainblue}\titlerule[1.5pt]}]
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{sectionred}}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{subsecgreen}}
+  {\thesubsubsection}{1em}{}
+
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+\titlespacing*{\subsubsection}{0pt}{8pt}{3pt}
+
+% ---------- 目录 ----------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=mainblue,
+  urlcolor=sectionred,
+  pdfauthor={期末复习整理},
+  pdftitle={概率论与数理统计B期末复习},
+}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% ---------- 自定义盒子 ----------
+\tcbset{
+  defbox/.style={
+    enhanced, breakable,
+    colback=lightblue, colframe=mainblue,
+    fonttitle=\bfseries\color{white},
+    attach boxed title to top left={yshift=-2mm, xshift=6mm},
+    boxed title style={colback=mainblue, rounded corners},
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+    arc=4pt,
+  },
+  thmbox/.style={
+    enhanced, breakable,
+    colback=lightgreen, colframe=subsecgreen,
+    fonttitle=\bfseries\color{white},
+    attach boxed title to top left={yshift=-2mm, xshift=6mm},
+    boxed title style={colback=subsecgreen, rounded corners},
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+    arc=4pt,
+  },
+  exbox/.style={
+    enhanced, breakable,
+    colback=lightyellow, colframe=orange!70!black,
+    fonttitle=\bfseries\color{white},
+    attach boxed title to top left={yshift=-2mm, xshift=6mm},
+    boxed title style={colback=orange!70!black, rounded corners},
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+    arc=4pt,
+  },
+  warnbox/.style={
+    enhanced, breakable,
+    colback=lightred, colframe=sectionred,
+    fonttitle=\bfseries\color{white},
+    attach boxed title to top left={yshift=-2mm, xshift=6mm},
+    boxed title style={colback=sectionred, rounded corners},
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+    arc=4pt,
+  },
+}
+
+\newcommand{\defbox}[2]{
+  \begin{tcolorbox}[defbox, title={定义：#1}]
+  #2
+  \end{tcolorbox}
+}
+\newcommand{\thmbox}[2]{
+  \begin{tcolorbox}[thmbox, title={定理：#1}]
+  #2
+  \end{tcolorbox}
+}
+\newcommand{\exbox}[2]{
+  \begin{tcolorbox}[exbox, title={例题：#1}]
+  #2
+  \end{tcolorbox}
+}
+
+% ---------- 数学宏 ----------
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\dif}{\,\mathrm{d}}
+\DeclareMathOperator*{\plim}{p\text{-lim}}
+
+% ---------- 文档开始 ----------
+\begin{document}
+
+% ==================== 封面 ====================
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge\bfseries\color{mainblue}《概率论与数理统计 B》}\\[0.6cm]
+    {\huge\bfseries\color{sectionred}期末总复习}\\[0.4cm]
+    {\Large\color{gray}超详细完整版}\\[2cm]
+    \begin{tcolorbox}[
+            width=0.85\textwidth, colback=lightblue, colframe=mainblue,
+            arc=8pt, left=12pt, right=12pt, top=10pt, bottom=10pt
+        ]
+        \centering\normalsize
+        本笔记基于 100+ 页讲义逐页、逐知识点、逐公式、逐例题深度整理，\\
+        涵盖概率论与数理统计 B 课程全部核心内容。\\[4pt]
+        所有定义、定理均附有适用条件说明；\\
+        所有例题均有完整解题过程。
+    \end{tcolorbox}
+    \vfill
+    \begin{tabular}{ll}
+        \textbf{版本} & 超详细版                \\[2pt]
+        \textbf{章节} & 第一章 $\sim$ 第七章 + 附录 \\[2pt]
+        \textbf{适用} & 期末复习、知识梳理
+    \end{tabular}
+    \vspace{1.5cm}
+\end{titlepage}
+
+% ==================== 目录 ====================
+\tableofcontents
+\newpage
+
+% ==================== 第一章 ====================
+\section{概率与随机事件}
+
+\subsection{预备知识：排列组合}
+
+\subsubsection{加法原理}
+
+完成一件事有 $n$ 类方法，只要选择任何一类中的一种方法，这件事就可以完成。
+各类方法之间是"或"的关系，相互独立。
+
+\[
+    \text{总方法数} = m_1 + m_2 + \cdots + m_n
+\]
+
+\textbf{关键词}：``要么…要么…''、``分类''。
+
+\textbf{举例}：从甲地到乙地，可以坐飞机（3 个航班）、坐火车（2 趟）、坐汽车（4 个班次），
+则不同走法共有 $3+2+4=9$ 种。
+
+\subsubsection{乘法原理}
+
+完成一件事有 $n$ 个步骤，必须依次完成所有步骤，各步骤之间是"且"的关系。
+
+\[
+    \text{总方法数} = m_1 \times m_2 \times \cdots \times m_n
+\]
+
+\textbf{举例}：先坐火车（3 趟）再坐轮船（2 班），共有 $3\times2=6$ 种走法。
+
+\subsubsection{排列}
+
+从 $n$ 个\textbf{不同}元素中，每次取出 $m$ 个元素，按照一定顺序排成一列。
+
+\begin{itemize}
+    \item \textbf{有放回排列}：总共有 $n^m$ 种排列。
+    \item \textbf{无放回排列}：
+          \[
+              A_n^m = n(n-1)\cdots(n-m+1) = \frac{n!}{(n-m)!}
+          \]
+\end{itemize}
+
+\subsubsection{组合}
+
+从 $n$ 个\textbf{不同}元素中，取出 $m$ 个元素，\textbf{不考虑先后顺序}作为一组。
+
+\[
+    \boxed{C_n^m = \frac{n!}{m!\,(n-m)!}}
+\]
+
+\textbf{性质}：$C_n^m = C_n^{n-m}$，$C_n^0 = C_n^n = 1$，
+且 $A_n^m = C_n^m \cdot m!$。
+
+\subsection{随机试验}
+
+一个试验被称为随机试验，必须满足以下三个条件（缺一不可）：
+
+\begin{enumerate}
+    \item \textbf{可重复性}：可以在相同条件下重复进行。
+    \item \textbf{结果明确性}：每次试验的可能结果不止一个，且事先可以明确所有可能结果
+          （样本空间 $\Omega$ 已知）。
+    \item \textbf{结果不确定性}：进行一次试验前，不能确定哪一个结果会出现。
+\end{enumerate}
+
+\textbf{常用字母}：$E$ 表示随机试验。
+
+\subsection{样本空间与事件}
+
+\begin{tcolorbox}[defbox, title={定义：样本空间与样本点}]
+    \begin{itemize}
+        \item \textbf{样本空间}：随机试验 $E$ 的一切可能结果组成的集合，记为 $\Omega$（或 $S$）。
+        \item \textbf{样本点}：样本空间中的每个元素（每个可能结果），用 $\omega$ 表示。
+        \item \textbf{随机事件}：$\Omega$ 的某一子集，通常用大写字母 $A, B, C, \ldots$ 表示。
+        \item \textbf{必然事件}：每次试验中必然发生的事件，即全集 $\Omega$。
+        \item \textbf{不可能事件}：每次试验中都不可能发生的事件，即空集 $\emptyset$。
+    \end{itemize}
+\end{tcolorbox}
+
+\subsection{事件的关系和运算}
+
+\subsubsection{事件之间的关系}
+
+\begin{tabular}{@{}lll@{}}
+    \toprule
+    关系       & 记号               & 含义                                           \\
+    \midrule
+    包含       & $A \subset B$    & $A$ 发生必然导致 $B$ 发生                            \\
+    相等       & $A = B$          & $A \subset B$ 且 $B \subset A$                \\
+    互斥（互不相容） & $AB = \emptyset$ & $A$ 与 $B$ 不能同时发生                             \\
+    对立       & $\bar{A}$        & $A \cup \bar{A}=\Omega$，$A\bar{A}=\emptyset$ \\
+    \bottomrule
+\end{tabular}
+
+\vspace{6pt}
+\textbf{注}：对立事件是互斥的特例，但互斥\textbf{不一定}对立。
+
+\subsubsection{事件的运算}
+
+\begin{itemize}
+    \item \textbf{并（和）事件}：$A \cup B$，$A$ 与 $B$ 至少有一个发生。
+    \item \textbf{交（积）事件}：$A \cap B$（或 $AB$），$A$ 与 $B$ 同时发生。
+    \item \textbf{差事件}：$A - B = A\bar{B}$，$A$ 发生而 $B$ 不发生。
+\end{itemize}
+
+\subsubsection{事件的运算法则}
+
+\begin{tcolorbox}[thmbox, title={德摩根律（对偶律）—— 最重要，必考}]
+    \[
+        \overline{A \cup B} = \bar{A} \cap \bar{B}, \qquad
+        \overline{A \cap B} = \bar{A} \cup \bar{B}
+    \]
+    \textbf{速记口诀}：长线变短线，符号变（$\cup \leftrightarrow \cap$）。
+\end{tcolorbox}
+
+其他法则：交换律、结合律、分配律（与集合运算完全一致），以及吸收律：
+若 $A \subset B$，则 $AB = A$，$A \cup B = B$。
+
+\subsubsection{例题：用事件运算关系表示}
+
+设 $A, B, C$ 为三个事件：
+
+\begin{enumerate}
+    \item $A$ 出现，$B, C$ 不出现：$A\bar{B}\bar{C}$
+    \item $A, B$ 出现，$C$ 不出现：$AB\bar{C}$
+    \item $A, B, C$ 都出现：$ABC$
+    \item $A, B, C$ 都不出现：$\bar{A}\bar{B}\bar{C}$
+    \item $A, B, C$ 不都出现（至少一个不发生）：$\overline{ABC}$
+    \item $A, B, C$ 至少有一个出现：$A \cup B \cup C$
+    \item $A, B, C$ 不多于一个出现：
+          $\bar{A}\bar{B}\bar{C} \cup A\bar{B}\bar{C} \cup \bar{A}B\bar{C} \cup \bar{A}\bar{B}C$
+    \item $A, B, C$ 恰有两个出现：$AB\bar{C} \cup A\bar{B}C \cup \bar{A}BC$
+    \item $A, B$ 至少有一个出现，$C$ 不出现：$(A \cup B)\bar{C}$
+\end{enumerate}
+
+\subsection{概率的定义与性质}
+
+\subsubsection{概率的公理化定义}
+
+\begin{tcolorbox}[defbox, title={公理化定义}]
+    对 $\Omega$ 中任一事件 $A$，实值函数 $P$ 满足以下三条公理则称为概率：
+    \begin{enumerate}
+        \item \textbf{非负性}：$0 \le P(A) \le 1$
+        \item \textbf{正规性}：$P(\Omega) = 1$
+        \item \textbf{可列可加性}：若 $A_1, A_2, \ldots$ 两两互不相容，则
+              $\displaystyle P\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)$
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsubsection{概率的重要性质}
+
+\begin{tcolorbox}[thmbox, title={核心性质（必须熟练掌握）}]
+    \begin{enumerate}
+        \item $P(\emptyset)=0$，$P(\Omega)=1$，$0\le P(A)\le 1$
+        \item \textbf{求逆公式}：$P(\bar{A}) = 1 - P(A)$
+        \item \textbf{减法公式}：$P(A-B) = P(A\bar{B}) = P(A) - P(AB)$
+        \item \textbf{加法公式（两事件）}：$P(A\cup B) = P(A)+P(B)-P(AB)$
+        \item \textbf{加法公式（三事件）}：
+              \begin{align*}
+                  P(A \cup B \cup C) = {} & P(A)+P(B)+P(C)            \\
+                                          & -P(AB)-P(BC)-P(AC)+P(ABC)
+              \end{align*}
+        \item \textbf{单调性}：若 $A\subset B$，则 $P(B-A)=P(B)-P(A)$，$P(A)\le P(B)$
+    \end{enumerate}
+    \textbf{使用技巧}：
+    $P(\bar{A}\bar{B}) = P(\overline{A\cup B}) = 1 - P(A\cup B)$；\\
+    $P(\bar{A}\cup\bar{B}) = P(\overline{AB}) = 1 - P(AB)$。
+\end{tcolorbox}
+
+\subsubsection{例题}
+
+\begin{tcolorbox}[exbox, title={例题：利用公式求概率}]
+    $A, B$ 为两个随机事件，$P(AB) = P(\overline{AB})$，已知 $P(A)=p$，求 $P(B)$。
+
+    \textbf{解}：由 $P(\overline{AB}) = P(\bar{A}\cup\bar{B}) = 1-P(AB)$，
+    代入得 $P(AB)=\tfrac{1}{2}$。\\
+    由加法公式：$P(A\cup B)=P(A)+P(B)-P(AB)$，
+    而 $P(AB)=1-P(A\cup B)=\tfrac{1}{2}$，
+    故 $P(A\cup B)=\tfrac{1}{2}$。
+    则 $\tfrac{1}{2}=p+P(B)-\tfrac{1}{2}$，解得
+    \[\boxed{P(B)=1-p}\]
+\end{tcolorbox}
+
+\subsection{等可能概型}
+
+\subsubsection{古典概型}
+
+\begin{tcolorbox}[defbox, title={古典概型}]
+    \textbf{特征}：①样本空间元素有限个；②每个基本事件等可能发生。\\[4pt]
+    \textbf{计算公式}：
+    \[
+        P(A) = \frac{A \text{ 包含的基本事件数}}{\Omega \text{ 中基本事件总数}} = \frac{k}{n}
+    \]
+    \textbf{常用结论}：$N$ 件产品中有 $M$ 件次品，任取 $n$ 件，其中恰有 $k$ 件次品的概率：
+    \[
+        P = \frac{C_M^k\, C_{N-M}^{n-k}}{C_N^n}
+    \]
+\end{tcolorbox}
+
+\subsubsection{几何概型}
+
+\begin{tcolorbox}[defbox, title={几何概型}]
+    \textbf{特征}：样本点无限多，构成几何区域，且每个样本点等可能。\\[4pt]
+    \[
+        P(A) = \frac{S(A)}{S(\Omega)}
+    \]
+    其中 $S(\cdot)$ 表示相应的几何测度（长度、面积或体积）。
+\end{tcolorbox}
+
+\begin{tcolorbox}[exbox, title={例题：几何概型}]
+    在区间 $(0,1)$ 中随机取出两个数，求两数之和大于 $1$ 且两数之积小于 $0.5$ 的概率。
+
+    \textbf{解}：设两数为 $x, y$，样本空间 $\Omega = \{(x,y)\mid 0<x<1,\,0<y<1\}$，面积为 1。
+    事件 $A = \{x+y>1,\, xy<0.5\}$。
+
+    计算 $A$ 的面积：
+    \[
+        S(A) = \frac{1}{2} - \int_{0.5}^{1}\!\left(1 - \frac{1}{2x}\right)dx
+        = \frac{1}{2} - \Bigl[x - \tfrac{1}{2}\ln x\Bigr]_{0.5}^{1}
+        = \frac{1}{2}\ln 2
+    \]
+    因此
+    \[
+        P(A) = \frac{1}{2}\ln 2 \approx 0.347
+    \]
+\end{tcolorbox}
+
+\subsection{条件概率、事件的独立性}
+
+\subsubsection{条件概率}
+
+\begin{tcolorbox}[defbox, title={条件概率}]
+    设 $P(B)>0$，则在事件 $B$ 发生的条件下 $A$ 发生的条件概率为：
+    \[
+        P(A\mid B) = \frac{P(AB)}{P(B)}
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={乘法公式（链式法则）}]
+    \[
+        P(AB) = P(A)\,P(B\mid A) = P(B)\,P(A\mid B)
+    \]
+    \textbf{推广}（$P(A_1A_2\cdots A_n)>0$ 时）：
+    \[
+        P(A_1A_2\cdots A_n)
+        = P(A_1)\,P(A_2\mid A_1)\,P(A_3\mid A_1A_2)\cdots
+        P(A_n\mid A_1A_2\cdots A_{n-1})
+    \]
+\end{tcolorbox}
+
+\subsubsection{事件的独立性}
+
+\begin{tcolorbox}[defbox, title={独立性定义}]
+    事件 $A$ 与 $B$ 独立 $\iff$ $P(AB) = P(A)\,P(B)$。\\[4pt]
+    \textbf{性质}：$A$ 与 $B$ 独立 $\iff$ $A$ 与 $\bar{B}$ 独立
+    $\iff$ $\bar{A}$ 与 $B$ 独立 $\iff$ $\bar{A}$ 与 $\bar{B}$ 独立。
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={三个事件相互独立（需同时满足四个条件）}]
+    \[
+        P(AB)=P(A)P(B),\quad P(AC)=P(A)P(C),\quad P(BC)=P(B)P(C)
+    \]
+    \[
+        P(ABC)=P(A)P(B)P(C)
+    \]
+    \textbf{注意}：两两独立\textbf{不能}推出相互独立！
+\end{tcolorbox}
+
+\subsubsection{全概率公式与贝叶斯公式}
+
+\begin{tcolorbox}[defbox, title={完备事件组（划分）}]
+    若 $A_1, A_2, \ldots, A_n$ 满足：
+    ①两两互不相容；②$A_1\cup A_2\cup\cdots\cup A_n=\Omega$；③$P(A_i)>0$，
+    则称 $\{A_i\}$ 为一个\textbf{完备事件组（划分）}。
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={全概率公式与贝叶斯公式 —— 最高频考点}]
+    \textbf{全概率公式}（由因求果）：
+    \[
+        P(B) = \sum_{i=1}^n P(A_i)\,P(B\mid A_i)
+    \]
+    \textbf{贝叶斯公式}（执果寻因）：
+    \[
+        P(A_i\mid B) = \frac{P(A_i)\,P(B\mid A_i)}{\displaystyle\sum_{j=1}^n P(A_j)\,P(B\mid A_j)}
+    \]
+    \textbf{物理意义}：贝叶斯公式将先验概率 $P(A_i)$ 更新为后验概率 $P(A_i\mid B)$。
+\end{tcolorbox}
+
+\subsubsection{伯努利模型}
+
+\begin{tcolorbox}[thmbox, title={$n$ 重伯努利试验}]
+    在 $n$ 重伯努利试验中，每次试验 $P(A)=p$，事件 $A$ 恰好发生 $k$ 次的概率：
+    \[
+        P_n(k) = C_n^k\,p^k\,(1-p)^{n-k}, \quad k=0,1,2,\ldots,n
+    \]
+\end{tcolorbox}
+
+\subsection{题型总结（第一章）}
+
+\subsubsection{摸球问题}
+
+\begin{center}
+    \begin{tabular}{lll}
+        \toprule
+        情况        & 方法    & 公式      \\
+        \midrule
+        无放回，考虑顺序  & 排列    & $A_n^m$ \\
+        无放回，不考虑顺序 & 组合    & $C_n^m$ \\
+        有放回，考虑顺序  & 有放回排列 & $n^m$   \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\textbf{核心结论}：无放回抽取中，第 $i$ 次抽到白球的概率始终等于 $\dfrac{\text{白球数}}{\text{总数}}$，与次序无关。
+
+\subsubsection{全错排公式}
+
+\[
+    D_n = n!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \cdots
+    + (-1)^n\frac{1}{n!}\right) \approx \frac{n!}{e}\quad (n\text{ 较大时})
+\]
+
+\subsubsection{伯努利试验区别}
+
+\begin{itemize}
+    \item $n$ 次试验中成功 $k$ 次：$C_n^k p^k (1-p)^{n-k}$
+    \item 第 $n$ 次试验\textbf{刚好}成功第 $k$ 次：$C_{n-1}^{k-1} p^k (1-p)^{n-k}$
+          （最后一次必成功，前 $n-1$ 次成功 $k-1$ 次）
+\end{itemize}
+
+% ==================== 第二章 ====================
+\section{随机变量及其分布}
+
+\subsection{随机变量及其分布函数}
+
+\begin{tcolorbox}[defbox, title={分布函数}]
+    $F(x) = P\{X \le x\}$，称 $F(x)$ 为 $X$ 的分布函数。
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={分布函数的性质（充要条件）}]
+    \begin{enumerate}
+        \item \textbf{单调不减}：$x_1<x_2 \Rightarrow F(x_1)\le F(x_2)$
+        \item \textbf{有界性}：$F(-\infty)=0$，$F(+\infty)=1$
+        \item \textbf{右连续}：$F(x+0)=F(x)$
+    \end{enumerate}
+    \textbf{常用计算公式}：
+    \begin{align*}
+        P(X < a)         & = F(a-0)        \\
+        P(a \le X \le b) & = F(b) - F(a-0) \\
+        P(a < X < b)     & = F(b-0) - F(a) \\
+        P(X = a)         & = F(a) - F(a-0)
+    \end{align*}
+\end{tcolorbox}
+
+\subsection{离散型随机变量的概率分布}
+
+\begin{tcolorbox}[defbox, title={分布律（概率质量函数）}]
+    设 $X$ 的可能取值为 $x_i$（$i=1,2,\ldots$），对应概率为
+    $P\{X=x_i\}=p_i$，满足：$p_i\ge 0$，$\displaystyle\sum_{i=1}^{\infty}p_i=1$。
+
+    \vspace{4pt}
+    分布函数为：$\displaystyle F(x) = \sum_{x_i\le x} p_i$（右连续阶梯函数）
+\end{tcolorbox}
+
+\subsection{常见离散型分布}
+
+\subsubsection{二项分布 $X\sim B(n,p)$}
+
+\begin{tcolorbox}[thmbox, title={二项分布}]
+    \textbf{背景}：$n$ 重伯努利试验中事件 $A$ 发生的次数。
+    \[
+        P\{X=k\} = C_n^k\,p^k\,(1-p)^{n-k}, \quad k=0,1,\ldots,n
+    \]
+    $E(X)=np$，$D(X)=np(1-p)$
+\end{tcolorbox}
+
+\subsubsection{泊松分布 $X\sim P(\lambda)$}
+
+\begin{tcolorbox}[thmbox, title={泊松分布}]
+    \textbf{背景}：单位时间（空间）内随机事件发生次数（稀有事件）。
+    \[
+        P\{X=k\} = \frac{\lambda^k}{k!}\,e^{-\lambda}, \quad k=0,1,2,\ldots
+    \]
+    $E(X)=\lambda$，$D(X)=\lambda$
+
+    \textbf{泊松定理}：当 $n$ 很大、$p$ 很小、$np=\lambda$ 时，
+    $B(n,p)$ 可用 $P(\lambda)$ 近似。
+\end{tcolorbox}
+
+\subsubsection{几何分布 $X\sim G(p)$}
+
+\begin{tcolorbox}[thmbox, title={几何分布}]
+    \textbf{背景}：独立重复伯努利试验中，事件 $A$ \textbf{首次}发生时的试验次数。
+    \[
+        P\{X=k\} = p(1-p)^{k-1}, \quad k=1,2,\ldots
+    \]
+    $E(X)=\dfrac{1}{p}$，$D(X)=\dfrac{1-p}{p^2}$
+
+    \textbf{无记忆性}：$P(X>m+n\mid X>m)=P(X>n)$
+\end{tcolorbox}
+
+\subsubsection{超几何分布 $X\sim H(N,M,n)$}
+
+\[
+    P\{X=k\} = \frac{C_M^k\,C_{N-M}^{n-k}}{C_N^n}, \quad
+    k=0,1,\ldots,\min\{M,n\}
+\]
+
+$E(X)=n\cdot\dfrac{M}{N}$，$D(X)=n\cdot\dfrac{M}{N}\cdot\!\left(1-\dfrac{M}{N}\right)\cdot\dfrac{N-n}{N-1}$
+
+\textbf{注}：当 $N$ 很大时，超几何分布近似于 $B\!\left(n,\dfrac{M}{N}\right)$。
+
+\subsection{连续型随机变量及其概率密度}
+
+\begin{tcolorbox}[defbox, title={概率密度函数}]
+    若存在非负可积函数 $f(x)$，使得
+    $\displaystyle F(x) = \int_{-\infty}^x f(t)\dif t$，
+    则称 $f(x)$ 为 $X$ 的\textbf{概率密度函数（PDF）}。
+
+    \textbf{充要条件}：$f(x)\ge 0$ 且 $\displaystyle\int_{-\infty}^{+\infty}f(x)\dif x=1$。
+
+    \textbf{概率计算}：$P\{x_1<X<x_2\}=\displaystyle\int_{x_1}^{x_2}f(t)\dif t$
+\end{tcolorbox}
+
+\subsection{常见连续型分布}
+
+\subsubsection{均匀分布 $X\sim U(a,b)$}
+
+\[
+    f(x)=\begin{cases}\dfrac{1}{b-a}, & a<x<b\\[4pt] 0, & \text{其他}\end{cases}
+    \qquad
+    F(x)=\begin{cases}0, & x<a\\[4pt]\dfrac{x-a}{b-a}, & a\le x<b\\[4pt]1, & x\ge b\end{cases}
+\]
+\[
+    E(X)=\frac{a+b}{2}, \qquad D(X)=\frac{(b-a)^2}{12}
+\]
+
+\subsubsection{指数分布 $X\sim E(\lambda)$}
+
+\[
+    f(x)=\begin{cases}\lambda e^{-\lambda x}, & x>0\\0, & x\le 0\end{cases}
+    \qquad
+    F(x)=\begin{cases}1-e^{-\lambda x}, & x>0\\0, & x\le 0\end{cases}
+\]
+\[
+    E(X)=\frac{1}{\lambda}, \qquad D(X)=\frac{1}{\lambda^2}
+\]
+
+\textbf{无记忆性}：$P(X>s+t\mid X>s)=P(X>t)$
+
+\subsubsection{正态分布 $X\sim N(\mu,\sigma^2)$}
+
+\[
+    f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}
+    \exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right), \quad -\infty<x<+\infty
+\]
+\[
+    E(X)=\mu, \qquad D(X)=\sigma^2
+\]
+
+\begin{tcolorbox}[thmbox, title={正态分布概率计算}]
+    \textbf{标准正态分布}：$N(0,1)$，分布函数 $\Phi(x)$，满足 $\Phi(-x)=1-\Phi(x)$，$\Phi(0)=0.5$。
+
+    \textbf{标准化}：若 $X\sim N(\mu,\sigma^2)$，则 $\dfrac{X-\mu}{\sigma}\sim N(0,1)$。
+
+    \textbf{概率计算}：
+    \[
+        P(a\le X\le b) = \Phi\!\left(\frac{b-\mu}{\sigma}\right)
+        - \Phi\!\left(\frac{a-\mu}{\sigma}\right)
+    \]
+    \[
+        P(|X-\mu|\le a) = 2\Phi\!\left(\frac{a}{\sigma}\right)-1
+    \]
+\end{tcolorbox}
+
+% ==================== 第三章 ====================
+\section{多维随机变量及其分布}
+
+\subsection{预备知识：二重积分}
+
+\subsubsection{直角坐标系下的计算}
+
+\begin{tcolorbox}[thmbox, title={二重积分的计算}]
+    \textbf{先 $y$ 后 $x$}（$y$ 的边界是 $x$ 的函数）：
+    \[
+        \iint_D f(x,y)\dif\sigma
+        = \int_a^b\dif x \int_{y_1(x)}^{y_2(x)} f(x,y)\dif y
+    \]
+    \textbf{先 $x$ 后 $y$}（$x$ 的边界是 $y$ 的函数）：
+    \[
+        \iint_D f(x,y)\dif\sigma
+        = \int_c^d\dif y \int_{x_1(y)}^{x_2(y)} f(x,y)\dif x
+    \]
+    \textbf{记忆}：谁后积分，谁的边界是常数。
+\end{tcolorbox}
+
+\subsubsection{极坐标系下的计算}
+
+换元 $x=\rho\cos\theta$，$y=\rho\sin\theta$，面积元素 $\dif\sigma=\rho\,\dif\rho\,\dif\theta$：
+\[
+    \iint_D f(x,y)\dif\sigma
+    = \int_\alpha^\beta\dif\theta \int_{\rho_1(\theta)}^{\rho_2(\theta)}
+    f(\rho\cos\theta,\rho\sin\theta)\,\rho\,\dif\rho
+\]
+
+\textbf{适用情形}：被积函数含 $x^2+y^2$，或积分区域为圆形、圆环。
+
+\begin{tcolorbox}[exbox, title={极坐标换元例题}]
+    计算 $\displaystyle\iint_D e^{x^2+y^2}\dif x\dif y$，
+    $D$ 为 $x$ 轴与 $y=\sqrt{1-x^2}$ 围成的上半圆区域。
+
+    \textbf{解}：$\theta\in[0,\pi]$，$\rho\in[0,1]$：
+    \[
+        \iint_D e^{x^2+y^2}\dif x\dif y
+        = \int_0^\pi\dif\theta\int_0^1 e^{\rho^2}\rho\,\dif\rho
+        = \pi\cdot\frac{e-1}{2} = \frac{\pi(e-1)}{2}
+    \]
+\end{tcolorbox}
+
+\subsection{二维随机变量及其联合分布函数}
+
+\begin{tcolorbox}[defbox, title={联合分布函数}]
+    $F(x,y)=P\{X\le x,\,Y\le y\}$
+
+    \textbf{关键性质}：
+    \[
+        P\{x_1<X\le x_2,\,y_1<Y\le y_2\}
+        = F(x_2,y_2)-F(x_2,y_1)-F(x_1,y_2)+F(x_1,y_1)
+    \]
+\end{tcolorbox}
+
+\subsection{二维离散型随机变量}
+
+\textbf{联合分布律}：$P\{X=x_i,Y=y_j\}=p_{ij}$，满足 $p_{ij}\ge 0$，$\sum_i\sum_j p_{ij}=1$。
+
+\textbf{边缘分布律}：
+\[
+    p_{i\cdot}=P\{X=x_i\}=\sum_j p_{ij}, \qquad
+    p_{\cdot j}=P\{Y=y_j\}=\sum_i p_{ij}
+\]
+
+\subsection{二维连续型随机变量}
+
+\begin{tcolorbox}[defbox, title={联合概率密度}]
+    若 $\displaystyle F(x,y)=\int_{-\infty}^x\int_{-\infty}^y f(u,v)\dif u\dif v$，
+    则 $f(x,y)$ 为联合概率密度，满足：
+    $f(x,y)\ge 0$，$\displaystyle\iint_{\mathbb{R}^2}f(x,y)\dif x\dif y=1$。
+
+    \textbf{边缘概率密度}：
+    \[
+        f_X(x)=\int_{-\infty}^{+\infty}f(x,y)\dif y, \qquad
+        f_Y(y)=\int_{-\infty}^{+\infty}f(x,y)\dif x
+    \]
+\end{tcolorbox}
+
+\subsection{常见二维分布}
+
+\subsubsection{二维正态分布 $(X,Y)\sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;\rho)$}
+
+\[
+    f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}
+    \exp\!\left\{-\frac{1}{2(1-\rho^2)}
+    \left[\frac{(x-\mu_1)^2}{\sigma_1^2}
+        -\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
+        +\frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}
+\]
+
+\begin{tcolorbox}[thmbox, title={二维正态分布的重要性质}]
+    \begin{enumerate}
+        \item 边缘分布：$X\sim N(\mu_1,\sigma_1^2)$，$Y\sim N(\mu_2,\sigma_2^2)$
+        \item $X$ 与 $Y$ 相互独立的充要条件：$\rho=0$（不相关 $\iff$ 独立）
+        \item 线性组合：$aX+bY\sim N(a\mu_1+b\mu_2,\;a^2\sigma_1^2+2ab\sigma_1\sigma_2\rho+b^2\sigma_2^2)$
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsection{条件分布}
+
+\[
+    f_{X\mid Y}(x\mid y) = \frac{f(x,y)}{f_Y(y)} \quad (f_Y(y)>0)
+\]
+\[
+    f_{Y\mid X}(y\mid x) = \frac{f(x,y)}{f_X(x)} \quad (f_X(x)>0)
+\]
+
+\subsection{相互独立的随机变量}
+
+\begin{tcolorbox}[thmbox, title={独立性判断}]
+    \textbf{连续型}：$f(x,y)=f_X(x)\,f_Y(y)$ 几乎处处成立。
+
+    \textbf{离散型}：对所有 $i,j$，$p_{ij}=p_{i\cdot}\cdot p_{\cdot j}$。
+\end{tcolorbox}
+
+\subsection{多维随机变量的函数分布}
+
+\subsubsection{卷积公式（$Z=X+Y$，独立情形）}
+
+\[
+    f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)\,f_Y(z-x)\dif x
+\]
+
+\subsubsection{差、积、商}
+
+\[
+    Z=X-Y:\quad f_Z(z)=\int_{-\infty}^{+\infty}f(x,x-z)\dif x
+\]
+\[
+    Z=XY:\quad f_Z(z)=\int_{-\infty}^{+\infty}\frac{1}{|x|}f\!\left(x,\frac{z}{x}\right)\dif x
+\]
+\[
+    Z=\frac{X}{Y}:\quad f_Z(z)=\int_{-\infty}^{+\infty}|y|\,f(yz,y)\dif y
+\]
+
+\subsubsection{最大、最小值分布}
+
+设 $X,Y$ 独立：
+\[
+    F_{\max}(z)=F_X(z)\,F_Y(z)
+\]
+\[
+    F_{\min}(z)=1-[1-F_X(z)][1-F_Y(z)]
+\]
+
+% ==================== 第四章 ====================
+\section{随机变量的数字特征}
+
+\subsection{数学期望}
+
+\begin{tcolorbox}[defbox, title={数学期望}]
+    \textbf{离散型}：$E(X)=\displaystyle\sum_{k}x_k p_k$（需绝对收敛）
+
+    \textbf{连续型}：$E(X)=\displaystyle\int_{-\infty}^{+\infty}x\,f(x)\dif x$（需绝对收敛）
+
+    \textbf{函数的期望}：
+    \[
+        E[g(X)] = \int_{-\infty}^{+\infty}g(x)f(x)\dif x
+        \quad\text{（连续型）}
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={期望的性质}]
+    \begin{enumerate}
+        \item $E(C)=C$
+        \item $E(aX+b)=aE(X)+b$（线性性）
+        \item $E(X\pm Y)=E(X)\pm E(Y)$（可加性）
+        \item 若 $X,Y$ 独立，则 $E(XY)=E(X)\,E(Y)$
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsection{方差}
+
+\begin{tcolorbox}[defbox, title={方差}]
+    \[
+        D(X) = E\{[X-E(X)]^2\} = E(X^2)-[E(X)]^2
+    \]
+    \textbf{标准差}：$\sigma(X)=\sqrt{D(X)}$
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={方差的性质}]
+    \begin{enumerate}
+        \item $D(C)=0$
+        \item $D(aX+b)=a^2 D(X)$
+        \item $D(X\pm Y)=D(X)+D(Y)\pm 2\Cov(X,Y)$
+        \item 若 $X,Y$ 独立，则 $D(X\pm Y)=D(X)+D(Y)$
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsection{协方差与相关系数}
+
+\begin{tcolorbox}[defbox, title={协方差}]
+    \[
+        \Cov(X,Y)=E\{[X-E(X)][Y-E(Y)]\}=E(XY)-E(X)\,E(Y)
+    \]
+    \textbf{性质}：$\Cov(aX+b,Y)=a\Cov(X,Y)$，
+    $\Cov(X_1+X_2,Y)=\Cov(X_1,Y)+\Cov(X_2,Y)$
+\end{tcolorbox}
+
+\begin{tcolorbox}[defbox, title={相关系数}]
+    \[
+        \rho_{XY}=\frac{\Cov(X,Y)}{\sqrt{D(X)}\,\sqrt{D(Y)}}, \qquad |\rho_{XY}|\le 1
+    \]
+    \begin{itemize}
+        \item $\rho_{XY}=1$：完全正相关；$\rho_{XY}=-1$：完全负相关
+        \item $\rho_{XY}=0$：不相关（$\Leftrightarrow E(XY)=E(X)E(Y)$）
+    \end{itemize}
+    \textbf{重要}：独立 $\Rightarrow$ 不相关，反之不成立；
+    但\textbf{二维正态分布}中，不相关 $\Leftrightarrow$ 独立。
+\end{tcolorbox}
+
+\subsection{矩}
+
+\begin{itemize}
+    \item \textbf{$k$ 阶原点矩}：$E(X^k)$
+    \item \textbf{$k$ 阶中心矩}：$E\{[X-E(X)]^k\}$（$k\ge 2$）
+    \item \textbf{协方差}为二阶混合中心矩：$E\{[X-E(X)][Y-E(Y)]\}$
+\end{itemize}
+
+% ==================== 第五章 ====================
+\section{大数定律和中心极限定理}
+
+\subsection{依概率收敛}
+
+\begin{tcolorbox}[defbox, title={依概率收敛}]
+    若对任意 $\varepsilon>0$：
+    $\displaystyle\lim_{n\to\infty}P\{|X_n-X|<\varepsilon\}=1$，
+    则称 $\{X_n\}$ 依概率收敛于 $X$，记作 $X_n\xrightarrow{P}X$。
+\end{tcolorbox}
+
+\subsection{大数定律}
+
+\begin{tcolorbox}[thmbox, title={三个大数定律对比}]
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{@{}lll@{}}
+            \toprule
+            定律   & 条件                    & 结论                                                \\
+            \midrule
+            切比雪夫 & 两两不相关，$D(X_n)\le c$   & $\bar{X}_n\xrightarrow{P}\dfrac{1}{n}\sum E(X_i)$ \\[6pt]
+            伯努利  & $n_A\sim B(n,p)$      & $\dfrac{n_A}{n}\xrightarrow{P}p$                  \\[6pt]
+            辛钦   & 独立同分布，$E(X_i)=\mu$ 存在 & $\bar{X}_n\xrightarrow{P}\mu$                     \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    \textbf{注}：辛钦大数定律不要求方差存在，条件比切比雪夫更弱。
+\end{tcolorbox}
+
+\subsection{中心极限定理}
+
+\begin{tcolorbox}[thmbox, title={列维-林德伯格定理（独立同分布 CLT）}]
+    设 $\{X_n\}$ 独立同分布，$E(X_n)=\mu$，$D(X_n)=\sigma^2>0$，则对任意 $x$：
+    \[
+        \lim_{n\to\infty}P\!\left\{\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n}\,\sigma}\le x\right\}
+        =\Phi(x)
+    \]
+    即 $\sum_{i=1}^n X_i\approx N(n\mu,n\sigma^2)$ 当 $n$ 充分大时。
+
+    \textbf{应用}：
+    \[
+        P\!\left\{a<\sum_{i=1}^n X_i<b\right\}\approx
+        \Phi\!\left(\frac{b-n\mu}{\sqrt{n}\,\sigma}\right)
+        -\Phi\!\left(\frac{a-n\mu}{\sqrt{n}\,\sigma}\right)
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={棣莫弗-拉普拉斯定理}]
+    $n_A\sim B(n,p)$，当 $n$ 充分大时：
+    \[
+        \frac{n_A - np}{\sqrt{np(1-p)}}\approx N(0,1)
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[exbox, title={CLT 应用例题}]
+    生产线产品成箱包装，每箱平均重 50 千克，标准差 5 千克。载重 5 吨的汽车，
+    最多装多少箱才能保证不超载的概率大于 0.977（$\Phi(2)=0.977$）？
+
+    \textbf{解}：设 $T_n=\sum_{i=1}^n X_i\sim$ 近似 $N(50n, 25n)$。
+    \[
+        P\{T_n<5000\}\approx\Phi\!\left(\frac{5000-50n}{5\sqrt{n}}\right)>0.977=\Phi(2)
+    \]
+    由 $\dfrac{5000-50n}{5\sqrt{n}}>2$，解得 $n<98.02$。
+
+    $\therefore$ 最多装 $\boxed{98}$ 箱。
+\end{tcolorbox}
+
+% ==================== 第六章 ====================
+\section{参数估计}
+
+\subsection{样本与统计量}
+
+\begin{tcolorbox}[defbox, title={基本概念}]
+    \textbf{样本}：$n$ 个相互独立且与总体 $X$ 同分布的随机变量 $X_1,X_2,\ldots,X_n$，
+    $n$ 为样本容量。
+
+    \textbf{统计量}：样本的不含未知参数的函数。
+
+    \textbf{样本数字特征}：
+    \begin{align*}
+        \bar{X} & = \frac{1}{n}\sum_{i=1}^n X_i \quad\text{（样本均值）}              \\[4pt]
+        S^2     & = \frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2 \quad\text{（样本方差）}
+    \end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={样本数字特征的性质}]
+    设 $E(X)=\mu$，$D(X)=\sigma^2$，则：
+    \[
+        E(\bar{X})=\mu,\quad D(\bar{X})=\frac{\sigma^2}{n},\quad E(S^2)=\sigma^2
+    \]
+    \textbf{推论}：若 $X\sim N(\mu,\sigma^2)$，则 $\bar{X}\sim N\!\left(\mu,\dfrac{\sigma^2}{n}\right)$。
+\end{tcolorbox}
+
+\subsection{点估计}
+
+\subsubsection{矩估计法}
+
+\begin{tcolorbox}[thmbox, title={矩估计法步骤}]
+    \begin{enumerate}
+        \item 计算总体矩 $E(X)$（或 $D(X)$），判断未知参数个数
+        \item 1 个参数：令 $\bar{X}=E(X)$，解出 $\hat{\theta}$
+        \item 2 个参数：联立
+              $\begin{cases}\bar{X}=E(X)\\\frac{1}{n}\sum(X_i-\bar{X})^2=D(X)\end{cases}$
+              求解
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsubsection{最大似然估计法}
+
+\begin{tcolorbox}[thmbox, title={最大似然估计步骤}]
+    \begin{enumerate}
+        \item 写出似然函数：
+              \[
+                  L(\theta) = \prod_{i=1}^n f(x_i;\theta)\quad\text{（连续型）}
+              \]
+        \item 取对数：$\ln L(\theta)$（乘积变求和）
+        \item 求导令其为零：$\dfrac{d\ln L}{d\theta}=0$，解出 $\hat{\theta}$
+        \item 多参数时解似然方程组
+    \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[exbox, title={矩估计与MLE综合例题}]
+    $f(x;\theta)=\begin{cases}\theta x^{\theta-1}, & 0<x<1\\0, & \text{其他}\end{cases}$，$\theta>0$。
+
+    \textbf{矩估计}：$E(X)=\dfrac{\theta}{\theta+1}$，令 $\bar{X}=\dfrac{\theta}{\theta+1}$，
+    解得 $\hat{\theta}_1=\dfrac{\bar{X}}{1-\bar{X}}$。
+
+    \textbf{最大似然}：$\ln L=n\ln\theta+(\theta-1)\sum\ln x_i$，
+    令 $\dfrac{d\ln L}{d\theta}=\dfrac{n}{\theta}+\sum\ln x_i=0$，
+    解得 $\hat{\theta}_2=-\dfrac{n}{\sum_{i=1}^n\ln X_i}$。
+\end{tcolorbox}
+
+\subsection{估计量的评选标准}
+
+\begin{itemize}
+    \item \textbf{无偏性}：$E(\hat{\theta})=\theta$
+          （$\bar{X}$ 是 $\mu$ 的无偏估计，$S^2$ 是 $\sigma^2$ 的无偏估计）
+    \item \textbf{有效性}：两个无偏估计，方差较小者更有效
+    \item \textbf{一致性}：$\hat{\theta}\xrightarrow{P}\theta$（样本量增大时估计值收敛于真值）
+\end{itemize}
+
+\subsection{正态总体的抽样分布}
+
+\begin{tcolorbox}[thmbox, title={三大抽样分布}]
+    \begin{enumerate}
+        \item \textbf{$\chi^2$ 分布}：若 $X_i\sim N(0,1)$ 独立，则
+              $\chi^2=\sum_{i=1}^n X_i^2\sim\chi^2(n)$；
+              $E(\chi^2)=n$，$D(\chi^2)=2n$。
+        \item \textbf{$t$ 分布}：$X\sim N(0,1)$，$Y\sim\chi^2(n)$ 独立，则
+              $T=\dfrac{X}{\sqrt{Y/n}}\sim t(n)$。
+        \item \textbf{$F$ 分布}：$U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$ 独立，则
+              $F=\dfrac{U/n_1}{V/n_2}\sim F(n_1,n_2)$。
+    \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[thmbox, title={一个正态总体的抽样分布（必须记住）}]
+    设 $X_1,\ldots,X_n$ 来自 $N(\mu,\sigma^2)$，$\bar{X}$ 为样本均值，$S^2$ 为样本方差，则：
+    \begin{align}
+         & \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1) \\[6pt]
+         & \frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)       \\[6pt]
+         & \frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)
+    \end{align}
+    且 $\bar{X}$ 与 $S^2$ 相互独立。
+\end{tcolorbox}
+
+\subsection{置信区间（一个正态总体）}
+
+\begin{center}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{llll}
+        \toprule
+        待估参数       & 其他参数                                                                                                 & 枢轴量                                               & $1-\alpha$ 置信区间 \\
+        \midrule
+        $\mu$      & $\sigma^2$ 已知                                                                                        & $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)$
+                   & $\left(\bar{X}\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}\right)$                                                                                                             \\[8pt]
+        $\mu$      & $\sigma^2$ 未知                                                                                        & $\dfrac{\bar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)$
+                   & $\left(\bar{X}\pm t_{\alpha/2}(n-1)\dfrac{S}{\sqrt{n}}\right)$                                                                                                             \\[8pt]
+        $\sigma^2$ & $\mu$ 未知                                                                                             & $\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$
+                   & $\left(\dfrac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\,\dfrac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}\right)$                                                                       \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+% ==================== 第七章 ====================
+\section{假设检验}
+
+\subsection{基本概念}
+
+\subsubsection{假设检验的基本步骤}
+
+\begin{enumerate}
+    \item \textbf{提出假设}：原假设 $H_0$ 和备择假设 $H_1$
+    \item \textbf{选择检验统计量}：在 $H_0$ 为真时分布已知
+    \item \textbf{确定拒绝域}：给定显著性水平 $\alpha$（常取 0.05、0.01），查表得临界值
+    \item \textbf{做出决策}：统计量值落入拒绝域则拒绝 $H_0$，否则不拒绝
+\end{enumerate}
+
+\subsubsection{两类错误}
+
+\begin{center}
+    \begin{tabular}{lll}
+        \toprule
+        类型        & 含义                & 概率              \\
+        \midrule
+        第一类错误（弃真） & $H_0$ 正确但拒绝 $H_0$ & $\alpha$（显著性水平） \\
+        第二类错误（存伪） & $H_0$ 错误但接受 $H_0$ & $\beta$         \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\textbf{注}：样本容量固定时，不能同时使 $\alpha$ 和 $\beta$ 都很小。通常控制 $\alpha$。
+
+\subsection{一个正态总体参数的假设检验（双侧）}
+
+\begin{center}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{lllll}
+        \toprule
+        参数         & 情形            & 统计量                                               & 分布 & 拒绝域 \\
+        \midrule
+        $\mu$      & $\sigma^2$ 已知 & $U=\dfrac{\bar{X}-\mu_0}{\sigma/\sqrt{n}}$
+                   & $N(0,1)$      & $|U|\ge z_{\alpha/2}$                                        \\[8pt]
+        $\mu$      & $\sigma^2$ 未知 & $T=\dfrac{\bar{X}-\mu_0}{S/\sqrt{n}}$
+                   & $t(n-1)$      & $|T|\ge t_{\alpha/2}(n-1)$                                   \\[8pt]
+        $\sigma^2$ & $\mu$ 已知      & $\chi^2=\dfrac{\sum(X_i-\mu)^2}{\sigma_0^2}$
+                   & $\chi^2(n)$   & $\le\chi^2_{1-\alpha/2}$ 或 $\ge\chi^2_{\alpha/2}$            \\[8pt]
+        $\sigma^2$ & $\mu$ 未知      & $\chi^2=\dfrac{(n-1)S^2}{\sigma_0^2}$
+                   & $\chi^2(n-1)$ & $\le\chi^2_{1-\alpha/2}$ 或 $\ge\chi^2_{\alpha/2}$            \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+% ==================== 附录 ====================
+\section*{附录：常用分布汇总表}
+\addcontentsline{toc}{section}{附录：常用分布汇总表}
+
+\begin{center}
+    \renewcommand{\arraystretch}{2.2}
+    \begin{tabular}{llllll}
+        \toprule
+        分布   & 记法                                                             & 参数                          & 分布律或密度                 & $E(X)$ & $D(X)$ \\
+        \midrule
+        两点分布 & $B(1,p)$                                                       & $0<p<1$
+             & $P(X=k)=p^k(1-p)^{1-k}$                                        & $p$                         & $p(1-p)$                                 \\
+        二项分布 & $B(n,p)$                                                       & $n\ge1,0<p<1$
+             & $C_n^k p^k(1-p)^{n-k}$                                         & $np$                        & $np(1-p)$                                \\
+        泊松分布 & $P(\lambda)$                                                   & $\lambda>0$
+             & $\dfrac{\lambda^k}{k!}e^{-\lambda}$                            & $\lambda$                   & $\lambda$                                \\
+        几何分布 & $G(p)$                                                         & $0<p<1$
+             & $p(1-p)^{k-1}$                                                 & $\dfrac{1}{p}$              & $\dfrac{1-p}{p^2}$                       \\
+        均匀分布 & $U(a,b)$                                                       & $a<b$
+             & $\dfrac{1}{b-a},\;a<x<b$                                       & $\dfrac{a+b}{2}$            & $\dfrac{(b-a)^2}{12}$                    \\
+        指数分布 & $E(\lambda)$                                                   & $\lambda>0$
+             & $\lambda e^{-\lambda x},\;x>0$                                 & $\dfrac{1}{\lambda}$        & $\dfrac{1}{\lambda^2}$                   \\
+        正态分布 & $N(\mu,\sigma^2)$                                              & $\mu\in\mathbb{R},\sigma>0$
+             & $\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+             & $\mu$                                                          & $\sigma^2$                                                             \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+% ==================== 总结速查 ====================
+\section*{总结速查表}
+\addcontentsline{toc}{section}{总结速查表}
+
+\subsection*{概率论核心公式}
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{ll}
+        \toprule
+        公式名称      & 公式                                                                              \\
+        \midrule
+        求逆公式      & $P(\bar{A})=1-P(A)$                                                             \\
+        减法公式      & $P(A-B)=P(A)-P(AB)$                                                             \\
+        加法公式（两事件） & $P(A\cup B)=P(A)+P(B)-P(AB)$                                                    \\
+        条件概率      & $P(A\mid B)=P(AB)/P(B)$                                                         \\
+        乘法公式      & $P(AB)=P(A)P(B\mid A)$                                                          \\
+        全概率公式     & $P(B)=\sum_i P(A_i)P(B\mid A_i)$                                                \\
+        贝叶斯公式     & $P(A_i\mid B)=\dfrac{P(A_i)P(B\mid A_i)}{\sum_j P(A_j)P(B\mid A_j)}$            \\
+        伯努利公式     & $P_n(k)=C_n^k p^k(1-p)^{n-k}$                                                   \\
+        德摩根律      & $\overline{A\cup B}=\bar{A}\cap\bar{B}$，$\overline{A\cap B}=\bar{A}\cup\bar{B}$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\subsection*{数字特征公式}
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{ll}
+        \toprule
+        名称     & 公式                                          \\
+        \midrule
+        期望（离散） & $E(X)=\sum_i x_i p_i$                       \\
+        期望（连续） & $E(X)=\int_{-\infty}^{+\infty}x f(x)\dif x$ \\
+        方差     & $D(X)=E(X^2)-[E(X)]^2$                      \\
+        协方差    & $\Cov(X,Y)=E(XY)-E(X)E(Y)$                  \\
+        相关系数   & $\rho_{XY}=\Cov(X,Y)/\!\sqrt{D(X)D(Y)}$     \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\subsection*{抽样分布（正态总体）}
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabular}{ll}
+        \toprule
+        统计量                                    & 分布            \\
+        \midrule
+        $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}$ & $N(0,1)$      \\[6pt]
+        $\dfrac{(n-1)S^2}{\sigma^2}$           & $\chi^2(n-1)$ \\[6pt]
+        $\dfrac{\bar{X}-\mu}{S/\sqrt{n}}$      & $t(n-1)$      \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\begin{tcolorbox}[warnbox, title={易错点提醒}]
+    \begin{enumerate}
+        \item 条件概率 $P(A\mid B)=P(AB)/P(B)$，不是 $P(AB)$。
+        \item 独立性：$P(AB)=P(A)P(B)$，不是 $P(A\mid B)=P(A)$（$P(B)=0$ 时不适用）。
+        \item 方差公式：$D(X)=E(X^2)-[E(X)]^2$，符号不要搞错。
+        \item 样本方差分母是 $n-1$（无偏估计），\textbf{不是} $n$。
+        \item CLT 是近似分布，不是精确分布。
+        \item 德摩根律：长线变短线，$\cup$ 与 $\cap$ 互换。
+        \item 全概率公式：完备事件组必须两两互斥且并集为全集。
+        \item 二维正态分布中，不相关 $\Leftrightarrow$ 独立；其他分布不成立。
+        \item 最大似然估计：似然函数是乘积，通常取对数再求导。
+        \item $n$ 次试验恰好成功 $k$ 次：$C_n^k p^k(1-p)^{n-k}$；\\
+              第 $n$ 次\textbf{刚好}第 $k$ 次成功：$C_{n-1}^{k-1}p^k(1-p)^{n-k}$。
+    \end{enumerate}
+\end{tcolorbox}
+
+\vspace{1cm}
+\begin{center}
+    {\large\bfseries\color{mainblue}祝您复习顺利，考试成功！}
+\end{center}
+
+\end{document}
