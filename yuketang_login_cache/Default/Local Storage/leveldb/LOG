@@ -1,0 +1,6 @@
+2026/06/19-09:40:46.366 15e9e Reusing MANIFEST /Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/yuketang_login_cache/Default/Local Storage/leveldb/MANIFEST-000001
+2026/06/19-09:40:46.368 15e9e Recovering log #3
+2026/06/19-09:40:46.368 15e9e Reusing old log /Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/yuketang_login_cache/Default/Local Storage/leveldb/000003.log 
+2026/06/19-09:44:04.460 15ea1 Level-0 table #5: started
+2026/06/19-09:44:04.466 15ea1 Level-0 table #5: 127874 bytes OK
+2026/06/19-09:44:04.470 15ea1 Delete type=0 #3
