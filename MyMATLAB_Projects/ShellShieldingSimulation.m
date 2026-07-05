@@ -1,4 +1,4 @@
-function ProfessionalShellShielding()
+wfunction ProfessionalShellShielding()
     % PROFESSIONALSHELLSHIELDING 空腔导体屏蔽全场景科研级数值仿真看板
     % 核心算法：自适应电荷密度种子投放 + 矢量场防爆奇点内核 + 等势面柔化渲染 + 镜像电荷法
     
