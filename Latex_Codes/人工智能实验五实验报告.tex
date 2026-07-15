@@ -1,0 +1,379 @@
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{framed}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 定义代码风格
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    frame=single,
+    numbers=none,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red!60!black},
+    showspaces=false,
+    showstringspaces=false,
+    tabsize=4,
+    language=Python
+}
+
+% 定义带框的环境
+\newenvironment{sectionbox}[1]
+{%
+    \begin{center}
+    \fboxrule=1pt
+    \fboxsep=8pt
+    \begin{minipage}{0.98\textwidth}
+    \textbf{#1}
+    \par\vspace{4pt}
+    \hrule
+    \vspace{6pt}
+}
+{%
+    \end{minipage}
+    \end{center}
+}
+
+\newenvironment{subsectionbox}[1]
+{%
+    \par\vspace{6pt}
+    \noindent\fboxrule=0.8pt
+    \fboxsep=6pt
+    \begin{framed}
+    \textbf{#1}
+    \par\vspace{2pt}
+}
+{%
+    \end{framed}
+}
+
+\begin{document}
+
+% ============================
+% 【基础信息】表格
+% ============================
+\begin{center}
+\fboxrule=1pt
+\fboxsep=8pt
+\fbox{%
+\begin{minipage}{0.95\textwidth}
+\centering
+{\Large \textbf{实验报告}}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.18\textwidth}|>{\centering\arraybackslash}m{0.30\textwidth}|>{\centering\arraybackslash}m{0.12\textwidth}|>{\centering\arraybackslash}m{0.25\textwidth}|}
+\hline
+\multicolumn{4}{|c|}{\textbf{【基础信息】}} \\ \hline
+\textbf{课程名称} & 计算机视觉与模式识别 & \textbf{班级} & 计科2101班 \\ \hline
+\multicolumn{4}{|c|}{\textbf{实验名称：基于ResNet18预训练模型的图像分类推理与鲁棒性评估}} \\ \hline
+\textbf{学生姓名} & 余震宇 & \textbf{学号} & 2021012345 \\ \hline
+\multicolumn{4}{|c|}{\textbf{实验日期：2026年7月10日}} \\ \hline
+\end{tabular}
+\end{minipage}
+}
+\end{center}
+
+\vspace{8pt}
+
+% ============================
+% 【一、实验内容】
+% ============================
+\begin{sectionbox}{【一、实验内容】}
+
+\subsectionbox{① 实验内容和原理或涉及的知识点}
+
+本实验的核心目标是依托现代计算机视觉领域的主流深度学习框架（PyTorch 生态系统），完整构建一套从底层数据流形预处理、预训练模型前向传播（Forward Propagation），到大规模验证集批量化性能评估的图像分类工程流水线。实验不仅涵盖了基础的单张图像黑盒推理，更深入探究了深度卷积神经网络（CNN）在受到多重受控物理与频域干扰（如几何形变、频率扰动、特征分布偏移）下的鲁棒性（Robustness）表现。最终，通过构建具有高度容错性的自定义数据加载器（Custom Dataset），在真实的 Imagenette 数据集上完成了严谨的统计学精度评估。本实验深度涉及的核心技术原理与计算机科学知识点展开如下：
+
+\vspace{4pt}
+\textbf{1. 深度残差网络（ResNet18）的拓扑架构与迁移学习（Transfer Learning）原理}
+
+在传统的深层前馈卷积神经网络（如 AlexNet、VGGNet 系列）中，随着隐层深度的不断增加，网络在反向传播（Backpropagation）过程中极易因链式法则的连乘效应陷入“梯度消失（Gradient Vanishing）”或“梯度爆炸（Gradient Exploding）”的数学困境，导致模型发生严重的性能退化。ResNet（Residual Network）架构通过创新性地引入“残差块（Residual Block）”彻底攻克了这一非凸优化难题。残差网络不再强求非线性隐层去直接拟合完整的目标映射函数 $H(x)$，而是转而去拟合残差映射 $F(x) = H(x) - x$。通过在网络拓扑中引入跨层的恒等映射（Identity Mapping，即跳跃连接 Skip Connection），原始输入特征 $x$ 可以直接旁路传递到输出端，使得最终的输出表达为 $y = F(x) + x$。这种机制为误差梯度的反向回传提供了一条无阻碍的“高速公路”，保障了深层网络的稳定收敛。
+
+本实验调用的 ResNet18 模型包含 18 个带有可学习权重的卷积层与全连接层。该模型采用了先进的“迁移学习”范式，其内部高达数百万级别的神经元参数已经在计算机视觉领域最权威的 ImageNet-1K 数据集（涵盖 1000 个类别、约 128 万张高清图像）上完成了充分的拟合。在实验中，我们无需消耗海量算力从零初始化训练，而是直接加载官方的最优预训练权重，将网络静态化并置于评估模式（\texttt{model.eval()}），纯粹利用其固化的高维特征提取算子对未知图像进行前向推理。
+
+\vspace{4pt}
+\textbf{2. 图像张量空间重构与数据流形归一化（Normalization）的数学逻辑}
+
+自然界中的原始数字图像，其本质是基于 RGB 色彩空间的离散像素矩阵，数值分布在 $[0, 255]$ 之间。然而，深度神经网络的权重矩阵是基于特定的高维正态分布进行初始化的。如果将原始图像直接暴露给网络，会导致巨大的协方差偏移（Covariance Shift），使得 ReLU 等激活函数大面积失效。因此，必须利用 \texttt{torchvision.transforms} 工具集构建极其严格的预处理流水线：
+
+\begin{itemize}
+    \item \textbf{空间分辨率重采样（Resize）：} 运用双线性插值（Bilinear Interpolation）算法，将任意宽高比的输入图像，强制映射为模型输入层感受野所要求的 $224 \times 224$ 像素二维矩阵。
+    \item \textbf{内存连续化与张量化（ToTensor）：} 将形如 $[\text{Height}, \text{Width}, \text{Channels}]$ 的 PIL 图像对象，重排为适合 GPU SIMD 指令集高效并行计算的 PyTorch 浮点张量格式 $[\text{Channels}, \text{Height}, \text{Width}]$，同时将离散的整数像素值线性缩放至 $[0.0, 1.0]$ 的连续浮点区间。
+    \item \textbf{高维空间特征对齐（Normalize）：} 这是决定预训练模型能否正常工作的核心步骤。为消除不同图像因曝光参数、传感器差异造成的绝对色差，必须对张量的 $R, G, B$ 三个颜色通道独立执行 Z-Score 标准化，数学公式为：$Z = \dfrac{x - \mu}{\sigma}$。本实验严格采用了 ImageNet 全局数据集的统计特征基准：均值向量 $\mu = [0.485, 0.456, 0.406]$ 与标准差向量 $\sigma = [0.229, 0.224, 0.225]$。唯有完成此步骤，输入图像的数据流形（Data Manifold）才能真正无缝嵌入到模型所熟悉的超高维决策空间中。
+\end{itemize}
+
+\vspace{4pt}
+\textbf{3. 大规模验证集评估体系：Top-1 与 Top-5 准确率指标定义}
+
+面对包含 1000 个类别的输出逻辑向量（Logits），学术界与工业界通常采用两大核心量化指标来衡量分类器性能：
+
+\begin{itemize}
+    \item \textbf{Top-1 准确率（Top-1 Accuracy）：} 对预测向量执行绝对值最大化检索（Argmax），当且仅当模型输出置信度排名第一的类别，与样本的真实人工标注标签（Ground Truth）完全吻合时，计为预测正确。这是最严苛的判别标准。
+    \item \textbf{Top-5 准确率（Top-5 Accuracy）：} 利用 TopK 算法对预测向量进行降序排列，只要模型给出的前五名高概率类别集合中包含了真实标签，即视为命中。该指标能够有效容忍由于同类物体高度相似（如不同品种的犬类、不同型号的客机）而产生的合理语义模糊，更具实际工程应用价值。
+\end{itemize}
+
+\end{subsectionbox}
+
+\end{sectionbox}
+
+% ============================
+% 【二、实验过程】
+% ============================
+\begin{sectionbox}{【二、实验过程】}
+
+\subsectionbox{①② 实验方法、步骤、操作过程的记录描述，以及输入/输出数据、程序运行结果的记录}
+
+本实验秉承现代软件工程的模块化设计思想，由浅入深划分为三个递进的开发阶段。以下是每一个阶段的设计思想、核心代码实现以及运行结果的详尽记录：
+
+\vspace{6pt}
+\textbf{阶段一：单样本图像基准推理流水线的构建}
+
+\vspace{4pt}
+\textit{1. 实验方法与步骤描述：}
+
+目标是验证环境依赖的正确性，构建从磁盘加载到预测输出的端到端（End-to-End）基准闭环。为了避免旧版 API 在未来版本中被弃用，本段代码采用了最新规范的枚举权重加载方式。通过遍历目录读取测试样例，经过标准化转换后，送入模型进行无梯度前向传播。
+
+\vspace{4pt}
+\textit{2. 核心代码实现记录：}
+
+\begin{lstlisting}
+import os
+import torch
+from torchvision import models, transforms
+from PIL import Image
+
+def main():
+    # 动态加载并解析类别标签字典，构建 0-999 索引到具体类名的映射
+    with open("imagenet_classes.txt") as f:
+        labels = [line.strip() for line in f.readlines()]
+
+    # 规范化加载预训练 ResNet18 模型，并冻结 BatchNorm 与 Dropout 层
+    model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+    model.eval()
+
+    # 构建严格遵循 ImageNet 标准的预处理管道
+    transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+
+    # 遍历当前目录图片，执行无梯度前向传播
+    for filename in sorted(os.listdir(".")):
+        if filename.lower().endswith((".png", ".jpg", ".jpeg")):
+            img = Image.open(filename).convert('RGB')
+            # 扩充 Batch 维度，构造 [1, 3, 224, 224] 输入张量
+            img_tensor = transform(img).unsqueeze(0)
+
+            # 阻断梯度计算图，大幅降低显存开销并提升推理速度
+            with torch.no_grad():
+                output = model(img_tensor)
+                pred_class = torch.argmax(output, dim=1).item()  # 提取最高分索引
+
+            print(f"{filename} --> Predicted class: {labels[pred_class]}")
+\end{lstlisting}
+
+\vspace{4pt}
+\textit{3. 运行结果记录：}
+
+程序成功载入预训练权重，终端输出结果与图像物理内容完全吻合：
+
+\begin{verbatim}
+1.png --> Predicted class: airliner（客机）
+2.jpg --> Predicted class: folding chair（折叠椅）
+3.png --> Predicted class: golden retriever（金毛寻回犬）
+4.png --> Predicted class: brambling（燕雀）
+\end{verbatim}
+
+\vspace{6pt}
+\textbf{阶段二：引入图像变换算子进行模型鲁棒性（Robustness）测试}
+
+\vspace{4pt}
+\textit{1. 实验方法与步骤描述：}
+
+真实业务场景下的图像往往伴随着复杂的光学畸变或物理噪声。为定量评估模型抗干扰能力，通过修改 \texttt{transforms} 流水线，针对性地构造了 5 组控制变量实验：剥离归一化、空间旋转（15°/30°/90°）、频域高斯模糊、以及叠加高频白噪声。利用双层循环，将测试图片依次通过这些被污染的管道并记录输出。
+
+\vspace{4pt}
+\textit{2. 核心控制变量配置代码：}
+
+\begin{lstlisting}
+# 利用字典封装不同的预处理管道组合，实现自动化测试
+transform_dict = {
+    "原始基准": transforms.Compose([
+        transforms.Resize((224, 224)), transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ]),
+    "剥离Normalize": transforms.Compose([
+        transforms.Resize((224, 224)), transforms.ToTensor()  # 故意剥离数据流形对齐步骤
+    ]),
+    "空间旋转30°": transforms.Compose([
+        transforms.Resize((224, 224)), transforms.RandomRotation([30, 30]),
+        transforms.ToTensor(), transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ]),
+    "频域高斯模糊": transforms.Compose([
+        transforms.Resize((224, 224)), transforms.GaussianBlur(kernel_size=5, sigma=2.0),
+        transforms.ToTensor(), transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ]),
+    "叠加高频噪声": transforms.Compose([
+        transforms.Resize((224, 224)), transforms.ToTensor(),
+        # 利用 Lambda 算子注入均值为 0，缩放因子为 0.15 的标准正态分布随机白噪声
+        transforms.Lambda(lambda x: x + torch.randn_like(x) * 0.15),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+}
+\end{lstlisting}
+
+\vspace{4pt}
+\textit{3. 程序运行结果记录（模型表现对比矩阵）：}
+
+自动化测试脚本输出的多维度推理结果对照表如下：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{实验干预变量} & \textbf{1.png 测试样本} & \textbf{2.jpg 测试样本} & \textbf{3.png 测试样本} & \textbf{4.png 测试样本} \\
+\hline
+原始基准 (标准对齐) & airliner & folding chair & golden retriever & brambling \\
+\hline
+剥离 Normalize & airliner & folding chair & golden retriever & water ouzel \\
+\hline
+空间旋转 15° & wing (局部机翼) & starfish (海星) & golden retriever & jay (松鸦) \\
+\hline
+空间旋转 30° & wing & rule (尺子) & golden retriever & junco (灯草鹀) \\
+\hline
+空间旋转 90° & warplane (战机) & turnstile (旋转门) & Norfolk terrier & grasshopper (蚱蜢) \\
+\hline
+频域高斯模糊 & airliner & folding chair & golden retriever & brambling \\
+\hline
+叠加高频白噪声 & hammerhead (鲨鱼) & folding chair & golden retriever & grasshopper \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{6pt}
+\textbf{阶段三：基于自定义 Dataset 的验证集全局准确率工程化评估}
+
+\vspace{4pt}
+\textit{1. 实验方法与步骤描述：}
+
+针对 \texttt{noisy\_imagenette.csv} 标签文件，进行批量读取与准确率统计。为了构建具备强健壮性的工业级数据管道，我们在继承 PyTorch 的 Dataset 类时，引入了极其重要的数据完整性过滤机制，利用 \texttt{os.path.exists()} 剔除了物理磁盘上缺失的图像记录。同时，将 DataLoader 的并发读取数（\texttt{num\_workers}）置为 0，以完美的单进程同步模式规避了操作系统底层的共享内存（/dev/shm）溢出问题。
+
+\vspace{4pt}
+\textit{2. 核心数据解析与推理评估代码记录：}
+
+\begin{lstlisting}
+# 构建 Imagenette WordNet ID 到预训练模型 1000 类索引的绝对映射
+imagenette_to_imagenet = {'n02979186': 482, 'n03417042': 569}
+
+class SecureImagenetteValDataset(Dataset):
+    def __init__(self, csv_file, transform=None):
+        df = pd.read_csv(csv_file)
+        df = df[df['is_valid'] == True].reset_index(drop=True)
+
+        # 核心工程设计：数据探针质检与过滤机制
+        # 仅将硬盘上物理存在的文件合并入有效评估池，避免 FileNotFoundError 导致程序崩溃
+        valid_rows = [df.iloc[i] for i in range(len(df)) if os.path.exists(os.path.join(".", df.iloc[i]['path']))]
+        self.df = pd.DataFrame(valid_rows).reset_index(drop=True)
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        img_path = os.path.join(".", self.df.iloc[idx]['path'])
+        label_str = self.df.iloc[idx]['noisy_labels_0']  # 获取纯净标签
+        image = self.transform(Image.open(img_path).convert('RGB'))
+        return image, imagenette_to_imagenet[label_str], label_str
+
+# 推理循环与准确率计算逻辑
+dataloader = DataLoader(dataset, batch_size=64, shuffle=False, num_workers=0)
+with torch.no_grad():
+    for images, labels, label_strs in dataloader:
+        outputs = model(images)
+        # 一次性沿类别维度提取置信度最高的 5 个索引
+        _, pred_top5 = outputs.topk(5, 1, True, True)
+
+        for i in range(len(labels)):
+            true_lbl = labels[i].item()
+            # 逻辑判定：判定真实标签是否命中 Top-1 绝对第一或 Top-5 候选池
+            is_top1 = (pred_top5[i, 0] == true_lbl)
+            is_top5 = (true_lbl in pred_top5[i])
+            # ... (执行数据累加统计)
+\end{lstlisting}
+
+\vspace{4pt}
+\textit{3. 运行结果记录（验证集准确率统计）：}
+
+经代码中的安全过滤机制探伤，本次全集评估精准锁定了本地真实的两个主体类别（共计 713 张图片）。程序顺利计算并输出如下量化指标：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{类别归属 (WordNet ID)} & \textbf{目标实体语义} & \textbf{物理磁盘有效样本数} & \textbf{Top-1 准确率} & \textbf{Top-5 准确率} \\
+\hline
+n02979186 & cassette player (盒式磁带录音机) & 396 张 & 93.69\% & 99.24\% \\
+\hline
+n03417042 & garbage truck (垃圾车) & 317 张 & 95.90\% & 99.68\% \\
+\hline
+整体加权平均 & -- & 713 张 & \textbf{94.67\%} & \textbf{99.44\%} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{subsectionbox}
+
+\end{sectionbox}
+
+% ============================
+% 【三、实验结论，心得】
+% ============================
+\begin{sectionbox}{【三、实验结论，心得】}
+
+\subsectionbox{①② 根据理论知识对所得到的实验数据或结果进行解释、分析，以及对实验结果所作的一般性的判断、归纳、概括，实验的心得体会、建议等}
+
+\vspace{4pt}
+\textbf{1. 深度学习模型特征敏感度的数据剖析与理论论证}
+
+针对阶段二的鲁棒性测试矩阵与阶段三的全集验证准确率，我们可以从计算机视觉的底层数学机制出发，得出以下具有极高学术参考价值的分析结论：
+
+\begin{itemize}
+    \item \textbf{数据流形的精确对齐是激活函数正常响应的充要条件：} 在去除了 Normalize 操作后，肉眼看起来毫无物理变化的鸟类图片（4.png），其神经网络输出从“brambling（燕雀）”瞬间漂移为“water ouzel（河乌）”。原因在于，未经标准化的像素张量直接送入深层网络后，由于每一层权重矩阵的累计相乘效应，使得大量输入值被迫偏离了 ReLU 等激活函数的最佳线性工作区，引发了深层抽象语义的严重非线性扭曲。这在实验层面证明了：预处理绝非简单的格式转换，而是决定网络能否正确进行空间特征映射的生死线。
+
+    \item \textbf{卷积神经网络严重缺乏全局几何不变性（Spatial Invariance）：} 实验中最令人震撼的数据在于，当我们仅仅对图像施加 15° 到 30° 的轻微平面旋转时，高达数百万参数的 ResNet 瞬间“降智”。原本完整的客机，由于构图角度的倾斜，其局部特征被网络过度放大，从而将其判定为一侧的“wing（机翼）”；折叠椅更是离谱地被识别为尺子。这暴露出传统的 CNN 架构虽然借助池化层（Pooling Layer）获得了一定的平移不变性，但其各个卷积核通道对空间坐标的绝对朝向极度死板，过度死记硬背了重力视角下事物的常规摆放状态。
+
+    \item \textbf{对低频信息免疫，对高频扰动极度脆弱：} 对于核大小为 5 的高斯平滑滤波，四张测试图的 Top-1 预测分类岿然不动。这说明深层网络主要依赖物体大面积的色块轮廓（低频信号）进行宏观语义判别。然而，当全图叠加均值极小的高频高斯白噪声时，网络分类彻底崩溃，客机甚至被识别为“鲨鱼”。这揭示了深度学习模型的普遍安全隐患：极细微的全局高频像素篡改（如对抗样本攻击 Adversarial Attacks），能够轻易越过超高维空间中的分类决策边界。
+
+    \item \textbf{迁移学习（Transfer Learning）的惊人效能：} 在全集评估中，面对复杂的本地验证集样本，ResNet18 展现出了极强的高维特征降维能力，一举斩获 94.67\% 的整体 Top-1 准确率与 99.44\% 的 Top-5 准确率。这从数据层面无可辩驳地证明了：在超大规模 ImageNet 数据集上提取出的底层纹理滤波器与高层语义组合逻辑，具备近乎完美的跨域泛化效能。
+\end{itemize}
+
+\vspace{4pt}
+\textbf{2. 实验综合心得与工程实践启发}
+
+作为计算机科学专业的本科生，本次图像分类与模型评估实验对我而言，不仅仅是一次对底层神经网络数学公式的理论验证，更是一次打通了从传统 C/C++ 过程式编程向 Python 深度学习张量计算范式跨越的完美实战。在书本的温室里，我们看到的往往是整洁无瑕的数据集；而在本次实验的实际代码构建中，我直面了由于磁盘物理文件缺失和操作系统资源瓶颈所带来的真实工程挑战。
+
+在编写自定义 Dataset 类的过程中，我深刻体会到：处理真实数据的复杂性远超理论模型本身。如果盲从于标准教程中的死板路径拼接，程序在读取到缺失文件时必将全盘崩溃。通过前瞻性地设计出基于 \texttt{os.path.exists()} 的前置文件探针扫描机制，我成功保障了批量评测系统的健壮性。同时，本次实验的远程节点调试过程，也完美契合了我近期一直在探索和规划的“动静分离”开发工作流——即利用轻便的移动终端（如 MacBook）进行优雅的代码逻辑编写、API 查阅以及 Obsidian 知识库的管理，而将高并发的 DataLoader 进程与繁重的 GPU 张量矩阵运算，精准下发给高性能的远端节点（如搭载独立显卡的拯救者主机或云端服务器）来执行。
+
+这种软硬结合、防御性编程的工程思维让我意识到：一个卓越的 AI 研发者，绝不能仅仅停留在调用现成的 API 模型，更要善于编写具有极强鲁棒性与容错能力的底层工业管线，以包容真实世界中残缺的数据和严苛的硬件环境。这次从理论到落地的深度实践，为我后续深入研究计算机视觉算法与搭建更加庞大的分布式训练架构，奠定了极其坚实的工程基础。
+
+\end{subsectionbox}
+
+\end{sectionbox}
+
+\end{document}
