@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>雅思单词本</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+<div class="max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4">📚 雅思单词本（完整版）</h1>
+
+  <input id="search" type="text" placeholder="搜索单词..." class="w-full p-2 mb-4 border rounded" />
+
+  <div class="mb-4">
+    <button onclick="filterMode='all';render()" class="px-3 py-1 bg-gray-300 rounded">全部</button>
+    <button onclick="filterMode='unknown';render()" class="px-3 py-1 bg-red-400 text-white rounded">只看不会</button>
+    <button onclick="filterMode='known';render()" class="px-3 py-1 bg-green-500 text-white rounded">只看会了</button>
+  </div>
+
+  <div id="wordList" class="space-y-4"></div>
+</div>
+
+<script>
+// ✅ 模拟雅思高频词库（这里只放一小部分示例，你可以继续扩展）
+const words = [
+  {word:"abandon",meaning:"放弃",example:"He abandoned the plan."},
+  {word:"ability",meaning:"能力",example:"She has great ability."},
+  {word:"access",meaning:"进入；使用权",example:"Students have access to the library."},
+  {word:"achieve",meaning:"实现",example:"He achieved his goal."},
+  {word:"analysis",meaning:"分析",example:"The analysis is accurate."},
+  {word:"approach",meaning:"方法；接近",example:"This approach works well."},
+  {word:"area",meaning:"区域",example:"This area is quiet."},
+  {word:"assume",meaning:"假设",example:"We assume it is true."},
+  {word:"authority",meaning:"权威",example:"He is an authority in science."},
+  {word:"available",meaning:"可获得的",example:"Tickets are available now."},
+  {word:"benefit",meaning:"好处",example:"Exercise has many benefits."},
+  {word:"concept",meaning:"概念",example:"This is a key concept."},
+  {word:"consistent",meaning:"一致的",example:"His results are consistent."},
+  {word:"data",meaning:"数据",example:"The data is reliable."},
+  {word:"define",meaning:"定义",example:"Please define the term."},
+  {word:"derive",meaning:"推导",example:"We derive the formula."},
+  {word:"distribution",meaning:"分布",example:"Income distribution varies."},
+  {word:"economic",meaning:"经济的",example:"Economic growth is steady."},
+  {word:"environment",meaning:"环境",example:"Protect the environment."},
+  {word:"estimate",meaning:"估计",example:"We estimate the cost."},
+  {word:"factor",meaning:"因素",example:"Many factors affect it."},
+  {word:"function",meaning:"功能；函数",example:"This function is useful."},
+  {word:"identify",meaning:"识别",example:"Identify the problem."},
+  {word:"individual",meaning:"个人",example:"Each individual matters."},
+  {word:"interpret",meaning:"解释",example:"Interpret the results."},
+  {word:"issue",meaning:"问题",example:"This is a major issue."},
+  {word:"method",meaning:"方法",example:"Use a better method."},
+  {word:"occur",meaning:"发生",example:"The error occurred."},
+  {word:"percent",meaning:"百分比",example:"Ten percent increase."},
+  {word:"period",meaning:"时期",example:"A long period passed."},
+  {word:"policy",meaning:"政策",example:"Government policy changed."},
+  {word:"process",meaning:"过程",example:"The process is complex."},
+  {word:"research",meaning:"研究",example:"Research takes time."},
+  {word:"response",meaning:"回应",example:"Her response was quick."},
+  {word:"role",meaning:"角色",example:"He plays a key role."},
+  {word:"section",meaning:"部分",example:"Read this section."},
+  {word:"significant",meaning:"重要的",example:"Significant improvement."},
+  {word:"similar",meaning:"相似的",example:"They are similar."},
+  {word:"source",meaning:"来源",example:"Check the source."},
+  {word:"theory",meaning:"理论",example:"The theory is correct."},
+  {word:"vary",meaning:"变化",example:"Results vary widely."}
+];
+
+let filterMode = 'all';
+
+function getStatus(word) {
+  return localStorage.getItem(word) || "unknown";
+}
+
+function setStatus(word, status) {
+  localStorage.setItem(word, status);
+  render();
+}
+
+function render(filter = "") {
+  const list = document.getElementById("wordList");
+  list.innerHTML = "";
+
+  words
+    .filter(w => w.word.includes(filter))
+    .filter(w => {
+      if (filterMode === 'all') return true;
+      return getStatus(w.word) === filterMode;
+    })
+    .forEach(w => {
+      const status = getStatus(w.word);
+
+      const div = document.createElement("div");
+      div.className = "p-4 bg-white rounded shadow";
+
+      div.innerHTML = `
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl font-semibold">${w.word}</h2>
+          <span class="text-sm ${status === 'known' ? 'text-green-500' : 'text-red-500'}">
+            ${status === 'known' ? '已掌握' : '未掌握'}
+          </span>
+        </div>
+        <p class="mt-2">释义：${w.meaning}</p>
+        <p class="text-gray-600">例句：${w.example}</p>
+        <div class="mt-3 space-x-2">
+          <button onclick="setStatus('${w.word}', 'known')" class="px-3 py-1 bg-green-500 text-white rounded">会了</button>
+          <button onclick="setStatus('${w.word}', 'unknown')" class="px-3 py-1 bg-red-500 text-white rounded">不会</button>
+        </div>
+      `;
+
+      list.appendChild(div);
+    });
+}
+
+document.getElementById("search").addEventListener("input", e => {
+  render(e.target.value);
+});
+
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexiMaster | 雅思单词极客</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #f8fafc;
+            --card-front: #ffffff;
+            --card-back: #ffffff;
+            --text: #1e293b;
+            --sub-text: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-front: #1e293b;
+            --card-back: #1e293b;
+            --text: #f8fafc;
+            --sub-text: #94a3b8;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 顶部导航 */
+        nav {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
+
+        /* 容器布局 */
+        .main-content {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        /* 进度条增强 */
+        .stat-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--sub-text);
+        }
+
+        .progress-rail {
+            width: 100%;
+            height: 6px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 3px;
+            margin-bottom: 30px;
+        }
+        #progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* 单词卡片 - 更精致的阴影和动画 */
+        .deck {
+            position: relative;
+            height: 350px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .card.flipped { transform: rotateY(180deg); }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .front { background: var(--card-front); }
+        .back { background: var(--card-back); transform: rotateY(180deg); }
+
+        .word-title { font-size: 3rem; margin: 0; letter-spacing: -2px; }
+        .phonetic { font-size: 1.2rem; color: var(--primary); margin: 10px 0; }
+        .meaning { font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; }
+        .example { font-size: 1rem; color: var(--sub-text); text-align: center; line-height: 1.6; }
+
+        /* 交互区 */
+        .controls {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 15px 5px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            color: white;
+        }
+
+        .btn-action:active { transform: scale(0.95); }
+        .forget { background: var(--danger); }
+        .blur { background: var(--warning); }
+        .know { background: var(--success); }
+
+        /* 管理面板 */
+        .admin-panel {
+            margin-top: 30px;
+            background: rgba(0,0,0,0.03);
+            padding: 20px;
+            border-radius: 20px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--sub-text);
+            color: var(--sub-text);
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* 状态提示标签 */
+        .status-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            background: #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">LexiMaster.</div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Mode</button>
+</nav>
+
+<div class="main-content">
+    <div class="stat-bar">
+        <span id="current-word-num">WORD 1</span>
+        <span id="progress-percent">0% Mastered</span>
+    </div>
+    <div class="progress-rail">
+        <div id="progress-fill"></div>
+    </div>
+
+    <div class="deck">
+        <div class="card" id="mainCard" onclick="this.classList.toggle('flipped')">
+            <div class="face front">
+                <span id="wordStatus" class="status-tag">New</span>
+                <h1 class="word-title" id="displayWord">Ambiguous</h1>
+                <div class="phonetic" id="displayPhonetic">/æmˈbɪɡjuəs/</div>
+                <div style="margin-top:20px; color:var(--sub-text); font-size:0.8rem;">Tap to flip</div>
+            </div>
+            <div class="face back">
+                <div class="meaning" id="displayMeaning">模棱两可的</div>
+                <div class="example" id="displayExample">The ending of the movie is deliberately ambiguous.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn-action forget" onclick="review('forget')">不认识 (1)</button>
+        <button class="btn-action blur" onclick="review('blur')">模糊 (2)</button>
+        <button class="btn-action know" onclick="review('know')">太简单 (3)</button>
+    </div>
+
+    <div class="admin-panel">
+        <h3 style="margin-top:0">➕ 添加新词</h3>
+        <input type="text" id="newWord" placeholder="单词">
+        <input type="text" id="newTrans" placeholder="翻译">
+        <button onclick="addNewWord()" style="width:100%; padding:10px; background:var(--primary); color:white; border:none; border-radius:8px; margin-top:10px; cursor:pointer;">存入词库</button>
+    </div>
+</div>
+
+<script>
+    // 默认词库
+    let words = JSON.parse(localStorage.getItem('my_words')) || [
+        { word: "Evaluate", phonetic: "/ɪˈvæljueɪt/", trans: "评估，估价", example: "It's hard to evaluate the impact of these changes.", status: "new" },
+        { word: "Perspective", phonetic: "/pərˈspektɪv/", trans: "观点，透视", example: "Try to see the issue from a different perspective.", status: "new" },
+        { word: "Sustainability", phonetic: "/səˌsteɪnəˈbɪləti/", trans: "可持续性", example: "The company's commitment to environmental sustainability.", status: "new" }
+    ];
+
+    let currentIndex = 0;
+
+    // 初始化渲染
+    function render() {
+        const word = words[currentIndex];
+        document.getElementById('displayWord').innerText = word.word;
+        document.getElementById('displayPhonetic').innerText = word.phonetic || '/ /';
+        document.getElementById('displayMeaning').innerText = word.trans;
+        document.getElementById('displayExample').innerText = word.example || 'No example available.';
+        document.getElementById('wordStatus').innerText = word.status.toUpperCase();
+        document.getElementById('mainCard').classList.remove('flipped');
+        
+        // 更新统计
+        document.getElementById('current-word-num').innerText = `WORD ${currentIndex + 1} / ${words.length}`;
+        const learnedCount = words.filter(w => w.status === 'know').length;
+        const percent = Math.round((learnedCount / words.length) * 100);
+        document.getElementById('progress-percent').innerText = `${percent}% Mastered`;
+        document.getElementById('progress-fill').style.width = `${(currentIndex+1)/words.length*100}%`;
+    }
+
+    // 记忆反馈逻辑
+    function review(type) {
+        words[currentIndex].status = type;
+        localStorage.setItem('my_words', JSON.stringify(words));
+        
+        // 简单延迟，让用户看一眼答案再跳
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % words.length;
+            render();
+        }, 300);
+    }
+
+    // 添加新词
+    function addNewWord() {
+        const w = document.getElementById('newWord').value;
+        const t = document.getElementById('newTrans').value;
+        if(w && t) {
+            words.push({ word: w, trans: t, phonetic: "", example: "", status: "new" });
+            localStorage.setItem('my_words', JSON.stringify(words));
+            alert('添加成功！');
+            document.getElementById('newWord').value = '';
+            document.getElementById('newTrans').value = '';
+            render();
+        }
+    }
+
+    // 主题切换
+    function toggleTheme() {
+        const theme = document.body.getAttribute('data-theme');
+        document.body.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+    }
+
+    // 键盘支持
+    document.addEventListener('keydown', (e) => {
+        if(e.key === '1') review('forget');
+        if(e.key === '2') review('blur');
+        if(e.key === '3') review('know');
+        if(e.key === ' ') document.getElementById('mainCard').classList.toggle('flipped');
+    });
+
+    render();
+</script>
+
+</body>
+</html>

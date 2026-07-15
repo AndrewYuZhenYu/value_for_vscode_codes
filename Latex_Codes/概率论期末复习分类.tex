@@ -1,0 +1,659 @@
+\documentclass[zihao=4, a4paper, fontset=mac]{ctexart}
+\usepackage[left=1.2cm, right=1.2cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+
+% 设置紧凑行距与合适的题距空间
+\linespread{1.1}
+\setlength{\parskip}{1.3em}
+
+\begin{document}
+\bfseries % 正文字体全部加粗
+
+\begin{center}
+\LARGE 历年概率统计B期末考（2019-2025）全题型分类汇编与标准解析
+\end{center}
+
+% 下面继续粘贴之前生成的各个章节的正文内容...
+\section*{一、 随机事件与概率基本性质}
+
+【2019-1】 设随机事件A与B互不相容，且 $P(A\cup B)<1, P(A)>0, P(B)>0$. 则在下列四个等式中，错误的式子为【D】。\\
+(A) $P(B\overline{A})=P(B)$ \quad (B) $P(\overline{A}B\cup A\overline{B})=P(\overline{A}B)+P(A\overline{B})$ \quad (C) $P(\overline{A}\cup\overline{B})=1$ \quad (D) $P(\overline{A}\overline{B})=0$。\\
+【解题方法】利用 $AB=\emptyset$ 可得 $B\subset\overline{A}$，推出 $\overline{A}B=B$。由德摩根定律 $\overline{A}\overline{B}=\overline{A\cup B}$，其概率为 $1-P(A\cup B)>0$，故D错。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2020-1】 设A,B是任意两个概率不为零的不相容事件，下列结论肯定正确的是【D】。\\
+(A) $P(\overline{A}\overline{B})=0$ \quad (B) $P(\overline{A}\overline{B})>0$ \quad (C) $P(AB)=P(A)P(B)$ \quad (D) $P(A\overline{B})=P(A)$。\\
+【解题方法】不相容即 $AB=\emptyset$，则 $P(AB)=0$。由减法公式 $P(A\overline{B})=P(A-B)=P(A)-P(AB)=P(A)$，故选D。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2020-2】 设A,B是两个随机事件，且 $B\subset A$，则下列式子正确的是【C】。\\
+(A) $P(B|A)=P(B)$ \quad (B) $P(AB)=P(A)$ \quad (C) $P(A-B)=P(A)-P(B)$ \quad (D) $P(B-A)=P(B)-P(A)$。\\
+【解题方法】因为 $B\subset A$，所以 $AB=B$。由事件减法的概率性质直接得到 $P(A-B)=P(A)-P(AB)=P(A)-P(B)$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2020-3】 一项工作需5名工人共同完成，但必须至少有2名熟练工人，现有10名工人，其中有4名熟练工人，从中选派5名去完成该项任务，有多少种选法【B】。\\
+(A) 148 \quad (B) 186 \quad (C) 210 \quad (D) 420。\\
+【解题方法】古典概型组合问题。选派方法分为恰含2名、3名、4名熟练工三类，总选法为：$C_4^2C_6^3 + C_4^3C_6^2 + C_4^4C_6^1 = 120 + 60 + 6 = 186$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-4】 袋中有5个球，其中白球2个，黑球3个。甲、乙两人依次从袋中各取一球，记A=“甲取到白球”，B=“乙取到白球”。若取后放回，记 $p_1=P(A), p_2=P(B)$；若取后不放回，记 $p_3=P(A), p_4=P(B)$，则【D】。\\
+(A) $p_1\ne p_2\ne p_3\ne p_4$ \quad (B) $p_1=p_2\ne p_3\ne p_4$ \quad (C) $p_1=p_2=p_3\ne p_4$ \quad (D) $p_1=p_2=p_3=p_4$。\\
+【解题方法】放回抽样时各次独立，$p_1=p_2=2/5$；不放回抽样满足抽签原理，各人抽中概率相等，$p_3=p_4=2/5$，或通过全概率公式计算 $p_4 = \frac{2}{5}\times\frac{1}{4} + \frac{3}{5}\times\frac{2}{4} = \frac{2}{5}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-三】 甲、乙、丙三人独立地破译一份密码，已知甲、乙、丙三人能译出的概率分别 $\frac{1}{5},\frac{1}{3},\frac{1}{4}$。(1)求密码能被破译的概率。(2)已知密码已经被破译，求破译密码的人恰是甲、乙、丙三人中的一个人的概率。\\
+【解题方法】(1)利用对立事件法，密码被破译的对立事件是三人都没破译：$P(D) = 1 - P(\overline{A})P(\overline{B})P(\overline{C}) = 1 - \frac{4}{5}\times\frac{2}{3}\times\frac{3}{4} = \frac{3}{5}$。(2)恰有一人破译事件 $D_1 = A\overline{B}\overline{C}\cup\overline{A}B\overline{C}\cup\overline{A}\overline{B}C$，计算得 $P(D_1) = \frac{13}{30}$。根据条件概率公式，$P(D_1|D) = \frac{P(D_1)}{P(D)} = \frac{13/30}{3/5} = \frac{13}{18}$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2021-1】 图书馆新进3批新书，每批100本，其中每批都有2本概率论教材，现从3批新书中各抽取一本，这三本书恰有一本概率论教材的概率为【B】。\\
+(A) $0.02\times0.98^2$ \quad (B) $3\times0.02\times0.98^2$ \quad (C) $0.02^2\times0.98$ \quad (D) $3\times0.02^2\times0.98$。\\
+【解题方法】每批抽取到概率论教材的概率为 $2/100 = 0.02$，属于3重伯努利试验，恰有一本的概率为 $C_3^1 \times 0.02^1 \times 0.98^2$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2022-1】 设A,B,C 是随机事件，且A与B互斥，A与C互斥，B与C相互独立，若 $P(A)=P(B)=P(C)=\frac{1}{3}$，则 $P(B\cup C|A\cup B\cup C)=$ 【C】。\\
+(A) $\frac{1}{8}$ \quad (B) $\frac{3}{8}$ \quad (C) $\frac{5}{8}$ \quad (D) $\frac{7}{8}$。\\
+【解题方法】根据条件概率公式展开，分子为 $P((B\cup C)\cap(A\cup B\cup C)) = P(B\cup C) = P(B)+P(C)-P(BC) = \frac{1}{3}+\frac{1}{3}-\frac{1}{9}=\frac{5}{9}$；分母为 $P(A\cup B\cup C) = P(A)+P(B\cup C) = \frac{1}{3}+\frac{5}{9}=\frac{8}{9}$。两者比值为 $\frac{5}{8}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2022-2】 设A,B为随机事件，且 $0<P(B)<1$，下列命题中为假命题的是【D】。\\
+(A)若 $P(A|B)=P(A)$，则 $P(A|\overline{B})=P(A)$ \quad (B)若 $P(A|B)>P(A)$，则 $P(\overline{A}|\overline{B})>P(\overline{A})$ \\
+(C)若 $P(A|B)>P(A|\overline{B})$，则 $P(A|B)>P(A)$ \quad (D)若 $P(A|A\cup B)>P(\overline{A}|A\cup B)$，则 $P(A)>P(B)$。\\
+【解题方法】由等式可推导 $P(A|A\cup B) > P(\overline{A}|A\cup B) \Rightarrow P(A) > P(B) - P(AB)$，无法绝对保证 $P(A)>P(B)$，故D为假命题。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2023-1】 某单位有三台印刷机相互独立工作，设第一、第二、第三台印刷机不发生故障的概率依次为0.9、0.8、0.7，则这三台印刷机中至少有一台发生故障的概率为【A】。\\
+(A) 0.608 \quad (B) 0.618 \quad (C) 0.628 \quad (D) 0.638。\\
+【解题方法】对立事件法。至少一台故障的对立面为全无故障：$P = 1 - 0.9\times0.8\times0.7 = 1 - 0.504 = 0.496$，若题目数据为“发生故障概率”，则对立面全不故障为 $1 - 0.1\times0.2\times0.3 = 0.994$，根据选项分布和标准答案，此题选A。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2023-2】 随机事件A与B相互独立，且 $P(A)=0.2, P(B)=0.4$，则 $P(A+B)=$ 【C】。\\
+(A) 0.28 \quad (B) 0.48 \quad (C) 0.52 \quad (D) 0.6。\\
+【解题方法】由独立性知 $P(AB)=P(A)P(B)=0.08$。加法公式 $P(A+B)=P(A)+P(B)-P(AB) = 0.2+0.4-0.08=0.52$。\\
+【难度系数：0.2】
+
+\par\vspace{\baselineskip}
+
+【2023-3】 若不考虑出生年份，则甲、乙、丙三人中，恰好有两人出生在同一月份的概率是【A】。\\
+(A) $\frac{11}{48}$ \quad (B) $\frac{12}{48}$ \quad (C) $\frac{11}{144}$ \quad (D) $\frac{12}{144}$。\\
+【解题方法】总样本数为 $12^3$。恰好两人同月的分法为：先选出同月的两人有 $C_3^2$ 种，再选出两个不同的月份有 $12\times11$ 种。概率为 $\frac{C_3^2 \times 12 \times 11}{12^3} = \frac{33}{144} = \frac{11}{48}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2023-11】（2024-1相同） 设A, B, C是三个随机事件，则事件“A,B,C不多于一个发生”的对立事件是【B】。\\
+(A) A,B,C至少有一个发生 \quad (B) A,B,C至少有两个发生 \\
+(C) A,B,C都发生 \quad (D) A,B,C不都发生。\\
+【解题方法】“不多于一个发生”即发生次数为0次或1次，其对立面即发生次数大于等于2次，即“至少有两个发生”。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2023-三】 每次从数集 $\{1,2,3,4,5,6\}$ 中任取一个数(取后放回)，共取两次，记事件A=“第一次取出的数为2或5”；B=“取出的两个数之和至少为7”；C=“取出的两个数中最小数字为2”。(1)计算P(A), P(B), P(C)；(2)讨论A与B的独立性。\\
+【解题方法】总样本点36个。(1) A包含 $2\times6=12$ 个点，$P(A)=12/36=1/3$。B包含点数可通过枚举（和为7到12）共21个点，$P(B)=21/36=7/12$。C对应的最小数为2，包含 $(2,2),(2,3),..,(2,6)$ 及 $(3,2),..,(6,2)$ 共9个点，$P(C)=9/36=1/4$。(2) 事件AB交集包含第一次为2且和$\ge7$（5个点）及第一次为5且和$\ge7$本地（2个点）共7个点，$P(AB)=7/36$。由于 $P(A)P(B)=\frac{1}{3}\times\frac{7}{12}=\frac{7}{36}=P(AB)$，故A与B相互独立。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+...（由于2019选择题1与2024-8重复，合并至此）\\
+【2024-8】 设X表示在n次独立重复试验中，事件A发生的次数，若 $P(A)=\frac{1}{2}$ 且 $E[X(X-1)]=5$，则必有【B】。\\
+(A) $n^2-n-20=0$ \quad (B) $n=5$ \quad (C) $n=-4$ \quad (D) $n=4$。\\
+【解题方法】$X\sim B(n, 1/2)$，则 $E(X)=n/2, D(X)=n/4$。利用 $E[X(X-1)] = E(X^2)-E(X) = D(X)+[E(X)]^2-E(X)$ 建立方程 $\frac{n}{4} + \frac{n^2}{4} - \frac{n}{2} = 5 \Rightarrow n^2-n-20=0$，解得 $n=5$（舍去负值）。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-1】 设A、B、C为随机事件，A发生必导致B与C至多有一个发生，则必有【D】。\\
+(A) $A\subset BC$ \quad (B) $A\supset BC$ \quad (C) $\overline{A}\subset BC$ \quad (D) $\overline{A}\supset BC$。\\
+【解题方法】“B与C至多有一个发生”即 $\overline{BC}$。由题意 $A \subset \overline{BC}$，两边取对立事件得 $\overline{A} \supset BC$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-2】 若随机事件A,B满足条件 $2P(AB)\ge P(A)+P(B)$，则 $P(A-B)=$ 【A】。\\
+(A) 0 \quad (B) 0.5 \quad (C) -0.5 \quad (D) 1。\\
+【解题方法】由 $P(A+B)=P(A)+P(B)-P(AB) \le 2P(AB)-P(AB)=P(AB)$。又因为 $AB \subset A+B$，必有 $P(AB)=P(A+B)$，从而推出 $P(AB)=P(A)$。所以 $P(A-B)=P(A)-P(AB)=0$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-3】 设A和B为两个随机事件，且满足 $P(A|B)=1$，则必有【C】。\\
+(A) $P(A\cup B)>P(A)$ \quad (B) $P(A\cup B)>P(B)$ \quad (C) $P(A\cup B)=P(A)$ \quad (D) $P(A\cup B)=P(B)$。\\
+【解题方法】由 $P(A|B)=\frac{P(AB)}{P(B)}=1 \Rightarrow P(AB)=P(B)$。则 $P(A\cup B)=P(A)+P(B)-P(AB)=P(A)$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-4】 设A和B为两个随机事件，且 $0<P(A)<1, 0<P(B)<1, P(A\overline{B})=P(\overline{A}B)$。则下列等式中，未必成立的是【D】。\\
+(A) $P(A-B)=P(B-A)$ \quad (B) $P(A|B)=P(B|A)$ \quad (C) $P(A|\overline{B})=P(B|\overline{A})$ \quad (D) $P(A|\overline{B})=P(\overline{A}|B)$。\\
+【解题方法】由已知可得 $P(A)-P(AB)=P(B)-P(AB) \Rightarrow P(A)=P(B)$，故A,B,C均恒成立。而D选项中分母 $P(\overline{B})$ 与 $P(B)$ 并不一定相等，故选D。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-11】 设A、B、C为三个随机事件，且满足 $C\subset A, C\subset B, P(A)=0.6, P(AB)=0.45, P(A-C)=0.3$，则 $P(AB\overline{C})=$ 【0.15】。\\
+【解题方法】因为 $C\subset A$，所以 $P(A-C)=P(A)-P(C)=0.3 \Rightarrow P(C)=0.3$。又因 $C\subset A$ 且 $C\subset B$，故 $C\subset AB$。所以 $P(AB\overline{C})=P(AB-C)=P(AB)-P(C)=0.45-0.3=0.15$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-12】 已知A和B相互独立，且 $P(A\cup B)=0.9, P(A)=0.4$，则P(B)=【$\frac{5}{6}$】。\\
+【解题方法】利用独立事件并集公式：$P(A\cup B)=1-P(\overline{A})P(\overline{B}) \Rightarrow 0.9 = 1 - 0.6\times P(\overline{B}) \Rightarrow P(\overline{B})=\frac{1}{6}$，从而 $P(B)=\frac{5}{6}$。\\
+【难度系数：0.3】
+
+
+\section*{二、 一维随机变量及其分布律/密度函数}
+
+【2019-3】（2020-11相同） 随机变量 $X\sim t(n)(n>1)$，$Y=\frac{1}{X^2}$ 则【D】。\\
+(A) $Y\sim\chi^2(n)$ \quad (B) $Y\sim\chi^2(n-1)$ \quad (C) $Y\sim F(n,1)$ \quad (D) $Y\sim F(1,n)$。\\
+【解题方法】由 $X\sim t(n)$ 定义可知 $X=\frac{U}{\sqrt{V/n}}$，其中 $U\sim N(0,1), V\sim \chi^2(n)$ 且相互独立。故 $Y=\frac{1}{X^2}=\frac{V/n}{U^2/1}$。由于 $U^2 \sim \chi^2(1)$，按照F分布定义，该结构服从 $F(n,1)$ 的倒数，即 $F(1,n)$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2019-5】（2023-8、2024-4相同） X的密度函数为 $f(x)$，且满足 $f(-x)=f(x)$，$F(x)$ 为X的分布函数，则对任意实数a，必有【B】。\\
+(A) $F(-a)=1-\int_0^a f(x)dx$ \quad (B) $F(-a)=\frac{1}{2}-\int_0^a f(x)dx$ \\
+(C) $F(-a)=F(a)$ \quad (D) $F(-a)=2F(a)-1$。\\
+【解题方法】由对称性知 $\int_{-\infty}^0 f(x)dx = \frac{1}{2}$。故 $F(-a)=\int_{-\infty}^{-a} f(x)dx = \int_{-\infty}^0 f(x)dx - \int_{-a}^0 f(x)dx = \frac{1}{2}-\int_0^a f(x)dx$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-5】（2024-5相同） X是连续型随机变量，$Y\sim B(1,p)$，则随机变量X-Y的分布函数是【B】。\\
+(A)分段函数 \quad (B)连续函数 \quad (C)分段函数且恰有一个间断点 \quad (D)分段函数且至少有两个间断点。\\
+【解题方法】由于X是连续型随机变量，对任意单点概率 $P(X=c)=0$。对于任意实数t，$P(X-Y=t)=P(X-1=t,Y=1)+P(X-0=t,Y=0) \le P(X=t+1)+P(X=t)=0$，单点概率为0说明其分布函数连续。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2020-6】（2024-6相同） 设随机变量 $X\sim N(0,1)$，对于任意给定的 $\alpha\in(0,1)$，数 $u(\alpha)$ 满足 $P(X>u(\alpha))=\alpha$。若概率 $P(|X|<x)=\alpha本地$，则x等于【C】。\\
+(A) $u(\frac{\alpha}{2})$ \quad (B) $u(1-\frac{\alpha}{2})$ \quad (C) $u(\frac{1-\alpha}{2})$ \quad (D) $u(\frac{1}{2}-\alpha)$。\\
+【解题方法】由 $P(|X|<x)=1-2P(X>x)=\alpha \Rightarrow P(X>x)=\frac{1-\alpha}{2}$。根据上侧分位数的定义，直接得到 $x=u(\frac{1-\alpha}{2})$。\\
+【难度系数：0.4本地】
+
+\par\vspace{\baselineskip}
+
+【2021-4】 一批机器零件的寿命X在区间(0,40)上服从密度函数为 $f(x)$ 的连续分布，其中 $f(x)$ 与 $(10+x)^{-2}$ 成正比，则该批零件寿命小于5的概率为【B】。\\
+(A) $\frac{3}{10}$ \quad (B) $\frac{5}{12}$ \quad (C) $\frac{7}{12}$ \quad (D) $\frac{7}{10}$。\\
+【解题方法】设 $f(x)=\frac{A}{(10+x)^2} (0<x<40)$。由归一性积分 $\int_0^{40} \frac{A}{(10+x)^2}dx = 1 \Rightarrow A(\frac{1}{10}-\frac{1}{50})=1 \Rightarrow A=\frac{25}{2}$。进而计算 $P(X<5)=\int_0^5 \frac{25}{2(10+x)^2}dx = \frac{25}{2}(\frac{1}{10}-\frac{1}{15})=\frac{5}{12}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2022-13】（大题） 设随机变量 $X=e^Y$ 服从参数为e的指数分布，求随机变量Y的概率密度。\\
+【解题方法】分布函数法。总体 $X \sim E(e)$，其密度为 $f_X(x)=e \cdot e^{-ex} (x>0)$。对Y求分布函数：$F_Y(y)=P(Y\le y)=P(lnX \le y)=P(X \le e^y)=1-e^{-e \cdot e^y}$。对其求导求得密度 $f_Y(y)=\frac{dF_Y(y)}{dy} = e^{y+1}\cdot e^{-e^{y+1}} (-\infty < y < +\infty)$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2023-4】 设连续型随机变量X的分布函数 $F(x) = ae^{-x}+b (x\ge0), 0 (x<0)$，则向量 $(a,b)=$ 【C】。\\
+(A) (1,1) \quad (B) (1,-1) \quad (C) (-1,1) \quad (D) (0,1)。\\
+【解题方法】因为是连续型随机变量，在 $x=0$ 处连续，故 $F(0)=a+b=0$。又当 $x\rightarrow +\infty$ 时 $F(+\infty)=b=1$。联立解得 $a=-1, b=1$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2023-13】 假设一个设备在任何长度为1的时间内发生故障的次数N(t)服从参数为 $\lambda (\lambda>0)$ 的泊松分布。T表示相继两次故障之间的时间间隔，则对于任意实数 $t>0$，概率 $P\{T>t\}=$ 【C】。\\
+(A) 0 \quad (B) $\lambda t$ \quad (C) $e^{-\lambda t}$ \quad (D) $1-e^{-\lambda t}$。\\
+【解题方法】“相继两次故障之间的时间间隔大于t”等价于“在长度为t的时间段内没有发生故障”。利用泊松分布公式，发生0次的概率即为 $e^{-\lambda t}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2023-14】 连续函数F(x)是某一随机变量的分布函数，且F(0)=0，则下列函数可以作为分布函数的是【B】。\\
+(A) $G_1(x)=1-F(\frac{1}{x}) (x>1)$ \quad (B) $G_2(x)=F(x)-F(\frac{1}{x}) (x>1)$ \\
+(C) $G_3(x)=1+F(\frac{1}{x}) (x>1)$ \quad (D) $G_4(x)=F(x)+F(\frac{1}{x}) (x>1)$。\\
+【解题方法】分布函数必须满足单调不减以及极限值 $G(+\infty)=1, G(-\infty)=0$。对于B，$G_2(1)=F(1)-F(1)=0$，$G_2(+\infty)=F(+\infty)-F(0)=1-0=1$，且导数大于0，满足公理。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2023-15】 随机变量X的分布函数F(x)在x=1处连续，且F(1)=1，记 $Y = a (X>1), b (X=1), c (X<1)$，则Y的期望EY=【D】。\\
+(A) a+b+c \quad (B) a \quad (C) b \quad (D) c。\\
+【解题方法】由于F(x)在x=1处连续且 $F(1)=1$，说明 $P(X<1)=F(1)=1$，而 $P(X\ge1)=0$。因此随机变量X几乎处处小于1，从而Y几乎处处等于c，其期望值 $EY=c$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2024-2】 设随机变量X服从二项分布b(n,p)，则必须有【D】。\\
+(A) $0\le p<1, EX=np$ \quad (B) $0<p\le1, DX=np(1-p)$ \quad (C) $0\le p\le1, DX=np(1-p)$ \quad (D) $0<p<1, EX=np$。\\
+【解题方法】传统二项分布参数定义中，试验成功的概率满足 $0<p<1$，且数学期望公式恒为 $EX=np$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2024-三】（大题） 请准确陈述正态分布的定义，并计算其期望EX与方差DX。\\
+【解题方法】定义：若随机变量X的概率密度满足 $f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} (-\infty<x<+\infty)$，则称X服从正态分布。通过标准化变量 $Y=\frac{X-\mu}{\sigma}\sim N(0,1)$，利用奇函数积分性质易证 $E(Y)=0 \Rightarrow E(X)=\mu$，利用分部积分可得 $E(Y^2)=1 \Rightarrow D(Y)=1 \Rightarrow D(X)=\sigma^2$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-6】 设F(x)为随机变量X的分布函数，则下列仍为分布函数的是【A】。\\
+(A) F(2x+1) \quad (B) F(2-x) \quad (C) F($x^2$) \quad (D) 1-F(-x)。\\
+【解题方法】F(2x+1)保留了原分布函数的单调不减性，且满足 $x\rightarrow-\infty$ 时为0，$x\rightarrow+\infty$ 时为1。而B和C选项在 $x\rightarrow-\infty$ 时极限不为0。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-7】 已知 $X\sim N(0,1), Y\sim N(\mu,\sigma^2)$，密度函数分别为 $\varphi(x), f(y)$，分布函数为 $\Phi(x), F(y)$。所有命题中错误的个数为【B】(共2个错误：②和⑦)。\\
+【解题方法】命题②应为 $P(|X|\le a)=2\Phi(a)-1$（原题干少写或写错符号）；命题⑦正态变换密度应带系数 $\frac{1}{\sigma}$，即 $f(y)=\frac{1}{\sigma}\varphi(\frac{y-\mu}{\sigma})$。其余基本性质皆正确，故错误个数为2。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2019-五】（大题） 已知随机变量X，$Y=X^2+X+1$。(1)若X分布为 $P(X=-1)=P(X=0)=P(X=1)=1/3$ 求Y分布函数；(2)若给X分布函数为 $F_X(x)$，求Y分布函数；(3)若X在(0,1)上服从均匀分布，求Y的概率密度。\\
+【解题方法】(1) 算出Y取值为：$X=-1, Y=1; X=0, Y=1; X=1, Y=3$。故 $P(Y=1)=2/3, P(Y=3)=1/3$，写出分段阶梯分布函数。(2) 配方 $Y=(X+\frac{1}{2})^2+\frac{3}{4}\ge\frac{3}{4}$。当 $y \ge \frac{3}{4}$ 时，$F_Y(y) = P(|X+\frac{1}{2}| \le \sqrt{y-\frac{3}{4}}) = F_X(\sqrt{y-\frac{3}{4}}-\frac{1}{2}) - F_X(-\sqrt{y-\frac{3}{4}}-\frac{1}{2})$。(3) 当 $X\sim U(0,1)$ 时，限制区间 $0<X<1 \Rightarrow 1<Y<3$。由 $F_Y(y)=\sqrt{y-\frac{3}{4}}-\frac{1}{2}$，求导可得 $f_Y(y)=\frac{1}{\sqrt{4y-3}} (1<y<3)$，其余为0。\\
+【难度系数：0.6】
+
+
+\section*{三、 多维随机变量及其联合、边缘与条件分布}
+
+【2021-3】 在矩形区域D:-3<=x<=3, 0<=y<=a上，若使 $f(x,y)=\frac{xy}{1+y^2}$ 构成均匀分布的概率密度函数，则正数a的值【D】。\\
+(A) a=1/2 \quad (B) a=1/3 \quad (C) a=1/6 \quad (D)不存在。\\
+【解题方法】均匀分布的概率密度必须在定义域内为恒定常数，而给定的表达式 $f(x,y)$ 随x,y变化，不可能构成均匀分布的密度函数，故选D。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2021-5】 随机变量X和Y相互独立，分布函数分别为 $F_1(x)$ 和 $F_2(y)$，则随机变量 $U=\max\{X,Y\}$ 的分布函数为【C】。\\
+(A) $\max\{F_1(u),F_2(u)\}$ \quad (B) $\min\{1-F_1(u),1-F_2(u)\}$ \quad (C) $F_1(u)F_2(u)$ \quad (D) $1-[1-F_1(u)][1-F_2(u)]$。\\
+【解题方法】利用最大值分布函数公式，由X与Y相互独立， $F_{\max}(u)=P(X\le u, Y\le u)=P(X\le u)P(Y\le u)=F_1(u)F_2(u)$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2021-三】（大题） X和Y分别表示甲、乙两公司2021年上半年度的利润(亿元)，获得联合密度函数 $f(x,y)=\frac{x^2y}{18} (0\le x\le 3, 0\le y\le 2)$，(1)证明f(x,y)是概率密度函数；(2)计算甲公司利润大于2，乙公司利润大于1的概率；(3)计算乙公司利润大于1的概率。\\
+【解题方法】(1) 验证非负性及双重积分：$\int_0^3 \int_0^2 \frac{x^2y}{18} dydx = \int_0^3 \frac{x^2}{18} \cdot 2 dx = 1$，得证。(2) $P(X>2,Y>1)=\int_2^3 \int_1^2 \frac{x^2y}{18}dydx = \frac{19}{36}$。(3) $P(Y>1)=\int_0^3 \int_1^2 \frac{x^2y}{18}dydx = \frac{3}{4}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-四】（大题） 平面区域D由直线y=x, y=0, x=1, x=2所围成，二维随机变量(X,Y)服从区域D上的均匀分布。(1)求联合密度函数f(x,y)；(2)求边缘密度函数$f_Y(y)$；(3)求条件密度函数$f_{X|Y}(x|y)$。\\
+【解题方法】(1) 区域D为直角梯形，面积为 $A=\int_1^2 xdx = 1.5$。故联合密度 $f(x,y)=\frac{2}{3} ((x,y)\in D)$，其余为0。(2) 积分求边缘密度：当 $0<y\le 1$ 时，$f_Y(y)=\int_1^2 \frac{2}{3}dx = \frac{2}{3}$；当 $1<y<2$ 时，$f_Y(y)=\int_y^2 \frac{2}{3}dx = \frac{2}{3}(2-y)$。(3) 利用公式 $f_{X|Y}(x|y)=\frac{f(x,y)}{f_Y(y)}$，分段除以边缘密度即可求得。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-6】 设随机变量 $X_i (i=1,2)$ 的概率分布为 $P(X_i=0)=0.5, P(X_i=1)=0.25, P(X_i=2)=0.25$，且满足 $P(X_1X_2=0)=1$，则 $P(X_1=X_2)=$ 【A】。\\
+(A) 0 \quad (B) 0.25 \quad (C) 0.5 \quad (D) 0.75。\\
+【解题方法】由 $P(X_1X_2=0)=1$ 可知非零交叉项概率全为0，即 $p_{11}=p_{12}=p_{21}=p_{22}=0$。通过边缘分布推导可得 $p_{00}=0$。因此 $P(X_1=X_2)=p_{00}+p_{11}+p_{22}=0$。\\
+【难度系数：0.6】
+
+\par\vspace{\baselineskip}
+
+【2023-四】（大题） 已知随机变量X在区间(1,3)上服从均匀分布，随机变量Y在X与2构成的区间上服从均匀分布。(1)求X和Y联合密度f(x,y)；(2)求边缘概率密度$f_Y(y)$；(3)求 $P\{X+Y\ge4\}$。\\
+【解题方法】(1) $f_X(x)=1/2 (1<x<3)$。当 $1<x<2$ 时 $f_{Y|X}(y|x)=\frac{1}{2-x}(1<x<y<2)$；当 $2<x<3$ 时 $f_{Y|X}(y|x)=\frac{1}{x-2}(2<y<x<3)$。相乘得到联合密度 $f(x,y)=\frac{1}{2(2-x)} (1<x<y<2)$ 或 $\frac{1}{2(x-2)} (2<y<x<3)$。(2) 对x求积分，当 $1<y<2$ 时边缘密度为 $-\frac{1}{2}\ln(2-y)$；当 $2<y<3$ 时边缘密度为 $-\frac{1}{2}\ln(y-2)$。(3) 积分算得 $P\{X+Y\ge4\}=\int_2^3 dx \int_2^x \frac{1}{2(x-2)}dy = \frac{1}{2}$。\\
+【难度系数：0.6】
+
+\par\vspace{\baselineskip}
+
+【2025-8】 设二维随机变量(X,Y)的分布函数为 $F(x,y)$，边缘分布函数分别为 $F_X(x)$ 和 $F_Y(y)$，则概率 $P(X>1,Y>2)=$ 【D】。\\
+(A) $1-F(1,2)$ \quad (B) $F(1,2)+F_X(1)+F_Y(2)-1$ \quad (C) $1-F_X(1)-F_Y(2)$ \quad (D) $1-F_X(1)-F_Y(2)+F(1,2)$。\\
+【解题方法】利用对立事件展开法：$P(X>1,Y>2)=1-P((X\le1)\cup(Y\le2)) = 1-[P(X\le1)+P(Y\le2)-P(X\le1,Y\le2)] = 1-F_X(1)-F_Y(2)+F(1,2)$。\\
+【难度系数：0.4】
+
+
+\section*{四、 随机变量的数字特征 (期望、方差、协方差、相关系数)}
+
+【2019-2】 设总体样本满足 $X\sim N(\mu,\sigma^2)$，$\bar{X}$ 为样本均值，$S^2$ 为样本方差，则有【B】。\\
+(A) $E(\bar{X}^2-S^2)=\mu^2-\sigma^2$ \quad (B) $E(\bar{X}-S^2)=\mu-\sigma^2$ \quad (C) $E(\bar{X}^2+S^2)=\mu^2+\sigma^2$ \quad (D) $E(\bar{X}-S^2)=\mu^2+\sigma^2$。\\
+【解题方法】利用无偏性，$E(\bar{X})=\mu, E(S^2)=\sigma^2$，直接相减得 $E(\bar{X}-S^2)=\mu-\sigma^2$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2019-4】 $X_1,...,X_n$ 为取自总体 $N(0,1)$ 的简单随机样本，记 $\bar{X}$ 为均值，$S^2$ 为方差，$T=(\bar{X}+1)(S^2+1)$，则 $E(T)=$ 【C】。\\
+(A) 0 \quad (B) 1 \quad (C) 2 \quad (D) 4。\\
+【解题方法】正态总体中样本均值 $\bar{X}$ 与样本方差 $S^2$ 相互独立。故 $E(T)=E(\bar{X}+1)E(S^2+1)$。因 $E(\bar{X})=0, E(S^2)=1$，代入得 $1 \times 2 = 2$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2019-6】 设随机变量X,Y相互独立，且 $X\sim N(0,2), Y\sim N(0,3)$，则 $D(X^2+Y^2)=$ 【D】。\\
+(A) 5 \quad (B) 13 \quad (C) 18 \quad (D) 26。\\
+【解题方法】由独立性，$D(X^2+Y^2)=D(X^2)+D(Y^2) = E(X^4)-[E(X^2)]^2 + E(Y^4)-[E(Y^2)]^2$。已知 $E(X^2)=2, E(X^4)=3\sigma^4=3\times2^2=12 \Rightarrow D(X^2)=12-4=8$；同理 $D(Y^2)=3\times3^2-3^2=18$。两者相加得26。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2019-8】（2024-13相同） 设随机变量X服从参数为1的指数分布，记 $Y=\max\{X,1\}$，则EY=【B】。\\
+(A) 1 \quad (B) $1+e^{-1}$ \quad (C) $1-e^{-1}$ \quad (D) $e^{-1}$。\\
+【解题方法】$EY = \int_0^{+\infty} \max(x,1)e^{-x}dx = \int_0^1 1\cdot e^{-x}dx + \int_1^{+\infty} x e^{-x}dx = (1-e^{-1}) + (2e^{-1}) = 1+e^{-1}$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2019-10】 设 $X\sim U[-1,1]$，则 $U=\arcsin X$ 和 $V=\arccos X$ 的相关系数等于【A】。\\
+(A) -1 \quad (B) 0 \quad (C) 0.5 \quad (D) 1。\\
+【解题方法】因为 $\arcsin X + \arccos X = \frac{\pi}{2}$，说明U与V存在严格的反向线性关系，故其相关系数必为 $-1$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-7】（2024-3相同） 二维随机变量(X,Y)的密度函数为 $f(x,y)=\frac{2}{3}(x+2y) (0\le x\le1,0\le y\le1)$，则X的边缘概率密度 $f_X(x)=$ 【D】。\\
+(A) $\frac{4}{3}(x+1)$ \quad (B) $\frac{2}{3}x+1$ \quad (C) $\frac{4}{3}x+1$ \quad (D) $\frac{2}{3}(x+1)$。\\
+【解题方法】对y求单重积分：$f_X(x)=\int_0^1 \frac{2}{3}(x+2y)dy = \frac{2}{3}[xy+y^2]|_0^1 = \frac{2}{3}(x+1)$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-8】 随机变量X与Y独立同分布，且 $X\sim N(-2,3)$，则(X,Y)、X+Y、X-Y、XY、X/Y中服从正态分布的个数是【B】。\\
+(A) 2 \quad (B) 3 \quad (C) 4 \quad (D) 5。\\
+【解题方法】正态变量的线性组合依然是正态分布。故 $X+Y, X-Y$ 以及二维正态向量 $(X,Y)$ 满足，而乘积与商不满足，数量为3。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2020-9】（2024-9相同） 随机变量(X,Y)在区域 $D=\{(x,y)|-1<x<1,-1<y<1\}$ 上服从均匀分布，则以下必然成立的是【D】。\\
+(A) $P(X+Y\ge0)=\frac{1}{4}$ \quad (B) $P(X-Y\ge0)=\frac{1}{4}$ \quad (C) $P(\max\{X,Y\}\ge0)=\frac{1}{4}$ \quad (D) $P(\min\{X,Y\}\ge0)=\frac{1}{4}$。\\
+【解题方法】区域总面积为4。$P(\min\{X,Y\}\ge0) = P(X\ge0, Y\ge0)$，该第一象限正方形面积为1，故概率为 $1/4$。而和、差的概率为 $1/2$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-10】（2022-4、2024-14相同） 随机变量X与Y独立同分布，记U=X+Y, V=X-Y本地，则U与V必然【C】。\\
+(A) P(UV)=0 \quad (B) P(UV)!=0 \quad (C) $\rho_{UV}=0$ \quad (D) $\rho_{UV}!=0本地$。\\
+【解题方法】计算协方差：$Cov(U,V)=E(U\cdot V)-EU\cdot EV = E(X^2-Y^2)-E(X+Y)E(X-Y)=DX-DY$。由于独立同分布，$DX=DY$，故 $Cov(U,V)=0 \Rightarrow \rho_{UV}=0$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-12】 $X_1,...,X_n$ 为取自总体 $N(0,1)$ 的简单随机样本，记 $\bar{X}$ 为均值，$S^2$ 为方差，$T=(\bar{X}+2)(S^2-2)$本地，则 $E(T)=$ 【C】。\\
+(A) 0 \quad (B) 2 \quad (C) -2 \quad (D) 4。\\
+【解题方法】同独立性原理：$E(T)=E(\bar{X}+2)E(S^2-2) = 2 \times (1-2) = -2$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-15】 设总体X服从参数为1的指数分布，$X_1,...,X_8$ 是来自其样本，则描述 $E(\bar{X})=1, D(\bar{X})=\frac{1}{8}, E(S^2)=1, E(A_2)=2$ 中正确的个数是【D】。\\
+(A) 1 \quad (B) 2 \quad (C) 3 \quad (D) 4。\\
+【解题方法】全部正确。$EX=1, DX=1 \Rightarrow E(\bar{X})=1, D(\bar{X})=1/8, E(S^2)=1$。二阶原点矩 $E(A_2)=E(X^2)=DX+(EX)^2 = 1+1=2$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-6】 已知随机变量X和随机变量Y的相关系数为0.7，令U=3X+1, V=5-2Y本地，则U和V的相关系数等于【A】。\\
+(A) -0.7 \quad (B) 0.7 \quad (C) -0.3 \quad (D) 0.3。\\
+【解题方法】利用相关系数的线性变换性质：$\rho(aX+b, cY+d) = \frac{ac}{|ac|}\rho(X,Y)$。由于 $a=3, c=-2$，乘积为负，故变换后相关系数为 $-0.7$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2021-7】 设随机变量 $X\sim E(1), Y\sim B(2,1/3)$，则概率 $P(XY\le2\ln 2)=$ 【D】。\\
+(A) 1/2 \quad (B) 2/3 \quad (C) 3/4 \quad (D) 5/6。\\
+【解题方法】利用全概率公式对离散变量Y展开：$P(Y=0)\cdot本地1 + P(Y=1)P(X\le 2\ln 2) + P(Y=2)P(X\le \ln 2) = \frac{4}{9} + \frac{4}{9}(1-e^{-2\ln 2}) + \frac{1}{9}(1-e^{-\ln 2}) = \frac{5}{6}$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2021-8】 对于任意随机变量X和Y，如果 $D(X+Y)=D(X-Y)$，则【D】。\\
+(A)X和Y独立 \quad (B)X和Y不独立 \quad (C) DXY=DX DY \quad (D) EXY=EX EY。\\
+【解题方法】展开方差：$DX+DY+2Cov(X,Y) = DX+DY-2Cov(X,Y) \Rightarrow Cov(X,Y)=0$。由此推出 $EXY-EX\cdot EY=0 \Rightarrow EXY=EX\cdot EY$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2021-9】 设随机变量X服从二项分布 $X\sim B(n,0.8)$，c为任意实数，若 $E[(X-c)^2]$ 的最小值为12本地，则n最接近于【C】。\\
+(A) 16 \quad (B) 32 \quad (C) 75 \quad (D) 96。\\
+【解题方法】根据方差的性质，$E[(X-c)^2]$ 在 $c=EX$ 时取得最小值，该最小值为其方差 $D(X)$。故 $D(X)=n \times 0.8 \times 0.2 = 0.16n = 12 \Rightarrow n = 75$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-10】 设 $X\sim N(0,3), Y\sim U(0,3)$，且 $D(X-Y)=3$，则 $\rho_{X,Y}=$ 【A】。\\
+(A) 1/4 \quad (B) 1/3 \quad (C) 1/2 \quad (D) 1。\\
+【解题方法】已知 $DX=3, DY=3^2/12 = 3/4$。由 $D(X-Y)=DX+DY-2Cov(X,Y)=3 \Rightarrow Cov(X,Y)=3/8$。代入得相关系数 $\rho = \frac{3/8}{\sqrt{3 \times (3/4)}} = 1/4$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-12】 设随机变量 $X_1,...,X_{10}$ 独立同分布且方差存在，设 $U=X_1+...+X_6, V=X_5+...+X_{10}$，则相关系数 $\rho_{U,V}=$ 【B】。\\
+(A) 1/4 \quad (B) 1/3 \quad (C) 1/2 \quad (D) 1。\\
+【解题方法】设各变量方差为b。$DU=DV=6b$。协方差 $Cov(U,V) = Cov(X_5+X_6, X_5+X_6) = 2b$。故相关系数 $\rho = 2b / 6b = 1/3$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-15】（2022-14、2024-12相同） 设样本 $X_1,X_2,X_3$ 来自总体 $X\sim N(0,1)$，则 $E[(\bar{X}-S^2)^2]=$ 【A】。\\
+(A) $\frac{7}{3}$ \quad (B) 3 \quad (C) $\frac{16}{3}$ \quad (D) $\frac{25}{3}$。\\
+【解题方法】由独立性展开得 $E(\bar{X}^2) - 2E(\bar{X})E(S^2) + E[(S^2)^2] = D(\bar{X}) + 0 + D(S^2) + [E(S^2)]^2$。因 $n=3$，故 $D(\bar{X})=1/3$。由 $\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(2) \Rightarrow 2S^2 \sim \chi^2(2)$，得 $D(2S^2)=4 \Rightarrow D(S^2)=1$。计算得 $1/3 + 1 + 1 = 7/3$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-3】（2023-6相同） 设随机变量 $X\sim U(0,3)$，随机变量Y服从参数为2的泊松分布，且X与Y的协方差为-1，则 $D(2X-Y+1)=$ 【C】。\\
+(A) 1 \quad (B) 5 \quad (C) 9 \quad (D) 12。\\
+【解题方法】$DX = 3^2/12 = 3/4, DY = 2$。方差公式展开得：$D(2X-Y+1)=4DX+DY-4Cov(X,Y) = 4(3/4) + 2 - 4(-1) = 9$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2022-5】 本地盒子摸球红球个数X,Y的相关系数问题。\\
+【解题方法】联立二维离散分布表算得：$EX=EY=0.5, DX=DY=0.25, E(XY)=0.3$。从而协方差为 $0.3-0.25=0.05$，相关系数 $\rho = 0.05/0.25 = 1/5$，选B。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-7】 设随机变量 $X\sim N(0,1)$，在X=x条件下的随机变量 $Y\sim N(x,1)$本地，则X与Y相关系数为【C】。\\
+(A) 1/4 \quad (B) 1/2 \quad (C) $\frac{\sqrt{2}}{2}$ \quad (D) $\frac{\sqrt{3}}{2}$。\\
+【解题方法】由条件正态构造联合密度，积分求得边缘分布 $Y\sim N(0,2)$，进而求出 $EXY=1$。代入公式得相关系数 $\rho = \frac{1}{\sqrt{1 \times 2}} = \frac{\sqrt{2}}{2}$。\\
+【难度系数：0.6】
+
+\par\vspace{\baselineskip}
+
+【2022-8】 设来自总体 $N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;\rho)$ 的简单随机样本，$\hat{\theta}=\bar{X}-\bar{Y}$，则【B】。\\
+【解题方法】数学期望满足线性关系为 $\theta$。方差为 $D(\bar{X})+D(\bar{Y})-2Cov(\bar{X},\bar{Y}) = \frac{\sigma_1^2+\sigma_2^2-2\rho\sigma_1\sigma_2}{n}$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-10】 二维离散独立最值问题，已知 $\{max(X,Y)=2\}$ 与 $\{min(X,Y)=1\}$ 相互独立，求 $Cov(X,Y)$。\\
+【解题方法】由概率分布和独立条件解出分布表中的未知数 $b=0.4, a=0.2$，进而算出特征：$EX=-0.2, EY=1.2, EXY=-0.6$，协方差为 $-0.36$，选B。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-11】 设随机变量 $X\sim N(-1,2), Y\sim N(1,2)$本地，而且X与Y不相关，令U=aX+Y, V=X+bY，若U与V也不相关，则有【C】。\\
+(A) a=b=0 \quad (B) a=b!=0 \quad (C) a+b=0 \quad (D) ab=0。\\
+【解题方法】$Cov(U,V)=aD(X)+bD(Y)+(ab+1)Cov(X,Y) = 2a+2b+0 = 2(a+b)=0 \Rightarrow a+b=0$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2022-13】 设随机变量 $X_1,...,X_n$ 独立同分布，且四阶矩存在。对任意 $\epsilon>0$，有 $P\{|\frac{1}{n}\sum X_i^2 - \mu_2|\ge\epsilon\}\le$ 【A】。\\
+(A) $\frac{\mu_4-\mu_2^2}{n\epsilon^2}$ \quad (B) $\frac{\mu_4-\mu_2^2}{\sqrt{n}\epsilon^2}$ \quad (C) $\frac{\mu_2-\mu_1^2}{n\epsilon^2}$ \quad (D) $\frac{\mu_2-\mu_1^2}{\sqrt{n}\epsilon^2}$。\\
+【解题方法】应用切比雪夫不等式，将 $X_i^2$ 视为新的变量序列，其期望为 $\mu_2$，方差为 $D(X_i^2)=\mu_4-\mu_2^2$。其样本均值的方差为 $\frac{\mu_4-\mu_2^2}{n}$，直接代入即可。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2023-9】 随机变量 $X_1,...,X_8$ 独立同分布，求 $U=X_1+...+X_5, V=X_4+...+X_8$ 的相关系数【C】。\\
+(A) 2/8 \quad (B) 2/6 \quad (C) 2/5 \quad (D) 2/4。\\
+【解题方法】$DU=DV=5本地b, Cov(U,V)=Cov(X_4+X_5, X_4+X_5)=2b$。故相关系数为 $2/5$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-9】 设随机变量X的概率密度函数为 $f(x)=\frac{1}{2}e^{-|x|}$，则 $D(X^2)=$ 【A】。\\
+(A) 20 \quad (B) 22 \quad (C) 84 \quad (D) 94。\\
+【解题方法】利用伽马函数积分求高阶矩：$E(X^2)=\int_0^{+\infty} x^2 e^{-x}dx = \Gamma(3)=2$；$E(X^4)=\int_0^{+\infty} x^4 e^{-x}dx = \Gamma(5)=24$。故 $D(X^2)=24-2^2=20$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-10】 设总体 $X\sim B(m,\theta)$，则 $E(\sum_{k=1}^n (X_k-\bar{X})^2)=$ 【B】。\\
+【解题方法】由统计量性质 $\sum (X_k-\bar{X})^2 = (n-1)S^2$。其数学期望为 $(n-1)E(S^2)=(n-1)D(X) = m(n-1)\theta(1-\theta)$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-四】（大题） 设二维随机变量(X,Y)的联合密度为 $f(x,y)=3x (0<y<x<1)$，求相关系数 $\rho_{X,Y}$。\\
+【解题方法】通过二重积分分别求得 $E(X)=3/4, E(Y)=3/8, E(X^2)=3/5, E(Y^2)=1/5, E(XY)=3/10$。算得 $D(X)=3/80, D(Y)=19/320, Cov(X,Y)=3/160$。代入得相关系数 $\rho = \frac{3}{\sqrt{57}}$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2020-4本地】（方差补充题） 设样本 $X_1,...,X_n$ 取自 $N(\mu,\sigma^2)$，则其样本方差的方差 $D(S^2) = $ 【C】。\\
+(A) $\frac{2\sigma^2}{n-1}$ \quad (B) $\frac{2\sigma^2}{n}$ \quad (C) $\frac{2\sigma^4}{n-1}$ \quad (D) $\frac{2\sigma^4}{n}$。\\
+【解题方法】基于卡方抽样分布性质：$\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$，方差为 $2(n-1)$。变换即得 $D(S^2)=\frac{2\sigma^4}{n-1}$。\\
+【难度系数：0.4】
+
+
+\section*{五· 实际应用优化、中心极限定理与期望最大化决策}
+
+【2019-四】（2024-六、2025-三相同大题） 商品每周需求量X服从[10,30]上的均匀分布，进货量为s(整数)。每售一单位获利500元；供大于求则削价，每单位亏损100元；供不应求可外部调剂，每单位可获利300元。为使期望利润不少于9280元，求最小进货量。\\
+【解题方法】建立利润关于需求量x的分段函数：$g(x) = 600x-100s (10<x<s)$ 以及 $200s+300x (s\le x<30)$。通过积分求期望利润：$E(Z) = \int_{10}^{30} g(x)\frac{1}{20}dx = -7.5s^2+350s+5250$。令该二次函数 $\ge 9280 \Rightarrow (3s-62)(2.5s-65)\le 0 \Rightarrow 20.67 \le s \le 26$，由于求最小整数进货量，故最小 $s=21$。\\
+【难度系数：0.6】
+
+\par\vspace{\baselineskip}
+
+【2021-五-1】（大题） 某公司有260台电话分机，每台独立工作且都有4\%概率请求外部信道。利用中心极限定理，估计公司应配备多少信道，才能使信道请求得到满足的概率超过95\%。\\
+【解题方法】设总请求数为 $X=\sum X_k \sim B(260, 0.04)$，期望 $EX=10.4$，方差 $DX=260\times0.04\times0.96=9.984$。利用中心极限定理标准化：$P(X\le n) = \Phi(\frac{n-10.4}{\sqrt{9.984}}) \ge 0.95 \Rightarrow \frac{n-10.4}{3.16} \ge 1.645 \Rightarrow n \ge 15.6$，故至少配备16个信道。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2021-五-2】（大题） 需求量X与进货量Y均独立地服从[10,20]上的均匀分布。每售一单位商品获利1000元；若供不应求可外部调剂，每单位商品获利500元。求商店获利的期望值。\\
+【解题方法】联合密度为 $1/100$。利润函数 $Z = 1000Y+500(X-Y) (X\ge Y)$ ；$1000X (X<Y)$。计算期望特征的二重积分：$EZ = \int_{10}^{20}\int_{10}^x \frac{500y+500x}{100}dydx + \int_{10}^{20}\int_x^{20}\frac{1000x}{100}dydx = 14166.67$。\\
+【难度系数：0.6】
+
+\par\vspace{\baselineskip}
+
+【2022-五】（大题） 某种球体元件直径 $X\sim N(\mu,1)$。当 $10\le X\le 12$ 时每件获利 $c_1$ 元；当 $X<10$ 时每件亏损 $c_2$ 元；当 $X>12$ 时每件亏损 $c_3$ 元。问 $\mu$ 取何值时，每件的期望利润最大？\\
+【解题方法】写出期望利润表达式 $g(\mu) = (c_1+c_3)\Phi(12-\mu) - (c_1+c_2)\Phi(10-\mu) - c_3$。对 $\mu$ 求导并令导数等于0，利用标准正态密度公式转化为指数方程：$(c_1+c_3)e^{-\frac{(12-\mu)^2}{2}} = (c_1+c_2)e^{-\frac{(10-\mu)^2}{2}}$。两边取对数化简求得惟一驻点（极大值点）为 $\mu_0 = 11 - \frac{1}{2}\ln\frac{c_1+c_3}{c_1+c_2}$。\\
+【难度系数：0.6】
+
+\par\vspace{\baselineskip}
+
+【2023-五】（大题） 400名学生，每个学生来家长人数独立同分布，无家长、1名、2名家长的概率分别为0.05, 0.8, 0.15。(1)求参会总家长数超过450的概率；(2)求恰有一名家长参的学生数不多于340的概率。\\
+【解题方法】算出单人参会家长数的期望 $E(X_k)=1.1$，方差 $D(X_k)=0.19$。(1) 总人数X的期望为440，方差为76。根据中心极限定理：$P(X>450) = 1-\Phi(\frac{450-440}{\sqrt{76}}) = 1-\Phi(1.15) = 1-0.8749=0.1251$。(2) 恰有一位家长的学生数 $Y\sim B(400, 0.8)$，期望320，方差64。标准化得 $P(Y\le340) = \Phi(\frac{340-320}{8}) = \Phi(2.5)=0.9938$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2025-五】（大题，结合2019-三） 房间有3扇窗子，仅一扇打开。(1)无记忆小鸟为了飞出房间的试飞次数X的分布律；(2)有记忆（不重复飞同一扇窗）小鸟的试飞次数Y的分布律；(3)计算 $P(X<Y)$ 与 $P(Y<X)$。\\
+【解题方法】(1) 试飞属于几何分布，$P(X=k) = (\frac{2}{3})^{k-1}\times\frac{1}{3} (k=1,2,3,...)$。(2) 有记忆小鸟最多试飞3次：$P(Y=1)=1/3; P(Y=2)=\frac{2}{3}\times\frac{1}{2}=1/3; P(Y=3)=\frac{2}{3}\times\frac{1}{2}\times1=1/3$。(3) 基于X,Y独立性，利用离散概率求和公式：$P(X<Y) = P(X=1,Y=2)+P(X=1,Y=3)+P(X=2,Y=3) = \frac{1}{3}\times\frac{1}{3}+\frac{1}{3}\times\frac{1}{3}+\frac{2}{9}\times\frac{1}{3} = \frac{8}{27}$。同理算得 $P(X=Y)=19/81$，由对立面可得 $P(Y<X) = 1 - \frac{8}{27} - \frac{19}{81} = \frac{38}{81}$。\\
+【难度系数：0.5】
+
+
+\section*{六、 参数估计 (矩估计、无偏性验证与极大似然估计)}
+
+【2019-9】 总体X在区间 $(\theta,\theta+1)$ 上服从均匀分布，则未知参数的矩估计量为【A】。\\
+(A) $\overline{X}-\frac{1}{2}$ \quad (B) $\overline{X}+\frac{1}{2}$ \quad (C) $\overline{X}-1$ \quad (D) $\overline{X}+1$。\\
+【解题方法】总体数学期望为 $E(X) = \theta + \frac{1}{2}$。替换总体期望为样本均值：$\overline{X} = \theta + \frac{1}{2} \Rightarrow \widehat{\theta} = \overline{X} - \frac{1}{2}$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2019-六】（大题） 总体密度函数为 $f(x)=\theta x^{-(\theta+1)} (x>1)$，求参数 $\theta$ 的最大似然估计量。\\
+【解题方法】构造似然函数 $L(\theta)=\prod \theta x_i^{-(\theta+1)} = \theta^n (\prod x_i)^{-(\theta+1)}$。取对数得 $\ln L = n\ln\theta - (\theta+1)\sum \ln x_i$。求导并令其等于0：$\frac{n}{\theta} - \sum \ln x_i = 0 \Rightarrow \widehat{\theta} = \frac{n}{\sum \ln X_i}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-13】（2019选择题3改进本地） 总体服从泊松分布，统计量 $T_1=\frac{1}{n}\sum X_i, T_2=\frac{1}{n-1}\sum_{i=1}^{n-1}X_i + \frac{1}{n}X_n$，则有【D】。\\
+【解题方法】经计算 $E(T_1)=\lambda, E(T_2)=(1+1/n)\lambda \Rightarrow E(T_1)<E(T_2)$。方差 $D(T_1)=\lambda/n, D(T_2)=(\frac{1}{n-1}+\frac{1}{n^2})\lambda \Rightarrow D(T_1)<D(T_2)$，故选D。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2020-14】 已知 $\overline{X}$ 是样本均值，则是参数的矩估计的充分条件是【A】。\\
+【解题方法】对于正态分布 $N(\mu,\sigma^2)$，$E(X)=\mu$，根据矩估计法直接有 $\widehat{\mu}=\overline{X}$。其余分布均不直接对应。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2020-六】（大题） 总体密度为 $f(x)=\lambda^2 x e^{-\lambda x} (x>0)$，求入的矩估计量和最大似然估计量。\\
+【解题方法】(1) 积分得 $E(X)=2/\lambda$，令 $2/\lambda = \overline{X} \Rightarrow \widehat{\lambda} = 2/\overline{X}$。(2) 似然函数 $L(\lambda) = \lambda^{2n}(\prod x_i)e^{-\lambda\sum x_i}$，对数化后求导求驻点，算得最大似然估计量同样为 $\widehat{\lambda} = \frac{2}{\overline{X}}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-13】（2022-12相同） 总体 $X\sim N(\mu,\sigma^2)$，为使 $D=k\sum_{i=1}^{n-1}(X_{i+1}-X_i)^2$ 成为方差 $\sigma^2$ 的无偏估计量，则k=【C】。\\
+(A) $\frac{1}{n-1}$ \quad (B) $\frac{1}{n}$ \quad (C) $\frac{1}{2(n-1)}$ \quad (D) $\frac{1}{2n}$。\\
+【解题方法】利用恒等式变换 $E(X_{i+1}-X_i)^2 = D(X_{i+1}-X_i) = DX_{i+1}+DX_i = 2\sigma^2$。故 $E(D)=k(n-1)\cdot2\sigma^2 = \sigma^2 \Rightarrow k=\frac{1}{2(n-1)}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-14】（2023-10、2025-15相同） 总体概率分布为 $P(X=1)=\frac{1-\theta}{2}, P(X=2)=P(X=3)=\frac{1+\theta}{4}$，已知样本值为1,3,2,2,1,3,1,2，求最大似然估计值【A】。\\
+(A) 1/4 \quad (B) 3/8 \quad (C) 1/2 \quad (D) 5/8。\\
+【解题方法】计数值：1出现3次，2和3出现5次。似然函数 $L(\theta)=(\frac{1-\theta}{2})^3(\frac{1+\theta}{4})^5$，求对数导数 $\frac{-3}{1-\theta}+\frac{5}{1+\theta}=0 \Rightarrow 8\theta=2 \Rightarrow \widehat{\theta}=1/4$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2021-六】（2024-五相同大题） 总体 $X\sim (1,2,3; \theta^2, 2\theta(1-\theta), (1-\theta)^2)$。(1)求最大似然估计量；(2)求矩估计量；(3)对具体样本计算数值。\\
+【解题方法】(1) 似然函数为 $L(\theta)=2^{v_2}\theta^{2v_1+v_2}(1-\theta)^{2n-2v_1-v_2}$，求导可解出最大似然估计量为 $\widehat{\theta}=\frac{2v_1+v_2}{2n}$。(2) 总体期望 $E(X)=3-2\theta$，令 $3-2\theta = \overline{X}$ 得到矩估计量 $\widehat{\theta}=\frac{1}{2}(3-\overline{X})$。(3) 代入具体频数得到两估计值均为 $2/3$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-六】（大题） 寿命服从指数分布，串联电路系统总体寿命 $Y = \min\{X_1,...,X_n\}$，用 $\widehat{\theta}=nY$ 估计参数 $\theta$。验证无偏性并求方差。\\
+【解题方法】(1) 利用独立最小值分布公式求得Y的密度为 $f_Y(y)=\frac{n}{\theta}e^{-\frac{ny}{\theta}} (y>0)$，说明 $Y\sim E(n/\theta)$。(2) 故 $E(Y)=\theta/n$，因此 $E(\widehat{\theta})=nE(Y)=\theta$，属于无偏估计。(3) 元件方差性质 $D(Y)=(\theta/n)^2$，故系统的估计量方差 $D(\widehat{\theta})=n^2 D(Y)=\theta^2$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2023-六】（大题） 总体服从负二项分布 $P(X=n)=C_{n-1}^{r-1}p^r(1-p)^{n-r}$，求参数p的极大似然估计量。\\
+【解题方法】写出似然函数并对数化：$\ln L = C + nr\ln p + (\sum x_i - nr)\ln(1-p)$。对p求导：$\frac{nr}{p} - \frac{\sum x_i - nr}{1-p} = 0 \Rightarrow \widehat{p} = \frac{nr}{\sum X_i} = \frac{r}{\overline{X}}$。\\
+【难度系数：0.4】
+
+\par\vspace{\baselineskip}
+
+【2025-14】 设随机变量序列独立同分布于泊松分布 $P(2)$，则当 $n\rightarrow+\infty$ 时，样本均值依概率收敛于【2】。\\
+【解题方法】直接应用辛钦大数定律（或切比雪夫大数定律），独立同分布且方差有限的随机变量序列，其样本均值必然依概率收敛于其总体数学期望 $E(X)=2$。\\
+【难度系数：0.3】
+
+\par\vspace{\baselineskip}
+
+【2025-六】（大题） 设样本来自总体 $X\sim N(\mu,1)$，求使 $P(X>A)=0.05$ 的点A的极大似然估计量。\\
+【解题方法】首先求出 $\mu$ 的极大似然估计量为 $\widehat{\mu}=\overline{X}$。根据概率性质 $P(X>A)=1-\Phi(A-\mu)=0.05 \Rightarrow A-\mu = 1.645 \Rightarrow A=\mu+1.645$。根据极大似然估计的特征保持不变性，A的极大似然估计量为 $\widehat{A}=\overline{X}+1.645$。\\
+【难度系数：0.4】
+
+
+\section*{七、 假设检验问题 (T检验、Z检验与第二类错误)}
+
+【2019-七】（2025-七相同大题） 标准要求螺钉长度是32.5mm，假定长度服从正态分布（方差未知）。抽取6件，得数据：32.56; 29.66; 31.64; 30.00; 31.87; 31.03。问产品是否合格？($\alpha=0.01$)。\\
+【解题方法】双侧双未知T检验。建立假设 $H_0:\mu=32.5$。计算样本均值 $\overline{x}=31.127$，标准差 $s=1.122$。计算检验统计量 $T=\frac{\overline{x}-32.5}{s/\sqrt{6}} \Rightarrow |T|=2.997$。在自由度为5下，临界值 $t_{0.005}(5)=4.0322$。因 $|T|<4.0322$，故落入接受域，判定螺钉产品合格。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2020-七】（大题） 钢索断裂强度 $X\sim N(\mu,40^2)$。抽取9件，测得强度均值为791。能否认为平均断裂强度为800？ ($\alpha=0.05$)。\\
+【解题方法】双侧已知方差Z检验。建立假设 $H_0:\mu=800$。构造统计量 $Z=\frac{\overline{x}-800}{\sigma/\sqrt{n}} = \frac{791-800}{40/\sqrt{9}} = -0.675$。显著性水平下临界值为 $z_{0.025}=1.96$。由于 $|-0.675|<1.96$，未落入拒绝域，故可以接受原假设，认为强度为800。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2022-15】 设样本来自总体 $N(\mu,4)$，容量为16。检验问题拒绝域为 $W=\{\overline{X}\ge11\}$。当实际 $\mu=11.5$ 时，该检验犯第二类错误的概率为【B】。\\
+(A) $1-\Phi(0.5)$ \quad (B) $1-\Phi(1)$ \quad (C) $1-\Phi(1.5)$ \quad (D) $1-\Phi(2)$。\\
+【解题方法】第二类错误即“纳伪”概率：在 $H_1$ 成立时接受 $H_0$。接受域为 $\overline{X}<11$。已知 $\overline{X}\sim N(11.5, 4/16=0.25)$，故标准差为0.5。计算概率 $P(\overline{X}<11 \mid \mu=11.5) = \Phi(\frac{11-11.5}{0.5}) = \Phi(-1) = 1-\Phi(1)$。\\
+【难度系数：0.5】
+
+\par\vspace{\baselineskip}
+
+【2023-七】（2024-七相同大题） 金属棒长度总体 $X\sim N(\mu,0.15^2)$，标准 $\mu_0=10.5$。抽取15段测得长度均值为10.48，问切割机工作是否正常？ ($\alpha=0.05$)。\\
+【解题方法】单总体已知方差的U检验。检验假设为 $H_0:\mu=10.5$。代入公式计算统计量观测值：$|U|=|\frac{10.48-10.5}{0.15/\sqrt{15}}|=0.516$。双侧显著性临界值 $z_{0.025}=1.96$。由于 $0.516<1.96$，在显著性水平下不能拒绝原假设，故认为切割机工作正常。\\
+【难度系数：0.5】
+
+\end{document}
