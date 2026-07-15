@@ -1,0 +1,10425 @@
+\documentclass[9pt,twocolumn]{extarticle}
+% 调整了top和bottom留出页眉页脚的空间，防止页码被截断
+\usepackage[a4paper, left=1cm, right=1cm, top=1.5cm, bottom=1.5cm, includehead]{geometry}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{fancyhdr}
+% 加在 \usepackage{fancyhdr} 之后
+\usepackage[hidelinks]{hyperref}
+% 字体设置，可根据你的系统替换（如 Microsoft YaHei 或 SimSun）
+\setCJKmainfont{SimSun}
+\setmainfont{Times New Roman}
+
+% 关闭自动编号，完美解决序号重复问题（只保留文本原有的编号）
+\setcounter{secnumdepth}{0}
+
+% 详细页码设置（在页面上方/前面显示）
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small 第 \thepage\ 页}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 紧凑的标题间距设置
+\titlespacing*{\section}{0pt}{1.2ex plus .2ex}{0.5ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1ex plus .2ex}{0.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{1ex plus .2ex}{0.5ex plus .2ex}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% 列表紧凑设置
+\setlist{nosep, leftmargin=1.5em}
+
+% 代码高亮颜色定义
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.94}
+
+% listings 代码块设置
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    xleftmargin=0pt,
+    aboveskip=0.5em,
+    belowskip=0.5em
+}
+\lstset{style=mystyle}
+
+\begin{document}
+
+% ===== 目录区 =====
+\pagenumbering{Roman} % 目录页码设为大写罗马数字 (I, II, III)
+\setcounter{page}{1}  % 强制目录从第 I 页开始算
+\setcounter{tocdepth}{2} % 目录显示到 subsection 级别
+
+\tableofcontents % 生成目录（只需调用一次即可）
+
+\clearpage % 必须先换页！把目录彻底排版完再重置正文
+
+% ===== 正文区 =====
+\pagenumbering{arabic} % 正文页码设为阿拉伯数字 (1, 2, 3)
+\setcounter{page}{1}   % 强制正文从第 1 页重新开始算
+
+% ↓↓↓ 下面直接紧跟你的 \section{第一章 vector（重点）} ↓↓↓
+
+明白你的需求。你要的是\textbf{上机考试速查手册}，不是教材式讲解，所以我会按照：
+
+\begin{quote}
+\textbf{① 名称（函数/知识点） \\
+② 用法（参数怎么写 + 示例代码） \\
+③ 作用（考试时知道什么时候用）}
+\end{quote}
+
+来整理。
+
+由于内容非常庞大（尤其 \texttt{vector} + \texttt{string} + \texttt{algorithm} + \texttt{map/set/queue/stack}），一次回复放不下完整版本。我会分多次连续发送。
+
+整体目录如下：
+
+\section*{C++ STL 上机考试速查大全}
+
+\subsection*{第一部分：vector（极详细）}
+\begin{itemize}
+    \item vector定义
+    \item 初始化方式
+    \item 遍历方式
+    \item 所有成员函数
+    \begin{itemize}
+        \item size()
+        \item capacity()
+        \item empty()
+        \item resize()
+        \item reserve()
+        \item push\_back()
+        \item emplace\_back()
+        \item pop\_back()
+        \item insert()
+        \item erase()
+        \item clear()
+        \item front()
+        \item back()
+        \item at()
+        \item swap()
+        \item assign()
+        \item data()
+        \item begin()
+        \item end()
+        \item rbegin()
+        \item rend()
+    \end{itemize}
+\end{itemize}
+
+\subsection*{第二部分：string（极详细）}
+\begin{itemize}
+    \item 创建
+    \item 输入输出
+    \item 拼接
+    \item 查找
+    \item 截取
+    \item 替换
+    \item 删除
+    \item 插入
+    \item 字符转换
+    \item 所有常用函数
+\end{itemize}
+
+\subsection*{第三部分：algorithm}
+\begin{itemize}
+    \item sort
+    \item reverse
+    \item max/min
+    \item swap
+    \item find
+    \item count
+    \item accumulate
+    \item fill
+    \item replace
+    \item unique
+    \item lower\_bound
+    \item upper\_bound
+    \item binary\_search
+    \item next\_permutation
+    \item prev\_permutation
+    \item rotate
+    \item partition
+\end{itemize}
+
+\subsection*{第四部分：deque}
+\subsection*{第五部分：stack}
+\subsection*{第六部分：queue}
+\subsection*{第七部分：priority\_queue}
+\subsection*{第八部分：set / multiset}
+\subsection*{第九部分：map / unordered\_map}
+\subsection*{第十部分：pair}
+\subsection*{第十一部分：迭代器 iterator}
+\subsection*{第十二部分：常用万能模板}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+下面开始。
+
+\section{第一章 vector（重点）}
+
+头文件：
+
+\begin{lstlisting}[language=C++]
+#include <vector>
+using namespace std;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. vector定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+vector
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+vector<int> v;
+\end{lstlisting}
+定义一个存放 int 的动态数组。
+
+其他：
+\begin{lstlisting}[language=C++]
+vector<double> v1;
+
+vector<string> v2;
+
+vector<char> v3;
+\end{lstlisting}
+
+二维：
+\begin{lstlisting}[language=C++]
+vector<vector<int>> matrix;
+\end{lstlisting}
+相当于二维数组。
+
+\subsection{作用}
+vector 是 STL 中最常用的动态数组。
+
+和普通数组区别：\\
+普通数组：
+\begin{lstlisting}[language=C++]
+int a[100];
+\end{lstlisting}
+大小固定。
+
+vector：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+\end{lstlisting}
+可以自动扩容。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. vector初始化}
+
+\subsection{名称}
+初始化
+
+\subsection{用法}
+
+\subsubsection{空vector}
+\begin{lstlisting}[language=C++]
+vector<int> v;
+\end{lstlisting}
+创建：
+\begin{lstlisting}
+{}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsubsection{指定数量}
+\begin{lstlisting}[language=C++]
+vector<int> v(5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+0 0 0 0 0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsubsection{指定数量和值}
+\begin{lstlisting}[language=C++]
+vector<int> v(5,10);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 10 10 10 10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsubsection{数组初始化}
+\begin{lstlisting}[language=C++]
+int a[]={1,2,3};
+
+vector<int> v(a,a+3);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsubsection{直接赋值}
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3,4};
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3 4
+\end{lstlisting}
+
+\subsection{作用}
+创建vector。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. push\_back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push_back()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+vector名.push_back(元素);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+
+v.push_back(10);
+
+v.push_back(20);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 20
+\end{lstlisting}
+
+\subsection{作用}
+在vector末尾添加元素。\\
+考试最常用。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. pop\_back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop_back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.pop_back();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+v.pop_back();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2
+\end{lstlisting}
+
+\subsection{作用}
+删除最后一个元素。\\
+注意：\\
+不能指定删除哪个。\\
+只能删除尾部。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.size();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+cout<<v.size();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\subsection{作用}
+返回vector当前元素数量。\\
+注意：\\
+不是容量。\\
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v(100);
+\end{lstlisting}
+size:
+\begin{lstlisting}
+100
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. capacity()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+capacity()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.capacity();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+
+v.push_back(1);
+
+cout<<v.capacity();
+\end{lstlisting}
+可能输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+或者：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\subsection{作用}
+查看vector当前申请的内存空间。
+
+区别：
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+函数 & 作用 \\ \hline
+size() & 已有多少元素 \\ \hline
+capacity() & 最多能放多少元素 \\ \hline
+\end{tabular}
+\end{table}
+
+考试一般用size。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. empty()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+empty()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.empty();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+
+if(v.empty())
+{
+    cout<<"空";
+}
+\end{lstlisting}
+返回：
+\begin{lstlisting}
+true
+\end{lstlisting}
+
+\subsection{作用}
+判断vector是否为空。\\
+等价：
+\begin{lstlisting}[language=C++]
+v.size()==0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. clear()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+clear()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.clear();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+v.clear();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+{}
+\end{lstlisting}
+
+\subsection{作用}
+删除所有元素。\\
+注意：\\
+不会释放空间。\\
+例如：
+\begin{lstlisting}[language=C++]
+v.clear();
+
+v.capacity();
+\end{lstlisting}
+容量可能仍然存在。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. front()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+front()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.front();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={10,20,30};
+
+cout<<v.front();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+10
+\end{lstlisting}
+
+\subsection{作用}
+获取第一个元素。\\
+等价：
+\begin{lstlisting}[language=C++]
+v[0]
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.back();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={10,20,30};
+
+cout<<v.back();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+30
+\end{lstlisting}
+
+\subsection{作用}
+获取最后一个元素。\\
+等价：
+\begin{lstlisting}[language=C++]
+v[v.size()-1]
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. 下标访问 []}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+operator[]
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v[index];
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={5,6,7};
+
+cout<<v[1];
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+6
+\end{lstlisting}
+
+\subsection{作用}
+访问指定位置元素。\\
+注意：\\
+不检查越界。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. at()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+at()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.at(index);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+cout<<v.at(1);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\subsection{作用}
+访问元素。
+
+区别：
+\begin{lstlisting}[language=C++]
+v[10];
+\end{lstlisting}
+越界可能崩溃。
+
+\begin{lstlisting}[language=C++]
+v.at(10);
+\end{lstlisting}
+会主动报错。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. begin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+begin()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.begin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+cout<<*v.begin();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\subsection{作用}
+返回第一个元素的迭代器。
+
+常用于：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. end()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+end()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.end();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+
+\subsection{作用}
+返回最后一个元素后面的位置。\\
+注意：\\
+不是最后一个元素。
+
+最后元素：
+\begin{lstlisting}[language=C++]
+*(v.end()-1)
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. rbegin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+rbegin()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.rbegin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+cout<<*v.rbegin();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\subsection{作用}
+反向迭代器开始位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{16. rend()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+rend()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.rend();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+for(auto i=v.rbegin();i!=v.rend();i++)
+{
+    cout<<*i;
+}
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+321
+\end{lstlisting}
+
+\subsection{作用}
+反向遍历结束位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{17. insert()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+insert()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+v.insert(位置,元素);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,3};
+
+v.insert(v.begin()+1,2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+插入多个：
+\begin{lstlisting}[language=C++]
+v.insert(v.begin(),3,10);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 10 10 ...
+\end{lstlisting}
+
+\subsection{作用}
+在指定位置插入元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{18. erase()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+erase()
+\end{lstlisting}
+
+\subsection{用法}
+删除一个：
+\begin{lstlisting}[language=C++]
+v.erase(v.begin()+2);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+v.erase(v.begin()+1);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 3
+\end{lstlisting}
+
+删除区间：
+\begin{lstlisting}[language=C++]
+v.erase(v.begin(),v.begin()+2);
+\end{lstlisting}
+删除：
+\begin{lstlisting}
+前两个元素
+\end{lstlisting}
+
+\subsection{作用}
+删除指定位置或者范围元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{19. resize()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+resize()
+\end{lstlisting}
+
+\subsection{用法}
+改变大小：
+\begin{lstlisting}[language=C++]
+v.resize(10);
+\end{lstlisting}
+不足补0。
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2};
+
+v.resize(5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 0 0 0
+\end{lstlisting}
+
+指定值：
+\begin{lstlisting}[language=C++]
+v.resize(5,100);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 100 100 100
+\end{lstlisting}
+
+\subsection{作用}
+改变vector元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{20. reserve()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+reserve()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+v.reserve(100);
+\end{lstlisting}
+
+\subsection{作用}
+提前申请空间。
+
+区别：\\
+resize：改变元素数量。\\
+reserve：只改变容量。
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+
+v.reserve(100);
+
+cout<<v.size();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{21. swap()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+swap()
+\end{lstlisting}
+
+\subsection{用法}
+两个vector交换：
+\begin{lstlisting}[language=C++]
+v1.swap(v2);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> a={1,2};
+
+vector<int> b={3,4};
+
+a.swap(b);
+\end{lstlisting}
+结果：
+
+a:
+\begin{lstlisting}
+3 4
+\end{lstlisting}
+b:
+\begin{lstlisting}
+1 2
+\end{lstlisting}
+
+\subsection{作用}
+交换两个vector内容。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{22. assign()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+assign()
+\end{lstlisting}
+
+\subsection{用法}
+数量和值：
+\begin{lstlisting}[language=C++]
+v.assign(5,10);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 10 10 10 10
+\end{lstlisting}
+
+区间：
+\begin{lstlisting}[language=C++]
+v.assign(v2.begin(),v2.end());
+\end{lstlisting}
+
+\subsection{作用}
+重新给vector赋值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{23. data()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+data()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+int *p=v.data();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+int *p=v.data();
+
+cout<<p[0];
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\subsection{作用}
+返回底层数组指针。\\
+用于和C语言数组交互。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{vector遍历（考试必背）}
+
+\subsection{方法1：下标}
+\begin{lstlisting}[language=C++]
+for(int i=0;i<v.size();i++)
+{
+    cout<<v[i];
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2：范围for}
+\begin{lstlisting}[language=C++]
+for(auto x:v)
+{
+    cout<<x;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法3：迭代器}
+\begin{lstlisting}[language=C++]
+for(auto it=v.begin();it!=v.end();it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法4：反向}
+\begin{lstlisting}[language=C++]
+for(auto it=v.rbegin();it!=v.rend();it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+继续：
+
+\section{第二章 string（续）}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. 字符访问 []}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+operator[]
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+s[index];
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+cout<<s[0];
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+h
+\end{lstlisting}
+修改：
+\begin{lstlisting}[language=C++]
+s[0]='H';
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+Hello
+\end{lstlisting}
+
+\subsection{作用}
+访问或者修改指定位置字符。\\
+注意：\\
+下标从 \textbf{0开始}。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. at()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+at()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.at(index);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abc";
+
+cout<<s.at(1);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+b
+\end{lstlisting}
+修改：
+\begin{lstlisting}[language=C++]
+s.at(1)='B';
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+aBc
+\end{lstlisting}
+
+\subsection{作用}
+访问指定位置字符。
+
+区别：
+\begin{lstlisting}[language=C++]
+s[100];
+\end{lstlisting}
+越界不检查。
+
+\begin{lstlisting}[language=C++]
+s.at(100);
+\end{lstlisting}
+会抛异常。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. front()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+front()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.front();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+cout<<s.front();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+h
+\end{lstlisting}
+
+\subsection{作用}
+获取第一个字符。\\
+等价：
+\begin{lstlisting}[language=C++]
+s[0]
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.back();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+cout<<s.back();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+o
+\end{lstlisting}
+
+\subsection{作用}
+获取最后一个字符。\\
+等价：
+\begin{lstlisting}[language=C++]
+s[s.size()-1]
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. push\_back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push_back()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+s.push_back(字符);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abc";
+
+s.push_back('d');
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+abcd
+\end{lstlisting}
+注意：\\
+只能添加一个字符。
+
+错误：
+\begin{lstlisting}[language=C++]
+s.push_back("hello");
+\end{lstlisting}
+正确：
+\begin{lstlisting}[language=C++]
+s+="hello";
+\end{lstlisting}
+
+\subsection{作用}
+在字符串末尾添加字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. pop\_back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop_back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.pop_back();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+s.pop_back();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+hell
+\end{lstlisting}
+
+\subsection{作用}
+删除最后一个字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. append()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+append()
+\end{lstlisting}
+
+\subsection{用法}
+添加字符串：
+\begin{lstlisting}[language=C++]
+s.append("abc");
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+s.append(" world");
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+hello world
+\end{lstlisting}
+也可以：
+\begin{lstlisting}[language=C++]
+s.append(t);
+\end{lstlisting}
+其中：
+\begin{lstlisting}[language=C++]
+string t="abc";
+\end{lstlisting}
+
+\subsection{作用}
+在末尾追加字符串。\\
+等价：
+\begin{lstlisting}[language=C++]
+s+="abc";
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. 字符串连接 +}
+
+\subsection{名称}
+字符串拼接
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s1+s2;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string a="hello";
+
+string b="world";
+
+string c=a+b;
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+helloworld
+\end{lstlisting}
+添加字符：
+\begin{lstlisting}[language=C++]
+s+='!';
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+hello!
+\end{lstlisting}
+
+\subsection{作用}
+连接两个字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. insert()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+insert()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+s.insert(位置,字符串);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcd";
+
+s.insert(2,"XX");
+\end{lstlisting}
+过程：
+\begin{lstlisting}
+ab + XX + cd
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+abXXcd
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+插入一个字符：
+\begin{lstlisting}[language=C++]
+s.insert(0,1,'A');
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+Aabcd
+\end{lstlisting}
+
+\subsection{作用}
+在指定位置插入内容。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. erase()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+erase()
+\end{lstlisting}
+
+\subsection{用法1：删除指定位置}
+格式：
+\begin{lstlisting}[language=C++]
+s.erase(pos);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcdef";
+
+s.erase(2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+ab
+\end{lstlisting}
+从位置2开始全部删除。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法2：删除指定长度}
+格式：
+\begin{lstlisting}[language=C++]
+s.erase(pos,len);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcdef";
+
+s.erase(2,3);
+\end{lstlisting}
+删除：
+\begin{lstlisting}
+cde
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+abf
+\end{lstlisting}
+
+\subsection{作用}
+删除字符串中的字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{16. clear()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+clear()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.clear();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+s.clear();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+""
+\end{lstlisting}
+
+\subsection{作用}
+清空字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{17. substr()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+substr()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+s.substr(开始位置,长度);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcdef";
+
+string t=s.substr(2,3);
+\end{lstlisting}
+从：
+\begin{lstlisting}
+c开始
+取3个
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+cde
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+省略长度：
+\begin{lstlisting}[language=C++]
+s.substr(2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+cdef
+\end{lstlisting}
+
+\subsection{作用}
+截取字符串。\\
+考试非常常用。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{18. find()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+find()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+s.find(查找内容);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+cout<<s.find("ll");
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+2
+\end{lstlisting}
+因为：
+\begin{lstlisting}
+h e l l o
+0 1 2 3 4
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+查找字符：
+\begin{lstlisting}[language=C++]
+s.find('o');
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+4
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+不存在：
+\begin{lstlisting}[language=C++]
+s.find("xx");
+\end{lstlisting}
+返回：
+\begin{lstlisting}[language=C++]
+string::npos
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+if(s.find("abc")!=string::npos)
+{
+    cout<<"存在";
+}
+\end{lstlisting}
+
+\subsection{作用}
+查找子串或者字符第一次出现的位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{19. rfind()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+rfind()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.rfind("abc");
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcabc";
+
+cout<<s.rfind("abc");
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\subsection{作用}
+从后往前查找。\\
+返回最后一次出现位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{20. replace()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+replace()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+s.replace(位置,长度,替换内容);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcdef";
+
+s.replace(2,3,"XYZ");
+\end{lstlisting}
+原：
+\begin{lstlisting}
+ab cde f
+\end{lstlisting}
+替换：
+\begin{lstlisting}
+ab XYZ f
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+abXYZf
+\end{lstlisting}
+
+\subsection{作用}
+替换字符串中的部分内容。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{21. compare()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+compare()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s1.compare(s2);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string a="abc";
+
+string b="abc";
+
+cout<<a.compare(b);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+0
+\end{lstlisting}
+结果：
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+返回值 & 意义 \\ \hline
+0 & 相等 \\ \hline
+<0 & a小于b \\ \hline
+>0 & a大于b \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{作用}
+比较字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{22. begin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+begin()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.begin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<*s.begin();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+第一个字符
+\end{lstlisting}
+
+\subsection{作用}
+返回字符串第一个字符迭代器。
+
+常用于：
+\begin{lstlisting}[language=C++]
+sort(s.begin(),s.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{23. end()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+end()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.end();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+sort(s.begin(),s.end());
+\end{lstlisting}
+
+\subsection{作用}
+返回最后一个字符后的位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{24. rbegin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+rbegin()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.rbegin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<*s.rbegin();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+最后一个字符
+\end{lstlisting}
+
+\subsection{作用}
+反向遍历开始。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{25. rend()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+rend()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.rend();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+for(auto it=s.rbegin();it!=s.rend();it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+字符串：
+\begin{lstlisting}
+abc
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+cba
+\end{lstlisting}
+
+\subsection{作用}
+反向遍历结束位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{26. stoi()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+stoi()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+stoi(字符串);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="123";
+
+int x=stoi(s);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+x=123
+\end{lstlisting}
+
+\subsection{作用}
+字符串转整数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{27. stol()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+stol()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+long long x=stoll(s);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="123456789";
+
+long long x=stoll(s);
+\end{lstlisting}
+
+\subsection{作用}
+字符串转 long long。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{28. stod()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+stod()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+double x=stod(s);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="3.14";
+
+double x=stod(s);
+\end{lstlisting}
+
+\subsection{作用}
+字符串转 double。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{29. to\_string()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+to_string()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+to_string(数字);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int x=123;
+
+string s=to_string(x);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+"123"
+\end{lstlisting}
+
+\subsection{作用}
+数字转字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{30. sort字符串}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+sort()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+sort(s.begin(),s.end());
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="dcba";
+
+sort(s.begin(),s.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+abcd
+\end{lstlisting}
+
+\subsection{作用}
+按照ASCII排序字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{31. reverse字符串}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+reverse()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+reverse(s.begin(),s.end());
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+reverse(s.begin(),s.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+olleh
+\end{lstlisting}
+
+\subsection{作用}
+反转字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{string考试高频组合}
+
+\subsection{1. 判断回文字符串}
+\begin{lstlisting}[language=C++]
+string s;
+
+string t=s;
+
+reverse(t.begin(),t.end());
+
+if(s==t)
+    cout<<"yes";
+\end{lstlisting}
+作用：\\
+判断正反是否一样。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{2. 统计字符数量}
+\begin{lstlisting}[language=C++]
+int cnt[26]={0};
+
+for(char c:s)
+{
+    cnt[c-'a']++;
+}
+\end{lstlisting}
+作用：\\
+统计每个字母出现次数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{3. 删除空格}
+\begin{lstlisting}[language=C++]
+s.erase(remove(s.begin(),s.end(),' '),s.end());
+\end{lstlisting}
+作用：\\
+删除所有空格。\\
+（这里涉及 algorithm 的 remove，后面详细讲）
+
+\noindent\rule{\linewidth}{0.4pt}
+\section{第三章 algorithm（STL算法库，考试核心）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <algorithm>
+\end{lstlisting}
+部分数学算法需要：
+\begin{lstlisting}[language=C++]
+#include <numeric>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. sort()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+sort()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+基本格式：
+\begin{lstlisting}[language=C++]
+sort(开始位置,结束位置);
+\end{lstlisting}
+例如 vector：
+\begin{lstlisting}[language=C++]
+vector<int> v={3,1,5,2};
+
+sort(v.begin(),v.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3 5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+数组：
+\begin{lstlisting}[language=C++]
+int a[]={3,1,5,2};
+
+sort(a,a+4);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3 5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+降序：\\
+格式：
+\begin{lstlisting}[language=C++]
+sort(begin,end,greater<类型>());
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end(),greater<int>());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+5 3 2 1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+自定义排序：\\
+格式：
+\begin{lstlisting}[language=C++]
+sort(begin,end,比较函数);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+bool cmp(int a,int b)
+{
+    return a>b;
+}
+
+sort(v.begin(),v.end(),cmp);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+排序。\\
+考试最常用函数之一。
+
+默认：
+\begin{lstlisting}
+升序
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. stable\_sort()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+stable_sort()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+和sort一样：
+\begin{lstlisting}[language=C++]
+stable_sort(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+稳定排序。
+
+区别：\\
+sort：\\
+相同元素顺序可能改变。\\
+stable\_sort：\\
+保证相同元素原来的顺序。
+
+考试：\\
+普通排序直接sort。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. reverse()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+reverse()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+reverse(开始,结束);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3,4};
+
+reverse(v.begin(),v.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+4 3 2 1
+\end{lstlisting}
+
+字符串：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+reverse(s.begin(),s.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+olleh
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+反转顺序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. rotate()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+rotate()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+rotate(first,middle,last);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3,4,5};
+
+rotate(v.begin(),v.begin()+2,v.end());
+\end{lstlisting}
+过程：\\
+以第3个元素为开头：
+\begin{lstlisting}
+3 4 5 1 2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+旋转数组。
+
+例如：\\
+左旋：
+\begin{lstlisting}
+1 2 3 4 5
+
+左移2位
+
+3 4 5 1 2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. swap()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+swap()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+swap(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int a=10;
+int b=20;
+
+swap(a,b);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+a=20
+b=10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+字符串：
+\begin{lstlisting}[language=C++]
+swap(s1,s2);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+交换两个变量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. max()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+max()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+两个数：
+\begin{lstlisting}[language=C++]
+max(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<max(3,5);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+多个：
+\begin{lstlisting}[language=C++]
+max({1,5,3});
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+返回最大值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. min()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+min()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+min(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<min(3,5);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+多个：
+\begin{lstlisting}[language=C++]
+min({3,1,5});
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+返回最小值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. max\_element()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+max_element()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+max_element(begin,end);
+\end{lstlisting}
+注意：\\
+返回的是迭代器。
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={3,7,2};
+
+auto it=max_element(v.begin(),v.end());
+
+cout<<*it;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+7
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+找容器最大元素位置。
+
+如果想得到下标：
+\begin{lstlisting}[language=C++]
+int pos=max_element(v.begin(),v.end())-v.begin();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. min\_element()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+min_element()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=min_element(v.begin(),v.end());
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<*min_element(v.begin(),v.end());
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+找最小元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. find()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+find()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+find(begin,end,value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3,4};
+
+auto it=find(v.begin(),v.end(),3);
+\end{lstlisting}
+找到：
+\begin{lstlisting}
+3
+\end{lstlisting}
+输出：
+\begin{lstlisting}[language=C++]
+cout<<*it;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+不存在：
+\begin{lstlisting}[language=C++]
+if(it==v.end())
+{
+    cout<<"不存在";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+查找元素。
+
+注意：\\
+返回迭代器。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. count()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+count()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+count(begin,end,value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,2,3};
+
+int x=count(v.begin(),v.end(),2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+字符串：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+cout<<count(s.begin(),s.end(),'l');
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+统计元素出现次数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. accumulate()}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <numeric>
+\end{lstlisting}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+accumulate()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+accumulate(begin,end,初始值);
+\end{lstlisting}
+三个参数：
+\begin{enumerate}
+    \item 开始位置
+    \item 结束位置
+    \item 初始值
+\end{enumerate}
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3,4};
+
+int sum=accumulate(v.begin(),v.end(),0);
+\end{lstlisting}
+计算：
+\begin{lstlisting}
+0+1+2+3+4
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+注意：\\
+第三个参数类型决定返回类型。
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<double> v={1.2,2.3};
+
+double sum=accumulate(v.begin(),v.end(),0.0);
+\end{lstlisting}
+必须：
+\begin{lstlisting}
+0.0
+\end{lstlisting}
+不能：
+\begin{lstlisting}
+0
+\end{lstlisting}
+否则可能整数计算。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+求和。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. fill()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+fill()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+fill(begin,end,value);
+\end{lstlisting}
+例如：\\
+数组：
+\begin{lstlisting}[language=C++]
+int a[5];
+
+fill(a,a+5,10);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 10 10 10 10
+\end{lstlisting}
+vector：
+\begin{lstlisting}[language=C++]
+fill(v.begin(),v.end(),0);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+全部赋值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. replace()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+replace()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+replace(begin,end,旧值,新值);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,2,3};
+
+replace(v.begin(),v.end(),2,99);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 99 99 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+字符串：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+replace(s.begin(),s.end(),'l','x');
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+hexxo
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+替换所有指定元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. unique()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+unique()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+常和sort一起：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+
+v.erase(unique(v.begin(),v.end()),v.end());
+\end{lstlisting}
+例如：\\
+原：
+\begin{lstlisting}
+1 2 2 3 3 3
+\end{lstlisting}
+unique：
+\begin{lstlisting}
+1 2 3 ? ? ?
+\end{lstlisting}
+erase删除后：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+去除连续重复元素。\\
+注意：\\
+单独unique不会真正删除。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{16. lower\_bound()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+lower_bound()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+要求：\\
+数组必须有序。
+
+格式：
+\begin{lstlisting}[language=C++]
+lower_bound(begin,end,value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,3,5,7};
+
+auto it=lower_bound(v.begin(),v.end(),5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+5的位置
+\end{lstlisting}
+下标：
+\begin{lstlisting}[language=C++]
+int pos=it-v.begin();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+寻找第一个：
+\begin{lstlisting}
+>= value
+\end{lstlisting}
+的位置。
+
+例如：\\
+数组：
+\begin{lstlisting}
+1 3 5 7
+\end{lstlisting}
+找4：\\
+返回：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{17. upper\_bound()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+upper_bound()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+upper_bound(v.begin(),v.end(),value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,3,5,7};
+
+auto it=upper_bound(v.begin(),v.end(),5);
+\end{lstlisting}
+返回：
+\begin{lstlisting}
+7
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+寻找第一个：
+\begin{lstlisting}
+> value
+\end{lstlisting}
+的位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{18. binary\_search()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+binary_search()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+要求：\\
+必须排序。
+
+格式：
+\begin{lstlisting}[language=C++]
+binary_search(begin,end,value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,3,5,7};
+
+bool flag=binary_search(v.begin(),v.end(),5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+true
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+二分查找是否存在。
+
+返回：
+\begin{lstlisting}
+true/false
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{19. next\_permutation()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+next_permutation()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+next_permutation(begin,end);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abc";
+
+next_permutation(s.begin(),s.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+acb
+\end{lstlisting}
+连续：
+\begin{lstlisting}[language=C++]
+while(next_permutation(s.begin(),s.end()))
+{
+    cout<<s;
+}
+\end{lstlisting}
+输出所有排列。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+生成下一个字典序排列。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{20. prev\_permutation()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+prev_permutation()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+prev_permutation(s.begin(),s.end());
+\end{lstlisting}
+例如：
+\begin{lstlisting}
+cba
+\end{lstlisting}
+变：
+\begin{lstlisting}
+cab
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+生成上一个排列。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{algorithm 高频考试组合}
+
+\subsection{1. vector排序去重}
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+
+v.erase(unique(v.begin(),v.end()),v.end());
+\end{lstlisting}
+作用：\\
+去除重复元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{2. 求最大最小值}
+\begin{lstlisting}[language=C++]
+int mx=*max_element(v.begin(),v.end());
+
+int mn=*min_element(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{3. 求和}
+\begin{lstlisting}[language=C++]
+int sum=accumulate(v.begin(),v.end(),0);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{4. 判断存在}
+\begin{lstlisting}[language=C++]
+if(find(v.begin(),v.end(),x)!=v.end())
+{
+    cout<<"存在";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第四章 deque / stack / queue / priority\_queue}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、deque（双端队列）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <deque>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{1. deque定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+deque
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+deque<int> dq;
+\end{lstlisting}
+初始化：
+\begin{lstlisting}[language=C++]
+deque<int> dq={1,2,3};
+\end{lstlisting}
+
+\subsection{作用}
+双端队列。
+
+特点：
+\begin{itemize}
+    \item 两端都可以插入
+    \item 两端都可以删除
+    \item 支持随机访问
+\end{itemize}
+
+类似：
+\begin{lstlisting}
+vector + queue
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. push\_back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push_back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.push_back(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+deque<int> dq;
+
+dq.push_back(10);
+dq.push_back(20);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 20
+\end{lstlisting}
+
+\subsection{作用}
+尾部添加元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. push\_front()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push_front()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.push_front(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+deque<int> dq={2,3};
+
+dq.push_front(1);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\subsection{作用}
+头部插入元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. pop\_back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop_back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.pop_back();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+deque<int> dq={1,2,3};
+
+dq.pop_back();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2
+\end{lstlisting}
+
+\subsection{作用}
+删除最后元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. pop\_front()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop_front()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.pop_front();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+deque<int> dq={1,2,3};
+
+dq.pop_front();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+2 3
+\end{lstlisting}
+
+\subsection{作用}
+删除第一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. front()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+front()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.front();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<dq.front();
+\end{lstlisting}
+
+\subsection{作用}
+访问第一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.back();
+\end{lstlisting}
+
+\subsection{作用}
+访问最后元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.size();
+\end{lstlisting}
+
+\subsection{作用}
+获取元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. empty()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+empty()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.empty();
+\end{lstlisting}
+
+\subsection{作用}
+判断是否为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. clear()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+clear()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+dq.clear();
+\end{lstlisting}
+
+\subsection{作用}
+清空deque。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、stack（栈）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <stack>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{1. stack定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+stack
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+stack<int> st;
+\end{lstlisting}
+
+\subsection{作用}
+先进后出：
+\begin{lstlisting}
+LIFO
+\end{lstlisting}
+类似：\\
+一摞盘子。\\
+最后放的最先拿。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. push()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+st.push(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+stack<int> st;
+
+st.push(1);
+st.push(2);
+st.push(3);
+\end{lstlisting}
+栈：
+\begin{lstlisting}
+3
+2
+1
+\end{lstlisting}
+
+\subsection{作用}
+入栈。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. pop()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+st.pop();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+st.pop();
+\end{lstlisting}
+删除：
+\begin{lstlisting}
+3
+\end{lstlisting}
+剩：
+\begin{lstlisting}
+2
+1
+\end{lstlisting}
+
+\subsection{作用}
+删除栈顶元素。
+
+注意：\\
+pop没有返回值。
+
+错误：
+\begin{lstlisting}[language=C++]
+int x=st.pop();
+\end{lstlisting}
+错误。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. top()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+top()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+st.top();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<st.top();
+\end{lstlisting}
+
+\subsection{作用}
+查看栈顶元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+st.size();
+\end{lstlisting}
+
+\subsection{作用}
+获取元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. empty()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+empty()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+st.empty();
+\end{lstlisting}
+
+\subsection{作用}
+判断栈是否为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{stack经典模板}
+
+\subsubsection{括号匹配}
+\begin{lstlisting}[language=C++]
+string s;
+
+stack<char> st;
+
+for(char c:s)
+{
+    if(c=='(')
+        st.push(c);
+
+    else if(c==')')
+    {
+        if(st.empty())
+            cout<<"NO";
+
+        st.pop();
+    }
+}
+\end{lstlisting}
+作用：\\
+判断括号是否合法。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、queue（普通队列）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <queue>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. queue定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+queue
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+queue<int> q;
+\end{lstlisting}
+
+\subsection{作用}
+先进先出：
+\begin{lstlisting}
+FIFO
+\end{lstlisting}
+类似排队：\\
+先来先走。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. push()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+q.push(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+q.push(1);
+q.push(2);
+q.push(3);
+\end{lstlisting}
+队列：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\subsection{作用}
+队尾加入元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. pop()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+q.pop();
+\end{lstlisting}
+例如：\\
+原：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+执行：
+\begin{lstlisting}[language=C++]
+q.pop();
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+2 3
+\end{lstlisting}
+
+\subsection{作用}
+删除队头元素。
+
+注意：\\
+没有返回值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. front()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+front()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+q.front();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<q.front();
+\end{lstlisting}
+输出：\\
+队头元素。
+
+\subsection{作用}
+访问队头。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. back()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+back()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+q.back();
+\end{lstlisting}
+
+\subsection{作用}
+访问队尾。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+q.size();
+\end{lstlisting}
+
+\subsection{作用}
+元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. empty()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+empty()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+q.empty();
+\end{lstlisting}
+
+\subsection{作用}
+判断队列为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、priority\_queue（优先队列）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <queue>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. priority\_queue定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+priority_queue
+\end{lstlisting}
+
+\subsection{用法}
+默认：
+\begin{lstlisting}[language=C++]
+priority_queue<int> pq;
+\end{lstlisting}
+
+\subsection{作用}
+自动排序的队列。
+
+默认：\\
+大根堆：
+\begin{lstlisting}
+最大值永远在顶部
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. push()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+push()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+pq.push(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+priority_queue<int> pq;
+
+pq.push(3);
+pq.push(10);
+pq.push(5);
+\end{lstlisting}
+内部：
+\begin{lstlisting}
+10
+5
+3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. top()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+top()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+pq.top();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<pq.top();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+10
+\end{lstlisting}
+
+\subsection{作用}
+查看最大元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. pop()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pop()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+pq.pop();
+\end{lstlisting}
+删除：\\
+当前最大值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. empty()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+empty()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+pq.empty();
+\end{lstlisting}
+
+\subsection{作用}
+判断为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+pq.size();
+\end{lstlisting}
+
+\subsection{作用}
+元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. 小根堆}
+
+\subsection{名称}
+小根priority\_queue
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+priority_queue<int,vector<int>,greater<int>> pq;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+pq.push(5);
+pq.push(2);
+pq.push(8);
+\end{lstlisting}
+top：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+让最小值在顶部。\\
+考试非常重要。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{priority\_queue自定义排序}
+
+例如：\\
+结构体：
+\begin{lstlisting}[language=C++]
+struct Node
+{
+    int x;
+    int y;
+};
+\end{lstlisting}
+比较：
+\begin{lstlisting}[language=C++]
+struct cmp
+{
+    bool operator()(Node a,Node b)
+    {
+        return a.x>b.x;
+    }
+};
+\end{lstlisting}
+定义：
+\begin{lstlisting}[language=C++]
+priority_queue<Node,vector<Node>,cmp> pq;
+\end{lstlisting}
+作用：\\
+复杂排序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{五、四种容器总结（考试记忆）}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+容器 & 特点 & 常用函数 \\ \hline
+vector & 动态数组 & push\_back erase sort \\ \hline
+deque & 两端操作 & push\_front \\ \hline
+stack & 后进先出 & push pop top \\ \hline
+queue & 先进先出 & push pop front \\ \hline
+priority\_queue & 自动排序 & push top pop \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第五章 set / multiset / map / unordered\_map（STL核心）}
+
+这一章非常重要。
+
+考试中常见：
+\begin{itemize}
+    \item 去重
+    \item 查找某个元素是否存在
+    \item 统计次数
+    \item 建立映射关系
+    \item 字符频率统计
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、set（集合）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <set>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. set定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+set
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+set<int> s;
+\end{lstlisting}
+初始化：
+\begin{lstlisting}[language=C++]
+set<int> s={3,1,2,2};
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+特点：
+\begin{enumerate}
+    \item 自动排序
+    \item 自动去重
+\end{enumerate}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+保存唯一元素。\\
+类似数学集合。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. insert()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+insert()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.insert(value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+set<int> s;
+
+s.insert(3);
+s.insert(1);
+s.insert(3);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 3
+\end{lstlisting}
+
+\subsection{作用}
+插入元素。\\
+注意：\\
+重复元素不会加入。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. erase()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+erase()
+\end{lstlisting}
+
+\subsection{用法1：删除指定元素}
+\begin{lstlisting}[language=C++]
+s.erase(value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+set<int> s={1,2,3};
+
+s.erase(2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法2：删除迭代器位置}
+\begin{lstlisting}[language=C++]
+auto it=s.begin();
+
+s.erase(it);
+\end{lstlisting}
+删除第一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法3：删除区间}
+\begin{lstlisting}[language=C++]
+s.erase(s.begin(),s.end());
+\end{lstlisting}
+清空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+删除元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. find()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+find()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.find(value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+set<int> s={1,2,3};
+
+auto it=s.find(2);
+\end{lstlisting}
+如果存在：\\
+返回位置。
+
+不存在：
+\begin{lstlisting}[language=C++]
+s.end()
+\end{lstlisting}
+判断：
+\begin{lstlisting}[language=C++]
+if(s.find(2)!=s.end())
+{
+    cout<<"存在";
+}
+\end{lstlisting}
+
+\subsection{作用}
+查找元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. count()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+count()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.count(value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+set<int> s={1,2,3};
+
+cout<<s.count(2);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+不存在：
+\begin{lstlisting}
+0
+\end{lstlisting}
+
+\subsection{作用}
+判断元素是否存在。\\
+因为set没有重复：\\
+返回只能：
+\begin{lstlisting}
+0 或 1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.size();
+\end{lstlisting}
+
+\subsection{作用}
+元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. empty()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+empty()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.empty();
+\end{lstlisting}
+
+\subsection{作用}
+判断为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. begin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+begin()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=s.begin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<*s.begin();
+\end{lstlisting}
+输出：\\
+最小元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. end()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+end()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.end();
+\end{lstlisting}
+作用：\\
+最后一个元素之后。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. lower\_bound()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+lower_bound()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=s.lower_bound(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+set<int> s={1,3,5,7};
+
+auto it=s.lower_bound(4);
+\end{lstlisting}
+返回：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\subsection{作用}
+找第一个：
+\begin{lstlisting}
+>=x
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. upper\_bound()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+upper_bound()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=s.upper_bound(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+auto it=s.upper_bound(5);
+\end{lstlisting}
+返回：
+\begin{lstlisting}
+7
+\end{lstlisting}
+
+\subsection{作用}
+找第一个：
+\begin{lstlisting}
+>x
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{set遍历}
+
+\subsection{方法1：范围for}
+\begin{lstlisting}[language=C++]
+for(auto x:s)
+{
+    cout<<x;
+}
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2：迭代器}
+\begin{lstlisting}[language=C++]
+for(auto it=s.begin();it!=s.end();it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{set常用场景}
+
+\subsection{去重排序}
+原：
+\begin{lstlisting}[language=C++]
+vector<int> v={3,1,2,2};
+\end{lstlisting}
+方法：
+\begin{lstlisting}[language=C++]
+set<int> s(v.begin(),v.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、multiset（可重复集合）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <set>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. multiset定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+multiset
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+multiset<int> ms;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+multiset<int> ms={1,2,2,3};
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 2 3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+允许重复元素的set。
+
+区别：
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ & set & multiset \\ \hline
+重复 & 不允许 & 允许 \\ \hline
+排序 & 自动 & 自动 \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. insert()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+ms.insert(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+ms.insert(2);
+ms.insert(2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+2 2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. erase()}
+
+重点！
+
+\subsection{删除一个}
+\begin{lstlisting}[language=C++]
+auto it=ms.find(2);
+
+ms.erase(it);
+\end{lstlisting}
+删除一个2。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{删除全部}
+\begin{lstlisting}[language=C++]
+ms.erase(2);
+\end{lstlisting}
+所有2都会删除。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+删除元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. count()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+ms.count(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+multiset<int> ms={1,2,2,2,3};
+
+cout<<ms.count(2);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\subsection{作用}
+统计出现次数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、map（映射）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <map>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. map定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+map
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+map<string,int> mp;
+\end{lstlisting}
+表示：
+\begin{lstlisting}
+字符串 -> 整数
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+mp["apple"]=5;
+\end{lstlisting}
+形成：
+\begin{lstlisting}
+apple 5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+键值映射。
+
+类似：\\
+字典：
+\begin{lstlisting}
+单词 → 解释
+姓名 → 成绩
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 插入元素}
+
+\subsection{方法1：下标}
+\begin{lstlisting}[language=C++]
+mp[key]=value;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+map<string,int> mp;
+
+mp["Tom"]=90;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2：insert}
+\begin{lstlisting}[language=C++]
+mp.insert(pair<string,int>("Tom",90));
+\end{lstlisting}
+或者：
+\begin{lstlisting}[language=C++]
+mp.insert({"Tom",90});
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+添加键值对。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 访问元素}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+[]
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+mp[key];
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<mp["Tom"];
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+90
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+注意：\\
+如果key不存在：
+\begin{lstlisting}[language=C++]
+mp["Bob"];
+\end{lstlisting}
+会自动创建：
+\begin{lstlisting}
+Bob 0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. erase()}
+
+\subsection{用法}
+删除key：
+\begin{lstlisting}[language=C++]
+mp.erase(key);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+mp.erase("Tom");
+\end{lstlisting}
+删除：
+\begin{lstlisting}
+Tom
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+删除映射。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. find()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+mp.find(key);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+if(mp.find("Tom")!=mp.end())
+{
+    cout<<"存在";
+}
+\end{lstlisting}
+
+\subsection{作用}
+查找key。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. count()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+mp.count(key);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+mp.count("Tom");
+\end{lstlisting}
+返回：
+\begin{lstlisting}
+1
+\end{lstlisting}
+不存在：
+\begin{lstlisting}
+0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. size()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+mp.size();
+\end{lstlisting}
+作用：\\
+键值对数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. 遍历map（重点）}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pair
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+for(auto p:mp)
+{
+    cout<<p.first<<" "<<p.second;
+}
+\end{lstlisting}
+例如：\\
+map：
+\begin{lstlisting}
+Tom 90
+Bob 80
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+Tom 90
+Bob 80
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+其中：
+\begin{lstlisting}[language=C++]
+p.first
+\end{lstlisting}
+表示：\\
+key
+
+\begin{lstlisting}[language=C++]
+p.second
+\end{lstlisting}
+表示：\\
+value
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. map自动排序}
+
+默认：\\
+按照key升序。
+
+例如：
+\begin{lstlisting}[language=C++]
+map<int,string> mp;
+
+mp[3]="c";
+mp[1]="a";
+mp[2]="b";
+\end{lstlisting}
+遍历：
+\begin{lstlisting}
+1 a
+2 b
+3 c
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{map经典用途}
+
+\subsection{统计次数}
+例如：\\
+统计字符串字符：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+map<char,int> mp;
+
+
+for(char c:s)
+{
+    mp[c]++;
+}
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+h 1
+e 1
+l 2
+o 1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、unordered\_map（哈希表）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <unordered_map>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. unordered\_map定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+unordered_map
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+unordered_map<string,int> mp;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+类似map。
+
+区别：
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ & map & unordered\_map \\ \hline
+底层 & 红黑树 & 哈希表 \\ \hline
+排序 & 自动排序 & 无序 \\ \hline
+速度 & O(logn) & 平均O(1) \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 插入}
+\begin{lstlisting}[language=C++]
+mp[key]=value;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+mp["apple"]=10;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 查找}
+\begin{lstlisting}[language=C++]
+mp.find(key);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+if(mp.find("apple")!=mp.end())
+{
+    cout<<"yes";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. 统计次数}
+最常用：
+\begin{lstlisting}[language=C++]
+unordered_map<char,int> cnt;
+
+
+for(char c:s)
+{
+    cnt[c]++;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{map和unordered\_map选择}
+
+考试：\\
+需要排序：\\
+↓
+\begin{lstlisting}[language=C++]
+map
+\end{lstlisting}
+只需要快速查找：\\
+↓
+\begin{lstlisting}[language=C++]
+unordered_map
+\end{lstlisting}
+统计次数：\\
+↓
+\begin{lstlisting}[language=C++]
+unordered_map
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第六章 pair / tuple / iterator（迭代器）}
+
+这一章属于 STL 基础连接部分。
+
+很多 STL 函数：
+\begin{lstlisting}[language=C++]
+sort()
+find()
+lower_bound()
+map遍历
+\end{lstlisting}
+都会用到。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、pair（存两个数据）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <utility>
+\end{lstlisting}
+通常：
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+\end{lstlisting}
+已经包含。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. pair定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pair
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+pair<类型1,类型2> 名称;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+pair<int,string> p;
+\end{lstlisting}
+表示：\\
+存：
+\begin{lstlisting}
+整数 + 字符串
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+初始化：
+\begin{lstlisting}[language=C++]
+pair<int,string> p={1,"Tom"};
+\end{lstlisting}
+或者：
+\begin{lstlisting}[language=C++]
+pair<int,string> p;
+
+p.first=1;
+p.second="Tom";
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+把两个变量绑定在一起。
+
+例如：\\
+学生：
+\begin{lstlisting}
+学号 + 姓名
+\end{lstlisting}
+坐标：
+\begin{lstlisting}
+x + y
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. first}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+first
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+p.first;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+pair<int,string> p={100,"Tom"};
+
+cout<<p.first;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+100
+\end{lstlisting}
+
+\subsection{作用}
+访问pair第一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. second}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+second
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+p.second;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<p.second;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+Tom
+\end{lstlisting}
+
+\subsection{作用}
+访问第二个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. make\_pair()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+make_pair()
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+make_pair(数据1,数据2);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+auto p=make_pair(10,"hello");
+\end{lstlisting}
+等价：
+\begin{lstlisting}[language=C++]
+pair<int,string> p={10,"hello"};
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+快速创建pair。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. pair比较}
+
+pair可以直接比较。
+
+例如：
+\begin{lstlisting}[language=C++]
+pair<int,int> a={1,2};
+
+pair<int,int> b={1,3};
+
+
+cout<<(a<b);
+\end{lstlisting}
+比较规则：\\
+先比较：
+\begin{lstlisting}
+first
+\end{lstlisting}
+如果相同：\\
+比较：
+\begin{lstlisting}
+second
+\end{lstlisting}
+例如：
+\begin{lstlisting}
+(1,2)
+(1,3)
+\end{lstlisting}
+因为：
+\begin{lstlisting}
+2 < 3
+\end{lstlisting}
+所以：
+\begin{lstlisting}
+a < b
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+常用于排序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. pair排序}
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<pair<int,int>> v;
+
+v.push_back({2,5});
+v.push_back({1,3});
+v.push_back({2,1});
+
+
+sort(v.begin(),v.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+(1,3)
+(2,1)
+(2,5)
+\end{lstlisting}
+规则：\\
+第一关键字升序。\\
+第二关键字升序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. 自定义pair排序}
+
+例如：\\
+按照second排序：
+\begin{lstlisting}[language=C++]
+bool cmp(pair<int,int>a,pair<int,int>b)
+{
+    return a.second<b.second;
+}
+
+
+sort(v.begin(),v.end(),cmp);
+\end{lstlisting}
+作用：\\
+改变排序规则。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、tuple（三个及以上数据）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <tuple>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. tuple定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+tuple
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+tuple<int,string,double> t;
+\end{lstlisting}
+表示：
+\begin{lstlisting}
+int
+string
+double
+\end{lstlisting}
+三个数据。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+初始化：
+\begin{lstlisting}[language=C++]
+tuple<int,string,double> t
+=
+{
+1,
+"Tom",
+99.5
+};
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+存储多个不同类型的数据。
+
+pair只能两个。\\
+tuple可以多个。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. get()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+get<>
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+get<编号>(tuple);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+tuple<int,string,double> t={1,"Tom",99.5};
+
+
+cout<<get<0>(t);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\begin{lstlisting}[language=C++]
+cout<<get<1>(t);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+Tom
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+注意：\\
+编号从0开始。
+\begin{lstlisting}
+get<0>
+第一个
+
+get<1>
+第二个
+
+get<2>
+第三个
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+访问tuple元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、iterator（迭代器）}
+
+iterator 是 STL 的核心。
+
+简单理解：\\
+迭代器 = 指向容器元素的指针。
+
+类似：\\
+C语言：
+\begin{lstlisting}[language=C++]
+int *p;
+\end{lstlisting}
+STL：
+\begin{lstlisting}[language=C++]
+vector<int>::iterator it;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. iterator定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+iterator
+\end{lstlisting}
+
+\subsection{用法}
+vector：
+\begin{lstlisting}[language=C++]
+vector<int>::iterator it;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+vector<int>::iterator it;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+现在推荐：
+\begin{lstlisting}[language=C++]
+auto it;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+auto it=v.begin();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+遍历容器。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. begin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+begin()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=v.begin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3};
+
+auto it=v.begin();
+
+cout<<*it;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+返回第一个元素位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. end()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+end()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=v.end();
+\end{lstlisting}
+注意：\\
+end不是最后元素。
+
+它指向：
+\begin{lstlisting}
+最后一个元素后面
+\end{lstlisting}
+所以：\\
+错误：
+\begin{lstlisting}[language=C++]
+cout<<*v.end();
+\end{lstlisting}
+正确：
+\begin{lstlisting}[language=C++]
+cout<<*(v.end()-1);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+表示遍历结束。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. 解引用 *}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+*
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+*iterator
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+auto it=v.begin();
+
+cout<<*it;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+第一个元素
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+获得迭代器指向的数据。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. iterator移动}
+
+\subsection{名称}
+++
+
+--
+
+\subsection{用法}
+向后：
+\begin{lstlisting}[language=C++]
+it++;
+\end{lstlisting}
+向前：
+\begin{lstlisting}[language=C++]
+it--;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+auto it=v.begin();
+
+it++;
+
+cout<<*it;
+\end{lstlisting}
+输出：\\
+第二个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. iterator遍历vector}
+
+\subsection{方法}
+\begin{lstlisting}[language=C++]
+for(auto it=v.begin();
+    it!=v.end();
+    it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+123
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. iterator遍历set}
+
+set不能：
+\begin{lstlisting}[language=C++]
+s[0]
+\end{lstlisting}
+只能：
+\begin{lstlisting}[language=C++]
+for(auto it=s.begin();
+    it!=s.end();
+    it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. iterator遍历map（重点）}
+
+map里面：\\
+元素类型：
+\begin{lstlisting}[language=C++]
+pair
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+map<string,int> mp;
+
+
+mp["Tom"]=90;
+mp["Bob"]=80;
+
+
+for(auto it=mp.begin();
+    it!=mp.end();
+    it++)
+{
+    cout<<it->first;
+    cout<<it->second;
+}
+\end{lstlisting}
+注意：\\
+这里：
+\begin{lstlisting}[language=C++]
+it->first
+\end{lstlisting}
+等价：
+\begin{lstlisting}[language=C++]
+(*it).first
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. 箭头符号 ->}
+
+\subsection{名称}
+成员访问
+
+\subsection{用法}
+如果：
+\begin{lstlisting}[language=C++]
+it
+\end{lstlisting}
+是指针：\\
+访问成员：
+\begin{lstlisting}[language=C++]
+it->成员
+\end{lstlisting}
+例如：\\
+map：
+\begin{lstlisting}[language=C++]
+it->first
+it->second
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+访问指针对象成员。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. const\_iterator}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+const_iterator
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+vector<int>::const_iterator it;
+\end{lstlisting}
+或者：
+\begin{lstlisting}[language=C++]
+auto it=v.cbegin();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+只读迭代器。
+
+不能：
+\begin{lstlisting}[language=C++]
+*it=10;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. reverse\_iterator}
+
+\subsection{名称}
+反向迭代器
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=v.rbegin();
+\end{lstlisting}
+遍历：
+\begin{lstlisting}[language=C++]
+for(auto it=v.rbegin();
+    it!=v.rend();
+    it++)
+{
+    cout<<*it;
+}
+\end{lstlisting}
+例如：\\
+vector:
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+321
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+反向遍历。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、auto关键字（STL必用）}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+auto
+\end{lstlisting}
+
+\subsection{用法}
+不用写复杂类型：
+
+传统：
+\begin{lstlisting}[language=C++]
+vector<int>::iterator it;
+\end{lstlisting}
+auto：
+\begin{lstlisting}[language=C++]
+auto it=v.begin();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+map：
+
+传统：
+\begin{lstlisting}[language=C++]
+map<string,int>::iterator it;
+\end{lstlisting}
+auto：
+\begin{lstlisting}[language=C++]
+auto it=mp.begin();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+让编译器自动推断类型。\\
+考试非常推荐。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{五、范围for循环（C++11）}
+
+\subsection{名称}
+range-based for
+
+\subsection{用法}
+vector：
+\begin{lstlisting}[language=C++]
+for(auto x:v)
+{
+    cout<<x;
+}
+\end{lstlisting}
+string：
+\begin{lstlisting}[language=C++]
+for(char c:s)
+{
+    cout<<c;
+}
+\end{lstlisting}
+map：
+\begin{lstlisting}[language=C++]
+for(auto p:mp)
+{
+    cout<<p.first;
+    cout<<p.second;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+快速遍历。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{六、STL常用头文件总表（考试）}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+功能 & 头文件 \\ \hline
+vector & string \\ \hline
+stack & \texttt{<stack>} \\ \hline
+queue & \texttt{<queue>} \\ \hline
+priority\_queue & \texttt{<queue>} \\ \hline
+set/map & \texttt{<set>} \texttt{<map>} \\ \hline
+算法 & \texttt{<algorithm>} \\ \hline
+累加 & \texttt{<numeric>} \\ \hline
+pair & \texttt{<utility>} \\ \hline
+tuple & \texttt{<tuple>} \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第七章 C++ STL上机考试万能模板}
+
+这一部分不是介绍函数，而是整理\textbf{考试直接能套用的代码模板}。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. 万能头文件模板}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{作用}
+一次包含几乎所有 STL：
+
+包括：
+\begin{lstlisting}[language=C++]
+vector
+string
+map
+set
+queue
+stack
+algorithm
+numeric
+\end{lstlisting}
+等。
+
+考试最推荐。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 快速输入输出}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+ios::sync_with_stdio(false);
+cin.tie(nullptr);
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+
+}
+\end{lstlisting}
+
+\subsection{作用}
+关闭 C 和 C++ 输入同步，提高速度。\\
+普通题可以不写。\\
+数据量大建议写。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. vector输入模板}
+
+\subsection{场景}
+输入n个数字。
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+int n;
+
+cin>>n;
+
+
+vector<int> v(n);
+
+
+for(int i=0;i<n;i++)
+{
+    cin>>v[i];
+}
+\end{lstlisting}
+
+\subsection{作用}
+快速创建数组。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+另一种：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+
+
+for(int i=0;i<n;i++)
+{
+    int x;
+
+    cin>>x;
+
+    v.push_back(x);
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+区别：
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+方法 & 特点 \\ \hline
+vector(n) & 提前知道数量 \\ \hline
+push\_back & 不知道数量 \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. vector遍历模板}
+
+\subsection{方法1：下标}
+\begin{lstlisting}[language=C++]
+for(int i=0;i<v.size();i++)
+{
+    cout<<v[i]<<" ";
+}
+\end{lstlisting}
+适合：\\
+需要下标。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2：范围for}
+\begin{lstlisting}[language=C++]
+for(auto x:v)
+{
+    cout<<x<<" ";
+}
+\end{lstlisting}
+适合：\\
+只读取。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法3：引用}
+\begin{lstlisting}[language=C++]
+for(auto &x:v)
+{
+    cin>>x;
+}
+\end{lstlisting}
+作用：\\
+直接修改原元素。
+
+例如：
+\begin{lstlisting}[language=C++]
+for(auto &x:v)
+{
+    x*=2;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. 数组排序模板}
+
+\subsection{升序}
+\begin{lstlisting}[language=C++]
+sort(a,a+n);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int a[5]={3,1,5,2,4};
+
+sort(a,a+5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3 4 5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{vector排序}
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{降序}
+数组：
+\begin{lstlisting}[language=C++]
+sort(a,a+n,greater<int>());
+\end{lstlisting}
+vector：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end(),greater<int>());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. 字符串排序模板}
+
+\subsection{名称}
+字符排序
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+string s="dcba";
+
+
+sort(s.begin(),s.end());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+abcd
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+降序：
+\begin{lstlisting}[language=C++]
+sort(s.begin(),s.end(),greater<char>());
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+dcba
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. vector求最大最小值}
+
+\subsection{最大值}
+\begin{lstlisting}[language=C++]
+int mx=*max_element(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{最小值}
+\begin{lstlisting}[language=C++]
+int mn=*min_element(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{最大值位置}
+\begin{lstlisting}[language=C++]
+int pos=max_element(v.begin(),v.end())-v.begin();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+v={3,7,2}
+\end{lstlisting}
+返回：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. vector求和模板}
+
+\subsection{名称}
+accumulate
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+int sum=accumulate(
+    v.begin(),
+    v.end(),
+    0
+);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+v={1,2,3}
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+6
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. 去重模板}
+
+\subsection{场景}
+数组：
+\begin{lstlisting}
+1 2 2 3 3
+\end{lstlisting}
+变：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+
+
+v.erase(
+    unique(v.begin(),v.end()),
+    v.end()
+);
+\end{lstlisting}
+步骤：\\
+第一步：\\
+排序：
+\begin{lstlisting}
+1 2 2 3 3
+\end{lstlisting}
+第二步：\\
+unique：
+\begin{lstlisting}
+1 2 3 ? ?
+\end{lstlisting}
+第三步：\\
+erase删除。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. 查找元素模板}
+
+\subsection{方法1：find}
+\begin{lstlisting}[language=C++]
+auto it=find(
+    v.begin(),
+    v.end(),
+    x
+);
+
+
+if(it!=v.end())
+{
+    cout<<"找到";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2：count}
+\begin{lstlisting}[language=C++]
+if(count(v.begin(),v.end(),x))
+{
+    cout<<"存在";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. set去重模板}
+
+\subsection{场景}
+自动排序去重。
+
+代码：
+\begin{lstlisting}[language=C++]
+set<int> s;
+
+
+for(int x:v)
+{
+    s.insert(x);
+}
+\end{lstlisting}
+遍历：
+\begin{lstlisting}[language=C++]
+for(auto x:s)
+{
+    cout<<x<<" ";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. map统计次数模板（超级高频）}
+
+\subsection{场景}
+统计：
+\begin{itemize}
+    \item 字符出现次数
+    \item 数字出现次数
+    \item 单词次数
+\end{itemize}
+
+代码：
+\begin{lstlisting}[language=C++]
+map<int,int> mp;
+
+
+for(int x:v)
+{
+    mp[x]++;
+}
+\end{lstlisting}
+例如：\\
+输入：
+\begin{lstlisting}
+1 2 2 3
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 -> 1次
+2 -> 2次
+3 -> 1次
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+字符串：
+\begin{lstlisting}[language=C++]
+string s="hello";
+
+
+map<char,int> mp;
+
+
+for(char c:s)
+{
+    mp[c]++;
+}
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+h 1
+e 1
+l 2
+o 1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. unordered\_map统计模板}
+
+推荐：
+\begin{lstlisting}[language=C++]
+unordered_map<int,int> mp;
+
+
+for(int x:v)
+{
+    mp[x]++;
+}
+\end{lstlisting}
+速度更快。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. map遍历模板}
+
+\subsection{方法1}
+\begin{lstlisting}[language=C++]
+for(auto p:mp)
+{
+    cout<<p.first<<" ";
+
+    cout<<p.second;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2（修改）}
+\begin{lstlisting}[language=C++]
+for(auto &p:mp)
+{
+    p.second++;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. stack括号匹配模板}
+
+\subsection{场景}
+判断：
+\begin{lstlisting}
+(())
+\end{lstlisting}
+是否合法。
+
+代码：
+\begin{lstlisting}[language=C++]
+string s;
+
+
+cin>>s;
+
+
+stack<char> st;
+
+
+for(char c:s)
+{
+    if(c=='(')
+    {
+        st.push(c);
+    }
+
+
+    else
+    {
+        if(st.empty())
+        {
+            cout<<"NO";
+
+            return 0;
+        }
+
+
+        st.pop();
+    }
+}
+
+
+if(st.empty())
+    cout<<"YES";
+
+else
+    cout<<"NO";
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{16. queue BFS模板}
+
+\subsection{场景}
+图搜索：
+\begin{itemize}
+    \item 迷宫
+    \item 最短路径
+    \item 层序遍历
+\end{itemize}
+
+模板：
+\begin{lstlisting}[language=C++]
+queue<int> q;
+
+
+q.push(start);
+
+
+while(!q.empty())
+{
+    int x=q.front();
+
+    q.pop();
+
+
+    //处理x
+
+
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{17. priority\_queue最大值模板}
+
+\subsection{默认大根堆}
+\begin{lstlisting}[language=C++]
+priority_queue<int> pq;
+
+
+pq.push(5);
+
+pq.push(10);
+
+pq.push(3);
+
+
+cout<<pq.top();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{18. priority\_queue小根堆}
+\begin{lstlisting}[language=C++]
+priority_queue<
+    int,
+    vector<int>,
+    greater<int>
+> pq;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+pq.push(5);
+pq.push(2);
+pq.push(8);
+\end{lstlisting}
+top：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{19. 二分查找模板}
+
+前提：\\
+必须排序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{lower\_bound}
+\begin{lstlisting}[language=C++]
+auto it=
+lower_bound(
+    v.begin(),
+    v.end(),
+    x
+);
+
+
+int pos=it-v.begin();
+\end{lstlisting}
+寻找：
+\begin{lstlisting}
+>=x
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{upper\_bound}
+\begin{lstlisting}[language=C++]
+auto it=
+upper_bound(
+    v.begin(),
+    v.end(),
+    x
+);
+\end{lstlisting}
+寻找：
+\begin{lstlisting}
+>x
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{20. 全排列模板}
+
+\subsection{next\_permutation}
+例如：
+\begin{lstlisting}[language=C++]
+string s="abc";
+
+
+do
+{
+    cout<<s<<endl;
+
+}
+while(next_permutation(
+    s.begin(),
+    s.end()
+));
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+abc
+acb
+bac
+bca
+cab
+cba
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{21. 二维vector模板}
+
+\subsection{定义}
+\begin{lstlisting}[language=C++]
+vector<vector<int>> v(
+    n,
+    vector<int>(m)
+);
+\end{lstlisting}
+创建：\\
+n行m列。
+
+例如：
+\begin{lstlisting}[language=C++]
+vector<vector<int>> a(
+    3,
+    vector<int>(4,0)
+);
+\end{lstlisting}
+得到：\\
+3×4 全0矩阵。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{22. 二维vector遍历}
+\begin{lstlisting}[language=C++]
+for(int i=0;i<v.size();i++)
+{
+    for(int j=0;j<v[i].size();j++)
+    {
+        cout<<v[i][j];
+    }
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{23. pair排序模板}
+
+\subsection{默认}
+\begin{lstlisting}[language=C++]
+vector<pair<int,int>> v;
+
+
+sort(v.begin(),v.end());
+\end{lstlisting}
+排序：\\
+第一关键字\\
+↓\\
+第二关键字。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{按第二关键字}
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+[](pair<int,int>a,pair<int,int>b)
+{
+    return a.second<b.second;
+});
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{24. 常用字符串处理组合}
+
+\subsection{删除某字符}
+例如删除空格：
+\begin{lstlisting}[language=C++]
+s.erase(
+remove(
+s.begin(),
+s.end(),
+' '
+),
+s.end()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{字符串反转}
+\begin{lstlisting}[language=C++]
+reverse(
+s.begin(),
+s.end()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{字符串转数字}
+\begin{lstlisting}[language=C++]
+int x=stoi(s);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{数字转字符串}
+\begin{lstlisting}[language=C++]
+string s=to_string(x);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{25. STL复杂度速记}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+操作 & 复杂度 \\ \hline
+vector尾插push\_back & O(1) \\ \hline
+vector中间插入 & O(n) \\ \hline
+sort & O(nlogn) \\ \hline
+find(vector) & O(n) \\ \hline
+binary\_search & O(logn) \\ \hline
+set查找 & O(logn) \\ \hline
+map查找 & O(logn) \\ \hline
+unordered\_map查找 & 平均O(1) \\ \hline
+priority\_queue插入 & O(logn) \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{26. 考试最常用TOP20函数（建议背）}
+\begin{lstlisting}[language=C++]
+vector:
+push_back()
+pop_back()
+size()
+erase()
+insert()
+clear()
+begin()
+end()
+
+
+string:
+getline()
+size()
+substr()
+find()
+erase()
+replace()
+append()
+
+
+algorithm:
+sort()
+reverse()
+find()
+count()
+accumulate()
+max_element()
+min_element()
+lower_bound()
+upper_bound()
+
+
+map:
+insert
+[]
+find
+count
+
+
+stack:
+push
+pop
+top
+
+
+queue:
+push
+pop
+front
+
+
+priority_queue:
+push
+pop
+top
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+\section{第八章 STL补充知识（容易遗漏但考试可能出现）}
+
+这一章主要补充：
+\begin{itemize}
+    \item array
+    \item unordered\_set
+    \item bitset
+    \item numeric更多函数
+    \item functional
+    \item lambda表达式
+    \item 自定义比较器
+    \item STL常见坑
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、array（固定大小数组）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <array>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. array定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+array
+\end{lstlisting}
+
+\subsection{用法}
+格式：
+\begin{lstlisting}[language=C++]
+array<类型,大小> 名称;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+array<int,5> a;
+\end{lstlisting}
+表示：
+\begin{lstlisting}
+长度固定为5的int数组
+\end{lstlisting}
+初始化：
+\begin{lstlisting}[language=C++]
+array<int,5> a={1,2,3,4,5};
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+STL版本的普通数组。
+
+区别：\\
+普通数组：
+\begin{lstlisting}[language=C++]
+int a[5];
+\end{lstlisting}
+array：
+\begin{lstlisting}[language=C++]
+array<int,5> a;
+\end{lstlisting}
+优点：
+\begin{itemize}
+    \item 支持STL函数
+    \item 有size()
+    \item 有迭代器
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. size()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+a.size();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+array<int,5> a;
+
+cout<<a.size();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\subsection{作用}
+获取数组大小。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. front()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+a.front();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<a.front();
+\end{lstlisting}
+作用：\\
+访问第一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. back()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+a.back();
+\end{lstlisting}
+作用：\\
+访问最后元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. fill()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+a.fill(0);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+array<int,5> a;
+
+a.fill(10);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10 10 10 10 10
+\end{lstlisting}
+
+\subsection{作用}
+全部赋值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. begin()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+a.begin();
+\end{lstlisting}
+作用：\\
+返回首迭代器。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. end()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+a.end();
+\end{lstlisting}
+作用：\\
+返回尾后迭代器。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、unordered\_set（哈希集合）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <unordered_set>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. unordered\_set定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+unordered_set
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+unordered_set<int> s;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+类似set。
+
+区别：
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ & set & unordered\_set \\ \hline
+底层 & 红黑树 & 哈希表 \\ \hline
+排序 & 自动排序 & 无序 \\ \hline
+速度 & O(logn) & 平均O(1) \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. insert()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.insert(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+unordered_set<int> s;
+
+s.insert(3);
+s.insert(1);
+\end{lstlisting}
+输出顺序不固定。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. find()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto it=s.find(x);
+\end{lstlisting}
+判断：
+\begin{lstlisting}[language=C++]
+if(it!=s.end())
+{
+    cout<<"存在";
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. count()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.count(x);
+\end{lstlisting}
+返回：\\
+存在：
+\begin{lstlisting}
+1
+\end{lstlisting}
+不存在：
+\begin{lstlisting}
+0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. erase()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.erase(x);
+\end{lstlisting}
+作用：\\
+删除元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. size()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+s.size();
+\end{lstlisting}
+作用：\\
+元素数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、bitset（二进制位操作）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <bitset>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. bitset定义}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+bitset
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+bitset<8> b;
+\end{lstlisting}
+表示：\\
+8位二进制。
+
+初始化：
+\begin{lstlisting}[language=C++]
+bitset<8> b("1010");
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+00001010
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+处理二进制非常方便。
+
+例如：
+\begin{itemize}
+    \item 位运算
+    \item 状态压缩
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. count()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+b.count();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+bitset<8> b("1011");
+
+cout<<b.count();
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\subsection{作用}
+统计1的数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. size()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+b.size();
+\end{lstlisting}
+作用：\\
+位数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. test()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+test()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+b.test(pos);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+bitset<8> b("1010");
+
+cout<<b.test(1);
+\end{lstlisting}
+作用：\\
+判断第pos位是否为1。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. set()}
+
+\subsection{用法}
+全部置1：
+\begin{lstlisting}[language=C++]
+b.set();
+\end{lstlisting}
+指定位置：
+\begin{lstlisting}[language=C++]
+b.set(2);
+\end{lstlisting}
+作用：\\
+把某位变成1。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. reset()}
+
+\subsection{用法}
+全部置0：
+\begin{lstlisting}[language=C++]
+b.reset();
+\end{lstlisting}
+指定位置：
+\begin{lstlisting}[language=C++]
+b.reset(2);
+\end{lstlisting}
+作用：\\
+把某位变成0。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. flip()}
+
+\subsection{用法}
+全部取反：
+\begin{lstlisting}[language=C++]
+b.flip();
+\end{lstlisting}
+指定：
+\begin{lstlisting}[language=C++]
+b.flip(2);
+\end{lstlisting}
+例如：\\
+0→1\\
+1→0
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. to\_string()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+string s=b.to_string();
+\end{lstlisting}
+作用：\\
+转换成字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. to\_ulong()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+unsigned long x=b.to_ulong();
+\end{lstlisting}
+作用：\\
+转换成整数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、numeric头文件其他函数}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <numeric>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. accumulate()}
+
+前面讲过：
+\begin{lstlisting}[language=C++]
+accumulate(
+begin,
+end,
+初始值
+);
+\end{lstlisting}
+作用：\\
+求和。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. iota()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+iota()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+iota(
+begin,
+end,
+初始值
+);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v(5);
+
+
+iota(
+v.begin(),
+v.end(),
+1
+);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3 4 5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+连续赋值。
+
+类似：
+\begin{lstlisting}[language=C++]
+for循环赋值
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. inner\_product()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+inner_product()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+inner_product(
+a.begin(),
+a.end(),
+b.begin(),
+0
+);
+\end{lstlisting}
+例如：\\
+a:
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+b:
+\begin{lstlisting}
+4 5 6
+\end{lstlisting}
+计算：
+\begin{lstlisting}
+1*4+2*5+3*6
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+32
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+计算向量点积。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. partial\_sum()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+partial_sum()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+partial_sum(
+begin,
+end,
+输出位置
+);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+vector<int> v={1,2,3,4};
+
+vector<int> ans(4);
+
+
+partial_sum(
+v.begin(),
+v.end(),
+ans.begin()
+);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 3 6 10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+前缀和。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. adjacent\_difference()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+adjacent_difference()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+adjacent_difference(
+begin,
+end,
+输出位置
+);
+\end{lstlisting}
+例如：\\
+输入：
+\begin{lstlisting}
+1 3 6 10
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1 2 3 4
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+求相邻差。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{五、functional（函数对象）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <functional>
+\end{lstlisting}
+常用于：\\
+sort第三个参数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. greater()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+greater<>
+\end{lstlisting}
+
+\subsection{用法}
+降序：
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+greater<int>()
+);
+\end{lstlisting}
+作用：\\
+从大到小排序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. less()}
+
+默认：
+\begin{lstlisting}[language=C++]
+less<int>()
+\end{lstlisting}
+用法：
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+less<int>()
+);
+\end{lstlisting}
+作用：\\
+升序排序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. plus()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+plus<int>()
+\end{lstlisting}
+作用：\\
+加法。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. minus()}
+\begin{lstlisting}[language=C++]
+minus<int>()
+\end{lstlisting}
+作用：\\
+减法。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. multiplies()}
+\begin{lstlisting}[language=C++]
+multiplies<int>()
+\end{lstlisting}
+作用：\\
+乘法。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. divides()}
+\begin{lstlisting}[language=C++]
+divides<int>()
+\end{lstlisting}
+作用：\\
+除法。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{六、lambda表达式（非常重要）}
+
+C++11以后：\\
+可以直接写匿名函数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. 基本格式}
+\begin{lstlisting}[language=C++]
+[捕获](参数)
+{
+    函数体
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. sort中使用（最常见）}
+例如：\\
+按照升序：
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+[](int a,int b)
+{
+    return a<b;
+}
+);
+\end{lstlisting}
+等价：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 降序}
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+[](int a,int b)
+{
+    return a>b;
+}
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. pair排序}
+按照second：
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+[](pair<int,int>a,pair<int,int>b)
+{
+    return a.second<b.second;
+}
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. 自定义规则}
+例如：\\
+奇数在前，偶数在后：
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+[](int a,int b)
+{
+    return a%2>b%2;
+}
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{七、STL常见坑}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. vector删除元素}
+错误：
+\begin{lstlisting}[language=C++]
+for(auto x:v)
+{
+    if(x==3)
+        v.erase(...);
+}
+\end{lstlisting}
+原因：\\
+删除导致迭代器失效。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+正确：
+\begin{lstlisting}[language=C++]
+for(auto it=v.begin();
+    it!=v.end();)
+{
+    if(*it==3)
+        it=v.erase(it);
+
+    else
+        it++;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. vector访问越界}
+错误：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+
+v[0]=10;
+\end{lstlisting}
+因为：\\
+没有空间。
+
+正确：
+\begin{lstlisting}[language=C++]
+v.push_back(10);
+\end{lstlisting}
+或者：
+\begin{lstlisting}[language=C++]
+vector<int> v(10);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. map中[]自动创建}
+例如：
+\begin{lstlisting}[language=C++]
+map<string,int> mp;
+
+
+cout<<mp["Tom"];
+\end{lstlisting}
+即使不存在：\\
+也会创建：
+\begin{lstlisting}
+Tom -> 0
+\end{lstlisting}
+如果只是查询：\\
+用：
+\begin{lstlisting}[language=C++]
+find()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. sort区间}
+错误：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end()-1);
+\end{lstlisting}
+少排序最后一个。
+
+正确：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. unique必须配erase}
+错误：
+\begin{lstlisting}[language=C++]
+unique(v.begin(),v.end());
+\end{lstlisting}
+不会删除。
+
+正确：
+\begin{lstlisting}[language=C++]
+v.erase(
+unique(v.begin(),v.end()),
+v.end()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. lower\_bound必须有序}
+错误：
+\begin{lstlisting}[language=C++]
+vector<int> v={5,1,3};
+
+lower_bound(v.begin(),v.end(),3);
+\end{lstlisting}
+结果错误。
+
+必须：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. priority\_queue不能遍历}
+错误：
+\begin{lstlisting}[language=C++]
+for(auto x:pq)
+\end{lstlisting}
+priority\_queue没有迭代器。
+
+只能：
+\begin{lstlisting}[language=C++]
+while(!pq.empty())
+{
+    cout<<pq.top();
+
+    pq.pop();
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第九章 C++ STL函数速查表（机考打印版）}
+
+这一章按照\textbf{考试查阅习惯}整理。
+
+格式：
+\begin{quote}
+\textbf{名称 → 完整写法 → 参数怎么填 → 作用 → 示例}
+\end{quote}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、vector速查表（重点）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <vector>
+\end{lstlisting}
+定义：
+\begin{lstlisting}[language=C++]
+vector<int> v;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. push\_back()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.push_back(x);
+\end{lstlisting}
+
+\subsection{参数}
+一个元素：
+\begin{lstlisting}[language=C++]
+x
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+v.push_back(10);
+\end{lstlisting}
+
+\subsection{作用}
+尾部添加元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. pop\_back()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.pop_back();
+\end{lstlisting}
+
+\subsection{参数}
+无。
+
+\subsection{作用}
+删除最后一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. size()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.size();
+\end{lstlisting}
+
+\subsection{参数}
+无。
+
+\subsection{返回}
+元素个数。
+
+例如：
+\begin{lstlisting}[language=C++]
+cout<<v.size();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. empty()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.empty();
+\end{lstlisting}
+
+\subsection{参数}
+无。
+
+\subsection{返回}
+\begin{lstlisting}[language=C++]
+true / false
+\end{lstlisting}
+作用：\\
+判断是否为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. clear()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.clear();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+清空vector。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. front()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.front();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+访问第一个元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. back()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.back();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+访问最后元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. begin()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.begin();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+返回首迭代器。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. end()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.end();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+返回尾后迭代器。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. insert()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.insert(pos,value);
+\end{lstlisting}
+参数：\\
+两个：\\
+① 插入位置\\
+② 插入值
+
+例如：
+\begin{lstlisting}[language=C++]
+v.insert(v.begin()+2,100);
+\end{lstlisting}
+作用：\\
+指定位置插入。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+多个元素：
+\begin{lstlisting}[language=C++]
+v.insert(pos,n,value);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+v.insert(v.begin(),3,5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+5 5 5 ...
+\end{lstlisting}
+作用：\\
+插入n个相同元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. erase()}
+
+\subsection{完整写法1}
+删除一个：
+\begin{lstlisting}[language=C++]
+v.erase(pos);
+\end{lstlisting}
+参数：\\
+迭代器。
+
+例如：
+\begin{lstlisting}[language=C++]
+v.erase(v.begin()+2);
+\end{lstlisting}
+作用：\\
+删除指定位置。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{完整写法2}
+删除区间：
+\begin{lstlisting}[language=C++]
+v.erase(first,last);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+v.erase(v.begin()+1,v.begin()+3);
+\end{lstlisting}
+删除：\\
+下标1到2。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. resize()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.resize(n);
+\end{lstlisting}
+参数：\\
+新大小。
+
+例如：
+\begin{lstlisting}[language=C++]
+v.resize(10);
+\end{lstlisting}
+作用：\\
+改变vector长度。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+填充值：
+\begin{lstlisting}[language=C++]
+v.resize(10,0);
+\end{lstlisting}
+不足：\\
+补0。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. capacity()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.capacity();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+返回当前容量。
+
+注意：\\
+不是元素数量。
+
+区别：
+\begin{lstlisting}[language=C++]
+size()
+\end{lstlisting}
+实际元素数量。
+\begin{lstlisting}[language=C++]
+capacity()
+\end{lstlisting}
+申请空间大小。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. reserve()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.reserve(n);
+\end{lstlisting}
+参数：\\
+预留容量。
+
+例如：
+\begin{lstlisting}[language=C++]
+v.reserve(100);
+\end{lstlisting}
+作用：\\
+提前申请空间。\\
+减少扩容次数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. shrink\_to\_fit()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.shrink_to_fit();
+\end{lstlisting}
+参数：\\
+无。
+
+作用：\\
+尝试释放多余容量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{16. at()}
+
+\subsection{完整写法}
+\begin{lstlisting}[language=C++]
+v.at(index);
+\end{lstlisting}
+参数：\\
+下标。
+
+例如：
+\begin{lstlisting}[language=C++]
+v.at(2);
+\end{lstlisting}
+作用：\\
+访问元素。
+
+区别：
+\begin{lstlisting}[language=C++]
+v[2]
+\end{lstlisting}
+越界不检查。
+\begin{lstlisting}[language=C++]
+v.at(2)
+\end{lstlisting}
+越界抛异常。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、string速查表（重点）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <string>
+\end{lstlisting}
+定义：
+\begin{lstlisting}[language=C++]
+string s;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. size()}
+\begin{lstlisting}[language=C++]
+s.size();
+\end{lstlisting}
+作用：\\
+字符串长度。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. length()}
+\begin{lstlisting}[language=C++]
+s.length();
+\end{lstlisting}
+作用：\\
+字符串长度。\\
+和size完全一样。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. empty()}
+\begin{lstlisting}[language=C++]
+s.empty();
+\end{lstlisting}
+作用：\\
+判断字符串为空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. clear()}
+\begin{lstlisting}[language=C++]
+s.clear();
+\end{lstlisting}
+作用：\\
+清空字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. push\_back()}
+\begin{lstlisting}[language=C++]
+s.push_back(c);
+\end{lstlisting}
+参数：\\
+字符。
+
+例如：
+\begin{lstlisting}[language=C++]
+s.push_back('a');
+\end{lstlisting}
+作用：\\
+尾部添加字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. pop\_back()}
+\begin{lstlisting}[language=C++]
+s.pop_back();
+\end{lstlisting}
+作用：\\
+删除最后字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. append()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+s.append(str);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+s="hello";
+
+s.append(" world");
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+hello world
+\end{lstlisting}
+作用：\\
+追加字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. substr()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+s.substr(pos,len);
+\end{lstlisting}
+两个参数：\\
+① 起始位置\\
+② 长度
+
+例如：
+\begin{lstlisting}[language=C++]
+string s="abcdef";
+
+
+cout<<s.substr(1,3);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+bcd
+\end{lstlisting}
+作用：\\
+截取子串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. find()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+s.find(str);
+\end{lstlisting}
+参数：\\
+要查找内容。
+
+例如：
+\begin{lstlisting}[language=C++]
+s.find("abc");
+\end{lstlisting}
+返回：\\
+第一次出现位置。
+
+不存在：
+\begin{lstlisting}[language=C++]
+string::npos
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. replace()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+s.replace(pos,len,str);
+\end{lstlisting}
+参数：\\
+三个：\\
+① 开始位置\\
+② 替换长度\\
+③ 新字符串
+
+例如：
+\begin{lstlisting}[language=C++]
+s.replace(1,2,"xx");
+\end{lstlisting}
+作用：\\
+替换字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. erase()}
+
+\subsection{删除位置}
+\begin{lstlisting}[language=C++]
+s.erase(pos,len);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+s.erase(1,3);
+\end{lstlisting}
+作用：\\
+删除指定字符。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. insert()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+s.insert(pos,str);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+s.insert(2,"abc");
+\end{lstlisting}
+作用：\\
+插入字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. compare()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+s.compare(str);
+\end{lstlisting}
+作用：\\
+比较字符串。
+
+返回：
+\begin{lstlisting}[language=C++]
+0
+\end{lstlisting}
+相等。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. getline()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+getline(cin,s);
+\end{lstlisting}
+作用：\\
+读取一整行。
+
+区别：
+\begin{lstlisting}[language=C++]
+cin>>
+\end{lstlisting}
+遇空格停止。
+
+getline：\\
+包含空格。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、algorithm速查表}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <algorithm>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. sort()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+sort(begin,end);
+\end{lstlisting}
+参数：\\
+两个迭代器。
+
+例如：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+\end{lstlisting}
+作用：\\
+排序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+降序：
+\begin{lstlisting}[language=C++]
+sort(
+v.begin(),
+v.end(),
+greater<int>()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. reverse()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+reverse(begin,end);
+\end{lstlisting}
+作用：\\
+反转。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. max()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+max(a,b);
+\end{lstlisting}
+作用：\\
+最大值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. min()}
+\begin{lstlisting}[language=C++]
+min(a,b);
+\end{lstlisting}
+作用：\\
+最小值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. max\_element()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+max_element(begin,end);
+\end{lstlisting}
+返回：\\
+迭代器。
+
+使用：
+\begin{lstlisting}[language=C++]
+*max_element(v.begin(),v.end());
+\end{lstlisting}
+作用：\\
+最大元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. min\_element()}
+\begin{lstlisting}[language=C++]
+*min_element(
+v.begin(),
+v.end()
+);
+\end{lstlisting}
+作用：\\
+最小元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. find()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+find(begin,end,x);
+\end{lstlisting}
+参数：\\
+三个：\\
+①开始\\
+②结束\\
+③查找值
+
+作用：\\
+寻找元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. count()}
+\begin{lstlisting}[language=C++]
+count(begin,end,x);
+\end{lstlisting}
+作用：\\
+统计数量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. fill()}
+\begin{lstlisting}[language=C++]
+fill(begin,end,x);
+\end{lstlisting}
+作用：\\
+全部填充。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. replace()}
+\begin{lstlisting}[language=C++]
+replace(
+begin,
+end,
+old,
+new
+);
+\end{lstlisting}
+作用：\\
+替换元素。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. unique()}
+\begin{lstlisting}[language=C++]
+unique(begin,end);
+\end{lstlisting}
+作用：\\
+删除连续重复。
+
+常用：
+\begin{lstlisting}[language=C++]
+v.erase(
+unique(v.begin(),v.end()),
+v.end()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. lower\_bound()}
+\begin{lstlisting}[language=C++]
+lower_bound(
+begin,
+end,
+x
+);
+\end{lstlisting}
+要求：\\
+有序。
+
+作用：\\
+第一个：
+\begin{lstlisting}
+>=x
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. upper\_bound()}
+\begin{lstlisting}[language=C++]
+upper_bound(
+begin,
+end,
+x
+);
+\end{lstlisting}
+作用：\\
+第一个：
+\begin{lstlisting}
+>x
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. binary\_search()}
+\begin{lstlisting}[language=C++]
+binary_search(
+begin,
+end,
+x
+);
+\end{lstlisting}
+作用：\\
+二分查找是否存在。
+
+返回：\\
+true/false。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. next\_permutation()}
+\begin{lstlisting}[language=C++]
+next_permutation(
+begin,
+end
+);
+\end{lstlisting}
+作用：\\
+下一个排列。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、numeric速查表}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <numeric>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. accumulate()}
+
+\subsection{写法}
+\begin{lstlisting}[language=C++]
+accumulate(
+begin,
+end,
+init
+);
+\end{lstlisting}
+参数：\\
+三个：\\
+①开始\\
+②结束\\
+③初始值
+
+例如：
+\begin{lstlisting}[language=C++]
+accumulate(
+v.begin(),
+v.end(),
+0
+);
+\end{lstlisting}
+作用：\\
+求和。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. iota()}
+\begin{lstlisting}[language=C++]
+iota(
+begin,
+end,
+start
+);
+\end{lstlisting}
+作用：\\
+连续赋值。
+
+例如：
+\begin{lstlisting}[language=C++]
+iota(v.begin(),v.end(),1);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1 2 3...
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. partial\_sum()}
+\begin{lstlisting}[language=C++]
+partial_sum(
+begin,
+end,
+out
+);
+\end{lstlisting}
+作用：\\
+前缀和。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{五、map速查表}
+
+定义：
+\begin{lstlisting}[language=C++]
+map<int,int> mp;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. []}
+\begin{lstlisting}[language=C++]
+mp[key];
+\end{lstlisting}
+作用：\\
+访问value。\\
+不存在自动创建。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. insert()}
+\begin{lstlisting}[language=C++]
+mp.insert({key,value});
+\end{lstlisting}
+作用：\\
+插入。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. erase()}
+\begin{lstlisting}[language=C++]
+mp.erase(key);
+\end{lstlisting}
+作用：\\
+删除。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. find()}
+\begin{lstlisting}[language=C++]
+mp.find(key);
+\end{lstlisting}
+作用：\\
+查找key。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. count()}
+\begin{lstlisting}[language=C++]
+mp.count(key);
+\end{lstlisting}
+作用：\\
+判断key是否存在。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. 遍历}
+\begin{lstlisting}[language=C++]
+for(auto p:mp)
+{
+    cout<<p.first;
+    cout<<p.second;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{六、stack速查表}
+
+定义：
+\begin{lstlisting}[language=C++]
+stack<int> st;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+push：
+\begin{lstlisting}[language=C++]
+st.push(x);
+\end{lstlisting}
+入栈。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+pop：
+\begin{lstlisting}[language=C++]
+st.pop();
+\end{lstlisting}
+删除栈顶。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+top：
+\begin{lstlisting}[language=C++]
+st.top();
+\end{lstlisting}
+访问栈顶。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+empty：
+\begin{lstlisting}[language=C++]
+st.empty();
+\end{lstlisting}
+判断空。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{七、queue速查表}
+
+定义：
+\begin{lstlisting}[language=C++]
+queue<int> q;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+push：
+\begin{lstlisting}[language=C++]
+q.push(x);
+\end{lstlisting}
+入队。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+pop：
+\begin{lstlisting}[language=C++]
+q.pop();
+\end{lstlisting}
+出队。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+front：
+\begin{lstlisting}[language=C++]
+q.front();
+\end{lstlisting}
+队头。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+back：
+\begin{lstlisting}[language=C++]
+q.back();
+\end{lstlisting}
+队尾。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{八、priority\_queue速查表}
+
+定义：
+\begin{lstlisting}[language=C++]
+priority_queue<int> pq;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+push：
+\begin{lstlisting}[language=C++]
+pq.push(x);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+top：
+\begin{lstlisting}[language=C++]
+pq.top();
+\end{lstlisting}
+作用：\\
+最大值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+pop：
+\begin{lstlisting}[language=C++]
+pq.pop();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+小根堆：
+\begin{lstlisting}[language=C++]
+priority_queue<
+int,
+vector<int>,
+greater<int>
+> pq;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{九、set速查表}
+
+定义：
+\begin{lstlisting}[language=C++]
+set<int> s;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+插入：
+\begin{lstlisting}[language=C++]
+s.insert(x);
+\end{lstlisting}
+删除：
+\begin{lstlisting}[language=C++]
+s.erase(x);
+\end{lstlisting}
+查找：
+\begin{lstlisting}[language=C++]
+s.find(x);
+\end{lstlisting}
+数量：
+\begin{lstlisting}[language=C++]
+s.size();
+\end{lstlisting}
+判断存在：
+\begin{lstlisting}[language=C++]
+s.count(x);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十、考试最常忘参数总结}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+函数 & 参数 \\ \hline
+sort & 开始，结束，比较函数 \\ \hline
+reverse & 开始，结束 \\ \hline
+find & 开始，结束，值 \\ \hline
+count & 开始，结束，值 \\ \hline
+fill & 开始，结束，值 \\ \hline
+accumulate & 开始，结束，初始值 \\ \hline
+lower\_bound & 开始，结束，值 \\ \hline
+upper\_bound & 开始，结束，值 \\ \hline
+substr & 位置，长度 \\ \hline
+erase(vector) & 位置 或 区间 \\ \hline
+insert(vector) & 位置，值 \\ \hline
+replace(string) & 位置，长度，新字符串 \\ \hline
+resize & 新大小 \\ \hline
+reserve & 容量 \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第十章 C++ 常用头文件速查（cmath + 其他高频库）}
+
+这一部分整理\textbf{上机考试除了 STL 之外最常用的函数库}。
+
+重点：
+\begin{itemize}
+    \item \texttt{<cmath>} 数学函数（重点）
+    \item \texttt{<iomanip>} 格式化输出
+    \item \texttt{<cstdlib>} 常用工具函数
+    \item \texttt{<cstring>} C字符串处理
+    \item \texttt{<ctime>} 时间函数
+    \item \texttt{<numeric>} 数学运算
+    \item \texttt{<sstream>} 字符串流
+    \item \texttt{<fstream>} 文件操作（了解）
+    \item \texttt{<random>} 随机数
+    \item \texttt{<limits>} 极值
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、cmath（数学函数库）⭐⭐⭐⭐⭐}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <cmath>
+\end{lstlisting}
+作用：\\
+提供数学计算函数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. abs()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+abs()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+abs(x);
+\end{lstlisting}
+参数：\\
+一个数字。
+
+例如：
+\begin{lstlisting}[language=C++]
+int x=-10;
+
+cout<<abs(x);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+求绝对值。
+
+注意：\\
+整数：
+\begin{lstlisting}[language=C++]
+abs()
+\end{lstlisting}
+浮点：\\
+推荐：
+\begin{lstlisting}[language=C++]
+fabs()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. fabs()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+fabs()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+fabs(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+double x=-3.14;
+
+cout<<fabs(x);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3.14
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+求浮点数绝对值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. sqrt()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+sqrt()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+sqrt(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<sqrt(9);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3
+\end{lstlisting}
+浮点：
+\begin{lstlisting}[language=C++]
+cout<<sqrt(2.0);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+1.414...
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+平方根。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. pow()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+pow()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+两个参数：
+\begin{lstlisting}[language=C++]
+pow(a,b);
+\end{lstlisting}
+表示：
+\begin{lstlisting}
+a的b次方
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<pow(2,3);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+8
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+幂运算。
+
+常见：\\
+平方：
+\begin{lstlisting}[language=C++]
+pow(x,2)
+\end{lstlisting}
+立方：
+\begin{lstlisting}[language=C++]
+pow(x,3)
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. exp()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+exp()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+exp(x);
+\end{lstlisting}
+表示：\\
+$e^x$
+
+例如：
+\begin{lstlisting}[language=C++]
+cout<<exp(1);
+\end{lstlisting}
+约：
+\begin{lstlisting}
+2.71828
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+计算自然指数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. log()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+log()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+log(x);
+\end{lstlisting}
+表示：\\
+$ln(x)$
+
+例如：
+\begin{lstlisting}[language=C++]
+cout<<log(2);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+自然对数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. log10()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+log10()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+log10(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<log10(100);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+十进制对数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{8. sin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+sin()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+sin(x);
+\end{lstlisting}
+注意：\\
+参数单位：\\
+\textbf{弧度}\\
+不是角度。
+
+例如：
+\begin{lstlisting}[language=C++]
+sin(M_PI/2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+正弦。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{9. cos()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+cos(x);
+\end{lstlisting}
+作用：\\
+余弦。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{10. tan()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+tan(x);
+\end{lstlisting}
+作用：\\
+正切。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{11. asin()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+asin()
+\end{lstlisting}
+作用：\\
+反正弦。
+
+返回：\\
+弧度。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{12. acos()}
+\begin{lstlisting}[language=C++]
+acos(x);
+\end{lstlisting}
+作用：\\
+反余弦。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{13. atan()}
+\begin{lstlisting}[language=C++]
+atan(x);
+\end{lstlisting}
+作用：\\
+反正切。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{14. atan2()}
+
+⭐⭐重要
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+atan2(y,x);
+\end{lstlisting}
+返回：\\
+点：\\
+$(x,y)$\\
+的角度。
+
+例如：
+\begin{lstlisting}[language=C++]
+double angle=atan2(y,x);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+计算方向角。
+
+常用于：
+\begin{itemize}
+    \item 几何
+    \item 向量
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{15. ceil()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+ceil()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+ceil(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+ceil(3.2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+4
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+向上取整。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{16. floor()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+floor()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+floor(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+floor(3.8);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+向下取整。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{17. round()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+round()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+round(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+round(3.5);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+4
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+四舍五入。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{18. trunc()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+trunc()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+trunc(x);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+trunc(3.8);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+截断小数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{19. fmod()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+fmod()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+fmod(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+fmod(5.5,2);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1.5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+浮点取余。
+
+类似：\\
+整数：
+\begin{lstlisting}[language=C++]
+a%b
+\end{lstlisting}
+浮点：
+\begin{lstlisting}[language=C++]
+fmod(a,b)
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{20. hypot()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+hypot()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+hypot(a,b);
+\end{lstlisting}
+计算：\\
+$\sqrt{a^2+b^2}$
+
+例如：
+\begin{lstlisting}[language=C++]
+hypot(3,4);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+求直角三角形斜边。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{cmath常量}
+
+\subsection{M\_PI}
+圆周率：
+\begin{lstlisting}[language=C++]
+M_PI
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+double r=2;
+
+double area=M_PI*r*r;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、iomanip（格式化输出）⭐⭐⭐⭐}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <iomanip>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. setprecision()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+setprecision()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+cout<<setprecision(n);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<setprecision(3)<<3.14159;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3.14
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+默认：\\
+控制有效数字。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+配合：
+\begin{lstlisting}[language=C++]
+fixed
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. fixed}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+cout<<fixed;
+\end{lstlisting}
+作用：\\
+固定小数位。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. setprecision + fixed}
+
+⭐⭐⭐⭐⭐
+
+\begin{lstlisting}[language=C++]
+cout
+<<fixed
+<<setprecision(2)
+<<3.14159;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+3.14
+\end{lstlisting}
+考试最常用。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. setw()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+setw()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+setw(n)
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<setw(5)<<123;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+  123
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+设置输出宽度。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. left}
+\begin{lstlisting}[language=C++]
+cout<<left;
+\end{lstlisting}
+作用：\\
+左对齐。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. right}
+\begin{lstlisting}[language=C++]
+cout<<right;
+\end{lstlisting}
+作用：\\
+右对齐。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{7. setfill()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+setfill('*')
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout
+<<setfill('0')
+<<setw(4)
+<<12;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+0012
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、cstring（C风格字符串）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <cstring>
+\end{lstlisting}
+处理：
+\begin{lstlisting}[language=C++]
+char数组
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. strlen()}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+strlen()
+\end{lstlisting}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+strlen(str);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+char s[]="hello";
+
+
+cout<<strlen(s);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+计算字符串长度。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. strcpy()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+strcpy(dest,src);
+\end{lstlisting}
+作用：\\
+复制字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. strcat()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+strcat(a,b);
+\end{lstlisting}
+作用：\\
+连接字符串。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. strcmp()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+strcmp(a,b);
+\end{lstlisting}
+作用：\\
+比较字符串。
+
+返回：
+\begin{lstlisting}
+0 相等
+<0 小于
+>0 大于
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. memset()}
+
+⭐⭐⭐⭐⭐
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+memset(数组,值,sizeof(数组));
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int a[100];
+
+
+memset(a,0,sizeof(a));
+\end{lstlisting}
+作用：\\
+快速初始化数组。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+常用：
+
+全部变：
+
+0：
+\begin{lstlisting}[language=C++]
+memset(a,0,sizeof(a));
+\end{lstlisting}
+
+-1：
+\begin{lstlisting}[language=C++]
+memset(a,-1,sizeof(a));
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+注意：
+
+不要：
+\begin{lstlisting}[language=C++]
+memset(a,1,sizeof(a));
+\end{lstlisting}
+整数不会全部变1。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、cstdlib（常用工具）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <cstdlib>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. rand()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+rand();
+\end{lstlisting}
+作用：\\
+生成随机数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. srand()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+srand(time(0));
+\end{lstlisting}
+作用：\\
+设置随机种子。
+
+通常：
+\begin{lstlisting}[language=C++]
+srand(time(NULL));
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. atoi()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+atoi(str);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+char s[]="123";
+
+
+int x=atoi(s);
+\end{lstlisting}
+作用：\\
+字符串转整数。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. exit()}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+exit(0);
+\end{lstlisting}
+作用：\\
+结束程序。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{五、sstream（字符串流）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <sstream>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. stringstream}
+
+\subsection{定义}
+\begin{lstlisting}[language=C++]
+stringstream ss;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{字符串转数字}
+\begin{lstlisting}[language=C++]
+string s="123";
+
+
+stringstream ss(s);
+
+
+int x;
+
+
+ss>>x;
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+x=123
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{数字转字符串}
+\begin{lstlisting}[language=C++]
+stringstream ss;
+
+
+ss<<123;
+
+
+string s;
+
+
+ss>>s;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{作用}
+字符串和数字互转。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{六、limits（极值）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <limits>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. INT\_MAX}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+INT_MAX
+\end{lstlisting}
+作用：\\
+int最大值。
+
+约：
+\begin{lstlisting}
+2147483647
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. INT\_MIN}
+\begin{lstlisting}[language=C++]
+INT_MIN
+\end{lstlisting}
+作用：\\
+int最小值。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. numeric\_limits}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+numeric_limits<int>::max();
+\end{lstlisting}
+作用：\\
+获取类型最大值。
+
+例如：
+\begin{lstlisting}[language=C++]
+long long INF=
+numeric_limits<long long>::max();
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{七、常用头文件总表（考试版）}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+头文件 & 作用 & 常用 \\ \hline
+cmath & 数学计算 & sqrt,pow,sin \\ \hline
+iomanip & 格式输出 & fixed,setprecision \\ \hline
+string & 字符串 & string \\ \hline
+cstring & C字符串 & strlen,memset \\ \hline
+sstream & 字符串转换 & stringstream \\ \hline
+cstdlib & 工具函数 & rand,exit \\ \hline
+ctime & 时间 & time \\ \hline
+limits & 极值 & INT\_MAX \\ \hline
+numeric & 数学算法 & accumulate,iota \\ \hline
+algorithm & 算法 & sort,find \\ \hline
+vector & 动态数组 & vector \\ \hline
+queue & 队列 & queue \\ \hline
+stack & 栈 & stack \\ \hline
+map & 映射 & map \\ \hline
+set & 集合 & set \\ \hline
+\end{tabular}
+\end{table}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{第十一章 C++ 常用语法速查（机考必备）}
+
+这一章不是 STL，而是\textbf{写题时每天都会用到的 C++ 基础语法工具}。
+
+重点：
+\begin{itemize}
+    \item 输入输出
+    \item 类型转换
+    \item 字符处理
+    \item ASCII
+    \item 位运算
+    \item long long
+    \item 常用技巧
+    \item 防止错误
+\end{itemize}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{一、输入输出（iostream）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <iostream>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. cin 输入}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+cin >> x;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int a;
+
+cin >> a;
+\end{lstlisting}
+作用：\\
+读取变量。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 多个变量输入}
+\begin{lstlisting}[language=C++]
+int a,b,c;
+
+cin>>a>>b>>c;
+\end{lstlisting}
+输入：
+\begin{lstlisting}
+1 2 3
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+a=1,b=2,c=3
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. cout 输出}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+cout << x;
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<123;
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+123
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. 输出多个内容}
+\begin{lstlisting}[language=C++]
+cout<<"sum="<<sum;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. 换行}
+
+\subsection{方法1}
+\begin{lstlisting}[language=C++]
+cout<<endl;
+\end{lstlisting}
+作用：\\
+换行，并刷新缓冲区。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{方法2（推荐）}
+\begin{lstlisting}[language=C++]
+cout<<"\n";
+\end{lstlisting}
+速度更快。
+
+考试推荐：
+\begin{lstlisting}[language=C++]
+cout<<"\n";
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. getline()}
+
+⭐⭐⭐⭐⭐
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+string s;
+
+getline(cin,s);
+\end{lstlisting}
+输入：
+\begin{lstlisting}
+hello world
+\end{lstlisting}
+读取：
+\begin{lstlisting}
+hello world
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{注意}
+如果前面用了：
+\begin{lstlisting}[language=C++]
+cin>>n;
+\end{lstlisting}
+后面：
+\begin{lstlisting}[language=C++]
+getline(cin,s);
+\end{lstlisting}
+可能读到空行。
+
+解决：
+\begin{lstlisting}[language=C++]
+cin.ignore();
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int n;
+
+cin>>n;
+
+cin.ignore();
+
+getline(cin,s);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{二、类型转换（非常重要）}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. int 转 double}
+
+自动转换：
+\begin{lstlisting}[language=C++]
+int a=5;
+
+double b=a;
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+5.0
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 强制类型转换}
+
+\subsection{写法1}
+\begin{lstlisting}[language=C++]
+(double)a
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int a=5,b=2;
+
+
+cout<<(double)a/b;
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+2.5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{写法2（C++推荐）}
+\begin{lstlisting}[language=C++]
+static_cast<double>(a)
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+double x=
+static_cast<double>(a)/b;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. string 转 int}
+
+\subsection{stoi()}
+头文件：
+\begin{lstlisting}[language=C++]
+#include <string>
+\end{lstlisting}
+用法：
+\begin{lstlisting}[language=C++]
+string s="123";
+
+
+int x=stoi(s);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+123
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. string 转 long long}
+\begin{lstlisting}[language=C++]
+long long x=stoll(s);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. string 转 double}
+\begin{lstlisting}[language=C++]
+double x=stod(s);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. int 转 string}
+
+\subsection{to\_string()}
+用法：
+\begin{lstlisting}[language=C++]
+string s=to_string(123);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+"123"
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{三、字符处理（cctype）}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <cctype>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. isdigit()}
+
+\subsection{名称}
+判断数字字符
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+isdigit(c);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+char c='5';
+
+
+if(isdigit(c))
+{
+    cout<<"数字";
+}
+\end{lstlisting}
+作用：\\
+判断：
+\begin{lstlisting}
+0~9
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. isalpha()}
+
+判断字母。
+\begin{lstlisting}[language=C++]
+isalpha(c);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+'a'
+\end{lstlisting}
+返回：\\
+true。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. islower()}
+
+判断小写。
+\begin{lstlisting}[language=C++]
+islower(c);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. isupper()}
+
+判断大写。
+\begin{lstlisting}[language=C++]
+isupper(c);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. tolower()}
+
+转换小写。
+\begin{lstlisting}[language=C++]
+tolower(c);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+char c='A';
+
+c=tolower(c);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+a
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{6. toupper()}
+
+转换大写。
+\begin{lstlisting}[language=C++]
+toupper(c);
+\end{lstlisting}
+例如：
+\begin{lstlisting}
+a→A
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{四、ASCII码（高频）}
+
+字符本质：\\
+数字。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. 字符转数字}
+
+例如：
+\begin{lstlisting}[language=C++]
+char c='5';
+
+
+int x=c-'0';
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+5
+\end{lstlisting}
+原理：\\
+ASCII：
+\begin{lstlisting}
+'5'=53
+
+'0'=48
+
+53-48=5
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 数字转字符}
+\begin{lstlisting}[language=C++]
+char c=x+'0';
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int x=7;
+
+char c=x+'0';
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+'7'
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 字母大小写转换}
+
+大写：
+\begin{lstlisting}[language=C++]
+char c='A';
+
+c=c+32;
+\end{lstlisting}
+得到：
+\begin{lstlisting}
+a
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+小写转大写：
+\begin{lstlisting}[language=C++]
+c=c-32;
+\end{lstlisting}
+不过推荐：
+\begin{lstlisting}[language=C++]
+toupper()
+tolower()
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{五、long long使用（非常重要）}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. int范围}
+\begin{lstlisting}
+-2^31 ~ 2^31-1
+\end{lstlisting}
+约：
+\begin{lstlisting}
+21亿
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. long long范围}
+约：
+\begin{lstlisting}
+9×10^18
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 定义}
+\begin{lstlisting}[language=C++]
+long long x;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. 常量}
+错误：
+\begin{lstlisting}[language=C++]
+long long x=1000000000000;
+\end{lstlisting}
+可能溢出。
+
+正确：
+\begin{lstlisting}[language=C++]
+long long x=1000000000000LL;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{六、三目运算符}
+
+\subsection{名称}
+条件运算符
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{格式}
+\begin{lstlisting}[language=C++]
+条件 ? 真 : 假;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+例如：
+\begin{lstlisting}[language=C++]
+int max=
+a>b?a:b;
+\end{lstlisting}
+等价：
+\begin{lstlisting}[language=C++]
+if(a>b)
+max=a;
+
+else
+max=b;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{七、位运算（了解）}
+
+符号：
+\begin{lstlisting}
+&
+|
+^
+~
+<<
+>>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. 按位与 \&}
+
+例如：
+\begin{lstlisting}[language=C++]
+5&3
+\end{lstlisting}
+二进制：
+\begin{lstlisting}
+101
+011
+---
+001
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+1
+\end{lstlisting}
+作用：\\
+判断奇偶。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{判断奇偶⭐⭐⭐}
+
+偶数：
+\begin{lstlisting}[language=C++]
+if((x&1)==0)
+\end{lstlisting}
+奇数：
+\begin{lstlisting}[language=C++]
+if(x&1)
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 按位或 |}
+\begin{lstlisting}[language=C++]
+a|b
+\end{lstlisting}
+作用：\\
+合并二进制位。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 异或 \^}
+
+\subsection{特点}
+相同：
+\begin{lstlisting}
+0
+\end{lstlisting}
+不同：
+\begin{lstlisting}
+1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+应用：\\
+交换变量：
+\begin{lstlisting}[language=C++]
+a^=b;
+
+b^=a;
+
+a^=b;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{4. 左移 <<}
+\begin{lstlisting}[language=C++]
+x<<1
+\end{lstlisting}
+相当：
+\begin{lstlisting}
+x*2
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+5<<1
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+10
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{5. 右移 >>}
+\begin{lstlisting}[language=C++]
+x>>1
+\end{lstlisting}
+相当：
+\begin{lstlisting}
+x/2
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{八、常用数学技巧}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. 最大公约数 gcd}
+
+头文件：
+\begin{lstlisting}[language=C++]
+#include <numeric>
+\end{lstlisting}
+用法：
+\begin{lstlisting}[language=C++]
+gcd(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<gcd(12,8);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+4
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 最小公倍数 lcm}
+
+C++17：
+\begin{lstlisting}[language=C++]
+lcm(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+cout<<lcm(4,6);
+\end{lstlisting}
+输出：
+\begin{lstlisting}
+12
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{3. 判断素数模板}
+\begin{lstlisting}[language=C++]
+bool isPrime(int n)
+{
+    if(n<2)
+        return false;
+
+
+    for(int i=2;i*i<=n;i++)
+    {
+        if(n%i==0)
+            return false;
+    }
+
+
+    return true;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{九、swap交换}
+
+\subsection{名称}
+\begin{lstlisting}[language=C++]
+swap()
+\end{lstlisting}
+头文件：
+\begin{lstlisting}[language=C++]
+#include <algorithm>
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+swap(a,b);
+\end{lstlisting}
+例如：
+\begin{lstlisting}[language=C++]
+int a=1,b=2;
+
+swap(a,b);
+\end{lstlisting}
+结果：
+\begin{lstlisting}
+a=2,b=1
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十、auto自动类型推导}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{用法}
+\begin{lstlisting}[language=C++]
+auto x=10;
+\end{lstlisting}
+等价：
+\begin{lstlisting}[language=C++]
+int x=10;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+vector遍历：
+\begin{lstlisting}[language=C++]
+for(auto x:v)
+{
+}
+\end{lstlisting}
+map：
+\begin{lstlisting}[language=C++]
+for(auto p:mp)
+{
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十一、引用 \&（STL常用）}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{普通变量}
+\begin{lstlisting}[language=C++]
+int a=10;
+
+
+int &b=a;
+\end{lstlisting}
+b就是a别名。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{修改vector元素}
+错误：
+\begin{lstlisting}[language=C++]
+for(auto x:v)
+{
+    x++;
+}
+\end{lstlisting}
+不会改变。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+正确：
+\begin{lstlisting}[language=C++]
+for(auto &x:v)
+{
+    x++;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十二、const（防止修改）}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+定义：
+\begin{lstlisting}[language=C++]
+const int x=10;
+\end{lstlisting}
+不能：
+\begin{lstlisting}[language=C++]
+x=20;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+常见：
+\begin{lstlisting}[language=C++]
+const vector<int>& v
+\end{lstlisting}
+表示：\\
+引用vector，但不能修改。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十三、宏定义（了解）}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1. 常量}
+\begin{lstlisting}[language=C++]
+#define PI 3.14159
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{2. 宏函数}
+\begin{lstlisting}[language=C++]
+#define MAX(a,b) ((a)>(b)?(a):(b))
+\end{lstlisting}
+现在C++更推荐：
+\begin{lstlisting}[language=C++]
+const
+inline
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十四、结构体 struct}
+
+考试经常用。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+定义：
+\begin{lstlisting}[language=C++]
+struct Student
+{
+    int id;
+
+    string name;
+
+};
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+使用：
+\begin{lstlisting}[language=C++]
+Student s;
+
+
+s.id=1;
+
+s.name="Tom";
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+数组：
+\begin{lstlisting}[language=C++]
+Student a[100];
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+vector：
+\begin{lstlisting}[language=C++]
+vector<Student> v;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十五、自定义排序（结构体）}
+
+例如：
+\begin{lstlisting}[language=C++]
+struct Node
+{
+    int x;
+
+    int y;
+};
+
+
+bool cmp(Node a,Node b)
+{
+    return a.x<b.x;
+}
+\end{lstlisting}
+使用：
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end(),cmp);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十六、万能main模板（考试推荐）}
+
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+
+    
+
+    return 0;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{十七、考试最常用组合}
+
+\subsection{1. 输入数组排序求和}
+\begin{lstlisting}[language=C++]
+vector<int> v(n);
+
+
+for(auto &x:v)
+    cin>>x;
+
+
+sort(v.begin(),v.end());
+
+
+int sum=
+accumulate(v.begin(),v.end(),0);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{2. 统计字符次数}
+\begin{lstlisting}[language=C++]
+map<char,int> mp;
+
+
+for(char c:s)
+{
+    mp[c]++;
+}
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{3. 删除重复元素}
+\begin{lstlisting}[language=C++]
+sort(v.begin(),v.end());
+
+
+v.erase(
+unique(v.begin(),v.end()),
+v.end()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{4. 保留两位小数}
+\begin{lstlisting}[language=C++]
+cout
+<<fixed
+<<setprecision(2)
+<<x;
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\subsection{5. 最大最小值}
+\begin{lstlisting}[language=C++]
+int mx=*max_element(
+v.begin(),
+v.end()
+);
+
+
+int mn=*min_element(
+v.begin(),
+v.end()
+);
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{最终考试头文件优先级}
+
+⭐⭐⭐⭐⭐ 必背：
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+\end{lstlisting}
+里面全部包含。
+
+重点掌握：
+\begin{lstlisting}
+vector
+string
+algorithm
+numeric
+cmath
+iomanip
+map
+set
+queue
+stack
+sstream
+cstring
+\end{lstlisting}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\end{document}
