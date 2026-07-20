@@ -1,6 +1,6 @@
 \documentclass[10pt,twocolumn]{extarticle}
 % 调整了top和bottom留出页眉页脚的空间，防止页码被截断（收紧边距以控制总页数）
-\usepackage[a4paper, left=0.7cm, right=0.7cm, top=1.0cm, bottom=1.0cm, includehead]{geometry}
+\usepackage[a4paper, left=0.7cm, right=0.7cm, top=1.1cm, bottom=1.1cm, includehead]{geometry}
 \usepackage{xeCJK}
 \usepackage{titlesec}
 \usepackage{enumitem}
@@ -27,11 +27,11 @@
 \renewcommand{\footrulewidth}{0pt}
 
 % 紧凑的标题间距设置（进一步收紧以控制页数）
-\titlespacing*{\section}{0pt}{0.8ex plus .1ex}{0.3ex plus .1ex}
-\titlespacing*{\subsection}{0pt}{0.6ex plus .1ex}{0.2ex plus .1ex}
-\titlespacing*{\subsubsection}{0pt}{0.6ex plus .1ex}{0.2ex plus .1ex}
+\titlespacing*{\section}{0pt}{0.9ex plus .1ex}{0.3ex plus .1ex}
+\titlespacing*{\subsection}{0pt}{0.7ex plus .1ex}{0.2ex plus .1ex}
+\titlespacing*{\subsubsection}{0pt}{0.7ex plus .1ex}{0.2ex plus .1ex}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.2em}
+\setlength{\parskip}{0.3em}
 
 % 列表紧凑设置
 \setlist{nosep, leftmargin=1.2em}
@@ -59,8 +59,8 @@
     showtabs=false,
     tabsize=4,
     xleftmargin=0pt,
-    aboveskip=0.3em,
-    belowskip=0.3em
+    aboveskip=0.25em,
+    belowskip=0.25em
 }
 \lstset{style=mystyle}
 
