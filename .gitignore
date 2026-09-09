@@ -110,3 +110,121 @@ build/
 # --- 操作系统临时文件 ---
 .DS_Store
 Thumbs.db
+
+# ==========================================
+# --- 以下为新增：大文件、非源码资源与常用临时缓存 ---
+# ==========================================
+
+# --- 文档与电子书 (按需忽略大文件) ---
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+*.doc
+*.ppt
+*.xls
+
+# --- 压缩包与大型归档文件 ---
+*.zip
+*.tar
+*.gz
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.bz2
+*.xz
+*.iso
+*.dmg
+
+# --- 多媒体大文件 (音视频) ---
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+
+# --- Jupyter Notebook 检查点与缓存 ---
+.ipynb_checkpoints/
+
+# --- 本地数据库与大体积数据文件 ---
+*.sqlite
+*.sqlite3
+*.db
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+
+# --- 机器学习 / 深度学习权重与模型文件 ---
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+*.ckpt
+*.weights
+*.pkl
+*.pickle
+
+# --- 系统核心转储与临时备份文件 ---
+core
+core.*
+*.bak
+*.tmp
+*.temp
+*~
+
+# ==========================================
+# --- 以下为新增：LaTeX 编译产生的中间与辅助文件 ---
+# ==========================================
+
+# --- 核心辅助与日志文件 ---
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex
+*.synctex(busy)
+
+# --- 目录、图表清单与交叉引用 ---
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# --- 参考文献与词汇表 (BibTeX / Biber / Glossaries) ---
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.glo
+*.gls
+*.glg
+*.ist
+*.acn
+*.acr
+*.alg
+
+# --- 索引与定理环境 ---
+*.idx
+*.ind
+*.ilg
+*.thm
+
+# --- 中文排版与宏包缓存 (XeLaTeX / CTeX / minted / TikZ) ---
+*.xdv
+_minted-*/
+*.pyg
+*.auxlock
+*.figlist
