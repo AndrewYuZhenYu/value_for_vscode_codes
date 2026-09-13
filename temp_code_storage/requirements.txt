@@ -1,0 +1,7 @@
+playwright==1.60.0
+img2pdf==0.6.3
+pillow==12.2.0
+pikepdf==10.8.0
+lxml==6.1.1
+pyinstaller==6.21.0
+pyinstaller-hooks-contrib==2026.6

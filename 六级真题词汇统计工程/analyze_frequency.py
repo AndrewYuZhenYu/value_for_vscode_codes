@@ -30,7 +30,7 @@ def load_custom_stopwords():
     return paper_structure_words.union(basic_english_stopwords)
 
 def analyze_cet6_full_data():
-    input_dir = "cet6_zhenti_cleaned"
+    input_dir = "/Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/六级真题词汇统计工程/cet6_zhenti_cleaned"
     output_excel = "cet6_full_vocabulary_frequency.xlsx"
     
     if not os.path.exists(input_dir):
