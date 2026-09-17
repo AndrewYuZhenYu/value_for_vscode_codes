@@ -7,16 +7,16 @@ import os
 
 CONFIG = {
     # 1. 目录内容文件 (txt 或 md 格式的绝对或相对路径)
-    "TOC_FILE": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/pdf 书签清洗和添加/跨文化交际英语目录.md',
+    "TOC_FILE": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/pdf 书签清洗和添加/离散数学目录文件.md',
     
     # 2. 要处理的原始 PDF 路径
-    "INPUT_PDF": '/Users/andrewyu/Downloads/Intercultural Communication A College English Course Book 大学英语跨文化交际教程 (主编 严明 主审 白解红  Editor-in-chief Yan Ming etc.) (z-library.sk  1lib.sk  z-lib.sk)(已优化)(OCR)(1).pdf',
+    "INPUT_PDF": '/Users/andrewyu/Documents/离散数学（第2版）（MACOCR）.pdf',
     
     # 3. 生成的新 PDF 路径
-    "OUTPUT_PDF": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/pdf 书签清洗和添加/大学英语跨文化交际教程(最新书签).pdf',
+    "OUTPUT_PDF": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/pdf 书签清洗和添加/离散数学最终版本.pdf',
     
     # 4. 页码偏移量：书面页码 + OFFSET = PDF 物理页码
-    "OFFSET": 15
+    "OFFSET": 10
 }
 
 # ==============================================================

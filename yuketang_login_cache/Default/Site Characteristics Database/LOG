@@ -1,2 +1,3 @@
-2026/09/07-20:47:41.781 2c20 Creating DB F:\CODES_FOR_GIT\yuketang_login_cache\Default\Site Characteristics Database since it was missing.
-2026/09/07-20:47:41.790 2c20 Reusing MANIFEST F:\CODES_FOR_GIT\yuketang_login_cache\Default\Site Characteristics Database/MANIFEST-000001
+2026/09/17-08:50:12.345 8a820 Reusing MANIFEST /Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/yuketang_login_cache/Default/Site Characteristics Database/MANIFEST-000001
+2026/09/17-08:50:12.345 8a820 Recovering log #3
+2026/09/17-08:50:12.345 8a820 Reusing old log /Users/andrewyu/Documents/Projects/value_for_vscode_codes/value_for_vscode_codes/yuketang_login_cache/Default/Site Characteristics Database/000003.log 
