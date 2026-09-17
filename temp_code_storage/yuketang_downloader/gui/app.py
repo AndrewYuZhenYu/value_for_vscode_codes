@@ -3,13 +3,13 @@
 import tkinter as tk
 from pathlib import Path
 
-from yuketang_downloader.utils.paths import (
+from temp_code_storage.yuketang_downloader.utils.paths import (
     get_app_support_dir,
     get_settings_path,
     get_browser_cache_dir,
 )
-from yuketang_downloader.utils.config import AppConfig
-from yuketang_downloader.gui.main_window import MainWindow
+from temp_code_storage.yuketang_downloader.utils.config import AppConfig
+from temp_code_storage.yuketang_downloader.gui.main_window import MainWindow
 
 
 class YuketangApp(tk.Tk):

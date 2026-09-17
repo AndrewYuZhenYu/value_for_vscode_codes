@@ -4,7 +4,7 @@ import sys
 
 
 def main() -> None:
-    from yuketang_downloader.gui.app import YuketangApp
+    from temp_code_storage.yuketang_downloader.gui.app import YuketangApp
 
     app = YuketangApp()
     app.mainloop()

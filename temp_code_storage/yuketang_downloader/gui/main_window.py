@@ -5,7 +5,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from pathlib import Path
 
-from yuketang_downloader.utils.paths import get_browser_cache_dir
+from temp_code_storage.yuketang_downloader.utils.paths import get_browser_cache_dir
 
 
 class MainWindow(ttk.Frame):
@@ -171,7 +171,7 @@ class MainWindow(ttk.Frame):
         self._clear_log()
 
         # Launch worker
-        from yuketang_downloader.core.downloader import DownloadWorker
+        from temp_code_storage.yuketang_downloader.core.downloader import DownloadWorker
 
         self._worker = DownloadWorker(
             course_url=url,
