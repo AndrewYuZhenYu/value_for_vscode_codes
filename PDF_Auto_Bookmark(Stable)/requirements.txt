@@ -1,0 +1,12 @@
+# 核心视觉与 OCR 库
+torch>=2.0.0
+torchvision
+torchaudio
+ultralytics
+easyocr
+
+# 图像与 PDF 处理库
+PyMuPDF
+opencv-python
+numpy
+pypdf
