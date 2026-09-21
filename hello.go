@@ -1,5 +1,6 @@
 package main
 
+//hello.go
 import (
 	"bufio"
 	"fmt"
@@ -31,7 +32,7 @@ func main() {
 	fmt.Print("2. 请输入一句包含空格的长句子 (例如个人座右铭): ")
 	if reader.Scan() {
 		sentence := reader.Text()
-		
+
 		// 演示简单的字符串处理输出
 		upperSentence := strings.ToUpper(sentence)
 		fmt.Printf("-> 原文: %s\n", sentence)
