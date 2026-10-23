@@ -7,17 +7,17 @@ import os
 
 CONFIG = {
     # 1. 目录内容文件 (txt 或 md 格式的绝对或相对路径)
-    "TOC_FILE": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/PDF 书签清洗和添加项目(Stable)/toc/跨文化交际英语目录.md',
+    "TOC_FILE": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/PDF 书签清洗和添加项目(Stable)/toc/大学物理能力与知识拓展目录.md',
     
     # 2. 要处理的原始 PDF 路径
-    "INPUT_PDF": '/Users/andrewyu/Downloads/教材-轻量超分高清可搜索版.pdf',
+    "INPUT_PDF": '/Users/andrewyu/Documents/大二上学习资料合集/大学物理能力训练与知识拓展 (刘爱红主编, 刘爱红主编, 刘爱红) (z-library.sk, 1lib.sk, z-lib.sk)(已优化).pdf',
     
     # 3. 生成的新 PDF 路径
-    "OUTPUT_PDF": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/跨文化交际英语（清晰 ocr 书签）.pdf',
+    "OUTPUT_PDF": '/Users/andrewyu/Documents/Projects/value_for_vscode_codes/大学物理能力训练与知识拓展(清晰化书签).pdf',
     
     # 4. 页码偏移量：书面页码 + OFFSET = PDF 物理页码 (从 1 开始算起)
     # 例如：正文第 1 页对应 PDF 物理第 11 页，则 OFFSET = 10
-    "OFFSET": 15
+    "OFFSET": 11
 }
 
 # ==============================================================
