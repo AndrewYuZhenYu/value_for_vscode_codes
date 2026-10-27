@@ -68,6 +68,16 @@ python tools/build.py --check
 
 需要增加一个课程文件夹时，先在 `config/courses.json` 中添加该课程的 `id`、`name` 和 `order`。
 
+## Netlify 手动部署
+
+不要把整个开发项目文件夹拖到 Netlify：其中的 `node_modules/`、`.build-deps/`、构建脚本和配置文件都不是网站发布内容。完成本地构建后运行：
+
+```bash
+python tools/prepare_netlify.py
+```
+
+这会生成 `netlify-upload/`，其中 `index.html` 位于根目录，课程页面及所需的样式、脚本、原始 Markdown 链接和预览页面都已包含。把 **`netlify-upload` 文件夹**拖到 [Netlify Drop](https://app.netlify.com/drop)。每次更新笔记后，先运行 `python tools/build.py --check`，再运行准备脚本并重新上传。准备脚本会检查发布目录内的本地链接。
+
 ## 技术结构
 
 - `sources/`：Markdown 权威源文件。
@@ -80,6 +90,7 @@ python tools/build.py --check
 - `assets/learning-widgets.js`：数据结构的算法步骤演示和离散数学的赋值交互真值表。
 - `tools/visual_catalog.py`：逐章审核过的专题图解配置；构建时校验标题匹配和每篇至少 15 幅。
 - `tools/build.py`：Python 批量构建。
+- `tools/prepare_netlify.py`：生成并检查轻量的手动上传目录。
 - `tools/render_math.js`：MathJax 构建阶段转换 LaTeX 为 SVG。
 - `config/courses.json`：课程导航配置。
 
