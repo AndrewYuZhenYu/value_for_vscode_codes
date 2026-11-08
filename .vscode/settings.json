@@ -1,3 +1,4 @@
 {
-    "python-envs.defaultEnvManager": "ms-python.python:system"
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "cmake.sourceDirectory": "/Users/andrewyu/Documents/Projects/value_for_vscode_codes/schedule_app/linux"
 }
