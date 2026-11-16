@@ -1,0 +1,139 @@
+% !TeX program = xelatex
+% 根据两张原始试卷照片重新录入；保留题干与选项，不含答案。
+% 编译：xelatex -interaction=nonstopmode -halt-on-error discrete_math_quiz_2024_2025.tex
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage{geometry}
+\geometry{left=1.55cm,right=1.55cm,top=1.50cm,bottom=1.50cm}
+\usepackage{fontspec}
+\setmainfont{Tinos}
+\setCJKmainfont[BoldFont={SimHei}]{SimSun}
+\usepackage{amsmath,amssymb}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{needspace}
+\usepackage{microtype}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.16}
+\setlength{\emergencystretch}{2em}
+
+% 试卷排版指令
+\newcommand{\sectionhead}[1]{\par\vspace{0.75em}{\bfseries #1}\par\vspace{0.45em}}
+\newcommand{\question}[2]{%
+  \par\vspace{0.58em}%
+  \noindent\hangindent=2.2em\hangafter=1%
+  \makebox[2.2em][l]{#1.}#2\par\vspace{0.16em}%
+}
+\newcommand{\optline}[2]{%
+  \noindent\hspace*{2.2em}\hangindent=4.1em\hangafter=1%
+  \makebox[1.6em][l]{#1.}\hspace{0.3em}#2\par%
+}
+\newcommand{\optpair}[4]{%
+  \noindent\hspace*{2.2em}%
+  \begin{tabularx}{\dimexpr\linewidth-2.2em\relax}{@{}X@{\hspace{1em}}X@{}}%
+  A.\enspace #1 & B.\enspace #2\\
+  C.\enspace #3 & D.\enspace #4
+  \end{tabularx}\par%
+}
+\newcommand{\optfour}[4]{%
+  \noindent\hspace*{2.2em}%
+  \begin{tabularx}{\dimexpr\linewidth-2.2em\relax}{@{}X X X X@{}}%
+  A.\enspace #1 & B.\enspace #2 & C.\enspace #3 & D.\enspace #4
+  \end{tabularx}\par%
+}
+\newcommand{\cnum}[1]{\tikz[baseline=(num.base)]{\node[draw,circle,inner sep=0pt,minimum size=1.14em,line width=0.40pt] (num) {\fontsize{9}{10}\selectfont #1};}}
+\newcommand{\answerblank}[1][4cm]{\rule[-0.1em]{#1}{0.45pt}}
+% 原照片第8题①的符号呈平行四边形轮廓，按照片形状保留，不推定为字母。
+\newcommand{\paratom}{\tikz[baseline=-0.08ex]{\draw[line width=0.52pt] (0,0)--(0.27,0)--(0.33,0.18)--(0.06,0.18)--cycle;}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries 2024-2025-I 离散数学小测}
+\end{center}
+\vspace{0.7em}
+\noindent
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+姓名：\answerblank[3.8cm] & 学号：\answerblank[3.8cm] & 班级：\answerblank[3.8cm]
+\end{tabularx}
+\vspace{0.85em}
+
+\sectionhead{一、选择题（每题4分，共40分）}
+
+\question{1}{下列语句中哪个不是命题（\quad ）}
+\optpair{离散数学是计算机专业的必修课}{三角形有三条边，当且仅当5是素数}{我正在说谎话}{整数3能被2整除}
+
+\question{2}{下列哪个命题是真命题（\quad ）}
+\optline{A}{有真假伪的句子就是命题}
+\optline{B}{如果 $p$ 不是 $q$ 的充分条件，那么 $q$ 就不是 $p$ 的必要条件}
+\optline{C}{否定 $p$ 是 $q$ 的充分条件，就等于肯定 $p$ 是 $q$ 的必要条件}
+\optline{D}{如果2是偶数，那么一个公式的析取范式唯一}
+
+\question{3}{对于含有 $n$ 个命题变元的命题，以下说法错误的是（\quad ）。}
+\optline{A}{每个极小项在它的 $2^n$ 个赋值中只有一个成真赋值；}
+\optline{B}{每个极大项在它的 $2^n$ 个赋值中只有一个成真赋值；}
+\optline{C}{任何命题公式的主析取范式都是存在的；}
+\optline{D}{任何命题公式的主析取范式都是唯一的。}
+
+\question{4}{下列命题公式为永假式的是（\quad ）}
+\optline{A}{$\neg(P\to Q)$}
+\optline{B}{$\neg(P\to Q)\land Q$}
+\optline{C}{$(P\to Q)\lor Q$}
+\optline{D}{$\neg P\land(P\to Q)$}
+
+\question{5}{设 $P$：停机；$Q$：语法错误；$R$：程序错误，则命题“停机的原因在于语法错误或程序错误”的符号化为（\quad ）}
+\optfour{$P\to Q\land R$}{$P\to Q\lor R$}{$Q\land R\to P$}{$Q\lor R\to P$}
+
+\question{6}{总经理：“我主张小王和小李两人中最多提拔一人。”董事长：“我不同意”。以下哪项最能准确地表达了董事长的实际意思？（\quad ）}
+\optpair{小王和小李两人都得提拔}{小王和小李两人都不提拔}{如果提拔小王，那么不提拔小李}{如果提拔小李，那么不提拔小王}
+
+\question{7}{下面哪一句话对命题范式的描述是不正确的（\quad ）}
+\optline{A}{一个合取范式是成立的，当且仅当它的每个简单析取式都是成立的}
+\optline{B}{有限个简单析取式构成的合取式称为合取范式}
+\optline{C}{一个析取范式是不成立的，当且仅当它包含一个不成立的简单合取式}
+\optline{D}{有限个简单合取式构成的析取式称为析取范式}
+
+\question{8}{以下命题公式是析取范式的有（\quad ）}
+\noindent\hspace*{2.2em}
+\cnum{1} $\paratom\land\neg\paratom$\qquad
+\cnum{2} $\neg P\lor Q$\qquad
+\cnum{3} $P$\qquad
+\cnum{4} $P\land(\neg Q\lor\neg Q)$\par
+\noindent\hspace*{2.2em}A. 1个\qquad\quad B. 2个\qquad\quad C. 3个\qquad\quad D. 4个
+
+\newpage
+
+\question{9}{下列命题联结词集合中，哪个是最小联结词组？（\quad ）}
+\optfour{$\{\neg,\leftrightarrow\}$}{$\{\neg,\lor,\land\}$}{$\{\uparrow\}$}{$\{\land,\to\}$}
+
+\question{10}{以下蕴含关系错误的是（\quad ）}
+\optline{A}{$\neg P\Rightarrow(P\to Q)$}
+\optline{B}{$\neg Q\land(Q\to P)\Rightarrow\neg P$}
+\optline{C}{$(P\land Q)\Rightarrow P$}
+\optline{D}{$\neg P\land(P\lor Q)\Rightarrow Q$}
+
+\sectionhead{二、填空题（每空5分，共15分）}
+
+\question{1}{一个命题公式 $A(P,Q,R)$ 的成真指派为000，001，010，100，110，则其主合取范式为\newline\answerblank[5.2cm]。}
+
+\question{2}{将公式 $(P\lor Q)\to R$ 化为只含联结词 $\{\neg,\land\}$ 的等值式为\answerblank[5.2cm]。}
+
+\question{3}{有两个事实分别为：}
+\noindent\hspace*{2.2em}$\checkmark$\quad 如果 $F$ 不是三人中收入最高的，那么 $J$ 就是。\par
+\noindent\hspace*{2.2em}$\checkmark$\quad 如果 $J$ 不是工资最低的，那么 $M$ 的工资最高。\par
+\noindent\hspace*{2.2em}请根据所知道的来确定 $F$、$J$ 和 $M$ 的相对工资顺序为\answerblank[3.8cm]。
+
+\sectionhead{三、简答题（每题15分，共45分）}
+
+\question{1}{求 $P\to\bigl((P\to Q)\land\neg(\neg Q\lor\neg P)\bigr)$ 的主析取范式。}
+
+\question{2}{某科研所有三名青年高级工程师A，B，C。所里要选派他们中的1到2人出国进修，由于所里工作的需要，选派时必须满足以下条件：}
+\noindent\hspace*{2.2em}\cnum{1}若A去，则C必须去；\par
+\noindent\hspace*{2.2em}\cnum{2}若B去，则C不能去；\par
+\noindent\hspace*{2.2em}\cnum{3}若C不去，则A或B至少去一个。\par
+\noindent\hspace*{2.2em}设 $P$：派A去，$Q$：派B去，$R$：派C去，请列出所有的选派方案。
+
+\question{3}{构建推理证明 $A\to(B\to C),\;B\to(C\to D)\Rightarrow A\to(B\to D)$。}
+
+\end{document}
