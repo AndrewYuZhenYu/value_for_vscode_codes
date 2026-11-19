@@ -52,7 +52,7 @@ def choose_source() -> str:
 
 
 def classroom_slide_groups(page) -> list[list[dict]]:
-    """按 P1 重新开始的位置，把同一课堂的多组课件分开。"""
+    """按页码重新从 P1 开始的位置拆分课堂课件。"""
     frame = page.frame_locator(CLASSROOM_FRAME)
     try:
         frame.get_by_text("课件", exact=True).first.click(timeout=120000)
@@ -74,7 +74,8 @@ def classroom_slide_groups(page) -> list[list[dict]]:
 
     slides = items.evaluate_all(
         """items => items.map(item => {
-            const match = item.textContent.trim().match(/^P\\s*(\\d+)/);
+            const label = item.querySelector('.slide-desc > span')?.textContent || '';
+            const match = label.trim().match(/^P\\s*(\\d+)$/);
             const image = item.querySelector('img');
             return {
                 number: match ? Number(match[1]) : null,
@@ -83,6 +84,26 @@ def classroom_slide_groups(page) -> list[list[dict]]:
         })"""
     )
     return split_classroom_slides(slides)
+
+
+def classroom_presentations(page) -> list[dict]:
+    """将“打印课件”的文件名与页面中按 P1 分开的课件逐一对应。"""
+    groups = classroom_slide_groups(page)
+    frame = page.frame_locator(CLASSROOM_FRAME)
+    titles = frame.locator(".ppt-list .ppt-list-item .ppt-title")
+    if not titles.count():
+        try:
+            frame.get_by_text("打印课件").first.click(timeout=10000)
+            titles.first.wait_for(timeout=10000)
+        except PlaywrightTimeoutError as exc:
+            raise RuntimeError("无法读取“打印课件”中的文件名，已停止以避免混合不同课件。") from exc
+    names = [name.strip() for name in titles.all_text_contents()]
+    if len(names) != len(groups) or not all(names):
+        raise RuntimeError(
+            f"打印课件列出 {len(names)} 份，页面识别到 {len(groups)} 组；"
+            "数量不一致，已停止以避免把课件混在一起。"
+        )
+    return [{"name": name, "slides": group} for name, group in zip(names, groups)]
 
 
 def split_classroom_slides(slides: list[dict]) -> list[list[dict]]:
@@ -100,19 +121,27 @@ def split_classroom_slides(slides: list[dict]) -> list[list[dict]]:
     return groups
 
 
-def choose_classroom_group(groups: list[list[dict]]) -> int:
-    print(f"✅ 发现 {len(groups)} 组课堂课件：")
-    for i, group in enumerate(groups, 1):
-        print(f"   {i}. 第 {i} 组，P1–P{len(group)}，共 {len(group)} 页")
-    if len(groups) == 1:
-        return 0
+def choose_classroom_groups(presentations: list[dict]) -> list[int]:
+    print(f"✅ 发现 {len(presentations)} 份课堂课件：")
+    for i, item in enumerate(presentations, 1):
+        print(f"   {i}. {item['name']}（{len(item['slides'])} 页）")
+    print("   A. 全部下载")
     while True:
-        value = input(f"👉 请选择要下载的组号 (直接回车选择第 {len(groups)} 组): ").strip()
-        if not value:
-            return len(groups) - 1
-        if value.isdigit() and 1 <= int(value) <= len(groups):
-            return int(value) - 1
-        print("❌ 请输入上面列出的组号。")
+        value = input("👉 请选择课件序号（多选用逗号分隔，全部输入 A）：").strip()
+        if value.lower() in {"a", "all"}:
+            return list(range(len(presentations)))
+        parts = [part.strip() for part in value.replace("，", ",").split(",")]
+        if parts and all(part.isdigit() and 1 <= int(part) <= len(presentations)
+                         for part in parts):
+            return sorted({int(part) - 1 for part in parts})
+        print("❌ 请输入有效序号，例如 1,3；全部下载请输入 A。")
+
+
+def classroom_pdf_path(base: Path, index: int, name: str, multiple: bool) -> Path:
+    if not multiple:
+        return base
+    safe_name = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "_", name).strip(" .")[:70]
+    return base.with_name(f"{base.stem}_{index + 1:02d}_{safe_name or '课件'}.pdf")
 
 
 def image_extension(data: bytes) -> str:
@@ -235,6 +264,27 @@ def main() -> None:
             print("❌ 课堂课件请输入雨课堂 student-lesson-report 页面网址。")
             return
 
+        # 先取得实际文件名，再询问保存位置；此时不下载图片。
+        try:
+            with sync_playwright() as p:
+                context = p.chromium.launch_persistent_context(
+                    user_data_dir=str(USER_DATA_DIR), headless=False,
+                    viewport={"width": 1920, "height": 1080},
+                )
+                try:
+                    page = context.pages[0] if context.pages else context.new_page()
+                    page.goto(course_url, wait_until="domcontentloaded", timeout=60000)
+                    print("💡 未登录请在浏览器中扫码；已登录则自动识别课堂课件。")
+                    presentations = classroom_presentations(page)
+                    selected_indices = choose_classroom_groups(presentations)
+                    expected = [(item["name"], len(item["slides"]))
+                                for item in presentations]
+                finally:
+                    context.close()
+        except Exception as exc:
+            print(f"❌ 无法识别课堂课件：{exc}")
+            return
+
     save_dir_input = input(
         "👉 请输入截图/图片临时文件夹 (直接回车默认 './yuketang_temp'): "
     ).strip()
@@ -247,6 +297,9 @@ def main() -> None:
     if output_pdf.suffix.lower() != ".pdf":
         output_pdf = Path(str(output_pdf) + ".pdf")
 
+    # 所有输入已完成；从这里计时到下载、合成与清理结束。
+    started_at = time.perf_counter()
+
     # 保证用户给出的输出路径有可用的父目录。
     output_pdf.parent.mkdir(parents=True, exist_ok=True)
     save_dir.mkdir(parents=True, exist_ok=True)
@@ -254,6 +307,7 @@ def main() -> None:
     # 每次运行创建独立的临时子目录；只删除本次生成的文件。
     with tempfile.TemporaryDirectory(prefix="capture_", dir=save_dir) as temp_dir:
         image_paths = []
+        classroom_results = []
         context = None
 
         try:
@@ -283,32 +337,47 @@ def main() -> None:
                             page, Path(temp_dir)
                         )
                     else:
-                        groups = classroom_slide_groups(page)
-                        group_index = choose_classroom_group(groups)
-                        image_paths = download_classroom_slides(
-                            context, page, groups, group_index, Path(temp_dir)
-                        )
-                        total_pages = len(groups[group_index])
+                        current = classroom_presentations(page)
+                        if [(item["name"], len(item["slides"])) for item in current] != expected:
+                            raise RuntimeError("重新打开页面后课件列表发生变化，已停止以避免错选。")
+                        groups = [item["slides"] for item in current]
+                        for group_index in selected_indices:
+                            group_dir = Path(temp_dir) / f"group_{group_index + 1:02d}"
+                            group_dir.mkdir()
+                            paths = download_classroom_slides(
+                                context, page, groups, group_index, group_dir
+                            )
+                            classroom_results.append((group_index, current[group_index]["name"], paths))
 
                 finally:
                     # 先关闭浏览器，才能安全删除磁盘缓存。
                     context.close()
                     context = None
 
-            if not image_paths:
-                print("❌ 没有成功获取任何页面，未生成 PDF。")
-                return
+            if source == "1" and not image_paths:
+                raise RuntimeError("没有成功获取任何页面，未生成 PDF。")
 
-            print("\n📦 正在合成 PDF...")
-            partial_pdf = output_pdf.with_name(output_pdf.name + ".partial")
-            try:
-                with partial_pdf.open("wb") as pdf_file:
-                    pdf_file.write(img2pdf.convert([str(path) for path in image_paths]))
-                partial_pdf.replace(output_pdf)
-            finally:
-                partial_pdf.unlink(missing_ok=True)
-            print(f"🎊 PDF 已保存：{output_pdf.resolve()}")
-            if len(image_paths) != total_pages:
+            if source == "1":
+                targets = [(output_pdf, image_paths)]
+            else:
+                targets = [
+                    (classroom_pdf_path(output_pdf, index, name,
+                                        len(classroom_results) > 1), paths)
+                    for index, name, paths in classroom_results
+                ]
+            for pdf_path, paths in targets:
+                if not paths:
+                    raise RuntimeError(f"{pdf_path.name} 没有可合成的课件页面。")
+                print(f"\n📦 正在合成 {pdf_path.name}...")
+                partial_pdf = pdf_path.with_name(pdf_path.name + ".partial")
+                try:
+                    with partial_pdf.open("wb") as pdf_file:
+                        pdf_file.write(img2pdf.convert([str(path) for path in paths]))
+                    partial_pdf.replace(pdf_path)
+                finally:
+                    partial_pdf.unlink(missing_ok=True)
+                print(f"🎊 PDF 已保存：{pdf_path.resolve()}")
+            if source == "1" and len(image_paths) != total_pages:
                 print(f"⚠️ 注意：成功 {len(image_paths)} 页，失败 {total_pages - len(image_paths)} 页。")
 
         except Exception as exc:
@@ -325,6 +394,9 @@ def main() -> None:
         save_dir.rmdir()
     except OSError:
         pass
+
+    minutes, seconds = divmod(int(time.perf_counter() - started_at), 60)
+    print(f"⏱️ 下载总耗时：{minutes} 分 {seconds} 秒")
 
 
 if __name__ == "__main__":
